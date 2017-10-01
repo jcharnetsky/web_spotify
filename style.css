@@ -107,10 +107,10 @@ body {
 }
 
 .main {
-    position: absolute;
+    position: relative;
     left: 8vw; bottom: 0vh; top: 5vh; right: 8vw;
 	width: 84vw;
-	height: 175vh;
+	padding-bottom: 8vh;
 	color: #979797;                                                                       
 	background-color: #181818;
 }
@@ -134,6 +134,7 @@ body {
 .content {
 	position: relative;
 	padding-left: 0vw;
+	background-color: #181818;
 	left: 2vw;
 	width: 80vw;
 	height: auto;
@@ -156,7 +157,7 @@ body {
 	color: #ffffff;	
 }
 
-.three_tiles, .two_tiles, .scroll_tiles, .list_tiles, .chart_tiles {
+.three_tiles, .two_tiles, .list_tiles, .chart_tiles {
 	width: 80vw;
 	padding-left: 0vw;
 }
@@ -165,6 +166,7 @@ body {
 	display: inline-block;
 	vertical-align: top;
 	width: 12.1vw;
+	padding-bottom: 1vw;
 }
 .tile_img {
 	position: relative;
@@ -181,17 +183,6 @@ body {
 .tile_desc {
 	margin-top: 0.5vh;
 	font-size: 65%;	
-}
-
-.scroll_tiles {
-	padding-left: 0vw;
-	margin-bottom: 5vh;
-}
-.scroll_tiles li {
-	display: inline;
-	position: relative;
-	padding-right: 0.5vw;
-	padding-left: 0.5vw;
 }
 
 .three_tiles {
@@ -215,23 +206,24 @@ body {
 }
 
 .list_tiles {
-	margin-bottom: 1vw;
+	position: relative;
 }
 .list_tiles li {
 	display: inline;
 	position: relative;
+	height: 19vw;
 	padding-right: 0.5vw;
 	padding-left: 0.5vw;
 }
 
-.concerts {
+.concert_tiles {
 	padding-left: 0vw;
 }
-.concerts li {
+.concert_tiles li {
 	width: 80vw;
 	height: 4vw;
 }
-.concert {
+.concert_tile {
 	padding-left: 4vw;
 	height: 4vw;
 }
@@ -290,8 +282,7 @@ body {
 	position: relative;
 	width: 19vw;
 }
-.two_tiles {
-}
+
 .two_tiles li {
 	display: inline;
 	position: relative;
@@ -304,6 +295,60 @@ body {
 }
 .two_tile_img {
 	width: 39vw;
+}
+
+.release_tiles {
+	position: relative;
+	padding-left: 0vw;
+}
+.release_tiles li {
+	display: inline;
+	position: relative;
+	height: 5vw;
+	}
+.release_tile {
+	display: inline;
+	height: 5vw;
+	width: 38vw;
+	padding-right: 0.5vw;
+	padding-left: 0.5vw;
+
+}
+.release_tile li {
+	display: inline;
+}
+.release_img {
+	position: relative;
+	vertical-align: top;
+	width: 5vw;
+}
+.release_info {
+	position: relative;
+	display: inline-block;
+	width: 33vw;
+	height: 5vw;
+	padding-left: 0vw;
+}
+.release_info:hover {
+	background-color: #333333;
+}
+.release_info li {
+	padding-left: 0vw;
+	padding-right: 0vw;
+}
+.release_title {
+	text-align: left;
+	padding-left: 0.5vw;
+	margin-top: 0.5vh;
+	margin-bottom: 0vh;
+	font-size: 75%;
+	color: #ffffff;
+}
+.release_text {
+	text-align: left;
+	padding-left: 0.5vw;
+	margin-top: 0.5vh;
+	font-size: 65%;	
 }
 
 .nav_tiles {
