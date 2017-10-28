@@ -73,50 +73,55 @@ body {
 	padding-left: 1vw;
 }
 
-.left {
-    position: fixed;
+#sidebar {
+    position: absolute;
     left: 0vw; bottom: 8vh; top: 1vh; right: 0vw; 
     width: 8vw;
     height: 92vh;
 	padding-left: 1vw;	
-	color: #979797;                                                                       
+	color: #979797;
+	overflow: auto;
 }
-.left_list {
+.sidebar_list {
 	padding-bottom: 1vh;	
 	padding-left: 0vw;	
 }
-.left_list li{
+.sidebar_list li{
 	font-size: 80%;
 	padding-bottom: 2vh;
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space: nowrap;
 }
+
 .playlists li:hover {
 	/* TODO make playlist author visible */
 }
 
-
-
-.right {
-    position: fixed;
-    left: 91vw; bottom: 8vh; top: 0vh; right: 0vw;
+#right {
+    position: absolute;
+    left: 92vw; bottom: 8vh; top: 1vh; right: 0vw;
     width: 8vw;
 	padding-left: 1vw;
 	color: #979797;                                                                       
+	background-color: #121212;
+    height: 92vh;
+	overflow: auto;
 }
 
-.main {
-    position: relative;
-    left: 8vw; bottom: 0vh; top: 5vh; right: 8vw;
+#main {
+    position: absolute;
+    left: 8vw; bottom: 0vh; top: 0vh; right: 8vw;
 	width: 84vw;
 	padding-bottom: 8vh;
-	color: #979797;                                                                       
+	color: #979797;
 	background-color: #181818;
+	overflow: hidden;
 }
 .advertisement {
 	display: block;
     margin: auto;
+	padding-top: 5vh;
 	width: 45vw;
 	height: 30vh;
 }
@@ -131,7 +136,7 @@ body {
 }
 
 
-.content {
+#content {
 	position: relative;
 	padding-left: 0vw;
 	background-color: #181818;
@@ -259,7 +264,7 @@ body {
 	padding-bottom: 1vh;
 	width: 15vw;
 }
-.concert:hover {
+.concert_tile:hover {
 	background-color: #333333;
 }
 
@@ -305,7 +310,7 @@ body {
 	display: inline;
 	position: relative;
 	height: 5vw;
-	}
+}
 .release_tile {
 	display: inline;
 	height: 5vw;
@@ -329,12 +334,12 @@ body {
 	height: 5vw;
 	padding-left: 0vw;
 }
-.release_info:hover {
-	background-color: #333333;
-}
 .release_info li {
 	padding-left: 0vw;
 	padding-right: 0vw;
+}
+.release_info:hover {
+	background-color: #333333;
 }
 .release_title {
 	text-align: left;
@@ -368,7 +373,7 @@ body {
 	text-align: center;
 }
 
-.bottom {
+#bottom {
     position: absolute;
     left: 0vw; bottom: 0vh; top: 92vh; right: 0vw;
     height: 8vh;
@@ -454,4 +459,42 @@ a:hover, a:active, #current {
 
 .underline_on_hover:hover {
 	text-decoration: underline;
+}
+
+#topnav {
+    display: block;
+    height: 35px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: #DDD;
+}
+
+#sidebar-resizer {
+	background-color: #181818;
+    position: absolute;
+    top: 0vh;
+    bottom: 8vh;
+    left: 8vw;
+    width: 0.4vw;
+    cursor: e-resize;
+}
+#friendlist-resizer {
+	background-color: #181818;
+    position: absolute;
+    top: 0vh;
+    bottom: 8vh;
+	left: 92vw;
+    width: 0.4vw;
+    cursor: e-resize;
+}
+#content-resizer {
+    position: absolute;
+    height: 6px;
+    bottom: 130px;
+    left: 0;
+    right: 0;
+    background-color: #666;
+    cursor: n-resize;
 }
