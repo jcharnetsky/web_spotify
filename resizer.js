@@ -19,6 +19,9 @@ angular.module('mc.resizer', []).directive('resizer', function($document) {
 				if ($attrs.resizerMax && x > $attrs.resizerMax) {
 					x = parseInt($attrs.resizerMax);
 				}
+				if ($attrs.resizerMin && x < $attrs.resizerMin) {
+					x = parseInt($attrs.resizerMin);
+				}
 
 				$element.css({
 					left: x + 'vw'

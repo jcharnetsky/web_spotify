@@ -1,53 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="web_spotify">
 	<head>
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
+		<title>Web Spotify CSE308</title>
+		<script>document.write('<base href="' + document.locati    on + '" />');</script>
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-		<link rel="stylesheet" type="text/css" href="style.css"/>
 
-		<title>Web Spotify CSE308</title>
+		<!-- CSS -->
+		<link href="style.css" rel="stylesheet" />
+
+		<!-- Angular -->
+		<script src="http://code.jquery.com/jquery-2.0.3.min.js" data-semver="2.0.3" data-require="jquery"></script>
+		<script data-semver="1.2.13" src="http://code.angularjs.org/1.2.13/angular.js" data-require="angular.js@1.2.x"></script>
+		<script src="app.js"></script>
+		<script src="resizer.js"></script>
 	</head>
 
-	<body>
-		<div class="top">
-			<ul class="top_list">
-				<li>
-					<ul class="nav_history">
-						<li><a href="#">
-							<p class="horizontal_chevron" class="prev_history"><
-						</a></li>
-						<li><a href="#" class="next_history">
-							<p class="horizontal_chevron">>
-						</a></li>
-					</ul>
-				</li>
-				<li>
-					<form class="search">
-						<input class="search" type="text" querey="search"><br>
-					</form>
-				</li>
-				<ul class="account">
-					<a href="#">
-						<li class="username"> User Name</li>
-					</a>
-					<a href="#">
-						<li class="vertical_chevron">V</li>
-					</a>
-				</ul>
-			</ul>
-		</div>
-
-		<ul class="left">
-			<ul class="left_list">
+	<body ng-controller="MainCtrl">
+		<div id="sidebar">
+			<ul class="sidebar_list">
 				<li id="active"><a href="#" id="current">Browse</a></li>
 				<li><a href="#">Radio</a></li>
 			</ul>
 
-			<ul class="left_list">
+			<ul class="sidebar_list">
 				<li>YOUR LIBRARY</li>
 				<li><a href="#">Your Daily Mix</a></li>
 				<li><a href="#">Recently Played</a></li>
@@ -58,7 +38,7 @@
 				<li><a href="#">Local Files</a></li>
 			</ul>
 
-			<ul class="left_list" class="playlists">
+			<ul class="sidebar_list" class="playlists">
 				<li>PLAYLISTS</li>
 				<li><a href="#">On the Road</a></li>
 				<li><a href="#">Spotify and Chill</a></li>
@@ -68,9 +48,43 @@
 				<li><a href="#">Pop Rising</a></li>
 				<li><a href="#">Liked from Radio</a></li>
 			</ul>
-		</ul>
-		
-		<div class="main">
+		</div>
+
+		<div class="top">
+			<ul class="top_list">
+				<li>
+					<ul class="nav_history">
+						<li><a href="#">
+							<p class="horizontal_chevron" class="prev_history"><
+						</a></li>
+
+						<li><a href="#" class="next_history">
+							<p class="horizontal_chevron">>
+						</a></li>
+					</ul>
+				</li>
+
+				<li>
+					<form class="search">
+						<input class="search" type="text" ng-model="search_querey" placeholder="Search"><br>
+					</form>
+				</li>
+				
+				<li>
+					<ul class="account">
+						<a href="#">
+							<li class="username"> User Name</li>
+						</a>
+
+						<a href="#">
+							<li class="vertical_chevron">V</li>
+						</a>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+		<div id="main">
 			<a href="#"><img class="advertisement" src="resources/ad.png" alt="Sponsored Advertiesment"></a>
 		
 			<ul class="navbar">
@@ -82,7 +96,7 @@
 				<li><a href="concerts.html">Concerts</a></li>
 			</ul>
 			
-			<ul class="content">
+			<ul id="content">
 				<ul class="content_header">
 					<li>
 						<p id="content_title">Playlists Made Just For You</p>
@@ -191,24 +205,30 @@
 							<p class="tile_desc" class="left_align">Artist</p>
 						</a>
 					</div></li>
+
 					<li><div class="tile">
 						<a href="#">
 							<img class="tile_img" src="resources/tile1.png" alt="Suggestion"> 
 						</a>
+
 						<a href="#" class="underline_on_hover">
 							<p class="tile_text" >Album/Song Title</p>
 						</a>
+
 						<a href="#" class="underline_on_hover">
 							<p class="tile_desc" class="left_align">Artist</p>
 						</a>
 					</div></li>
+
 					<li><div class="tile">
 						<a href="#">
 							<img class="tile_img" src="resources/tile1.png" alt="Suggestion"> 
 						</a>
+
 						<a href="#" class="underline_on_hover">
 							<p class="tile_text" >Album/Song Title</p>
 						</a>
+
 						<a href="#" class="underline_on_hover">
 							<p class="tile_desc" class="left_align">Artist</p>
 						</a>
@@ -219,10 +239,12 @@
 					<li>
 						<p id="content_title">Because You Listened to Artist</p>
 					</li>
+
 					<li class="nav_tiles">                                                                    
                          <a href="#" class="prev_tiles">
                              <p class="horizontal_chevron"><
 						</a>
+
 						<a href="#" class="next_tiles">
 							<p class="horizontal_chevron">>
 						</a>
@@ -243,6 +265,7 @@
 							<p class="tile_desc" class="left_align">Artist</p>
 						</a>
 					</div></li>
+
 					<li><div class="tile">
 						<a href="#">
 							<img class="tile_img" src="resources/tile1.png" alt="Suggestion"> 
@@ -254,6 +277,7 @@
 							<p class="tile_desc" class="left_align">Artist</p>
 						</a>
 					</div></li>
+
 					<li><div class="tile">
 						<a href="#">
 							<img class="tile_img" src="resources/tile1.png" alt="Suggestion"> 
@@ -265,6 +289,7 @@
 							<p class="tile_desc" class="left_align">Artist</p>
 						</a>
 					</div></li>
+
 					<li><div class="tile">
 						<a href="#">
 							<img class="tile_img" src="resources/tile1.png" alt="Suggestion"> 
@@ -276,6 +301,7 @@
 							<p class="tile_desc" class="left_align">Artist</p>
 						</a>
 					</div></li>
+
 					<li><div class="tile">
 						<a href="#">
 							<img class="tile_img" src="resources/tile1.png" alt="Suggestion"> 
@@ -287,6 +313,7 @@
 							<p class="tile_desc" class="left_align">Artist</p>
 						</a>
 					</div></li>
+
 					<li><div class="tile">
 						<a href="#">
 							<img class="tile_img" src="resources/tile1.png" alt="Suggestion"> 
@@ -299,49 +326,73 @@
 						</a>
 					</div></li>
 				</ul>
-	
 			</ul>
 		</div>
 
-		<div class="right">
+		<div id="right">
 			Friend Activity
 		</div>
 		
-		<div class="bottom">
+		<div id="bottom">
 			<ul class="playbar">
 				<li>
 					<a href="#">
 						<img class="current_album_cover" src="resources/album_cover.png" alt="Album Cover">
 					</a>
 				</li>
+
 				<li class="current_song_info">
 					<a href="#" class="underline_on_hover">
 						<span class="current_song_title">Washing Dishes
 					</a>
+
 					<a href="#" class="underline_on_hover">
 						<p class="current_song_artist">Jack Johnson
 					</a>
 				</li>
+
 				<li class="music_controls">
 					<ul class="music_buttons">
 						<li><a href="#">
 							<img class="shuffle" src="resources/shuffle.png" alt="Shuffle">
 						</a></li>
+
 						<li><a href="#">
 							<img class="previous" src="resources/next.png" alt="Previous">
 						</a></li>
+
 						<li><a href="#">
 							<img class="play" src="resources/play.png" alt="Play">
 						</a></li>
+
 						<li><a href="#">
 							<img class="next" src="resources/next.png" alt="Next">
 						</a></li>
+
 						<li><a href="#">
 							<img class="repeat" src="resources/repeat.png" alt="Repeat">
 						</a></li>
 					</ul>
 				</li>
 			</ul>
+		</div>
+
+		<div id="sidebar-resizer" 
+			resizer="vertical" 
+			resizer-width="0.4vw" 
+			resizer-left="#sidebar" 
+			resizer-right="#main"
+			resizer-max="20"
+			resizer-min="5">
+		</div>
+
+		<div id="friendlist-resizer" 
+			resizer="vertical" 
+			resizer-width="0.4vw" 
+			resizer-left="#main" 
+			resizer-right="#right"
+			resizer-max="95"
+			resizer-min="85">
 		</div>
 
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

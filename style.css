@@ -3,10 +3,9 @@ body {
 }
 .top, .top_list {
 	position: fixed;
+	left: 0vw; right: 0vw;
 	color: #979797;                                                                       
 	background-color: #121212;
-	left: 8vw; bottom: 0vh; top: 0vh; right: 0vw;
-    width: 84vw;
     height: 5vh;
    	padding-left: 0vw;
 	margin-bottom: 0vh;
@@ -21,7 +20,6 @@ body {
 .search {
 	float: left;
     height: 3vh;
-	width: 12vw;
 	padding-left: 2vw;
 	padding-top: 0.5vh;
 	padding-bottom: 0.5vh;
@@ -75,7 +73,7 @@ body {
 
 #sidebar {
     position: absolute;
-    left: 0vw; bottom: 8vh; top: 1vh; right: 0vw; 
+    left: 0vw; bottom: 8vh; top: 5vh; right: 0vw; 
     width: 8vw;
     height: 92vh;
 	padding-left: 1vw;	
@@ -100,7 +98,7 @@ body {
 
 #right {
     position: absolute;
-    left: 92vw; bottom: 8vh; top: 1vh; right: 0vw;
+    left: 92vw; bottom: 8vh; top: 5vh; right: 0vw;
     width: 8vw;
 	padding-left: 1vw;
 	color: #979797;                                                                       
@@ -111,12 +109,10 @@ body {
 
 #main {
     position: absolute;
-    left: 8vw; bottom: 0vh; top: 0vh; right: 8vw;
-	width: 84vw;
-	padding-bottom: 8vh;
+    left: 8vw; bottom: 4vh; top: 5vh; right: 8vw;
 	color: #979797;
 	background-color: #181818;
-	overflow: hidden;
+	overflow: auto;
 }
 .advertisement {
 	display: block;
@@ -126,6 +122,7 @@ body {
 	height: 30vh;
 }
 .navbar {
+	width: auto;
 	padding-left: 2.5vw;
 	padding-top: 3vh;
 	padding-right: 2.5vw;
@@ -135,13 +132,12 @@ body {
 	vertical-align: center;
 }
 
-
 #content {
 	position: relative;
 	padding-left: 0vw;
+	padding-bottom: 3vw;
 	background-color: #181818;
 	left: 2vw;
-	width: 80vw;
 	height: auto;
 }
 .content_header {
@@ -149,21 +145,18 @@ body {
 	padding-left: 0.5vw;
 	padding-bottom: 2vh;
 	padding-top: 2vh;
-	width: 80vw;
 	height: 6vh;
 }
 .content_header li {
 	display: inline-block;
 }
 #content_title {
-	width: 20vw;
 	font-size: 110%;
 	font-weight: 600;
 	color: #ffffff;	
 }
 
 .three_tiles, .two_tiles, .list_tiles, .chart_tiles {
-	width: 80vw;
 	padding-left: 0vw;
 }
 
@@ -174,8 +167,9 @@ body {
 	padding-bottom: 1vw;
 }
 .tile_img {
-	position: relative;
 	width: 12.1vw;
+	height: 12.1vw;
+	position: relative;
 }
 
 .tile_text {
@@ -434,10 +428,10 @@ ul {
 }
 
 hr {
-	width: 80vw;
 	border-color: #282828;
 	border-width: 0.3vh;
 	margin-top: 0vh;
+	margin-right: 3vw;
 }
 .concert_hr {
 	border-color: #282828;
