@@ -16,6 +16,8 @@ app.controller('MainCtrl', function($scope) {
 
   $scope.focus = [];
   $scope.charts = [];
+  $scope.playlists = ['On the Road', 'Spotify and Chill', 'Spotify top 50 Sweden', 'Spotify Sessions',
+  'Rock Classics', 'Pop Rising', 'Liked from Radio'];
 
   for (i = 0; i < focuses.length; i++){
     var item = {

@@ -26,13 +26,7 @@
 
     <ul class="sidebar_list playlists">
         <li>PLAYLISTS</li>
-        <li><a href="#">On the Road</a></li>
-        <li><a href="#">Spotify and Chill</a></li>
-        <li><a href="#">Spotify top 50 Sweden</a></li>
-        <li><a href="#">Spotify Sessions</a></li>
-        <li><a href="#">Rock Classics</a></li>
-        <li><a href="#">Pop Rising</a></li>
-        <li><a href="#">Liked from Radio</a></li>
+        <li ng-repeat="playlist in playlists"><a href="#">{{playlist}}</a></li>
     </ul>
 </div>
 
