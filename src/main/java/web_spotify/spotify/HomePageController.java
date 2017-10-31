@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class HomePageController {
 
-    @RequestMapping("/index.html")
+    @RequestMapping("/")
     public String getMainPage(Model model, HttpSession session){
         return "home";
     }
