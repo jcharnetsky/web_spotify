@@ -53,12 +53,6 @@ body {
 	background-color: #181818
 }
 
-img {
-	width: 75px;
-	height: 75px;
-	border-radius: 50%;
-}
-
 form input {
 	position: absolute;
 	width: auto;
