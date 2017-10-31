@@ -1,0 +1,282 @@
+{
+    "albums": [
+        {
+            "date": "2016-02-15",
+            "name": "Stripper Hoe",
+            "songList": [
+                "Stripper Hoe"
+            ],
+            "type": "Single"
+        },
+        {
+            "date": "2016-03-07",
+            "name": "Gangsta Bitch Music Vol 1",
+            "songList": [
+                "Intro (skit)",
+                "Trust Issues",
+                "On Fleek",
+                "Washpoppin",
+                "Her Perspective (skit)",
+                "Selfish",
+                "I Gotta Hurt You",
+                "Foreva",
+                "Trick (skit)",
+                "Trick",
+                "Lit Thot",
+                "Sauce Boyz",
+                "Outro (skit)"
+            ],
+            "type": "Album_Mixtape/Street"
+        },
+        {
+            "date": "2017-01-20",
+            "name": "Gbmv2",
+            "songList": [
+                "Bronx Season",
+                "Lick",
+                "Hectic",
+                "Leave That Bitch Alone (skit)",
+                "Leave That Bitch Alone",
+                "Rollin",
+                "Back It Up",
+                "Never Give Up",
+                "Pull Up",
+                "Pop Off"
+            ],
+            "type": "Album"
+        },
+        {
+            "date": "2015-10-12",
+            "name": "Washpoppin",
+            "songList": [
+                "Washpoppin"
+            ],
+            "type": "Single"
+        },
+        {
+            "date": "2016-07-25",
+            "name": "Fuck Me Up (Jaceeoh Remix)",
+            "songList": [
+                "Fuck Me Up (Jaceeoh Remix)"
+            ],
+            "type": "Single"
+        },
+        {
+            "date": "2016-07-25",
+            "name": "Fuck Me Up",
+            "songList": [
+                "Fuck Me Up"
+            ],
+            "type": "Single"
+        },
+        {
+            "date": "2017-06-16",
+            "name": "Bodak Yellow (Money Moves)",
+            "songList": [
+                "Bodak Yellow (Money Moves)"
+            ],
+            "type": "Single"
+        },
+        {
+            "date": "2017-09-08",
+            "name": "No Limit",
+            "songList": [
+                "No Limit"
+            ],
+            "type": "Single"
+        }
+    ],
+    "artists": [
+        {
+            "albumList": [
+                "Stripper Hoe",
+                "Gangsta Bitch Music Vol 1",
+                "Gbmv2",
+                "Washpoppin",
+                "Fuck Me Up (Jaceeoh Remix)",
+                "Fuck Me Up",
+                "Bodak Yellow (Money Moves)",
+                "No Limit"
+            ],
+            "aliasList": [],
+            "area": "United States",
+            "name": "Cardi B"
+        }
+    ],
+    "songs": [
+        {
+            "album": "Stripper Hoe",
+            "length": 129045,
+            "name": "Stripper Hoe",
+            "trackPosition": 1
+        },
+        {
+            "album": "Gangsta Bitch Music, Vol. 1",
+            "length": 56947,
+            "name": "Intro (skit)",
+            "trackPosition": 1
+        },
+        {
+            "album": "Gangsta Bitch Music, Vol. 1",
+            "length": 144483,
+            "name": "Trust Issues",
+            "trackPosition": 2
+        },
+        {
+            "album": "Gangsta Bitch Music, Vol. 1",
+            "length": 166217,
+            "name": "On Fleek",
+            "trackPosition": 3
+        },
+        {
+            "album": "Gangsta Bitch Music, Vol. 1",
+            "length": 200229,
+            "name": "Washpoppin",
+            "trackPosition": 4
+        },
+        {
+            "album": "Gangsta Bitch Music, Vol. 1",
+            "length": 90305,
+            "name": "Her Perspective (skit)",
+            "trackPosition": 5
+        },
+        {
+            "album": "Gangsta Bitch Music, Vol. 1",
+            "length": 192993,
+            "name": "Selfish",
+            "trackPosition": 6
+        },
+        {
+            "album": "Gangsta Bitch Music, Vol. 1",
+            "length": 251533,
+            "name": "I Gotta Hurt You",
+            "trackPosition": 7
+        },
+        {
+            "album": "Gangsta Bitch Music, Vol. 1",
+            "length": 202919,
+            "name": "Foreva",
+            "trackPosition": 8
+        },
+        {
+            "album": "Gangsta Bitch Music, Vol. 1",
+            "length": 127608,
+            "name": "Trick (skit)",
+            "trackPosition": 9
+        },
+        {
+            "album": "Gangsta Bitch Music, Vol. 1",
+            "length": 172251,
+            "name": "Trick",
+            "trackPosition": 10
+        },
+        {
+            "album": "Gangsta Bitch Music, Vol. 1",
+            "length": 181290,
+            "name": "Lit Thot",
+            "trackPosition": 11
+        },
+        {
+            "album": "Gangsta Bitch Music, Vol. 1",
+            "length": 173793,
+            "name": "Sauce Boyz",
+            "trackPosition": 12
+        },
+        {
+            "album": "Gangsta Bitch Music, Vol. 1",
+            "length": 36571,
+            "name": "Outro (skit)",
+            "trackPosition": 13
+        },
+        {
+            "album": "Gbmv2",
+            "length": 142456,
+            "name": "Bronx Season",
+            "trackPosition": 1
+        },
+        {
+            "album": "Gbmv2",
+            "length": 234609,
+            "name": "Lick",
+            "trackPosition": 2
+        },
+        {
+            "album": "Gbmv2",
+            "length": 172584,
+            "name": "Hectic",
+            "trackPosition": 3
+        },
+        {
+            "album": "Gbmv2",
+            "length": 87185,
+            "name": "Leave That Bitch Alone (skit)",
+            "trackPosition": 4
+        },
+        {
+            "album": "Gbmv2",
+            "length": 167539,
+            "name": "Leave That Bitch Alone",
+            "trackPosition": 5
+        },
+        {
+            "album": "Gbmv2",
+            "length": 189767,
+            "name": "Rollin",
+            "trackPosition": 6
+        },
+        {
+            "album": "Gbmv2",
+            "length": 157613,
+            "name": "Back It Up",
+            "trackPosition": 7
+        },
+        {
+            "album": "Gbmv2",
+            "length": 159988,
+            "name": "Never Give Up",
+            "trackPosition": 8
+        },
+        {
+            "album": "Gbmv2",
+            "length": 162730,
+            "name": "Pull Up",
+            "trackPosition": 9
+        },
+        {
+            "album": "Gbmv2",
+            "length": 213437,
+            "name": "Pop Off",
+            "trackPosition": 10
+        },
+        {
+            "album": "Washpoppin",
+            "length": 202000,
+            "name": "Washpoppin",
+            "trackPosition": 1
+        },
+        {
+            "album": "Fuck Me Up (Jaceeoh Remix)",
+            "length": 168000,
+            "name": "Fuck Me Up (Jaceeoh Remix)",
+            "trackPosition": 1
+        },
+        {
+            "album": "Fuck Me Up",
+            "length": 151000,
+            "name": "Fuck Me Up",
+            "trackPosition": 1
+        },
+        {
+            "album": "Bodak Yellow (Money Moves)",
+            "length": 224712,
+            "name": "Bodak Yellow (Money Moves)",
+            "trackPosition": 1
+        },
+        {
+            "album": "No Limit",
+            "length": 212000,
+            "name": "No Limit",
+            "trackPosition": 1
+        }
+    ]
+}
