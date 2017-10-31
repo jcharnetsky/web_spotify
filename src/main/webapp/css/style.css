@@ -1,5 +1,6 @@
 body {
 	background-color: #121212;
+	color: white;
 }
 
 .horizontal_chevron {
@@ -21,14 +22,6 @@ body {
     -ms-transform:scale(2,1); /* IE 9 */
     -o-transform:scale(2,1); /* Opera */
     transform:scale(2,1); /* W3C */
-}
-
-#main {
-    position: absolute;
-    left: 8vw; bottom: 4vh; top: 5vh; right: 8vw;
-	color: #979797;
-	background-color: #181818;
-	overflow: auto;
 }
 
 .left_align {

@@ -1,3 +1,11 @@
+#main {
+    position: absolute;
+    left: 8vw; bottom: 4vh; top: 5vh; right: 8vw;
+	color: #979797;
+	background-color: #181818;
+	overflow: auto;
+}
+
 .advertisement {
 	display: block;
     margin: auto;
@@ -7,13 +15,14 @@
 }
 .navbar {
 	width: auto;
-	padding-left: 2.5vw;
+	padding-left: 1vw;
 	padding-top: 3vh;
-	padding-right: 2.5vw;
+	padding-right: 1vw;
 	margin-bottom: 0vh;
 }
 .navbar li {
 	vertical-align: center;
+	margin-right: 2vw;
 }
 
 #content {
@@ -241,14 +250,4 @@
 }
 .next_tiles {
 	height: 5vh;
-}
-
-#content-resizer {
-    position: absolute;
-    height: 6px;
-    bottom: 130px;
-    left: 0;
-    right: 0;
-    background-color: #666;
-    cursor: n-resize;
 }

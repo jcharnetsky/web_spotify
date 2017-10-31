@@ -1,4 +1,4 @@
-var app = angular.module('web_spotify', ['mc.resizer']);
+var app = angular.module('web_spotify',['mc.resizer']);
 
 app.controller('MainCtrl', function($scope) {
   $scope.content = '';
@@ -53,8 +53,6 @@ $scope.selectPane = function (param) {
 
    //Compile the include
    $compile(node)($scope);
-   $scope.$apply();
-
 }
 
 });

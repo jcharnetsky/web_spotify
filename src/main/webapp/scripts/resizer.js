@@ -11,7 +11,7 @@ angular.module('mc.resizer', []).directive('resizer', function($document) {
 
 		function mousemove(event) {
 
-			if ($attrs.resizer == 'vertical') {
+			if ($attrs.resizer == 'left') {
 				// Handle vertical resizer
 				var x = event.pageX;
 				x = x * (100 / document.documentElement.clientWidth);
@@ -35,20 +35,28 @@ angular.module('mc.resizer', []).directive('resizer', function($document) {
 				});
 
 			} else {
-				// Handle horizontal resizer
-				var y = window.innerHeight - event.pageY;
-				y = y * (100 / document.documentElement.clientHeight);
+				var x = event.pageX;
+                x = x * (100 / document.documentElement.clientWidth);
 
-				$element.css({
-					bottom: y + 'vh'
-				});
+                if ($attrs.resizerMax && x > $attrs.resizerMax) {
+                    x = parseInt($attrs.resizerMax);
+                }
+                if ($attrs.resizerMin && x < $attrs.resizerMin) {
+                    x = parseInt($attrs.resizerMin);
+                }
 
-				$($attrs.resizerTop).css({
-					bottom: (y + parseInt($attrs.resizerHeight)) + 'vh'
-				});
-				$($attrs.resizerBottom).css({
-					height: y + 'vh'
-				});
+                x = 100 - x;
+
+                $element.css({
+                    right: x + 'vw'
+                });
+
+                $($attrs.resizerRight).css({
+                    width: x + 'vw'
+                });
+                $($attrs.resizerLeft).css({
+                    right: (x + parseInt($attrs.resizerWidth)) + 'vw'
+                });
 			}
 		}
 
@@ -58,3 +66,4 @@ angular.module('mc.resizer', []).directive('resizer', function($document) {
 		}
 	};
 });
+
