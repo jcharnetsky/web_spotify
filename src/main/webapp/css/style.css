@@ -1,6 +1,6 @@
 body {
 	background-color: #121212;
-	color: white;
+	color: #ffffff;
 }
 
 .horizontal_chevron {
@@ -29,6 +29,41 @@ body {
 }
 .center_align {
 	text-align: center;
+}
+
+.vertical_center {
+	margin-top: 25vh;
+}
+
+.sign_in_block {
+	position: relative;
+	margin-left: 35vw;
+	margin-right: 35vw;
+	padding: 20px 20px 20px 20px;
+	width: 30vw;
+	height: 25vw;
+	border: 2px solid #ffffff;
+	border-radius: 3px;
+}
+
+.sign_in_block input {
+	border-width: 1px;
+	border-radius: 3px;
+	color: #ffffff;
+	background-color: #181818
+}
+
+img {
+	width: 75px;
+	height: 75px;
+	border-radius: 50%;
+}
+
+form input {
+	position: absolute;
+	width: auto;
+	right: 20px;
+	margin-bottom: 20px;
 }
 
 span {
