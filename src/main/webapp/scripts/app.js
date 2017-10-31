@@ -36,3 +36,26 @@ app.controller('MainCtrl', function($scope) {
     $scope.charts.push(chart);
   }
 });
+
+app.controller('NavCtrl', function($compile, $scope){
+$scope.selectPane = function (param) {
+   var node = document.getElementById("content");
+
+   //Clear out whatever was in the content container
+   while(node.firstChild){
+      node.removeChild(node.firstChild);
+   }
+
+   //Add the new include to whatever was clicked
+   var tag = document.createElement('div');
+   tag.setAttribute("ng-include", "'templates/" + param + "'");
+   node.appendChild(tag);
+
+   //Compile the include
+   $compile(node)($scope);
+   $scope.$apply();
+
+}
+
+});
+

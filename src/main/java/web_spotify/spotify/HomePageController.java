@@ -11,6 +11,6 @@ public class HomePageController {
 
     @RequestMapping("/index.html")
     public String getMainPage(Model model, HttpSession session){
-        return "overview";
+        return "home";
     }
 }
