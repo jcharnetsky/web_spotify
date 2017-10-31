@@ -5,26 +5,30 @@
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
 		<title>Web Spotify CSE308</title>
-		<script>document.write('<base href="' + document.locati    on + '" />');</script>
+		<script>document.write('<base href="' + document.location + '" />');</script>
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
 		<!-- CSS -->
-		<link href="style.css" rel="stylesheet" />
+		<link href="css/home.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
 
 		<!-- Angular -->
 		<script src="http://code.jquery.com/jquery-2.0.3.min.js" data-semver="2.0.3" data-require="jquery"></script>
-		<script src="resizer.js"></script>
-		<script data-semver="1.2.13" src="http://code.angularjs.org/1.2.13/angular.js" data-require="angular.js@1.2.x"></script>
-		<script src="app.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script src="scripts/resizer.js"></script>
+		<script src="scripts/app.js"></script>
 	</head>
 
-	<body ng-controller="MainCtrl">
+	<body ng-app="container" ng-controller="MainCtrl">
+
+		<div ng-include="'templates/sidebar.html'"></div>
+		<div ng-include="'templates/searchbar.html'"></div>
 
 		<div id="main">
-			<a href="#"><img class="advertisement" src="resources/ad.png" alt="Sponsored Advertiesment"></a>
+			<a href="#"><img class="advertisement" src="images/ad.png" alt="Sponsored Advertiesment"></a>
 		
 			<ul class="navbar">
 				<li id="active"><a href="overview.html" id="current">Overview</a></li>
@@ -53,312 +57,47 @@
 				<hr>
 
 				<ul class="list_tiles">
-					<li><div class="tile">
+					<li ng-repeat="item in focus">
+						<div class="tile">
 						<a href="#">
-							<img class="tile_img" src="resources/rhiannon-giddens-tomorrow-is-my-turn.jpg" alt="Suggestion"> 
+							<img class="tile_img" src="{{item.img}}" alt="Suggestion">
 						</a>
 
-							<p class="tile_text">Tomorrow Is My Turn</p>
-							<p class="tile_desc" class="left_align">Tomorrow Is My Turn by Rhiannon Giddens
-					</div></li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/tile2.png" alt="Suggestion">
-						</a>
-
-						<p class="tile_text">dancePOP
-						<p class="tile_desc" class="left_align">The guilty pleasures of dance and electronic. Cover: Eden Prince and Cassie
-					</div></li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/tile3.png" alt="Suggestion"> 
-						</a>
-
-						<p class="tile_text">Deep Focus
-						<p class="tile_desc" class="left_align">Keep calm and focus. This playlist has some great, atmospheric rock to help you relax and concentrate.
-					</div></li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/tile4.png" alt="Suggestion"> 
-						</a>
-
-						<p class="tile_text">Lush Vibes
-						<p class="tile_desc" class="left_align">Lo-fi and chill instrumental hip hop. Related playlist: Jazz Vibes
-					</div></li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/tile5.png" alt="Suggestion"> 
-						</a>
-
-						<p class="tile_text">The Pulse of Americana
-						<p class="tile_desc" class="left_align">Keep your finger on the pulse of Americana. We're featuring artists performing at AMERICANAFEST.
-					</div></li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/tile6.png" alt="Suggestion"> 
-						</a>
-
-						<p class="tile_text">Young & Free
-						<p class="tile_desc" class="left_align">Live your life... this is Young & Free
-					<div></li>
+							<p class="tile_text">{{item.head}}</p>
+							<p class="tile_desc" class="left_align">{{item.desc}}</p>
+						</div>
+					</li>
 				</ul>
 
 				<hr>
 
 				<ul class="three_tiles">
-					<li class="center_align"><div class="three_tile">
+					<li class="center_align" ng-repeat="chart in charts">
+						<div class="three_tile">
 						<a href="#">
-							<img class="three_tile_img" src="resources/charts.png">
+							<img class="three_tile_img" src="{{chart.img}}">
 						</a>
-
-						<p class="tile_desc">Global and Regional Top Charts
-					</li>
-
-					<li class="center_align"><div class="three_tile">
-						<a href="#">
-							<img class="three_tile_img" src="resources/new_releases.png">
-						</a>
-
-						<p class="tile_desc">Macklemore, The Killers, Illenium
-					</li>
-
-					<li class="center_align"><div class="three_tile">
-						<a href="#">
-							<img class="three_tile_img" src="resources/discover.png">
-						</a>
-
-						<p class="tile_desc">Recommended for You
+							<p class="tile_desc">{{chart.desc}}</p>
+						</div>
 					</li>
 				</ul>
 
 				<hr>
 
 				<ul class="list_tiles">
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-				</ul>
-
-				<ul class="list_tiles">
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
-					</li>
-
-					<li><div class="tile">
-						<a href="#">
-							<img class="tile_img" src="resources/genre_1.png">
-						</a>
+					<li ng-repeat="n in [1,2,3,4,5,6,7,8]">
+						<div class="tile">
+							<a href="#">
+								<img class="tile_img" src="images/genre_1.png">
+							</a>
+						</div>
 					</li>
 				</ul>
 			</ul>
 		</div>
+
+	    <div ng-include src="'templates/friend.html'"></div>
+		<div ng-include src="'templates/playbar.html'"></div>
 
 	</body>
 </html> 

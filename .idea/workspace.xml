@@ -2,47 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0e706b9-1b03-40ce-849c-41d50cf2fe71" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/web_spotify/spotify/HelloController.java" afterPath="$PROJECT_DIR$/src/main/java/web_spotify/spotify/HomePageController.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/app.js" afterPath="$PROJECT_DIR$/src/main/webapp/scripts/app.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resizer.js" afterPath="$PROJECT_DIR$/src/main/webapp/scripts/resizer.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/ad.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/ad.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/album_cover.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/album_cover.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/char_list1.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/char_list1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/char_list2.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/char_list2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/chart.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/chart.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/charts.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/charts.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/concert1.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/concert1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/discover.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/discover.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/genre_1.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/genre_1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/genre_10.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/genre_10.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/genre_11.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/genre_11.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/genre_12.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/genre_12.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/genre_2.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/genre_2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/genre_3.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/genre_3.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/genre_4.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/genre_4.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/genre_5.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/genre_5.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/genre_6.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/genre_6.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/genre_7.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/genre_7.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/genre_8.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/genre_8.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/genre_9.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/genre_9.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/new_release.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/new_release.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/new_releases.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/new_releases.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/next.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/next.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/play.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/play.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/queue.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/queue.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/repeat.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/repeat.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/rhiannon-giddens-tomorrow-is-my-turn.jpg" afterPath="$PROJECT_DIR$/src/main/webapp/images/rhiannon-giddens-tomorrow-is-my-turn.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/shuffle.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/shuffle.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/tile1.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/tile1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/tile2.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/tile2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/tile3.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/tile3.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/tile4.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/tile4.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/tile5.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/tile5.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/tile6.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/tile6.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/volume.png" afterPath="$PROJECT_DIR$/src/main/webapp/images/volume.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/style.css" afterPath="$PROJECT_DIR$/src/main/webapp/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/web_spotify/spotify/HelloController.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/discover.html" afterPath="$PROJECT_DIR$/src/main/webapp/discover.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/overview.html" afterPath="$PROJECT_DIR$/src/main/webapp/overview.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/scripts/app.js" afterPath="$PROJECT_DIR$/src/main/webapp/scripts/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/templates/friend.html" afterPath="$PROJECT_DIR$/src/main/webapp/templates/friend.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/templates/playbar.html" afterPath="$PROJECT_DIR$/src/main/webapp/templates/playbar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/templates/sidebar.html" afterPath="$PROJECT_DIR$/src/main/webapp/templates/sidebar.html" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -53,33 +19,47 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DockManager">
-    <window id="2">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/main/webapp/css/style.css">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="518">
-                    <caret line="67" column="29" lean-forward="true" selection-start-line="67" selection-start-column="29" selection-end-line="67" selection-end-column="29" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FileEditorManager">
     <leaf>
       <file leaf-file-name="overview.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/overview.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="32" column="47" lean-forward="false" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
+            <state relative-caret-position="1564">
+              <caret line="92" column="30" lean-forward="true" selection-start-line="92" selection-start-column="30" selection-end-line="92" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/scripts/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="23" column="22" lean-forward="false" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HomePageController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/web_spotify/spotify/HomePageController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#366#367#0" expanded="true" />
+                <element signature="e#399#400#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="playbar.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/playbar.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-463">
+              <caret line="1" column="12" lean-forward="true" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -88,18 +68,8 @@
       <file leaf-file-name="friend.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/friend.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="playbar.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/playbar.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="323">
+              <caret line="19" column="9" lean-forward="true" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -108,7 +78,7 @@
       <file leaf-file-name="searchbar.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/searchbar.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
+            <state relative-caret-position="-153">
               <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
@@ -118,8 +88,18 @@
       <file leaf-file-name="sidebar.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/sidebar.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state relative-caret-position="187">
+              <caret line="11" column="64" lean-forward="true" selection-start-line="11" selection-start-column="64" selection-end-line="11" selection-end-column="64" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sidebar.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/css/sidebar.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="32" column="14" lean-forward="false" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -128,28 +108,18 @@
       <file leaf-file-name="home.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/css/home.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1198">
+            <state relative-caret-position="4097">
               <caret line="241" column="13" lean-forward="true" selection-start-line="241" selection-start-column="13" selection-end-line="241" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="friend.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/css/friend.css">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="23" lean-forward="true" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="searchbar.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/css/searchbar.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="24" column="1" lean-forward="true" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+            <state relative-caret-position="1139">
+              <caret line="67" column="29" lean-forward="true" selection-start-line="67" selection-start-column="29" selection-end-line="67" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -171,6 +141,8 @@
       <find>play</find>
       <find>next</find>
       <find>account</find>
+      <find>ng-include</find>
+      <find>resources</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -207,11 +179,14 @@
         <option value="$PROJECT_DIR$/src/main/webapp/css/friend.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/css/home.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/css/style.css" />
-        <option value="$PROJECT_DIR$/src/main/webapp/templates/playbar.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/overview.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/templates/friend.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/templates/searchbar.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/discover.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/scripts/include.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/templates/playbar.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/templates/sidebar.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/templates/friend.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/scripts/app.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/overview.html" />
       </list>
     </option>
   </component>
@@ -223,10 +198,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="784" />
+    <option name="x" value="2035" />
+    <option name="y" value="-18" />
+    <option name="width" value="929" />
+    <option name="height" value="711" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -269,6 +244,21 @@
               <item name="cardinalspotify" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cardinalspotify" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cardinalspotify" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="spotify" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cardinalspotify" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cardinalspotify" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -285,6 +275,14 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cardinalspotify" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cardinalspotify" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cardinalspotify" type="b2602c69:ProjectViewProjectNode" />
@@ -449,7 +447,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
+    <frame x="1912" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -460,13 +458,13 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22210953" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3249258" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12291667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1727672" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32937685" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -562,17 +560,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/web_spotify/spotify/HomePageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="64" lean-forward="false" selection-start-line="12" selection-start-column="64" selection-end-line="12" selection-end-column="64" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#399#400#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/charts.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -581,74 +568,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/css/sidebar.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="14" lean-forward="false" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/css/playbar.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="433">
           <caret line="28" column="21" lean-forward="true" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
-          <caret line="67" column="29" lean-forward="true" selection-start-line="67" selection-start-column="29" selection-end-line="67" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/scripts/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/friend.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/playbar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/searchbar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/sidebar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/css/home.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1198">
-          <caret line="241" column="13" lean-forward="true" selection-start-line="241" selection-start-column="13" selection-end-line="241" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -669,10 +592,110 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/discover.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6360">
+          <caret line="377" column="14" lean-forward="false" selection-start-line="377" selection-start-column="14" selection-end-line="377" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/concerts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3366">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/web_spotify/spotify/HomePageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#366#367#0" expanded="true" />
+            <element signature="e#399#400#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/scripts/include.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="44" lean-forward="false" selection-start-line="0" selection-start-column="44" selection-end-line="0" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/playbar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-463">
+          <caret line="1" column="12" lean-forward="true" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/friend.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="9" lean-forward="true" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/css/sidebar.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="14" lean-forward="false" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/sidebar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="64" lean-forward="true" selection-start-line="11" selection-start-column="64" selection-end-line="11" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/searchbar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-153">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1139">
+          <caret line="67" column="29" lean-forward="true" selection-start-line="67" selection-start-column="29" selection-end-line="67" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/css/home.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4097">
+          <caret line="241" column="13" lean-forward="true" selection-start-line="241" selection-start-column="13" selection-end-line="241" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/scripts/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="23" column="22" lean-forward="false" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/overview.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="32" column="47" lean-forward="false" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
+        <state relative-caret-position="1564">
+          <caret line="92" column="30" lean-forward="true" selection-start-line="92" selection-start-column="30" selection-end-line="92" selection-end-column="30" />
           <folding />
         </state>
       </provider>
