@@ -1,5 +1,7 @@
 package web_spotify.spotify;
 
+import java.util.Date;
+
 /**
  * Represents the base user functionality for the spotify project
  * @author lemon
@@ -26,8 +28,9 @@ public class User {
     private String address;
     
     /**
-     * The date object relating 
+     * The date of birth of the user
      */
+    private Date birthday;
     
     /**
      * The Constructor for the User Object
@@ -35,11 +38,13 @@ public class User {
      * @param name THe name of the User
      * @param email The current email of the user
      * @param address The physical address of the user
+     * @param birthday The birthday of the user
      */
-    public User (int id, String name, String email, String address) {
-        this.id      = id;
-        this.name    = name;
-        this.email   = email;
-        this.address = address;
+    public User (int id, String name, String email, String address, Date birthday) {
+        this.id       = id;
+        this.name     = name;
+        this.email    = email;
+        this.address  = address;
+        this.birthday = birthday;
     }
 }
