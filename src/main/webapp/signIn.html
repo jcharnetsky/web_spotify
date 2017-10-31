@@ -17,7 +17,7 @@
 </head>
 <body>
 	<div class="center_align vertical_center sign_in_block" ng-controller="SignInController">
-		<img src="images/logo.jpg"/>
+		<img class="logo" src="images/logo.jpg"/>
 		<h2>Sign in to Spotify</h2>
 		<hr>
 		<form novalidate class="simple-form left_align">
@@ -27,7 +27,8 @@
 		    <label>Password: <input type="text" ng-model="user.email" /></label><br /><br/>
 		</form>
 		<input type="button" ng-click="reset()" value="Reset" />
-		<input type="submit" ng-click="update(user)" value="Save" />
+		<input type="submit" ng-click="update(user)" value="Create an account" /> <br/>
+		<a href="/attemptLogin">Already have an account? Log in</a>
 	</div>
 
 </body>
