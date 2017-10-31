@@ -1,0 +1,46 @@
+<!-- CSS -->
+<link href="css/sidebar.css" rel="stylesheet" />
+<link href="css/style.css" rel="stylesheet"/>
+
+<!--Angular-->
+<script data-semver="1.2.13" src="http://code.angularjs.org/1.2.13/angular.js" data-require="angular.js@1.2.x"></script>
+<script src="http://code.jquery.com/jquery-2.0.3.min.js" data-semver="2.0.3" data-require="jquery"></script>
+<script src="resizer.js"></script>
+
+<div id="sidebar">
+    <ul class="sidebar_list">
+        <li id="active"><a href="#" id="current">Browse</a></li>
+        <li><a href="#">Radio</a></li>
+    </ul>
+
+    <ul class="sidebar_list">
+        <li>YOUR LIBRARY</li>
+        <li><a href="#">Your Daily Mix</a></li>
+        <li><a href="#">Recently Played</a></li>
+        <li><a href="#">Songs</a></li>
+        <li><a href="#">Albums</a></li>
+        <li><a href="#">Artists</a></li>
+        <li><a href="#">Stations</a></li>
+        <li><a href="#">Local Files</a></li>
+    </ul>
+
+    <ul class="sidebar_list playlists">
+        <li>PLAYLISTS</li>
+        <li><a href="#">On the Road</a></li>
+        <li><a href="#">Spotify and Chill</a></li>
+        <li><a href="#">Spotify top 50 Sweden</a></li>
+        <li><a href="#">Spotify Sessions</a></li>
+        <li><a href="#">Rock Classics</a></li>
+        <li><a href="#">Pop Rising</a></li>
+        <li><a href="#">Liked from Radio</a></li>
+    </ul>
+</div>
+
+<div id="sidebar-resizer"
+     resizer="vertical"
+     resizer-width="0.4vw"
+     resizer-left="#sidebar"
+     resizer-right="#main"
+     resizer-max="20"
+     resizer-min="5">
+</div>

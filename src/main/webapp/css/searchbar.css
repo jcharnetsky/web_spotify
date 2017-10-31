@@ -1,0 +1,54 @@
+.top, .top_list {
+	position: fixed;
+	left: 0vw; right: 0vw;
+	color: #979797;
+	background-color: #121212;
+    height: 5vh;
+   	padding-left: 0vw;
+	margin-bottom: 0vh;
+	z-index: 999999;
+}
+
+.top_list li {
+	line-height: 3vh;
+	text-align: center;
+	display: inline;
+	margin-bottom: 0vh;
+}
+
+.search {
+	float: left;
+    height: 3vh;
+	padding-left: 2vw;
+	padding-top: 0.5vh;
+	padding-bottom: 0.5vh;
+}
+
+.nav_history {
+	float: left;
+    height: 5vh;
+	padding-left: 0vw;
+}
+.nav_history li {
+    height: 5vh;
+}
+.prev_history {
+	height: 5vh;
+	line-height: 200px;
+}
+.next_history {
+	height: 5vh;
+}
+
+.account {
+    height: 5vh;
+	float: right;
+	padding-right: 2vw;
+	padding-top: 0.5vh;
+	padding-bottom: 0.5vh;
+}
+.account li {
+    height: 5vh;
+	float: left;
+	padding-left: 1vw;
+}

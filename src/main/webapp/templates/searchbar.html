@@ -1,0 +1,41 @@
+<!--Angular-->
+<script data-semver="1.2.13" src="http://code.angularjs.org/1.2.13/angular.js" data-require="angular.js@1.2.x"></script>
+<script src="http://code.jquery.com/jquery-2.0.3.min.js" data-semver="2.0.3" data-require="jquery"></script>
+
+<!-- CSS -->
+<link href="css/searchbar.css" rel="stylesheet" />
+<link href="css/style.css" rel="stylesheet"/>
+
+<div class="top">
+    <ul class="top_list">
+        <li>
+            <ul class="nav_history">
+                <li><a href="#">
+                    <p class="horizontal_chevron" class="prev_history"><
+                </a></li>
+
+                <li><a href="#" class="next_history">
+                    <p class="horizontal_chevron">>
+                </a></li>
+            </ul>
+        </li>
+
+        <li>
+            <form class="search">
+                <input class="search" type="text" ng-model="search_querey" placeholder="Search"><br>
+            </form>
+        </li>
+
+        <li>
+            <ul class="account">
+                <a href="#">
+                    <li class="username"> User Name</li>
+                </a>
+
+                <a href="#">
+                    <li class="vertical_chevron">V</li>
+                </a>
+            </ul>
+        </li>
+    </ul>
+</div>

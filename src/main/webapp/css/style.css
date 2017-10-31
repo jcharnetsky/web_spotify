@@ -1,0 +1,75 @@
+body {
+	background-color: #121212;
+}
+
+.horizontal_chevron {
+	height: 1vh;
+	padding-left: 1vw;
+	margin-bottom: 0vh;
+	display:inline-block;
+    -webkit-transform:scale(1,2); /* Safari and Chrome */
+    -moz-transform:scale(1,2); /* Firefox */
+    -ms-transform:scale(1,2); /* IE 9 */
+    -o-transform:scale(1,2); /* Opera */
+    transform:scale(1,2); /* W3C */
+}
+
+.vertical_chevron {
+	display:inline-block;
+    -webkit-transform:scale(2,1); /* Safari and Chrome */
+    -moz-transform:scale(2,1); /* Firefox */
+    -ms-transform:scale(2,1); /* IE 9 */
+    -o-transform:scale(2,1); /* Opera */
+    transform:scale(2,1); /* W3C */
+}
+
+#main {
+    position: absolute;
+    left: 8vw; bottom: 4vh; top: 5vh; right: 8vw;
+	color: #979797;
+	background-color: #181818;
+	overflow: auto;
+}
+
+.left_align {
+	text-align: left;
+}
+.center_align {
+	text-align: center;
+}
+
+span {
+	font-size: 80%;
+}
+
+ul {
+	list-style-type: none;
+}
+
+hr {
+	border-color: #282828;
+	border-width: 0.3vh;
+	margin-top: 0vh;
+	margin-right: 3vw;
+}
+.concert_hr {
+	border-color: #282828;
+	border-width: 0.3vh;
+	margin-bottom: 0vh;
+}
+
+a {
+	outline:none
+}
+a:link, a:visited {
+	text-decoration: none;
+	color: #979797;
+}
+a:hover, a:active, #current {
+	text-decoration: none;
+	color: #c2c2c2;
+}
+
+.underline_on_hover:hover {
+	text-decoration: underline;
+}

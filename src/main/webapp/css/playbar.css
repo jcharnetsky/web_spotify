@@ -1,0 +1,51 @@
+.current_song_info {
+	width: 9vw;
+	height: 8vw;
+	padding-top: 2vh;
+	padding-left: 1vw;
+}
+
+#bottom {
+    position: absolute;
+    left: 0vw; bottom: 0vh; top: 92vh; right: 0vw;
+    height: 8vh;
+	background-color: #282828;
+	position: fixed;
+}
+.playbar {
+	height: 8vh;
+	padding-left: 0vw;
+}
+.playbar li {
+	float: left;
+}
+
+.music_controls {
+	width: 80vw;
+	height: 8vh;
+}
+.music_buttons {
+	padding-left: 30vw;
+	padding-top: 2vh;
+}
+.music_buttons li {
+	float: left;
+	padding-left: 2vw;
+}
+.current_album_cover {
+	padding-left: 0.5vw;
+	padding-top: 0.5vw;
+	height: 7vh;
+	width: auto;
+}
+
+.current_song_title {
+	font-size: 85%;
+	color: #dedede;
+	padding-bottom: 0vh;
+}
+.current_song_artist {
+	font-size: 80%;
+	color: #7a7a7a;
+	padding-top: 0vh;
+}
