@@ -49,17 +49,18 @@ app.controller('MainCtrl', function($scope) {
 });
 
 app.controller('NavCtrl', function($compile, $scope){
-$scope.selectPane = function (param) {
-   var node = document.getElementById("content");
+$scope.selectPane = function (div, URL) {
+   console.log(div, URL);
+   var node = document.getElementById(div);
 
    //Clear out whatever was in the content container
    while(node.firstChild){
       node.removeChild(node.firstChild);
    }
 
-   //Add the new include to whatever was clicked
+   //Add the new include to whatever was clic   ked
    var tag = document.createElement('div');
-   tag.setAttribute("ng-include", "'templates/" + param + "'");
+   tag.setAttribute("ng-include", "'templates/" + URL + "'");
    node.appendChild(tag);
 
    //Compile the include

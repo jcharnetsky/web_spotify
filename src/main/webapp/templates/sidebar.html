@@ -3,8 +3,10 @@
 <link href="css/style.css" rel="stylesheet"/>
 
 <div id="sidebar">
-    <ul class="sidebar_list">
-        <li id="active"><a href="#" id="current">Browse</a></li>
+    <ul class="sidebar_list" ng-controller="NavCtrl">
+        <li id="active">
+            <a href="#" ng-click="selectPane('main', 'navigateContent.html')">Browse</a>
+        </li>
         <li><a href="#">Radio</a></li>
     </ul>
 
@@ -21,7 +23,9 @@
 
     <ul class="sidebar_list playlists">
         <li>PLAYLISTS</li>
-        <li ng-repeat="playlist in playlists"><a href="#">{{playlist}}</a></li>
+        <li ng-repeat="playlist in playlists" ng-controller="NavCtrl">
+            <a href="#" ng-click="selectPane('main', 'playlist.html')">{{playlist}}</a>
+        </li>
     </ul>
 </div>
 

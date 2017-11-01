@@ -5,12 +5,12 @@
 <a href="#"><img class="advertisement" src="../images/ad.png" alt="Sponsored Advertiesment"></a>
 
 <ul class="navbar" ng-controller="NavCtrl">
-    <li id="active"><a href="#" ng-click="selectPane('overview.html')" id="current">Overview</a></li>
-    <li><a href="#" ng-click="selectPane('charts.html')">Charts</a></li>
-    <li><a href="#" ng-click="selectPane('genres_moods.html')">Genres & Moods</a></li>
-    <li><a href="#" ng-click="selectPane('new_releases.html')">New Releases</a></li>
-    <li><a href="#" ng-click="selectPane('discover.html')">Discover</a></li>
-    <li><a href="#" ng-click="selectPane('concerts.html')">Concerts</a></li>
+    <li id="active"><a href="#" ng-click="selectPane('content', 'overview.html')" id="current">Overview</a></li>
+    <li><a href="#" ng-click="selectPane('content', 'charts.html')">Charts</a></li>
+    <li><a href="#" ng-click="selectPane('content', 'genres_moods.html')">Genres & Moods</a></li>
+    <li><a href="#" ng-click="selectPane('content', 'new_releases.html')">New Releases</a></li>
+    <li><a href="#" ng-click="selectPane('content', 'discover.html')">Discover</a></li>
+    <li><a href="#" ng-click="selectPane('content', 'concerts.html')">Concerts</a></li>
 </ul>
 <ul id="content">
     <div ng-include="'templates/overview.html'"></div>
