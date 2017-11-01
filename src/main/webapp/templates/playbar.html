@@ -3,7 +3,8 @@
 <link href="css/style.css" rel="stylesheet"/>
 
 <div id="bottom">
-    <ul class="playbar">
+    <ul class="playbar" ng-controller="playbarCtrl">
+		<audio id="playAudio"src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.mp4"></audio>
         <li>
             <a href="#">
                 <img class="current_album_cover" src="../images/album_cover.png" alt="Album Cover">
@@ -19,29 +20,36 @@
                 <p class="current_song_artist">Jack Johnson
             </a>
         </li>
+		<ul>
+		<ul>
+			<li><p id="playSongTimeUp"></p></li>
+			<li><input type="range" id="songProgress" ng-click="scrub();" value="0" min="0" max="100"></input></li>
+			<li><p id="playSongTimeDown"></p></li>
+		</ul>
+			<li class="music_controls">
+        	    <ul class="music_buttons">
+        	        <li><a href="#">
+        	            <img class="shuffle" src="../images/shuffle.png" alt="Shuffle">
+        	        </a></li>
 
-        <li class="music_controls">
-            <ul class="music_buttons">
-                <li><a href="#">
-                    <img class="shuffle" src="../images/shuffle.png" alt="Shuffle">
-                </a></li>
+        	        <li><a href="#">
+        	            <img class="previous" src="../images/next.png" alt="Previous">
+        	        </a></li>
 
-                <li><a href="#">
-                    <img class="previous" src="../images/next.png" alt="Previous">
-                </a></li>
+        	        <li><a ng-click="playSong();" href="#">
+        	            <img class="play" src="../images/play.png" alt="Play">
+        	        </a></li>
 
-                <li><a href="#">
-                    <img class="play" src="../images/play.png" alt="Play">
-                </a></li>
+        	        <li><a href="#">
+        	            <img class="next" src="../images/next.png" alt="Next">
+        	        </a></li>
 
-                <li><a href="#">
-                    <img class="next" src="../images/next.png" alt="Next">
-                </a></li>
+        	        <li><a href="#">
+        	            <img class="repeat" src="../images/repeat.png" alt="Repeat">
+        	        </a></li>
+        	    </ul>	
+        	</li>
+		</ul>
 
-                <li><a href="#">
-                    <img class="repeat" src="../images/repeat.png" alt="Repeat">
-                </a></li>
-            </ul>
-        </li>
     </ul>
 </div>

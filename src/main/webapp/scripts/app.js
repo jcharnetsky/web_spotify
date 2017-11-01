@@ -57,3 +57,53 @@ $scope.selectPane = function (param) {
 
 });
 
+
+app.controller('playbarCtrl', function($scope, $interval){
+	$scope.play = false;
+
+	$scope.playSong = function () {
+		const aud = document.getElementById("playAudio");
+		if($scope.play==false) {
+			aud.play();
+		} else {
+			aud.pause();
+		}
+		$scope.play = !$scope.play;
+	}
+
+    $scope.progressAtInterval = function() {
+		const aud = document.getElementById("playAudio");
+		const pro = document.getElementById("songProgress");
+
+		pro.max = aud.duration;
+		pro.value = aud.currentTime;
+
+		const tup = document.getElementById("playSongTimeUp");
+		const tdo = document.getElementById("playSongTimeDown");
+
+		tup.innerhtml = Math.floor(pro.value);
+		tdo.innerhtml = Math.floor(pro.max - pro.value);
+
+
+		console.log(Math.floor(pro.max - pro.value));
+
+		if(Math.floor(pro.value)>=Math.floor(pro.max)) {
+			$scope.play = false;
+		}
+    }
+	
+	$scope.scrub = function() {
+		const aud = document.getElementById("playAudio");
+		const pro = document.getElementById("songProgress");
+		
+		console.log("" + pro.value + "\n");
+
+		pro.max = aud.duration;
+		aud.currentTime = pro.value;
+	}
+
+	$interval(function() {$scope.progressAtInterval();}, 1000);
+	
+	$scope.progressAtInterval();
+
+});
