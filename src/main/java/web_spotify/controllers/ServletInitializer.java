@@ -1,4 +1,4 @@
-package web_spotify.spotify;
+package web_spotify.controllers;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
