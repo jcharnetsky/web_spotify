@@ -1,5 +1,17 @@
 var app = angular.module('web_spotify',['mc.resizer']);
 
+function padZero(time){
+  if(time < 10){
+    return "0" + time;
+  }
+  return time;
+}
+
+function secondsToMinSec(time){
+  return Math.floor(time/60) + ":" + padZero((time%60));
+}
+
+
 app.controller('MainCtrl', function($scope) {
   $scope.content = '';
 
@@ -82,9 +94,8 @@ app.controller('playbarCtrl', function($scope, $interval){
 		const tup = document.getElementById("playSongTimeUp");
 		const tdo = document.getElementById("playSongTimeDown");
 
-		tup.innerHTML = Math.floor(pro.value);
-		tdo.innerHTML = Math.floor(pro.max - pro.value);
-
+		tup.innerHTML = secondsToMinSec(Math.floor(pro.value));
+		tdo.innerHTML = secondsToMinSec(Math.floor(pro.max - pro.value));
 
 		if(Math.floor(pro.value)>=Math.floor(pro.max)) {
 		// Play the next song here
