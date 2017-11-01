@@ -1,0 +1,44 @@
+.canvas {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    left: 0; top: 0;
+    background-color: #282828;
+}
+.log_in_block {
+    position: relative;
+}
+
+.log_in_block input {
+    border-width: 1px;
+    border-radius: 3px;
+    color: #ffffff;
+    background-color: #282828;
+}
+
+.logo {
+    width: 75px;
+    height: 75px;
+    display: block;
+    margin: auto;
+    margin-top: 2%;
+    border-radius: 50%;
+}
+
+hr {
+    width: 100%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+form input {
+    position: absolute;
+    width: auto;
+    right: 20px;
+    margin-bottom: 20px;
+}
+
+.text_input_field {
+    left:0; right: 0;
+    margin: auto;
+}
