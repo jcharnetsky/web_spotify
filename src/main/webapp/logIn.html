@@ -7,24 +7,30 @@
     <title>Log in to Spotify</title>
     <!-- CSS -->
 	<link href="css/style.css" rel="stylesheet" />
+	<link href="css/login.css" rel="stylesheet" />
 
 	<!-- Angular -->
 	<script src="http://code.jquery.com/jquery-2.0.3.min.js" data-semver="2.0.3" data-require="jquery"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 </head>
-<body>
-	<div class="center_align vertical_center sign_in_block" ng-controller="SignInController">
-        <img class="logo" src="images/logo.jpg"/>
-        <h2>Sign in to Spotify</h2>
+
+<body ng-app="logInApp" ng-controller="logInCtrl">
+	<div class="canvas">
+		<img class="logo" src="images/logo.jpg" ng-click="logIn()"/>
 		<hr>
-		<form novalidate class="simple-form left_align">
-				<label>Name: <input type="text" ng-model="user.name" /></label><br /><br/>
-                <label>E-mail: <input type="email" ng-model="user.email" /></label><br /><br/>
-                <label>Date of birth: <input type="date" ng-model="user.birthdate" /></label><br /><br/>
-                <label>Password: <input type="text" ng-model="user.password" /></label><br /><br/>
-            </form>
-            <input type="button" ng-click="reset()" value="Reset" />
-            <input type="submit" ng-click="update(user)" value="Create an account" /> <br/>
-            <a href="/attemptLogin">Already have an account? Log in</a>
+		<div class="center_align log_in_block" ng-controller="LogInController">
+			
+			<form novalidate class="simple-form left_align">
+					<label><input class="text_input_field" type="text" ng-model="user.name" placeholder="Username or email address"/></label><br /><br/>
+					<label><input class="text_input_field" type="text" ng-model="user.password" placeholder="Password"/></label><br /><br/>
+			</form>
+
+			<input type="submit" value="Login" ng-click="logInCtrl.logIn()"/> <br/>
+			<a href="/login">Forgot your username or password?</a> <br/>
+			<span>Don't have an account? </span><a href="/signUp.html">Sign Up</a>
+		</div>
 	</div>
+<script src="scripts/logInApp.js"></script>
+<script src="scripts/logInCtrl.js"></script>
 </body>
 </html>
