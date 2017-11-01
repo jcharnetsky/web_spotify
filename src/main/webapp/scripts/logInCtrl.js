@@ -1,9 +1,12 @@
-app.controller('logInCtrl', function($scope) {
-    $scope.logIn = function() {
-        $scope.firstName = "john";
-//        var url = window.location.href;
-//        url.replace(/\/$/, "");
-//        url+="home.html";
-//        window.location.href = url;
-    }
+app.controller('logInCtrl', function ($scope) {
+    $scope.name = "";
+    $scope.password = "";
+    $scope.logIn = function () {
+        const tmpUser = "user";
+        const tmpPass = "pass";
+        
+        if ($scope.name === tmpUser && $scope.password === tmpPass) {
+            window.location = location.origin + "/home.html";
+        };
+    };
 });
