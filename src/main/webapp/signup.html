@@ -4,15 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Log in to Spotify</title>
+    <title>Sign in to Spotify</title>
     <!-- CSS -->
-	<link href="css/style.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/signup.css" rel="stylesheet" />
 
-	<!-- Angular -->
-	<script src="http://code.jquery.com/jquery-2.0.3.min.js" data-semver="2.0.3" data-require="jquery"></script>
+
+    <!-- Angular -->
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js" data-semver="2.0.3" data-require="jquery"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
 </head>
 <body>
-	<div class="center_align vertical_center sign_in_block" ng-controller="SignInController">
+    <div class="center_align vertical_center sign_in_block" ng-controller="SignInController">
         <img class="logo" src="images/logo.jpg"/>
         <h2>Sign in to Spotify</h2>
 		<hr>
@@ -26,5 +30,6 @@
             <input type="submit" ng-click="update(user)" value="Create an account" /> <br/>
             <a href="/attemptLogin">Already have an account? Log in</a>
 	</div>
+
 </body>
 </html>

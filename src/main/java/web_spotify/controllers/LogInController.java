@@ -17,12 +17,12 @@ public class LogInController {
     }
 
     @RequestMapping("/login")
-    public String loginUser(@RequestParam("email") String email, @RequestParam("password") String password,
-                            HttpSession session){
+    public String loginUser(@RequestParam("email") String email, @RequestParam("password") String password, HttpSession session){
         // Check if the Email and password match
-
+        
         // Load the user into the session
 
         return "attemptLogin";
     }
+    
 }
