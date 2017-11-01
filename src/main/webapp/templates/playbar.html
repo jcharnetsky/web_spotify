@@ -11,45 +11,46 @@
             </a>
         </li>
 
-        <li class="current_song_info">
-            <a href="#" class="underline_on_hover">
-						<span class="current_song_title">Washing Dishes
-            </a>
-
-            <a href="#" class="underline_on_hover">
-                <p class="current_song_artist">Jack Johnson
-            </a>
+        <li class="current_song_info inline-block">
+			<div>
+				<a href="#" class="underline_on_hover">
+					<span class="current_song_title">Washing Dishes</span>
+				</a>
+			</div>
+			<div>
+				<a href="#" class="underline_on_hover">
+					<p class="current_song_artist">Jack Johnson</p>
+				</a>
+			</div>
         </li>
-		<ul>
-		<ul>
-			<li><p id="playSongTimeUp"></p></li>
-			<li><input type="range" id="songProgress" ng-click="scrub();" value="0" min="0" max="100"></input></li>
-			<li><p id="playSongTimeDown"></p></li>
-		</ul>
-			<li class="music_controls">
-        	    <ul class="music_buttons">
-        	        <li><a href="#">
-        	            <img class="shuffle" src="../images/shuffle.png" alt="Shuffle">
-        	        </a></li>
+		<li class="scrub-bar inline-block">
+			<span id="playSongTimeUp"></span>
+			<input style="display:inline" type="range" id="songProgress" ng-click="scrub();" value="0" min="0" max="100"></input>
+			<span id="playSongTimeDown"></span>
+		</li>
+		<li class="music_controls inline-block">
+			<ul class="music_buttons">
+				<li><a href="#">
+					<img class="shuffle" src="../images/shuffle.png" alt="Shuffle">
+				</a></li>
 
-        	        <li><a href="#">
-        	            <img class="previous" src="../images/prev.png" alt="Previous">
-        	        </a></li>
+				<li><a href="#">
+					<img class="previous" src="../images/prev.png" alt="Previous">
+				</a></li>
 
-        	        <li><a ng-click="playSong();" href="#">
-        	            <img class="play" id="playButton" src="../images/play.png" alt="Play">
-        	        </a></li>
+				<li><a ng-click="playSong();" href="#">
+					<img class="play" id="playButton" src="../images/play.png" alt="Play">
+				</a></li>
 
-        	        <li><a href="#">
-        	            <img class="next" src="../images/next.png" alt="Next">
-        	        </a></li>
+				<li><a href="#">
+					<img class="next" src="../images/next.png" alt="Next">
+				</a></li>
 
-        	        <li><a href="#">
-        	            <img class="repeat" src="../images/repeat.png" alt="Repeat">
-        	        </a></li>
-        	    </ul>	
-        	</li>
-		</ul>
+				<li><a href="#">
+					<img class="repeat" src="../images/repeat.png" alt="Repeat">
+				</a></li>
+			</ul>
+		</li>
 
     </ul>
 </div>
