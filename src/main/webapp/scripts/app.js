@@ -75,12 +75,11 @@ app.controller('playbarCtrl', function($scope, $interval){
 	$scope.playSong = function () {
 		const aud = document.getElementById("playAudio");
 		const plb = document.getElementById("playButton");
-		if($scope.play==false) {
+		if(!$scope.play) {
 			$scope.doPlay();
 		} else {
 			$scope.doPause();
 		}
-		$scope.play = !$scope.play;
 	}
 
     $scope.progressAtInterval = function() {
@@ -117,7 +116,6 @@ app.controller('playbarCtrl', function($scope, $interval){
 		aud.play();
 		plb.src = "../images/pause.png";
 		$scope.play = true;
-
 	}
 
 	$scope.doPause = function () {
@@ -126,7 +124,6 @@ app.controller('playbarCtrl', function($scope, $interval){
 		aud.pause();
 		plb.src = "../images/play.png";
 		$scope.play = false;
-
 	}
 
 	$interval(function() {$scope.progressAtInterval();}, 1000);
