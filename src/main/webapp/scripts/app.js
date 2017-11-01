@@ -84,13 +84,15 @@ app.controller('playbarCtrl', function($scope, $interval){
 		const tup = document.getElementById("playSongTimeUp");
 		const tdo = document.getElementById("playSongTimeDown");
 
-		tup.innerhtml = Math.floor(pro.value);
-		tdo.innerhtml = Math.floor(pro.max - pro.value);
+		tup.innerHTML = Math.floor(pro.value);
+		tdo.innerHTML = Math.floor(pro.max - pro.value);
 
 
 		console.log(Math.floor(pro.max - pro.value));
 
 		if(Math.floor(pro.value)>=Math.floor(pro.max)) {
+
+		// Play the next song here
 			$scope.play = false;
 		}
     }

@@ -5,8 +5,15 @@
 	padding-left: 1vw;
 }
 
+.inline-block {
+    display: inline-block !important;
+}
+
+.scrub-bar {
+    padding-top: 2vh;
+}
+
 #bottom {
-    position: absolute;
     left: 0vw; bottom: 0vh; top: 92vh; right: 0vw;
     height: 8vh;
 	background-color: #282828;
@@ -15,21 +22,23 @@
 .playbar {
 	height: 8vh;
 	padding-left: 0vw;
+	display: inline-block;
 }
-.playbar li {
-	float: left;
+
+.playbar li , .playbar p , .playbar a{
+    display: inline;
+    vertical-align: top;
 }
 
 .music_controls {
-	width: 80vw;
+	width: auto;
+	padding-top: 2vh;
 	height: 8vh;
 }
 .music_buttons {
-	padding-left: 30vw;
-	padding-top: 2vh;
+    display: inline;
 }
 .music_buttons li {
-	float: left;
 	padding-left: 2vw;
 }
 .current_album_cover {
