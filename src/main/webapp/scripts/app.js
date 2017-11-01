@@ -65,11 +65,9 @@ app.controller('playbarCtrl', function($scope, $interval){
 		const aud = document.getElementById("playAudio");
 		const plb = document.getElementById("playButton");
 		if($scope.play==false) {
-			aud.play();
-			plb.src = "../images/pause.png";
+			$scope.doPlay();
 		} else {
-			aud.pause();
-			plb.src = "../images/play.png";
+			$scope.doPause();
 		}
 		$scope.play = !$scope.play;
 	}
@@ -88,12 +86,10 @@ app.controller('playbarCtrl', function($scope, $interval){
 		tdo.innerHTML = Math.floor(pro.max - pro.value);
 
 
-		console.log(Math.floor(pro.max - pro.value));
-
 		if(Math.floor(pro.value)>=Math.floor(pro.max)) {
-
 		// Play the next song here
 			$scope.play = false;
+			$scope.doPause();
 		}
     }
 	
@@ -101,10 +97,26 @@ app.controller('playbarCtrl', function($scope, $interval){
 		const aud = document.getElementById("playAudio");
 		const pro = document.getElementById("songProgress");
 		
-		console.log("" + pro.value + "\n");
-
 		pro.max = aud.duration;
 		aud.currentTime = pro.value;
+	}
+
+	$scope.doPlay = function () {
+		const aud = document.getElementById("playAudio");
+		const plb = document.getElementById("playButton");
+		aud.play();
+		plb.src = "../images/pause.png";
+		$scope.play = true;
+
+	}
+
+	$scope.doPause = function () {
+		const aud = document.getElementById("playAudio");
+		const plb = document.getElementById("playButton");
+		aud.pause();
+		plb.src = "../images/play.png";
+		$scope.play = false;
+
 	}
 
 	$interval(function() {$scope.progressAtInterval();}, 1000);
