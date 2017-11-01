@@ -63,10 +63,13 @@ app.controller('playbarCtrl', function($scope, $interval){
 
 	$scope.playSong = function () {
 		const aud = document.getElementById("playAudio");
+		const plb = document.getElementById("playButton");
 		if($scope.play==false) {
 			aud.play();
+			plb.src = "../images/pause.png";
 		} else {
 			aud.pause();
+			plb.src = "../images/play.png";
 		}
 		$scope.play = !$scope.play;
 	}
