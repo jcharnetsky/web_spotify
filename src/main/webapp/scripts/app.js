@@ -11,7 +11,6 @@ function secondsToMinSec(time){
   return Math.floor(time/60) + ":" + padZero((time%60));
 }
 
-
 app.controller('MainCtrl', function($scope) {
   $scope.content = '';
 
