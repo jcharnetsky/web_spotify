@@ -47,4 +47,29 @@ public class User {
         this.address  = address;
         this.birthday = birthday;
     }
+
+    
+    
+    
+    /* GETTERS BELOW */
+    
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
 }
