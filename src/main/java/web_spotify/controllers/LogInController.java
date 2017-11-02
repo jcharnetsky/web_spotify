@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class LogInController {
@@ -17,15 +19,33 @@ public class LogInController {
         return "homepage";
     }
 
-    @RequestMapping(value="/login", method= RequestMethod.GET)
+    @RequestMapping(value="/login", method= RequestMethod.GET, produces = "application/json")
+	@ResponseBody
     public String loginUser(@RequestParam(value="email", required=true) String email,
                             @RequestParam(value="password", required=true) String password,
                             HttpSession session){
-        // Check if the Email and password match
         
-        // Load the user into the session
 
-        return "attemptLogin";
+        final String validEmail = "user@yahoo.com";
+        final String validPassword = "password";
+
+        String errorMessage = "";
+
+        boolean valid = false;
+
+        // Load the user into the session
+        if(validEmail.equals(email) && validPassword.equals(password)) {
+            valid = true;
+            session.setAttribute("User", "HI");
+        } else {
+            errorMessage = "Invalid Username/Password";
+        }
+
+        final String jsonFormat = "{ \"error\":%s, \"errorMessage\":\"%s\"}";
+        String jsonTmp = String.format(jsonFormat, Boolean.toString(!valid), errorMessage);
+
+//        User user = new User();
+        return jsonTmp;
     }
     
 }
