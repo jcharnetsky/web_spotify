@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * Represents the base user functionality for the spotify project
- * @author lemon
+ * @author Cardinals
  */
 public class User {
     /**
