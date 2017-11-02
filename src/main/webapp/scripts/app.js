@@ -111,10 +111,10 @@ app.controller('logInCtrl', function ($http, $scope) {
     $scope.logIn = function () {
 
     $http.get(location.origin + "/login", {params:{"email":$scope.name, "password":$scope.password}}).then(function(response) {
-        if (!response.error) {
+        if (!response.data.error) {
             window.location = location.origin + "/home.html";
         } else {
-			alert(response.errorMessage);
+			alert(response.data.errorMessage);
 		}
     });
 
