@@ -37,7 +37,7 @@ public abstract class SongCollection implements Viewable {
     /**
      * The collection of songs
      */
-    private ArrayList<Song> songs;
+    private Collection<Song> songs;
     
     /**
      * A boolean which determines if the user is public. DEFAULT FALSE.
@@ -85,7 +85,7 @@ public abstract class SongCollection implements Viewable {
      */
     public void addSongAtIndex (Song song, int index) {
         // A simple .add call with the index parameter included
-        this.songs.add(index, song);
+        ((ArrayList)this.songs).add(index, song);
     }
     
     /* OVERRIDES FOR VIEWABLE BELOW */
