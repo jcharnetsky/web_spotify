@@ -15,7 +15,7 @@
 <hr>
 
 <ul class="list_tiles">
-    <li ng-repeat="item in focus">
+    <li ng-repeat="item in [{focus}}">
         <div class="tile">
             <a href="#">
                 <img class="tile_img" src={{item.img}} alt="Suggestion">
@@ -30,7 +30,7 @@
 <hr>
 
 <ul class="three_tiles">
-    <li class="center_align" ng-repeat="chart in charts">
+    <li class="center_align" ng-repeat="chart in {{charts}}">
         <div class="three_tile">
             <a href="#">
                 <img class="three_tile_img" src={{chart.img}}>
