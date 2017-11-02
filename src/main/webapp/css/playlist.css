@@ -1,0 +1,70 @@
+#topbar {
+    margin-top: -2vh;
+    height: 30vh;
+    width: 100%;
+    background: linear-gradient(#404040, #070707);
+    display:inline-block;
+}
+
+#plpic {
+    height:25vh;
+    width: 15vw;
+    margin-left: 3vw;
+    margin-top: 5vh;
+    background-color: red;
+    float: left;
+    display:inline-block;
+}
+
+img {
+    height: 25vh;
+    width: 15vw;
+}
+
+#createdby {
+    color: white;
+}
+
+#followers{
+    align:right;
+    color: gray;
+    padding-left: 60vw;
+}
+
+#plinfo {
+    padding-top: 12vh;
+    padding-left: 0vw;
+    display:inline-block;
+}
+
+.description {
+    margin-left: 2vw;
+}
+
+#pltype {
+    font-size: 1em;
+    color: white;
+}
+
+#pltitle {
+    font-size: 3em;
+    color: white;
+}
+
+#plcreatorinfo {
+    color: white;
+    padding-bottom: 2vh;
+}
+
+#searchbar {
+    color:white;
+    text-align: center;
+    background-color:black;
+}
+
+#songs {
+    background-color:black;
+    color:white;
+    flex-grow: 1;
+    display:flex;
+}
