@@ -6,7 +6,7 @@ import java.util.Date;
  * Represents the base user functionality for the spotify project
  * @author Cardinals
  */
-public class User {
+public class User implements Viewable {
     /**
      * The unique identifier of the user. CANNOT be changed.
      */
@@ -33,6 +33,16 @@ public class User {
     private Date birthday;
     
     /**
+     * A boolean which determines if the user is public. DEFAULT FALSE.
+     */
+    private boolean isPublic;
+    
+    /**
+     * A boolean which determines if the user is banned. DEFAULT FALSE.
+     */
+    private boolean isBanned;
+    
+    /**
      * The Constructor for the User Object
      * @param id The unique identifier for a particular user
      * @param name THe name of the User
@@ -47,8 +57,35 @@ public class User {
         this.address  = address;
         this.birthday = birthday;
     }
-
     
+    /* OVERRIDES FOR VIEWABLE BELOW */
+
+    @Override
+    public boolean isBanned() {
+        return this.isBanned;
+    }
+
+    @Override
+    public boolean isPublic() {
+        return this.isPublic;
+    }
+
+    @Override
+    public int ownedBy() {
+        return -1;
+    }
+
+    @Override
+    public boolean setBanned(boolean value) {
+        this.isBanned = value;
+        return true;
+    }
+
+    @Override
+    public boolean setPublic(boolean value) {
+        this.isPublic = value;
+        return true;
+    }
     
     
     /* GETTERS BELOW */
