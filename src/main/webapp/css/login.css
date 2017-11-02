@@ -7,6 +7,8 @@
 }
 .log_in_block {
     position: relative;
+    margin-left: 40vw;
+    margin-right: 40vw;
 }
 
 .log_in_block input {
@@ -32,13 +34,13 @@ hr {
 }
 
 form input {
-    position: absolute;
-    width: auto;
-    right: 20px;
+    width: 100%;
     margin-bottom: 20px;
+
 }
 
 .text_input_field {
-    left:0; right: 0;
-    margin: auto;
+    display:inline;
+    width:auto;
+    margin-right: 2vw;
 }
