@@ -110,6 +110,12 @@ public class User implements Viewable {
         return birthday;
     }
     
+    /**
+     * Compare User objects to determine equivalence
+     *
+     * @param object to compare
+     * @return True if object is an instance of User and has the same id; False otherwise
+     */
     @Override
     public boolean equals(Object u) {
         if((u != null) && (u instanceof User)) {
