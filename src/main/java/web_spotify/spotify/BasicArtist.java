@@ -60,6 +60,97 @@ public class BasicArtist extends User {
         // Add all aliases into the alias set
         this.aliases.addAll(aliases);
     }
-
     
+    
+    /**
+     * Add a song to an artist's owned songs
+     * @param song
+     */
+    public void addOwnedSong(Song song) {
+    		ownedSongs.add(song);
+    }
+    
+    /** 
+     * Remove a song from an artist's owned songs
+     * @param song
+     */
+    public void removeOwnedSong(Song song) {
+    		ownedSongs.remove(song);
+    }
+    
+    /**
+     * Get an artist's owned songs
+     */
+    public Collection<Song> getOwnedSongs() {
+    		return ownedSongs;
+    }
+    
+    /**
+     * Add an album to an artist's owned albums
+     * @param album
+     */
+    public void addOwnedAlbum(Album album) {
+    		ownedAlbums.add(album);
+    }
+    
+    /** 
+     * Remove an album from an artist's owned songs
+     * @param song
+     */
+    public void removeOwnedAlbum(Album album) {
+    		ownedAlbums.remove(album);
+    }
+    
+    /**
+     * Get an artist's owned albums
+     */
+    public Collection<Album> getOwnedAlbums() {
+    		return ownedAlbums;
+    }
+    
+    /**
+     * Add an concert to an artist's concerts
+     * @param concert
+     */
+    public void addConcerts(Concert concert) {
+    		concerts.add(concert);
+    }
+    
+    /** 
+     * Remove a concert from an artist's concerts
+     * @param concert
+     */
+    public void removeOwnedConcert(Concert concert) {
+    		concerts.remove(concert);
+    }
+    
+    /**
+     * Get an artist's concerts
+     */
+    public Collection<Concert> getConcerts() {
+    		return concerts;
+    }
+    
+    /**
+     * Add an alias to an artist's aliases
+     * @param string
+     */
+    public void addAlias(String alias) {
+    		aliases.add(alias);
+    }
+    
+    /** 
+     * Remove an alias from an artist's aliases
+     * @param alias
+     */
+    public void removeAlias(String alias) {
+    		aliases.remove(alias);
+    }
+    
+    /**
+     * Get an artist's aliases
+     */
+    public Collection<String> getAliases() {
+    		return aliases;
+    }
 }
