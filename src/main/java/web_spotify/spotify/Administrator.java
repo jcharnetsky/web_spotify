@@ -26,9 +26,9 @@ public class Administrator extends PremiumUser {
      * @param birthday The birthday of the administrator
      * @return 
      */
-    public Administrator(int id, String name, String email, String address, Date birthday) {
+    public Administrator(int id, String name, String email, String address, Date birthday, String imageURL) {
         /* Call the super method */
-        super(id, name, email, address, birthday);
+        super(id, name, email, address, birthday, imageURL);
 
         /* Instantiate all collections */
         reports = new ArrayList<Report>();
