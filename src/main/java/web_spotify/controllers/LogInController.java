@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class LogInController {
 
-    @RequestMapping(value="/attemptLogin", method= RequestMethod.GET)
-    public String loginPage(HttpSession session){
-        if(session.getAttribute("User") == null)
+    @RequestMapping(value = "/attemptLogin", method = RequestMethod.GET)
+    public String loginPage(HttpSession session) {
+        if (session.getAttribute("User") == null) {
             return "logIn.html";
+        }
         return "homepage";
     }
 
-    @RequestMapping(value="/login", method= RequestMethod.GET, produces = "application/json")
-	@ResponseBody
-    public String loginUser(@RequestParam(value="email", required=true) String email,
-                            @RequestParam(value="password", required=true) String password,
-                            HttpSession session){
-        
+    @RequestMapping(value = "/login", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public String loginUser(@RequestParam(value = "email", required = true) String email,
+            @RequestParam(value = "password", required = true) String password,
+            HttpSession session) {
 
         final String validEmail = "user@yahoo.com";
         final String validPassword = "password";
@@ -35,7 +35,7 @@ public class LogInController {
         boolean valid = false;
 
         // Load the user into the session
-        if(validEmail.equals(email) && validPassword.equals(password)) {
+        if (validEmail.equals(email) && validPassword.equals(password)) {
             valid = true;
             session.setAttribute("User", "HI");
         } else {
@@ -44,5 +44,15 @@ public class LogInController {
 
         return valid ? JsonUtils.createBlankSuccess() : JsonUtils.createBlankError(errorMessage);
     }
-    
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public String logoutUser(HttpSession session) {
+
+        /* Invalidate the session */
+        session.invalidate();
+
+        return JsonUtils.createBlankSuccess();
+    }
+
 }
