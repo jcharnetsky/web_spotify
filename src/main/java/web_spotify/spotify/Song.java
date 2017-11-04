@@ -51,6 +51,15 @@ public class Song implements Viewable, Playable {
      */
     private boolean isAvailable;
     
+    /**
+     * Default constructor for a song
+     * @param title The title of the song
+     * @param songID The id of the song
+     * @param trackLength The length of the song
+     * @param totalListens The number of total listens of the song
+     * @param monthlyListens The number of monthly listens of the song
+     * @param isBanned The banned status of the song
+     */
     public Song (String title, int songID, double trackLength, int totalListens, int monthlyListens, boolean isBanned) {
     		this.title = title;
     		this.songID = songID;
