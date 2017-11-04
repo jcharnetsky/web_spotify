@@ -100,7 +100,7 @@ public class Advertiser implements Viewable {
     /**
      * Compare Advertiser objects to determine equivalence
      *
-     * @param object to compare
+     * @param a object to compare
      * @return True if object is an instance of Advertiser and has the same id; False otherwise
      */
     @Override
