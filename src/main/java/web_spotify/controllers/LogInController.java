@@ -34,7 +34,7 @@ public class LogInController {
 
         boolean valid = false;
 
-        // Load the user into the session
+        /* Load the user into the session */
         if (validEmail.equals(email) && validPassword.equals(password)) {
             valid = true;
             session.setAttribute("User", "HI");
@@ -42,6 +42,7 @@ public class LogInController {
             errorMessage = "Invalid Username/Password";
         }
 
+        /* If valid, return success, else, return error json */
         return valid ? JsonUtils.createBlankSuccess() : JsonUtils.createBlankError(errorMessage);
     }
 
@@ -52,6 +53,7 @@ public class LogInController {
         /* Invalidate the session */
         session.invalidate();
 
+        /* Return a success */
         return JsonUtils.createBlankSuccess();
     }
 
