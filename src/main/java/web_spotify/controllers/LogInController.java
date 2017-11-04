@@ -1,5 +1,6 @@
 package web_spotify.controllers;
 
+import Utils.JsonUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,11 +42,7 @@ public class LogInController {
             errorMessage = "Invalid Username/Password";
         }
 
-        final String jsonFormat = "{ \"error\":%s, \"errorMessage\":\"%s\"}";
-        String jsonTmp = String.format(jsonFormat, Boolean.toString(!valid), errorMessage);
-
-//        User user = new User();
-        return jsonTmp;
+        return valid ? JsonUtils.createBlankSuccess() : JsonUtils.createBlankError(errorMessage);
     }
     
 }
