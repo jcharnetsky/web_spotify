@@ -16,7 +16,7 @@ public class Advertisement {
     @Override
     public boolean equals(Object a) {
         if((a != null) && (a instanceof Advertisement)) {
-            return ((Advertisement) u).getId() == this.getId();
+            return ((Advertisement) a).getId() == this.getId();
         } else return false;
     }
 }
