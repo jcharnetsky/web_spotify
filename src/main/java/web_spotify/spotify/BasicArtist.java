@@ -61,5 +61,16 @@ public class BasicArtist extends User {
         this.aliases.addAll(aliases);
     }
 
-    
+    /**
+     * Compare BasicArtist objects to determine equivalence
+     *
+     * @param object to compare
+     * @return True if object is an instance of BasicArtist and has the same id; False otherwise
+     */
+    @Override
+    public boolean equals(Object a) {
+        if((a != null) && (a instanceof BasicArtist)) {
+            return ((BasicArtist) a).getId() == this.getId();
+        } else return false;
+    }
 }
