@@ -95,6 +95,16 @@ public abstract class SongCollection implements Viewable {
         // A simple .add call with the index parameter included
         ((ArrayList) this.songs).add(index, song);
     }
+    
+    /**
+     * Remove a song at an index
+     *
+     * @param int The index at which the song will be removed
+     */
+    public void removeSongAtIndex(int index) {
+    		((ArrayList) this.songs).remove(index);
+    }
+    
 
     /* OVERRIDES FOR VIEWABLE BELOW */
     @Override

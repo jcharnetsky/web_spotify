@@ -51,6 +51,13 @@ public class Administrator extends PremiumUser {
     }
     
     /**
+     * Remove a report from the collection of reports
+     */
+    public boolean removeReport(Report report) {
+    		return this.reports.remove(report);
+    }
+    
+    /**
      * Ban a user
      */
     public void banUser(User user) {
