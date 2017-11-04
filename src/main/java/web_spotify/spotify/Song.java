@@ -35,7 +35,7 @@ public class Song implements Viewable, Playable {
     /**
      * The number of total listens
      */
-     private int totalListens;
+    private int totalListens;
 
     /**
      * Whether or not the song is available to play

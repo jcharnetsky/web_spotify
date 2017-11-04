@@ -6,22 +6,24 @@ import java.util.Collection;
 
 /**
  * A collection of songs that are a playlist
+ *
  * @author Cardinals
  */
 class Playlist extends SongCollection {
 
-	/**
-	 * The collection of followers
-	 */
-	private Collection<User> followers; 
-	
-	/**
-	 * The description of the playlist
-	 */
-	private String description;
-	
+    /**
+     * The collection of followers
+     */
+    private Collection<User> followers;
+
+    /**
+     * The description of the playlist
+     */
+    private String description;
+
     /**
      * The default constructor of the Playlist Class
+     *
      * @param id The unique id of the collection
      * @param title The title of the collection
      * @param owner The owner of the collection
@@ -33,46 +35,51 @@ class Playlist extends SongCollection {
         this.description = description;
         followers = new ArrayList<User>();
     }
-    
+
     /**
      * Add a follower to the playlist
+     *
      * @param user The user to be added to the playlist's followers
      */
     public boolean addFollower(User user) {
-    		return this.followers.add(user);
+        return this.followers.add(user);
     }
-    
+
     /**
      * Remove a follower from the playlist
+     *
      * @param user The user to be removed from the playlist's followers
      * @return
      */
     public boolean removeFollower(User user) {
-    		return this.followers.remove(user);
+        return this.followers.remove(user);
     }
-    
+
     /**
      * Change the description of the playlist
+     *
      * @param description
      */
     public void changeDescription(String description) {
-    		this.description = description;
+        this.description = description;
     }
-    
-    /** 
+
+    /**
      * Return the description of the playlist
+     *
      * @return description
      */
     public String getDescription() {
-    		return this.description;
+        return this.description;
     }
-    
+
     /**
      * Return the list of followers.
+     *
      * @return followers
      */
     public Collection<User> getFollowersList() {
-    		return this.followers;
+        return this.followers;
     }
-    
+
 }

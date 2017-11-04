@@ -36,46 +36,48 @@ class Concert implements Viewable {
      * A boolean which determines if the user is public. DEFAULT FALSE.
      */
     private boolean isPublic;
-    
+
     /**
      * A boolean which determines if the user is banned. DEFAULT FALSE.
      */
     private boolean isBanned;
-    
+
     /**
      * The constructor of the Concert Class
+     *
      * @param name The name of the venue
      * @param date The date of the venue
-     * @param url  The url of where to buy the tickets
+     * @param url The url of where to buy the tickets
      */
-    public Concert (String name, Date date, String url) {
+    public Concert(String name, Date date, String url) {
         this.name = name;
         this.date = date;
-        this.url  = url;
-        
+        this.url = url;
+
         this.artists = new ArrayList<BasicArtist>();
     }
-    
+
     /**
      * Adds an artist to the current venue
+     *
      * @param artist The artist to be added to the venue
      * @return True or false if the artist was successfully added.
      */
-    public boolean addArtist (BasicArtist artist) {
+    public boolean addArtist(BasicArtist artist) {
         return this.artists.add(artist);
     }
-    
+
     /**
      * Removes an artist to the current venue
+     *
      * @param artist The artist to be removed to the venue
      * @return True or false if the artist was successfully removed.
      */
-    public boolean remArtist (BasicArtist artist) {
+    public boolean remArtist(BasicArtist artist) {
         return this.artists.remove(artist);
     }
-    
-    /* OVERRIDES FOR VIEWABLE BELOW */
 
+    /* OVERRIDES FOR VIEWABLE BELOW */
     @Override
     public boolean isBanned() {
         return this.isBanned;
