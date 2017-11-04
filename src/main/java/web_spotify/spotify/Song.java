@@ -23,11 +23,6 @@ public class Song implements Viewable, Playable {
     private int ownerID;
 
     /**
-     * Whether or not the song is playing
-     */
-    private boolean isPlaying;
-
-    /**
      * The length of the song
      */
     private double trackLength;
@@ -76,7 +71,7 @@ public class Song implements Viewable, Playable {
      */
     @Override
     public boolean setBanned(boolean value) {
-        this.banned = value;
+        this.isBanned = value;
         return true;
     }
 
@@ -85,7 +80,7 @@ public class Song implements Viewable, Playable {
      */
     @Override
     public boolean setPublic(boolean value) {
-        this.public = value;
+        this.isPublic = value;
         return true;
     }
 
