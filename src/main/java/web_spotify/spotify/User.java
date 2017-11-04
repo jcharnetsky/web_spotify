@@ -1,5 +1,6 @@
 package web_spotify.spotify;
 
+import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -43,6 +44,41 @@ public class User implements Viewable {
      * A boolean which determines if the user is banned. DEFAULT FALSE.
      */
     private boolean isBanned;
+    
+    /**
+     * The URL of the user's profile picture.
+     */
+    private String imageURL;
+    
+    /**
+     * The user's followers
+     */
+    private Collection<User> followers;
+    
+    /**
+     * The users this user is following
+     */
+    private Collection<User> following;
+    
+    /**
+     * The user's saved albums
+     */
+    private Collection<Album> savedAlbums;
+    
+    /** 
+     * The playlists this user is following
+     */
+    private Collection<Playlist> followedPlaylist;
+    
+    /** 
+     * The songs this user has saved
+     */
+    private Playlist savedSongs;
+    
+    /** 
+     * The user's song queue
+     */
+    private SongQueue songQueue;
 
     /**
      * The Constructor for the User Object
@@ -53,12 +89,13 @@ public class User implements Viewable {
      * @param address The physical address of the user
      * @param birthday The birthday of the user
      */
-    public User(int id, String name, String email, String address, Date birthday) {
+    public User(int id, String name, String email, String address, Date birthday, String imageURL) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.address = address;
         this.birthday = birthday;
+        this.imageURL = imageURL;
     }
 
     /* OVERRIDES FOR VIEWABLE BELOW */
