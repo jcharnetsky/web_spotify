@@ -23,6 +23,11 @@ class Concert implements Viewable {
     private String name;
 
     /**
+     * The id of this object
+     */
+    private final int id;
+    
+    /**
      * The date at which the concert will take place
      */
     private Date date;
@@ -49,8 +54,9 @@ class Concert implements Viewable {
      * @param date The date of the venue
      * @param url The url of where to buy the tickets
      */
-    public Concert(String name, Date date, String url) {
+    public Concert(String name, int id, Date date, String url) {
         this.name = name;
+        this.id = id;
         this.date = date;
         this.url = url;
 
@@ -103,5 +109,23 @@ class Concert implements Viewable {
     public boolean setPublic(boolean value) {
         this.isPublic = value;
         return true;
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+    
+    /**
+     * Compare Concert objects to determine equivalence
+     *
+     * @param object to compare
+     * @return True if object is an instance of Concert and has the same id; False otherwise
+     */
+    @Override
+    public boolean equals(Object c) {
+        if((c != null) && (c instanceof Concert)) {
+            return ((Concert) c).getId() == this.getId();
+        } else return false;
     }
 }
