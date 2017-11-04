@@ -43,6 +43,10 @@ public class User implements Viewable {
      * A boolean which determines if the user is banned. DEFAULT FALSE.
      */
     private boolean isBanned;
+    
+    /**
+     * 
+     */
 
     /**
      * The Constructor for the User Object
