@@ -88,7 +88,7 @@ public class Administrator extends PremiumUser {
     /**
      * Compare Administrator objects to determine equivalence
      *
-     * @param object to compare
+     * @param a object to compare
      * @return True if object is an instance of Administrator and has the same id; False otherwise
      */
     @Override
