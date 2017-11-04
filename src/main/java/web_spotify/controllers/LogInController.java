@@ -27,6 +27,11 @@ public class LogInController {
             @RequestParam(value = "password", required = true) String password,
             HttpSession session) {
 
+        /* Check to see if the user is logged in, if so, throw an already logged error */
+        if (session.getAttribute("User") != null) {
+            return JsonUtils.createBlankError("User already logged in.");
+        }
+
         final String validEmail = "user@yahoo.com";
         final String validPassword = "password";
 
