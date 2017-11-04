@@ -3,3 +3,7 @@ __pycache__
 virtualenv
 *target/*
 nbactions.*
+/target/
+.project
+.classpath
+.settings/
