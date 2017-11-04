@@ -25,7 +25,7 @@ class Album extends SongCollection {
     /**
      * Compare Album objects to determine equivalence
      *
-     * @param object to compare
+     * @param a object to compare
      * @return True if object is an instance of Album and has the same id; False otherwise
      */
     @Override
