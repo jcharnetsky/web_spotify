@@ -1,6 +1,4 @@
 package web_spotify.spotify;
-
-import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -30,7 +28,7 @@ public abstract class SongCollection implements Viewable {
     /**
      * The cover art of the collection
      */
-    private Image image;
+    private String imageURL;
 
     /**
      * The genre of the collection
@@ -61,12 +59,12 @@ public abstract class SongCollection implements Viewable {
      * @param image The image of the collection
      * @param genre The genre of the collection
      */
-    protected SongCollection(int id, String title, User owner, Image image, String genre, boolean isPublic, boolean isBanned) {
+    protected SongCollection(int id, String title, User owner, String imageURL, String genre, boolean isPublic, boolean isBanned) {
         // Set all the basic values
         this.id = id;
         this.title = title;
         this.owner = owner;
-        this.image = image;
+        this.imageURL = imageURL;
         this.genre = genre;
         this.isPublic = isPublic;
         this.isBanned = isBanned;
@@ -147,8 +145,8 @@ public abstract class SongCollection implements Viewable {
         return owner;
     }
 
-    public Image getImage() {
-        return image;
+    public String getImageURL() {
+        return imageURL;
     }
 
     public String getGenre() {
@@ -164,8 +162,8 @@ public abstract class SongCollection implements Viewable {
         this.title = title;
     }
 
-    public void setImage(Image image) {
-        this.image = image;
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
 }

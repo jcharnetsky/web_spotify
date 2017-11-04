@@ -1,6 +1,4 @@
 package web_spotify.spotify;
-
-import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -30,8 +28,8 @@ class Playlist extends SongCollection {
      * @param image The image of the collection
      * @param genre The genre of the collection
      */
-    public Playlist(int id, String title, User owner, Image image, String genre, String description, boolean isPublic, boolean isBanned) {
-        super(id, title, owner, image, genre, isPublic, isBanned);
+    public Playlist(int id, String title, User owner, String imageURL, String genre, String description, boolean isPublic, boolean isBanned) {
+        super(id, title, owner, imageURL, genre, isPublic, isBanned);
         this.description = description;
         followers = new ArrayList<User>();
     }
