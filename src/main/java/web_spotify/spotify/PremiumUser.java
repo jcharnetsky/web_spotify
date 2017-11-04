@@ -11,8 +11,19 @@ import java.util.Date;
  */
 public class PremiumUser extends User {
 
+    /**
+     * The collection of downloaded playlists
+     */
     private Collection<Playlist> downloadedPlaylists;
+
+    /**
+     * The collection of downloaded albums
+     */
     private Collection<Album> downloadedAlbums;
+
+    /**
+     * The collection of downloaded songs
+     */
     private Collection<Song> downloadedSongs;
 
     /**
@@ -35,8 +46,63 @@ public class PremiumUser extends User {
 
     }
 
+    /**
+     * Add a downloaded playlist
+     *
+     * @param playlist Playlist to be added
+     * @return True if the addition is successful, false if not
+     */
     public boolean addDownloadedPlaylist(Playlist playlist) {
         return this.downloadedPlaylists.add(playlist);
     }
 
+    /**
+     * Remove a downloaded playlist
+     *
+     * @param playlist Playlist to be removed
+     * @return True if the removal is successful, false if not
+     */
+    public boolean remDownloadedPlaylist(Playlist playlist) {
+        return this.downloadedPlaylists.remove(playlist);
+    }
+
+    /**
+     * Add a downloaded album
+     *
+     * @param album Album to be added.
+     * @return True if the addition is successful, false if not
+     */
+    public boolean addDownloadedAlbum(Album album) {
+        return this.downloadedAlbums.add(album);
+    }
+
+    /**
+     * Remove a downloaded album
+     *
+     * @param album Album to be removed
+     * @return True if the removal is successful, false if not
+     */
+    public boolean remDownloadedAlbum(Album album) {
+        return this.downloadedAlbums.remove(album);
+    }
+
+    /**
+     * Add a downloaded song
+     *
+     * @param song Song to be added
+     * @return True if the addition is successful, false if not
+     */
+    public boolean addDownloadedSong(Song song) {
+        return this.downloadedSongs.add(song);
+    }
+
+    /**
+     * Remove a downloaded song
+     *
+     * @param song Song to be removed
+     * @return True if the removal is successful, false if not
+     */
+    public boolean remDownloadedSong(Song song) {
+        return this.downloadedSongs.remove(song);
+    }
 }
