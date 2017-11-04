@@ -98,4 +98,3 @@ public class Administrator extends PremiumUser {
         } else return false;
     }
 }
-
