@@ -8,7 +8,7 @@ package web_spotify.spotify;
 public class Advertisement {
 
     /**
-     * Compare PremiumUser objects to determine equivalence
+     * Compare Advertisement objects to determine equivalence
      *
      * @param object to compare
      * @return True if object is an instance of Advertisement and has the same id; False otherwise
