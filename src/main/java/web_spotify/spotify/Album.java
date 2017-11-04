@@ -18,8 +18,8 @@ class Album extends SongCollection {
      * @param image The image of the collection
      * @param genre The genre of the collection
      */
-    public Album(int id, String title, User owner, Image image, String genre) {
-        super(id, title, owner, image, genre);
+    public Album(int id, String title, User owner, Image image, String genre, boolean isPublic, boolean isBanned) {
+        super(id, title, owner, image, genre, isPublic, isBanned);
     }
 
 }
