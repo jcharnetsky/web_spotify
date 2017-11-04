@@ -119,7 +119,7 @@ class Concert implements Viewable {
     /**
      * Compare Concert objects to determine equivalence
      *
-     * @param object to compare
+     * @param c object to compare
      * @return True if object is an instance of Concert and has the same id; False otherwise
      */
     @Override
