@@ -105,4 +105,17 @@ public class PremiumUser extends User {
     public boolean remDownloadedSong(Song song) {
         return this.downloadedSongs.remove(song);
     }
+    
+    /**
+     * Compare PremiumUser objects to determine equivalence
+     *
+     * @param u object to compare
+     * @return True if object is an instance of PremiumUser and has the same id; False otherwise
+     */
+    @Override
+    public boolean equals(Object u) {
+        if((u != null) && (u instanceof PremiumUser)) {
+            return ((PremiumUser) u).getId() == this.getId();
+        } else return false;
+    }
 }

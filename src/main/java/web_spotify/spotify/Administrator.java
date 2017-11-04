@@ -85,4 +85,16 @@ public class Administrator extends PremiumUser {
     		playlist.setBanned(true);
     }
     
+    /**
+     * Compare Administrator objects to determine equivalence
+     *
+     * @param a object to compare
+     * @return True if object is an instance of Administrator and has the same id; False otherwise
+     */
+    @Override
+    public boolean equals(Object a) {
+        if((a != null) && (a instanceof Administrator)) {
+            return ((Administrator) a).getId() == this.getId();
+        } else return false;
+    }
 }

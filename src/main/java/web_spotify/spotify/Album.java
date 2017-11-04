@@ -20,4 +20,17 @@ class Album extends SongCollection {
         super(id, title, owner, imageURL, genre, isPublic, isBanned);
     }
 
+    /**
+     * Compare Album objects to determine equivalence
+     *
+     * @param a object to compare
+     * @return True if object is an instance of Album and has the same id; False otherwise
+     */
+    @Override
+    public boolean equals(Object a) {
+        if((a != null) && (a instanceof Album)) {
+            return ((Album) a).getId() == this.getId();
+        } else return false;
+    }
+    
 }

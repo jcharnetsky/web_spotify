@@ -167,4 +167,17 @@ public class BasicArtist extends User {
     public Collection<String> getAliases() {
     		return aliases;
     }
+                
+    /**
+     * Compare BasicArtist objects to determine equivalence
+     *
+     * @param a object to compare
+     * @return True if object is an instance of BasicArtist and has the same id; False otherwise
+     */
+    @Override
+    public boolean equals(Object a) {
+        if((a != null) && (a instanceof BasicArtist)) {
+            return ((BasicArtist) a).getId() == this.getId();
+        } else return false;
+    }
 }
