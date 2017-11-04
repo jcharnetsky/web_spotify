@@ -25,7 +25,7 @@ public class Song implements Viewable, Playable {
     /** 
      * The ID of the song
      */
-    private final int songID;
+    private final int id;
     
     /**
      * The title of the song
@@ -60,10 +60,10 @@ public class Song implements Viewable, Playable {
      * @param monthlyListens The number of monthly listens of the song
      * @param isBanned The banned status of the song
      */
-    public Song (String title, int songID, int ownerID, double trackLength, int totalListens, int monthlyListens, boolean isBanned, boolean isPublic) {
+    public Song (String title, int id, int ownerID, double trackLength, int totalListens, int monthlyListens, boolean isBanned, boolean isPublic) {
     		this.title = title;
     		this.ownerID = ownerID;
-    		this.songID = songID;
+    		this.id = id;
     		this.trackLength = trackLength;
     		this.totalListens = totalListens;
     		this.monthlyListens = monthlyListens;
@@ -164,6 +164,15 @@ public class Song implements Viewable, Playable {
     }
     
     /**
+     * Returns this objects id
+     * @return 
+     */
+    @Override
+    public int getId() {
+        return id;
+    }
+    
+    /**
      * Returns the monthly listens for the song.
      */
     public int getMonthlyListens() {
@@ -191,17 +200,23 @@ public class Song implements Viewable, Playable {
     		this.title = title;
     }
     
-    /** 
-     * Returns the id of the song
-     */
-    public int getID() {
-    		return songID;
-    }
-    
     /**
      * Returns the ownerID of the song
      */
     	public int getOwnerID() {
     		return ownerID;
     	}
+
+     /**
+     * Compare Song objects to determine equivalence
+     *
+     * @param object to compare
+     * @return True if object is an instance of Song and has the same id; False otherwise
+     */
+    @Override
+    public boolean equals(Object s) {
+        if((s != null) && (s instanceof Song)) {
+            return ((Song) s).getId() == this.getId();
+        } else return false;
+    }
 }
