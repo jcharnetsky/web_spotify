@@ -33,6 +33,10 @@ public class PremiumUser extends User {
         
     }
     
+    public boolean addDownloadedPlaylist (Playlist playlist) {
+        return this.downloadedPlaylists.add(playlist);
+    }
+    
     
     
 }
