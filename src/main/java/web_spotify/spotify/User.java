@@ -109,4 +109,11 @@ public class User implements Viewable {
     public Date getBirthday() {
         return birthday;
     }
+    
+    @Override
+    public boolean equals(Object u) {
+        if((u != null) && (u instanceof User)) {
+            return ((User) u).getId() == this.getId();
+        } else return false;
+    }
 }
