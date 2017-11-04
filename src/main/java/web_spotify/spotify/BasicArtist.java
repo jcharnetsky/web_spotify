@@ -61,6 +61,20 @@ public class BasicArtist extends User {
         this.aliases.addAll(aliases);
     }
     
+    /**
+     * Set the bio of the artist
+     * @param bio
+     */
+    public void setBio(String bio) {
+    		this.bio = bio;
+    }
+    
+    /**
+     * Get the bio of the artist
+     */
+    public String getBio() {
+    		return bio;
+    }
     
     /**
      * Add a song to an artist's owned songs
