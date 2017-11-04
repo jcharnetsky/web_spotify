@@ -109,7 +109,7 @@ public class PremiumUser extends User {
     /**
      * Compare PremiumUser objects to determine equivalence
      *
-     * @param object to compare
+     * @param u object to compare
      * @return True if object is an instance of PremiumUser and has the same id; False otherwise
      */
     @Override
