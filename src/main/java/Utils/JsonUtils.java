@@ -8,6 +8,6 @@ package Utils;
 public class JsonUtils {
     
     static public String createError(String errMessage) {
-        
+        return "HI";
     }
 }
