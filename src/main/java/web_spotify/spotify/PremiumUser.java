@@ -35,9 +35,9 @@ public class PremiumUser extends User {
      * @param address The physical address of the user
      * @param birthday The birthday of the user
      */
-    public PremiumUser(int id, String name, String email, String address, Date birthday) {
+    public PremiumUser(int id, String name, String email, String address, Date birthday, String imageURL) {
         /* Call the super method */
-        super(id, name, email, address, birthday);
+        super(id, name, email, address, birthday, imageURL);
 
         /* Instantiate all collections */
         this.downloadedPlaylists = new ArrayList<Playlist>();
