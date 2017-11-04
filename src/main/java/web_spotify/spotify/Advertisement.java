@@ -5,7 +5,11 @@ package web_spotify.spotify;
  *
  * @author Cardinals
  */
-public class Advertisement {
+public class Advertisement extends Song {
+
+    public Advertisement(String title, int id, int ownerID, double trackLength, int totalListens, int monthlyListens, boolean isBanned, boolean isPublic) {
+        super(title, id, ownerID, trackLength, totalListens, monthlyListens, isBanned, isPublic);
+    }
 
     /**
      * Compare Advertisement objects to determine equivalence
