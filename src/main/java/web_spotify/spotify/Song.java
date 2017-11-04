@@ -22,6 +22,15 @@ public class Song implements Viewable, Playable {
      */
     private int ownerID;
 
+    /** 
+     * The ID of the song
+     */
+    private int songID;
+    
+    /**
+     * The title of the song
+     */
+    private String title;
     /**
      * The length of the song
      */
@@ -41,7 +50,16 @@ public class Song implements Viewable, Playable {
      * Whether or not the song is available to play
      */
     private boolean isAvailable;
-
+    
+    public Song (String title, int songID, double trackLength, int totalListens, int monthlyListens, boolean isBanned) {
+    		this.title = title;
+    		this.songID = songID;
+    		this.trackLength = trackLength;
+    		this.totalListens = totalListens;
+    		this.monthlyListens = monthlyListens;
+    		this.isBanned = isBanned;
+    }
+    
     /**
      * Returns whether or not the song is banned
      */
@@ -132,5 +150,47 @@ public class Song implements Viewable, Playable {
     @Override
     public boolean isAvailable() {
         return this.isAvailable;
+    }
+    
+    /**
+     * Returns the monthly listens for the song.
+     */
+    public int getMonthlyListens() {
+    		return monthlyListens;
+    }
+    
+    /**
+     * Returns the total listens for the song.
+     */
+    public int getTotalListens() {
+    		return totalListens;
+    }
+    
+    /**
+     * Returns the title of the song.
+     */
+    public String getTitle() {
+    		return title;
+    }
+    
+    /**
+     * Set the title of the song
+     */
+    public void setTitle(String title) {
+    		this.title = title;
+    }
+    
+    /** 
+     * Returns the id of the song
+     */
+    public int getID() {
+    		return songID;
+    }
+    
+    /** 
+     * Set the id of the song
+     */
+    public void setID(int songID) {
+    		this.songID = songID;
     }
 }
