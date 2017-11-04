@@ -1,5 +1,6 @@
 package web_spotify.spotify;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
@@ -52,7 +53,7 @@ class Concert implements Viewable {
         this.date = date;
         this.url  = url;
         
-        this.artists = new HashSet<BasicArtist>();
+        this.artists = new ArrayList<BasicArtist>();
     }
     
     /**
