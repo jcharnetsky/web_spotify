@@ -6,7 +6,7 @@ package web_spotify.spotify;
  * @author Cardinals
  */
 public interface Viewable {
-
+    
     /**
      * Checks whether the current viewable has been registered as a banned
      * entity
@@ -48,4 +48,11 @@ public interface Viewable {
      * @return Whether the method was successful in making the viewable public
      */
     public abstract boolean setPublic(boolean value);
+    
+    /**
+     * Gets the id of this object
+     *
+     * @return The id of this object
+     */
+    public abstract int getId();
 }
