@@ -82,4 +82,16 @@ class Playlist extends SongCollection {
         return this.followers;
     }
 
+    /**
+     * Compare Playlist objects to determine equivalence
+     *
+     * @param object to compare
+     * @return True if object is an instance of Playlist and has the same id; False otherwise
+     */
+    @Override
+    public boolean equals(Object p) {
+        if((p != null) && (p instanceof Playlist)) {
+            return ((Playlist) p).getId() == this.getId();
+        } else return false;
+    }
 }
