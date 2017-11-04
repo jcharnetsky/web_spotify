@@ -30,8 +30,8 @@ class Playlist extends SongCollection {
      * @param image The image of the collection
      * @param genre The genre of the collection
      */
-    public Playlist(int id, String title, User owner, Image image, String genre, String description) {
-        super(id, title, owner, image, genre);
+    public Playlist(int id, String title, User owner, Image image, String genre, String description, boolean isPublic, boolean isBanned) {
+        super(id, title, owner, image, genre, isPublic, isBanned);
         this.description = description;
         followers = new ArrayList<User>();
     }
