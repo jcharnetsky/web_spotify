@@ -210,7 +210,7 @@ public class Song implements Viewable, Playable {
      /**
      * Compare Song objects to determine equivalence
      *
-     * @param object to compare
+     * @param s object to compare
      * @return True if object is an instance of Song and has the same id; False otherwise
      */
     @Override
