@@ -61,13 +61,15 @@ public abstract class SongCollection implements Viewable {
      * @param image The image of the collection
      * @param genre The genre of the collection
      */
-    protected SongCollection(int id, String title, User owner, Image image, String genre) {
+    protected SongCollection(int id, String title, User owner, Image image, String genre, boolean isPublic, boolean isBanned) {
         // Set all the basic values
         this.id = id;
         this.title = title;
         this.owner = owner;
         this.image = image;
         this.genre = genre;
+        this.isPublic = isPublic;
+        this.isBanned = isBanned;
 
         // Instantiate the *ORDERED* collection of songs
         this.songs = new ArrayList<Song>();
