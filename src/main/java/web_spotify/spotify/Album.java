@@ -1,7 +1,5 @@
 package web_spotify.spotify;
 
-import java.awt.Image;
-
 /**
  * A collection of songs that are an album
  *
@@ -18,8 +16,8 @@ class Album extends SongCollection {
      * @param image The image of the collection
      * @param genre The genre of the collection
      */
-    public Album(int id, String title, User owner, Image image, String genre, boolean isPublic, boolean isBanned) {
-        super(id, title, owner, image, genre, isPublic, isBanned);
+    public Album(int id, String title, User owner, String imageURL, String genre, boolean isPublic, boolean isBanned) {
+        super(id, title, owner, imageURL, genre, isPublic, isBanned);
     }
 
 }
