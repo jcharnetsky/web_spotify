@@ -15,7 +15,7 @@ public abstract class SongCollection implements Viewable {
     /**
      * The unique id of the Song Collection
      */
-    private int id;
+    private final int id;
 
     /**
      * The displayed title of the collection

@@ -20,12 +20,12 @@ public class Song implements Viewable, Playable {
     /**
      * The ID of the user who owns the song
      */
-    private int ownerID;
+    private final int ownerID;
 
     /** 
      * The ID of the song
      */
-    private int songID;
+    private final int songID;
     
     /**
      * The title of the song
@@ -60,8 +60,9 @@ public class Song implements Viewable, Playable {
      * @param monthlyListens The number of monthly listens of the song
      * @param isBanned The banned status of the song
      */
-    public Song (String title, int songID, double trackLength, int totalListens, int monthlyListens, boolean isBanned) {
+    public Song (String title, int songID, int ownerID, double trackLength, int totalListens, int monthlyListens, boolean isBanned) {
     		this.title = title;
+    		this.ownerID = ownerID;
     		this.songID = songID;
     		this.trackLength = trackLength;
     		this.totalListens = totalListens;
@@ -196,10 +197,10 @@ public class Song implements Viewable, Playable {
     		return songID;
     }
     
-    /** 
-     * Set the id of the song
+    /**
+     * Returns the ownerID of the song
      */
-    public void setID(int songID) {
-    		this.songID = songID;
-    }
+    	public int getOwnerID() {
+    		return ownerID;
+    	}
 }
