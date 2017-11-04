@@ -41,5 +41,5 @@ public interface Playable {
      /**
      * Increments the total listen count by 1
      */
-    public abstract void incrementMTotalListens();
+    public abstract void incrementTotalListens();
 }
