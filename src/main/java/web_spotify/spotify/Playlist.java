@@ -85,7 +85,7 @@ class Playlist extends SongCollection {
     /**
      * Compare Playlist objects to determine equivalence
      *
-     * @param object to compare
+     * @param p object to compare
      * @return True if object is an instance of Playlist and has the same id; False otherwise
      */
     @Override
