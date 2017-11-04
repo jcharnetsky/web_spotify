@@ -20,7 +20,7 @@ public class Report {
 	/**
 	 * The id of the report
 	 */
-	private int reportID;
+	private final int reportID;
 	
 	/**
 	 * The default constructor of a report.

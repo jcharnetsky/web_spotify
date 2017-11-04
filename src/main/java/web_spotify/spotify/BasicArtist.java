@@ -61,4 +61,5 @@ public class BasicArtist extends User {
         this.aliases.addAll(aliases);
     }
 
+    
 }
