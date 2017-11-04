@@ -6,37 +6,39 @@ import java.util.ArrayList;
 
 /**
  * Represents the base functionality of a User who is an Artist
+ *
  * @author Cardinals
  */
 public class BasicArtist extends User {
-    
+
     /**
      * A collection of strings that represent previous artist aliases
      */
     private Collection<String> aliases;
-    
+
     /**
      * A collection of songs that the Basic Artist owns
      */
-    private Collection<Song>  ownedSongs;
-    
+    private Collection<Song> ownedSongs;
+
     /**
      * A collection of albums that the Basic Artist owns
      */
     private Collection<Album> ownedAlbums;
-    
+
     /**
      * A collection of concerts that the Basic Artist has/is attended/attending
      */
     private Collection<Concert> concerts;
-    
+
     /**
      * A piece of text which is the bio for the artist
      */
     private String bio;
-    
+
     /**
      * The constructor the BasicArtist
+     *
      * @param id The id of the account
      * @param name The name of the account user
      * @param email The email of the account user
@@ -58,5 +60,5 @@ public class BasicArtist extends User {
         // Add all aliases into the alias set
         this.aliases.addAll(aliases);
     }
-    
+
 }
