@@ -60,7 +60,7 @@ public class Song implements Viewable, Playable {
      * @param monthlyListens The number of monthly listens of the song
      * @param isBanned The banned status of the song
      */
-    public Song (String title, int songID, int ownerID, double trackLength, int totalListens, int monthlyListens, boolean isBanned) {
+    public Song (String title, int songID, int ownerID, double trackLength, int totalListens, int monthlyListens, boolean isBanned, boolean isPublic) {
     		this.title = title;
     		this.ownerID = ownerID;
     		this.songID = songID;
@@ -68,6 +68,7 @@ public class Song implements Viewable, Playable {
     		this.totalListens = totalListens;
     		this.monthlyListens = monthlyListens;
     		this.isBanned = isBanned;
+    		this.isPublic = isPublic;
     }
     
     /**
