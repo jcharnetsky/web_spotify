@@ -2,7 +2,7 @@ package web_spotify.spotify;
 
 import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
+import java.util.ArrayList;
 
 /**
  * Represents the base functionality of a User who is an Artist
@@ -51,10 +51,10 @@ public class BasicArtist extends User {
         // Set the bio
         this.bio = bio;
         // Instantiate all the collections
-        this.ownedSongs = new HashSet<Song>();
-        this.ownedAlbums = new HashSet<Album>();
-        this.concerts = new HashSet<Concert>();
-        this.aliases = new HashSet<String>();
+        this.ownedSongs = new ArrayList<Song>();
+        this.ownedAlbums = new ArrayList<Album>();
+        this.concerts = new ArrayList<Concert>();
+        this.aliases = new ArrayList<String>();
         // Add all aliases into the alias set
         this.aliases.addAll(aliases);
     }
