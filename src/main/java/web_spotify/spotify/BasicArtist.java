@@ -47,9 +47,9 @@ public class BasicArtist extends User {
      * @param bio The bio of the BasicArtist
      * @param aliases A collection of aliases the artist goes by
      */
-    public BasicArtist(int id, String name, String email, String address, Date birthday, String bio, Collection<String> aliases) {
+    public BasicArtist(int id, String name, String email, String address, Date birthday, String bio, String imageURL, Collection<String> aliases) {
         // Call the constructor
-        super(id, name, email, address, birthday);
+        super(id, name, email, address, birthday, imageURL);
         // Set the bio
         this.bio = bio;
         // Instantiate all the collections
