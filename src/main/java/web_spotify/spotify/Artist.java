@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *
  * @author Cardinals
  */
-public class BasicArtist extends User {
+public class Artist extends User {
 
     /**
      * A collection of strings that represent previous artist aliases
@@ -47,7 +47,7 @@ public class BasicArtist extends User {
      * @param bio The bio of the BasicArtist
      * @param aliases A collection of aliases the artist goes by
      */
-    public BasicArtist(int id, String name, String email, String address, Date birthday, String bio, String imageURL, Collection<String> aliases) {
+    public Artist(int id, String name, String email, String address, Date birthday, String bio, String imageURL, Collection<String> aliases) {
         // Call the constructor
         super(id, name, email, address, birthday, imageURL);
         // Set the bio
@@ -176,8 +176,8 @@ public class BasicArtist extends User {
      */
     @Override
     public boolean equals(Object a) {
-        if((a != null) && (a instanceof BasicArtist)) {
-            return ((BasicArtist) a).getId() == this.getId();
+        if((a != null) && (a instanceof Artist)) {
+            return ((Artist) a).getId() == this.getId();
         } else return false;
     }
 }
