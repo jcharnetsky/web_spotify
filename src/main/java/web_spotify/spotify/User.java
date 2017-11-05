@@ -138,7 +138,7 @@ public class User implements Viewable {
         followedPlaylists = new ArrayList<Playlist>();
         ownedPlaylists = new ArrayList<Playlist>();
         savedSongs = new Playlist(id, "Songs", this, "", "", "");
-        songQueue = new SongQueue(this);
+        songQueue = new SongQueue();
         downloadedPlaylists = new ArrayList<Playlist>();
         downloadedAlbums = new ArrayList<Album>();
         downloadedSongs = new ArrayList<Song>();
