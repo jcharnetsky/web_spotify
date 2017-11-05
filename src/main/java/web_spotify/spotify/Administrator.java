@@ -9,7 +9,7 @@ import java.util.Collection;
  *
  * @author Cardinals
  */
-public class Administrator extends PremiumUser {
+public class Administrator extends User {
 
 	/**
 	 * A collection of the reports

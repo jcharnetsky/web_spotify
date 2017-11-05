@@ -27,6 +27,7 @@ class Playlist extends SongCollection {
      * @param owner The owner of the collection
      * @param image The image of the collection
      * @param genre The genre of the collection
+     * @param description The description of the collection
      */
     public Playlist(int id, String title, User owner, String imageURL, String genre, String description) {
         super(id, title, owner, imageURL, genre);
