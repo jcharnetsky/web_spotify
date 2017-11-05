@@ -1,5 +1,6 @@
 package web_spotify.spotify;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -39,7 +40,7 @@ public class User implements Viewable {
     /**
      * The URL of the user's profile picture.
      */
-    private String imageURL;
+    private Image image;
     
     /**
      * The user's followers.
@@ -121,13 +122,13 @@ public class User implements Viewable {
      * @param address The physical address of the user
      * @param birthday The birthday of the user
      */
-    public User(int id, String name, String email, String address, Date birthday, String imageURL) {
+    public User(int id, String name, String email, String address, Date birthday, Image image) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.address = address;
         this.birthday = birthday;
-        this.imageURL = imageURL;
+        this.image = image;
         this.isPublic = false;
         this.isBanned = false;
         this.isPremium = false;
@@ -137,7 +138,7 @@ public class User implements Viewable {
         savedAlbums = new ArrayList<Album>();
         followedPlaylists = new ArrayList<Playlist>();
         ownedPlaylists = new ArrayList<Playlist>();
-        savedSongs = new Playlist(id, "Songs", this, "", "", "");
+        savedSongs = new Playlist(id, "Songs", this, null, "", "");
         songQueue = new SongQueue();
         downloadedPlaylists = new ArrayList<Playlist>();
         downloadedAlbums = new ArrayList<Album>();
@@ -244,8 +245,8 @@ public class User implements Viewable {
      * @param genre The genre of the collection
      * @param description The description of the collection
      */
-    public void createPlaylist(int id, String title, User owner, String imageURL, String genre, String description) {
-    		Playlist playlist = new Playlist(id, title, owner, imageURL, genre, description);
+    public void createPlaylist(int id, String title, User owner, Image image, String genre, String description) {
+    		Playlist playlist = new Playlist(id, title, owner, image, genre, description);
     		ownedPlaylists.add(playlist);
     }
     
@@ -347,8 +348,8 @@ public class User implements Viewable {
     		return birthday;
     }
     
-    public String getImageURL() {
-    		return imageURL;
+    public Image getImage() {
+    		return image;
     }
     
     public Collection<User> getFollowers() {
@@ -422,8 +423,8 @@ public class User implements Viewable {
     		this.birthday = birthday;
     }
     
-    public void setImageURL(String imageURL) {
-    		this.imageURL = imageURL;
+    public void setImage(Image image) {
+    		this.image = image;
     }
     
     @Override

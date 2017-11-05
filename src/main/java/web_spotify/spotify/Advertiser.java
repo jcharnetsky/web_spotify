@@ -1,5 +1,6 @@
 package web_spotify.spotify;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -26,8 +27,8 @@ public class Advertiser extends User {
      *
      * @param companyName The name of the company
      */
-    public Advertiser(int id, String name, String email, String address, Date birthday, String imageURL, String companyName) {
-    		super(id, name, email, address, birthday, imageURL);
+    public Advertiser(int id, String name, String email, String address, Date birthday, Image image, String companyName) {
+    		super(id, name, email, address, birthday, image);
         this.companyName = companyName;
         this.advertisements = new ArrayList<Advertisement>();
     }
