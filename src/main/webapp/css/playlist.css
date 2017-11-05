@@ -1,76 +1,70 @@
-html {
-    height:100%;
+.playlist_header {
+    display: inline-block;
 }
-body {
-    height:100%;
+#content_title {
+    vertical-align: top;
+    margin-left: 2%;
 }
-
-#topbar {
-    margin-top: -2vh;
+.playlist_img {
     height: 30vh;
+    width: auto;
+}
+
+.playlist_tiles .playlist_column_headers {
+    margin-bottom: 0;
+    padding-left: 0;
+}
+
+.playlist_tiles li {
+    width: 80vw;
+    height: 4vw;
+}
+.playlist_tile {
+    height: 4vw;
+}
+div.playlist_tile {
+    display: table;
     width: 100%;
-    background: linear-gradient(#404040, #070707);
-    display:inline-block;
+    table-layout: fixed;    /* For cells of equal size */
 }
-
-#plpic {
-    height:25vh;
-    width: 15vw;
-    margin-left: 3vw;
-    margin-top: 5vh;
-    background-color: red;
-    float: left;
-    display:inline-block;
+div.playlist_tile span {
+    font-size: 200%;
+    display: table-cell;
+    vertical-align: middle;
 }
-
-img {
-    height: 25vh;
-    width: 15vw;
-}
-
-#createdby {
-    color: white;
-}
-
-#followers{
-    align:right;
-    color: gray;
-    padding-left: 60vw;
-}
-
-#plinfo {
-    padding-top: 12vh;
-    padding-left: 0vw;
-    display:inline-block;
-}
-
-.description {
-    margin-left: 2vw;
-}
-
-#pltype {
-    font-size: 1em;
-    color: white;
-}
-
-#pltitle {
-    font-size: 3em;
-    color: white;
-}
-
-#plcreatorinfo {
-    color: white;
-    padding-bottom: 2vh;
-}
-
-#searchbar {
-    color:white;
+.song_info {
     text-align: center;
-    background-color:black;
+}
+.add_button {
+    width: 10%;
+    text-align: right;
+}
+.spacer {
+    width: 10%;
 }
 
-#songs {
-    background-color:black;
-    color:white;
-    height:100%;
+.playlist_title {
+	font-weight: 500;
+	color: #ffffff;
+	display: inline-block;
+	width: 30vw;
+	padding-left: 2vh;
+	padding-top: 2vh;
+	padding-bottom: 1vh;
+}
+.playlist_date {
+	display: inline-block;
+	padding-left: 2vh;
+	padding-top: 2vh;
+	width: 15vw;
+}
+.highlight_on_hover:hover {
+	background-color: #333333;
+}
+
+.playlist_hr {
+        width: 95%;
+	border-color: #282828;
+	border-width: 0.3vh;
+	margin-bottom: 0vh;
 }

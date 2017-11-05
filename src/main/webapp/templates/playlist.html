@@ -1,98 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<link href="../css/playlist.css" rel="stylesheet"/>
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <div id="topbar">
-        <div id="plpic">
-            <img src="../images/album_cover.png">
-        </div>
-        <div id="plinfo">
-            <div class="description" id="pltype"> Playlist </div>
-            <div class="description" id="pltitle"> Discover Weekly </div>
-            <div class="description" id="plcreatorinfo">
-                <span id="createdby"> Created by: <span>
-                <span id="name"> The Cardinals <span>
-            </div>
-            <div class="description" id="button ">
-                <button type="button"> Play </button>
-                <button type="button"> ... </button>
-                <span id="followers"> Followers: 1 </button>
-             </div>
-        </div>
-    </div>
-    <div id="searchbar">
-        Insert search bar here.
-    </div>
-    <div id="songs">
-        <table style="width:100%">
-            <tr>
-                <th> Title </th>
-                <th> Artist </th>
-                <th> Album </th>
-                <th> Date Added </th>
-                <th> Duration </th>
-            </tr>
-            <tr>
-                <th> <a href="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.mp4">Washing Dishes </a></th>
-                <th> Jack Johnson </th>
-                <th> ??????? </th>
-                <th> 11/1/2017 </th>
-                <th> 1:14</th>
-            </tr>
-            <tr>
-                <th> <a href="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.mp4">Washing Dishes </a></th>
-                <th> Jack Johnson </th>
-                <th> ??????? </th>
-                <th> 11/1/2017 </th>
-                <th> 1:14</th>
-            </tr>
-            <tr>
-                <th> <a href="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.mp4">Washing Dishes </a></th>
-                <th> Jack Johnson </th>
-                <th> ??????? </th>
-                <th> 11/1/2017 </th>
-                <th> 1:14</th>
-            </tr>
-            <tr>
-                <th> <a href="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.mp4">Washing Dishes </a></th>
-                <th> Jack Johnson </th>
-                <th> ??????? </th>
-                <th> 11/1/2017 </th>
-                <th> 1:14</th>
-            </tr>
-            <tr>
-                <th> <a href="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.mp4">Washing Dishes </a></th>
-                <th> Jack Johnson </th>
-                <th> ??????? </th>
-                <th> 11/1/2017 </th>
-                <th> 1:14</th>
-            </tr>
-            <tr>
-                <th> <a href="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.mp4">Washing Dishes </a></th>
-                <th> Jack Johnson </th>
-                <th> ??????? </th>
-                <th> 11/1/2017 </th>
-                <th> 1:14</th>
-            </tr>
-            <tr>
-                <th> <a href="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.mp4">Washing Dishes </a></th>
-                <th> Jack Johnson </th>
-                <th> ??????? </th>
-                <th> 11/1/2017 </th>
-                <th> 1:14</th>
-            </tr>
-            <tr>
-                <th> <a href="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.mp4">Washing Dishes </a></th>
-                <th> Jack Johnson </th>
-                <th> ??????? </th>
-                <th> 11/1/2017 </th>
-                <th> 1:14</th>
-            </tr>
-        </table>
-    </div>
-</body>
-</html>
+<link href="css/playlist.css" rel="stylesheet" />
+
+<div class="playlist_header">
+	<img class="playlist_img" src="../images/rhiannon-giddens-tomorrow-is-my-turn.jpg" alt="album_art">
+	<span id="content_title">PLAYLIST</span>
+	<span id="playlist_title" ng-model="playlist_title">Title</span>
+	<span id="playlist_info">Created by: {{ playlist_owner }} / {{ playlist_song_num }}, {{ playlist_duration }}</span>
+</div>
+
+<ul class="playlist_column_headers">
+	<li><div class="playlist_tile">
+			<span class="spacer"></span>
+			<span class="song_info">SONG</span>
+			<span class="song_info">ARTIST</span>
+			<span class="song_info">DATE ADDED</span>
+	</div></li>
+</ul>
+
+<div ng-repeat="n in [1,2,3,4,5,6,7]">
+<hr class="playlist_hr">
+
+<ul class="playlist_tiles">
+	<a href="#">
+		<li><div class="playlist_tile highlight_on_hover">
+			<span class="add_button">+</span>
+			<span class="song_info" ng-model="song_title">song</span>
+			<span class="song_info" ng-model="song_artist">artist</span>
+			<span class="song_info" ng-model="date_added">date</span>
+		</div></li>
+	</a>
+</ul>
+</div>
