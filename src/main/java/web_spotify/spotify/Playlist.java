@@ -35,7 +35,7 @@ class Playlist extends SongCollection {
      * @param genre The genre of the collection
      * @param description The description of the collection
      */
-    public Playlist(int id, String title, User owner, Image image, String genre, String description) {
+    public Playlist(int id, String title, User owner, Image image, Genre genre, String description) {
         super(id, title, owner, image, genre);
         this.description = description;
         this.isCollaborative = false;
