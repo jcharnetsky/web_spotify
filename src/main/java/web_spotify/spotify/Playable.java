@@ -27,7 +27,7 @@ public interface Playable {
     /**
      * Gets the length of the playable
      *
-     * @return A double representing the duration fo the track in seconds.
+     * @return A double representing the duration of the track in seconds.
      */
     public abstract double getTrackLength();
 

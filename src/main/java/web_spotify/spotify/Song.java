@@ -31,6 +31,7 @@ public class Song implements Viewable, Playable {
      * The title of the song
      */
     private String title;
+    
     /**
      * The length of the song
      */

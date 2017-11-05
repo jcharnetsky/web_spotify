@@ -9,15 +9,20 @@ import java.util.Collection;
  */
 class Playlist extends SongCollection {
 
+	/**
+     * The description of the playlist
+     */
+    private String description;
+    
+    /**
+     * Represents whether the playlist is collaborative. By default is FALSE.
+     */
+    private boolean isCollaborative;
+	
     /**
      * The collection of followers
      */
     private Collection<User> followers;
-
-    /**
-     * The description of the playlist
-     */
-    private String description;
 
     /**
      * The default constructor of the Playlist Class
@@ -32,6 +37,7 @@ class Playlist extends SongCollection {
     public Playlist(int id, String title, User owner, String imageURL, String genre, String description) {
         super(id, title, owner, imageURL, genre);
         this.description = description;
+        this.isCollaborative = false;
         followers = new ArrayList<User>();
     }
 
@@ -40,8 +46,8 @@ class Playlist extends SongCollection {
      *
      * @param user The user to be added to the playlist's followers
      */
-    public boolean addFollower(User user) {
-        return this.followers.add(user);
+    public void addFollower(User user) {
+    		followers.add(user);
     }
 
     /**
@@ -50,37 +56,10 @@ class Playlist extends SongCollection {
      * @param user The user to be removed from the playlist's followers
      * @return
      */
-    public boolean removeFollower(User user) {
-        return this.followers.remove(user);
+    public void removeFollower(User user) {
+    		followers.remove(user);
     }
-
-    /**
-     * Change the description of the playlist
-     *
-     * @param description
-     */
-    public void changeDescription(String description) {
-        this.description = description;
-    }
-
-    /**
-     * Return the description of the playlist
-     *
-     * @return description
-     */
-    public String getDescription() {
-        return this.description;
-    }
-
-    /**
-     * Return the list of followers.
-     *
-     * @return followers
-     */
-    public Collection<User> getFollowersList() {
-        return this.followers;
-    }
-
+    
     /**
      * Compare Playlist objects to determine equivalence
      *
@@ -92,5 +71,34 @@ class Playlist extends SongCollection {
         if((p != null) && (p instanceof Playlist)) {
             return ((Playlist) p).getId() == this.getId();
         } else return false;
+    }
+    
+    /** Getters **/
+    public String getDescription() {
+        return description;
+    }
+    
+    public boolean isCollaborative() {
+    		return isCollaborative;
+    }
+
+    public Collection<User> getFollowersList() {
+        return followers;
+    }
+    
+    /** Setters **/
+    public void setDescription(String description) {
+    		this.description = description;
+    }
+    
+    /**
+     * Set collaborative to value. If true, public must be set to false.
+     * @param value Whether or not playlist is collaborative
+     */
+    public void setCollaborative(boolean value) {
+    		if(value) {
+    			this.setPublic(false);
+    		}
+    		this.isCollaborative = value;
     }
 }
