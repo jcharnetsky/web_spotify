@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.Date;
 
 /**
- * Represents Companies that host advertisements on the service
+ * Represents companies that host advertisements on the service
  *
  * @author Cardinals
  */
@@ -35,7 +35,7 @@ public class Advertiser extends User {
     /**
      * Add an advertisement to the company
      *
-     * @param ad The advertisement to add
+     * @param advertisement The advertisement to add
      */
     public void addAdvertisement(Advertisement advertisement) {
         this.advertisements.add(advertisement);
@@ -44,7 +44,7 @@ public class Advertiser extends User {
     /**
      * Remove an advertisement from the company
      *
-     * @param ad The advertisement to remove
+     * @param advertisement The advertisement to remove
      */
     public void removeAdvertisement(Advertisement advertisement) {
         this.advertisements.remove(advertisement);
@@ -76,10 +76,4 @@ public class Advertiser extends User {
     public void setCompanyName(String companyName) {
     		this.companyName = companyName;
     }
-}
-    
-    
-    
-
-    
 }
