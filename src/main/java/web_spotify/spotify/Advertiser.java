@@ -53,12 +53,12 @@ public class Advertiser implements Viewable {
     }
 
     @Override
-    public boolean setBanned(boolean value) {
+    public void setBanned(boolean value) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean setPublic(boolean value) {
+    public void setPublic(boolean value) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
