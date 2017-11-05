@@ -36,18 +36,16 @@ public interface Viewable {
      *
      * @param value True if the viewable is now banned and false if the viewable
      * is unbanned
-     * @return Whether the method was successful in banning the viewable
      */
-    public abstract boolean setBanned(boolean value);
+    public abstract void setBanned(boolean value);
 
     /**
      * Sets the viewable public attribute
      *
      * @param value True if the viewable is now public and false if the viewable
      * is private
-     * @return Whether the method was successful in making the viewable public
      */
-    public abstract boolean setPublic(boolean value);
+    public abstract void setPublic(boolean value);
     
     /**
      * Gets the id of this object
