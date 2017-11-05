@@ -105,7 +105,19 @@ public abstract class SongCollection implements Viewable {
     		((ArrayList<Song>) this.songs).remove(index);
     }
     
-
+    /**
+     * Compare SongCollection objects to determine equivalence
+     *
+     * @param a object to compare
+     * @return True if object is an instance of Administrator and has the same id; False otherwise
+     */
+    @Override
+    public boolean equals(Object sc) {
+        if((sc != null) && (sc instanceof SongCollection)) {
+            return ((SongCollection) sc).getId() == this.getId();
+        } else return false;
+    }
+    
     /* OVERRIDES FOR VIEWABLE BELOW */
     @Override
     public boolean isBanned() {
