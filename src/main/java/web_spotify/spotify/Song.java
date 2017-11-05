@@ -1,5 +1,8 @@
 package web_spotify.spotify;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 /**
  * Represents a song that a user can play
  *
@@ -7,35 +10,40 @@ package web_spotify.spotify;
  */
 public class Song implements Viewable, Playable {
 
-    /**
-     * Whether or not the song is banned
-     */
-    private boolean isBanned;
-
-    /**
-     * Whether or not the song is public
-     */
-    private boolean isPublic;
-
-    /**
-     * The ID of the user who owns the song
-     */
-    private final int ownerID;
-
-    /** 
+	/** 
      * The ID of the song
      */
-    private final int id;
+    private final int songId;
+    
+    /**
+     * The ID of the artist who owns the song
+     */
+    private final int artistId;
+    
+    /** 
+     * The album the song belongs to
+     */
+    private final int albumId;
+    
+    /**
+     * The featured artists on the song
+     */
+    private final Collection<Artist> featuredArtists;
     
     /**
      * The title of the song
      */
-    private String title;
+    private final String title;
     
     /**
      * The length of the song
      */
-    private double trackLength;
+    private final double trackLength;
+    
+    /**
+     * The audio file
+     */
+    private final byte[] audioFile;
 
     /**
      * The number of listens this month
@@ -46,88 +54,40 @@ public class Song implements Viewable, Playable {
      * The number of total listens
      */
     private int totalListens;
+    
+    /**
+     * Whether or not the song is banned
+     */
+    private boolean isBanned;
 
     /**
-     * Whether or not the song is available to play
+     * Whether or not the song is public
      */
-    private boolean isAvailable;
+    private boolean isPublic;
     
     /**
      * Default constructor for a song
+     * 
+     * @param songId The song id
+     * @param artistId The id of the song's artist
+     * @param albumId The id of the song's album
+     * @param featuredArtists The collection of the song's featured artists
      * @param title The title of the song
-     * @param songID The id of the song
-     * @param trackLength The length of the song
-     * @param totalListens The number of total listens of the song
-     * @param monthlyListens The number of monthly listens of the song
-     * @param isBanned The banned status of the song
-     */
-    public Song (String title, int id, int ownerID, double trackLength, int totalListens, int monthlyListens, boolean isBanned, boolean isPublic) {
+     * @param trackLength The runtime of the song
+     */ 
+    public Song (int songId, int artistId, int albumId, ArrayList<Artist> featuredArtists, String title, double trackLength, byte[] audioFile) {
+    		this.songId = songId;
+    		this.artistId = artistId;
+    		this.albumId = albumId;
+    		this.featuredArtists = new ArrayList<Artist>();
+    		this.featuredArtists.addAll(featuredArtists);
     		this.title = title;
-    		this.ownerID = ownerID;
-    		this.id = id;
     		this.trackLength = trackLength;
-    		this.totalListens = totalListens;
-    		this.monthlyListens = monthlyListens;
-    		this.isBanned = isBanned;
-    		this.isPublic = isPublic;
-    }
-    
-    /**
-     * Returns whether or not the song is banned
-     */
-    @Override
-    public boolean isBanned() {
-        return isBanned;
-    }
-
-    /**
-     * Returns whether or not the song is public
-     */
-    @Override
-    public boolean isPublic() {
-        return isPublic;
-    }
-
-    /**
-     * Returns the user ID of the song owner
-     */
-    @Override
-    public int ownedBy() {
-        return ownerID;
-    }
-
-    /**
-     * Sets the banned status of the song
-     */
-    @Override
-    public void setBanned(boolean value) {
-        this.isBanned = value;
-    }
-
-    /**
-     * Sets the public status of the song
-     */
-    @Override
-    public void setPublic(boolean value) {
-        this.isPublic = value;
-    }
-
-    @Override
-    public void play() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void pause() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /**
-     * Returns the length of the song
-     */
-    @Override
-    public double getTrackLength() {
-        return this.trackLength;
+    		this.audioFile = audioFile;
+    		monthlyListens = 0;
+    		totalListens = 0;
+    		isBanned = false;
+    		isPublic = false;
     }
 
     /**
@@ -153,59 +113,7 @@ public class Song implements Viewable, Playable {
     public void incrementTotalListens() {
         this.totalListens++;
     }
-
-    /**
-     * Returns whether or not the song is available
-     */
-    @Override
-    public boolean isAvailable() {
-        return this.isAvailable;
-    }
-    
-    /**
-     * Returns this objects id
-     * @return 
-     */
-    @Override
-    public int getId() {
-        return id;
-    }
-    
-    /**
-     * Returns the monthly listens for the song.
-     */
-    public int getMonthlyListens() {
-    		return monthlyListens;
-    }
-    
-    /**
-     * Returns the total listens for the song.
-     */
-    public int getTotalListens() {
-    		return totalListens;
-    }
-    
-    /**
-     * Returns the title of the song.
-     */
-    public String getTitle() {
-    		return title;
-    }
-    
-    /**
-     * Set the title of the song
-     */
-    public void setTitle(String title) {
-    		this.title = title;
-    }
-    
-    /**
-     * Returns the ownerID of the song
-     */
-    	public int getOwnerID() {
-    		return ownerID;
-    	}
-
+   
      /**
      * Compare Song objects to determine equivalence
      *
@@ -217,5 +125,70 @@ public class Song implements Viewable, Playable {
         if((s != null) && (s instanceof Song)) {
             return ((Song) s).getId() == this.getId();
         } else return false;
+    }
+    
+    /** Getters **/
+    @Override
+    public int getId() {
+    		return songId;
+    }
+    
+    @Override
+    public int ownedBy() {
+        return artistId;
+    }
+    
+    public int getAlbumid() {
+    		return albumId;
+    }
+    
+    public Collection<Artist> getFeaturedArtist() {
+    		return featuredArtists;
+    }
+    
+    public String getTitle() {
+    		return title;
+    }
+    
+    @Override
+    public double getTrackLength() {
+    		return trackLength;
+    }
+    
+    public int getMonthlyListens() {
+    		return monthlyListens;
+    }
+    
+    public int getTotalListens() {
+    		return totalListens;
+    }
+    
+    @Override
+    public boolean isBanned() {
+        return isBanned;
+    }
+    
+    @Override
+    public boolean isPublic() {
+        return isPublic;
+    }
+    
+    @Override
+    public boolean isAvailable() {
+    		if(audioFile.length == 0) {
+    			return false;
+    		}
+    		return true;
+    }
+    
+    /** Setters **/
+    @Override
+    public void setBanned(boolean value) {
+        isBanned = value;
+    }
+
+    @Override
+    public void setPublic(boolean value) {
+        isPublic = value;
     }
 }
