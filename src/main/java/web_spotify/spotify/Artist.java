@@ -2,6 +2,7 @@ package web_spotify.spotify;
 
 import java.util.Collection;
 import java.util.Date;
+import java.awt.Image;
 import java.util.ArrayList;
 
 /**
@@ -47,8 +48,8 @@ public class Artist extends User {
      * @param bio The bio of the BasicArtist
      * @param aliases A collection of aliases the artist goes by
      */
-    public Artist(int id, String name, String email, String address, Date birthday, String imageURL, String bio, Collection<String> aliases) {
-        super(id, name, email, address, birthday, imageURL);
+    public Artist(int id, String name, String email, String address, Date birthday, Image image, String bio, Collection<String> aliases) {
+        super(id, name, email, address, birthday, image);
         this.bio = bio;
         this.aliases = new ArrayList<String>();
         this.aliases.addAll(aliases);

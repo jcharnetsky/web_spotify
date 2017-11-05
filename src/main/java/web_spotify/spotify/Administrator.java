@@ -1,6 +1,7 @@
 package web_spotify.spotify;
 
 import java.sql.Date;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -26,8 +27,8 @@ public class Administrator extends User {
      * @param birthday The birthday of the administrator
      * @return 
      */
-    public Administrator(int id, String name, String email, String address, Date birthday, String imageURL) {
-        super(id, name, email, address, birthday, imageURL);
+    public Administrator(int id, String name, String email, String address, Date birthday, Image image) {
+        super(id, name, email, address, birthday, image);
         reports = new ArrayList<Report>();
     }
     
