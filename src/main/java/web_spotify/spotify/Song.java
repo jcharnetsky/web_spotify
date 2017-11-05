@@ -99,18 +99,16 @@ public class Song implements Viewable, Playable {
      * Sets the banned status of the song
      */
     @Override
-    public boolean setBanned(boolean value) {
+    public void setBanned(boolean value) {
         this.isBanned = value;
-        return true;
     }
 
     /**
      * Sets the public status of the song
      */
     @Override
-    public boolean setPublic(boolean value) {
+    public void setPublic(boolean value) {
         this.isPublic = value;
-        return true;
     }
 
     @Override
