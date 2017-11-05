@@ -23,7 +23,7 @@ public abstract class SongCollection implements Viewable {
     /**
      * The owner of the Collection
      */
-    private User owner;
+    private final User owner;
 
     /**
      * The cover art of the collection
@@ -60,7 +60,6 @@ public abstract class SongCollection implements Viewable {
      * @param genre The genre of the collection
      */
     protected SongCollection(int id, String title, User owner, String imageURL, String genre) {
-        // Set all the basic values
         this.id = id;
         this.title = title;
         this.owner = owner;
@@ -68,8 +67,6 @@ public abstract class SongCollection implements Viewable {
         this.genre = genre;
         this.isPublic = false;
         this.isBanned = false;
-
-        // Instantiate the *ORDERED* collection of songs
         this.songs = new ArrayList<Song>();
     }
 
@@ -79,8 +76,7 @@ public abstract class SongCollection implements Viewable {
      * @param song The song to be added
      */
     public void addSongToEnd(Song song) {
-        // A simple .add call 
-        this.songs.add(song);
+        songs.add(song);
     }
 
     /**
@@ -90,8 +86,7 @@ public abstract class SongCollection implements Viewable {
      * @param index The index at which the song will be added
      */
     public void addSongAtIndex(Song song, int index) {
-        // A simple .add call with the index parameter included
-        ((ArrayList) this.songs).add(index, song);
+        ((ArrayList<Song>) this.songs).add(index, song);
     }
     
     /**
@@ -100,37 +95,38 @@ public abstract class SongCollection implements Viewable {
      * @param int The index at which the song will be removed
      */
     public void removeSongAtIndex(int index) {
-    		((ArrayList) this.songs).remove(index);
+    		((ArrayList<Song>) this.songs).remove(index);
     }
     
 
     /* OVERRIDES FOR VIEWABLE BELOW */
     @Override
     public boolean isBanned() {
-        return this.isBanned;
+        return isBanned;
     }
 
     @Override
     public boolean isPublic() {
-        return this.isPublic;
+        return isPublic;
     }
-
+    
     @Override
     public int ownedBy() {
-        return -1;
+        return owner.getId();
     }
 
     @Override
     public void setBanned(boolean value) {
-        this.isBanned = value;
+        isBanned = value;
     }
 
     @Override
     public void setPublic(boolean value) {
-        this.isPublic = value;
+        isPublic = value;
     }
 
     /* GETTERS BELOW */
+    @Override
     public int getId() {
         return id;
     }
@@ -163,5 +159,8 @@ public abstract class SongCollection implements Viewable {
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
-
+    
+    public void setGenre(String genre) {
+    		this.genre = genre;
+    }
 }
