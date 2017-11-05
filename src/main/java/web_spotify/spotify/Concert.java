@@ -15,7 +15,7 @@ class Concert implements Viewable {
     /**
      * The grouping of artists that are to play at the concert
      */
-    private Collection<BasicArtist> artists;
+    private Collection<Artist> artists;
 
     /**
      * The name of the venue
@@ -60,7 +60,7 @@ class Concert implements Viewable {
         this.date = date;
         this.url = url;
 
-        this.artists = new ArrayList<BasicArtist>();
+        this.artists = new ArrayList<Artist>();
     }
 
     /**
@@ -69,7 +69,7 @@ class Concert implements Viewable {
      * @param artist The artist to be added to the venue
      * @return True or false if the artist was successfully added.
      */
-    public boolean addArtist(BasicArtist artist) {
+    public boolean addArtist(Artist artist) {
         return this.artists.add(artist);
     }
 
@@ -79,7 +79,7 @@ class Concert implements Viewable {
      * @param artist The artist to be removed to the venue
      * @return True or false if the artist was successfully removed.
      */
-    public boolean remArtist(BasicArtist artist) {
+    public boolean remArtist(Artist artist) {
         return this.artists.remove(artist);
     }
 
@@ -100,18 +100,15 @@ class Concert implements Viewable {
     }
 
     @Override
-    public boolean setBanned(boolean value) {
+    public void setBanned(boolean value) {
         this.isBanned = value;
-        return true;
     }
 
     @Override
-    public boolean setPublic(boolean value) {
+    public void setPublic(boolean value) {
         this.isPublic = value;
-        return true;
     }
 
-    @Override
     public int getId() {
         return id;
     }
