@@ -27,24 +27,14 @@ public class Administrator extends User {
      * @return 
      */
     public Administrator(int id, String name, String email, String address, Date birthday, String imageURL) {
-        /* Call the super method */
         super(id, name, email, address, birthday, imageURL);
-
-        /* Instantiate all collections */
         reports = new ArrayList<Report>();
-    }
-    
-    /**
-     * Return the collection of reports
-     * @return
-     */
-    public Collection<Report> getReports() {
-    		return reports;
     }
     
     /** 
      * Add a report to the collection of reports
-     * @param report
+     * 
+     * @param report A report
      */
     public void addReport(Report report) {
     		this.reports.add(report);
@@ -52,6 +42,8 @@ public class Administrator extends User {
     
     /**
      * Remove a report from the collection of reports
+     * 
+     * @param report A report
      */
     public boolean removeReport(Report report) {
     		return this.reports.remove(report);
@@ -59,30 +51,73 @@ public class Administrator extends User {
     
     /**
      * Ban a user
+     * 
+     * @param user A user of Spotify
      */
     public void banUser(User user) {
     		user.setBanned(true);
     }
     
+    /** Unban a user
+     * 
+     * @param user A user of Spotify
+     */
+    public void unbanUser(User user) {
+    		user.setBanned(false);;
+    }
+    
     /**
-     * Ban a user
+     * Ban a song
+     * 
+     * @param song A song currently listed on Spotify
      */
     public void banSong(Song song) {
     		song.setBanned(true);
     }
     
     /**
-     * Ban a user
+     * Unban a song
+     * 
+     * @param song A song currently listed on Spotify
+     */
+    public void unbanSong(Song song) {
+    		song.setBanned(false);
+    }
+    
+    /**
+     * Ban an album
+     * 
+     * @param album An album currently listed on Spotify
      */
     public void banAlbum(Album album) {
     		album.setBanned(true);
     }
     
     /**
-     * Ban a user
+     * Unban an album
+     * 
+     * @param album An album currently listed on Spotify
+     */
+    public void unbanAlbum(Album album) {
+    		album.setBanned(false);
+    }
+    
+    /**
+     * Ban a playlist
+     * 
+     * @param playlist A playlist currently listed on Spotify
      */
     public void banPlaylist(Playlist playlist) {
     		playlist.setBanned(true);
+    }
+    
+    /**
+     * Unban a playlist
+     * 
+     * @param playlist A playlist currently listed on Spotify
+     */
+    public void unbanPlaylist(Playlist playlist) {
+    		playlist.setBanned(false);
     }
     
     /**
@@ -96,5 +131,10 @@ public class Administrator extends User {
         if((a != null) && (a instanceof Administrator)) {
             return ((Administrator) a).getId() == this.getId();
         } else return false;
+    }
+    
+    /* Getters */
+    public Collection<Report> getReports() {
+    		return reports;
     }
 }
