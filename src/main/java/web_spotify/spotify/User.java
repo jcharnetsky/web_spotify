@@ -4,6 +4,7 @@ import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import web_spotify.spotify.SongCollection.Genre;
 
 /**
  * Represents the base user functionality for the Spotify project
@@ -138,7 +139,7 @@ public class User implements Viewable {
         savedAlbums = new ArrayList<Album>();
         followedPlaylists = new ArrayList<Playlist>();
         ownedPlaylists = new ArrayList<Playlist>();
-        savedSongs = new Playlist(id, "Songs", this, null, "", "");
+        savedSongs = new Playlist(id, "Songs", this, null, null, "");
         songQueue = new SongQueue();
         downloadedPlaylists = new ArrayList<Playlist>();
         downloadedAlbums = new ArrayList<Album>();
@@ -245,7 +246,7 @@ public class User implements Viewable {
      * @param genre The genre of the collection
      * @param description The description of the collection
      */
-    public void createPlaylist(int id, String title, User owner, Image image, String genre, String description) {
+    public void createPlaylist(int id, String title, User owner, Image image, Genre genre, String description) {
     		Playlist playlist = new Playlist(id, title, owner, image, genre, description);
     		ownedPlaylists.add(playlist);
     }
