@@ -160,8 +160,13 @@ public class User implements Viewable {
      * 
      * @param user The follower to be removed
      */
-    public void removeFollower(User user) {
-    		followers.remove(user);
+    public void removeFollower(int userId) {
+	    	for(int i = 0; i < followers.size(); i++) {
+			if(((ArrayList<User>)followers).get(i).getId() == userId) {
+				((ArrayList<User>)followers).remove(i);
+				return;
+			}
+		}
     }
     
     /**
@@ -178,8 +183,13 @@ public class User implements Viewable {
      * 
      * @	param user The user to be unfollowed
      */
-    public void unfollowUser(User user) {
-    		followedUsers.remove(user);
+    public void unfollowUser(int userId) {
+	    	for(int i = 0; i < followedUsers.size(); i++) {
+			if(((ArrayList<User>)followedUsers).get(i).getId() == userId) {
+				((ArrayList<User>) followedUsers).remove(i);
+				return;
+			}
+		}
     }
     
     /**
@@ -196,8 +206,13 @@ public class User implements Viewable {
      * 
      * @param artist The artist to be unfollowed
      */
-    public void unfollowArtist(Artist artist) {
-    		followedArtists.remove(artist);
+    public void unfollowArtist(int artistId) {
+	    	for(int i = 0; i < followedArtists.size(); i++) {
+			if(((ArrayList<Artist>) followedArtists).get(i).getId() == artistId) {
+				((ArrayList<Artist>) followedArtists).remove(i);
+				return;
+			}
+		}
     }
     
     /**
@@ -214,8 +229,13 @@ public class User implements Viewable {
      * 
      * @param album The album to be unsaved
      */
-    public void unsaveAlbum(Album album) {
-    		savedAlbums.remove(album);
+    public void unsaveAlbum(int albumId) {
+    		for(int i = 0; i < savedAlbums.size(); i++) {
+			if(((ArrayList<Album>) savedAlbums).get(i).getId() == albumId) {
+				((ArrayList<Album>) savedAlbums).remove(i);
+				return;
+			}
+		}
     }
     
     /**
@@ -232,8 +252,13 @@ public class User implements Viewable {
      * 
      * @param playlist The playlist to be unfollowed
      */
-    public void unfollowPlaylist(Playlist playlist) {
-    		followedPlaylists.remove(playlist);
+    public void unfollowPlaylist(int playlistId) {
+    		for(int i = 0; i < followedPlaylists.size(); i++) {
+			if(((ArrayList<Playlist>) followedPlaylists).get(i).getId() == playlistId) {
+				((ArrayList<Playlist>) followedPlaylists).remove(i);
+				return;
+			}
+		}
     }
     
     /**
@@ -256,8 +281,13 @@ public class User implements Viewable {
      * 
      * @param playlist The playlist to be deleted
      */
-    public void deletePlaylist(Playlist playlist) {
-    		ownedPlaylists.remove(playlist);
+    public void deletePlaylist(int playlistId) {
+    		for(int i = 0; i < ownedPlaylists.size(); i++) {
+    			if(((ArrayList<Playlist>) ownedPlaylists).get(i).getId() == playlistId) {
+    				((ArrayList<Playlist>) ownedPlaylists).remove(i);
+    				return;
+    			}
+    		}
     }
     
     /**
@@ -274,8 +304,13 @@ public class User implements Viewable {
      *
      * @param playlist Playlist to be no longer downloaded
      */
-    public void removeDownloadedPlaylist(Playlist playlist) {
-        downloadedPlaylists.remove(playlist);
+    public void removeDownloadedPlaylist(int playlistId) {
+    		for(int i = 0; i < downloadedPlaylists.size(); i++) {
+			if(((ArrayList<Playlist>) downloadedPlaylists).get(i).getId() == playlistId) {
+				((ArrayList<Playlist>) downloadedPlaylists).remove(i);
+				return;
+			}
+		}
     }
 
     /**
@@ -292,8 +327,13 @@ public class User implements Viewable {
      *
      * @param album Album to be no longer downloaded
      */
-    public void removeDownloadedAlbum(Album album) {
-        downloadedAlbums.remove(album);
+    public void removeDownloadedAlbum(int albumId) {
+    		for(int i = 0; i < downloadedAlbums.size(); i++) {
+			if(((ArrayList<Album>) downloadedAlbums).get(i).getId() == albumId) {
+				((ArrayList<Album>) downloadedAlbums).remove(i);
+				return;
+			}
+		}
     }
     
     /**
@@ -310,8 +350,13 @@ public class User implements Viewable {
      *
      * @param song Song to be no longer downloaded
      */
-    public void removeDownloadedSong(Song song) {
-    		downloadedSongs.remove(song);
+    public void removeDownloadedSong(int songId) {
+    		for(int i = 0; i < downloadedSongs.size(); i++) {
+			if(((ArrayList<Song>) downloadedSongs).get(i).getId() == songId) {
+				((ArrayList<Song>) downloadedSongs).remove(i);
+				return;
+			}
+		}
     }
     
     /**
