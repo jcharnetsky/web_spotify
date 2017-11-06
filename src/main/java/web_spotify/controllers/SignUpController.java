@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 public class SignUpController {
 
     @RequestMapping(value="/", method= RequestMethod.GET)
-    public String getMainPage(HttpSession session){
+    public String signUpPage(HttpSession session){
         if(session.getAttribute("User") == null) {
             return "signUp.html";
         }
