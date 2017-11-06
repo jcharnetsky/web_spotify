@@ -3,6 +3,8 @@ import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Collection;
 
+
+
 /**
  * Represents an object which contains a collection of songs and other relevant
  * info.
@@ -10,7 +12,11 @@ import java.util.Collection;
  * @author Cardinals
  */
 public abstract class SongCollection implements Viewable {
-
+	/**
+	 * The Genre enum
+	 */
+	public enum Genre {ROCK, METAL, RAP, EDM, POP, CLASSICAL, INDIE}
+	
     /**
      * The unique id of the Song Collection
      */
@@ -34,7 +40,7 @@ public abstract class SongCollection implements Viewable {
     /**
      * The genre of the collection
      */
-    private String genre;
+    private Genre genre;
 
     /**
      * The collection of songs
@@ -60,7 +66,7 @@ public abstract class SongCollection implements Viewable {
      * @param image The image of the collection
      * @param genre The genre of the collection
      */
-    protected SongCollection(int id, String title, User owner, Image image, String genre) {
+    protected SongCollection(int id, String title, User owner, Image image, Genre genre) {
         this.id = id;
         this.title = title;
         this.owner = owner;
@@ -99,7 +105,19 @@ public abstract class SongCollection implements Viewable {
     		((ArrayList<Song>) this.songs).remove(index);
     }
     
-
+    /**
+     * Compare SongCollection objects to determine equivalence
+     *
+     * @param a object to compare
+     * @return True if object is an instance of Administrator and has the same id; False otherwise
+     */
+    @Override
+    public boolean equals(Object sc) {
+        if((sc != null) && (sc instanceof SongCollection)) {
+            return ((SongCollection) sc).getId() == this.getId();
+        } else return false;
+    }
+    
     /* OVERRIDES FOR VIEWABLE BELOW */
     @Override
     public boolean isBanned() {
@@ -144,7 +162,7 @@ public abstract class SongCollection implements Viewable {
         return image;
     }
 
-    public String getGenre() {
+    public Genre getGenre() {
         return genre;
     }
 
@@ -161,7 +179,7 @@ public abstract class SongCollection implements Viewable {
         this.image = image;
     }
     
-    public void setGenre(String genre) {
+    public void setGenre(Genre genre) {
     		this.genre = genre;
     }
 }
