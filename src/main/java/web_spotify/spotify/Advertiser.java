@@ -30,7 +30,7 @@ public class Advertiser extends User {
     public Advertiser(int id, String name, String email, String address, Date birthday, Image image, String companyName) {
     		super(id, name, email, address, birthday, image);
         this.companyName = companyName;
-        this.advertisements = new ArrayList<Advertisement>();
+        advertisements = new ArrayList<Advertisement>();
     }
     
     /**
@@ -39,7 +39,7 @@ public class Advertiser extends User {
      * @param advertisement The advertisement to add
      */
     public void addAdvertisement(Advertisement advertisement) {
-        this.advertisements.add(advertisement);
+        advertisements.add(advertisement);
     }
 
     /**
@@ -47,8 +47,13 @@ public class Advertiser extends User {
      *
      * @param advertisement The advertisement to remove
      */
-    public void removeAdvertisement(Advertisement advertisement) {
-        this.advertisements.remove(advertisement);
+    public void removeAdvertisement(int advertisementId) {
+    		for(int i = 0; i < advertisements.size(); i++) {
+			if(((ArrayList<Advertisement>) advertisements).get(i).getId() == advertisementId) {
+				((ArrayList<Advertisement>) advertisements).remove(i);
+				return;
+			}
+		}
     }
     
     /**

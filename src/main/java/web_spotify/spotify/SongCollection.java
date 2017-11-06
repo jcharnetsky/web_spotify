@@ -66,7 +66,7 @@ public abstract class SongCollection implements Viewable {
      * @param image The image of the collection
      * @param genre The genre of the collection
      */
-    protected SongCollection(int id, String title, User owner, Image image, Genre genre) {
+    public SongCollection(int id, String title, User owner, Image image, Genre genre) {
         this.id = id;
         this.title = title;
         this.owner = owner;

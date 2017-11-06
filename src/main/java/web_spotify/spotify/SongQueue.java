@@ -44,7 +44,7 @@ public class SongQueue {
      *
      * @param song The song to be added
      */
-    public void enqueueSongQueue(Song song) {
+    public void enqueue(Song song) {
         queue.add(song);
     }
 

@@ -46,8 +46,13 @@ public class Administrator extends User {
      * 
      * @param report A report
      */
-    public boolean removeReport(Report report) {
-    		return this.reports.remove(report);
+    public void removeReport(int reportId) {
+    		for(int i = 0; i < reports.size(); i++) {
+			if(((ArrayList<Report>) reports).get(i).getReportId() == reportId) {
+				((ArrayList<Report>) reports).remove(i);
+				return;
+			}
+		}
     }
     
     /**

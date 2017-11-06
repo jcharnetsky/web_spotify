@@ -57,8 +57,13 @@ class Playlist extends SongCollection {
      * @param user The user to be removed from the playlist's followers
      * @return
      */
-    public void removeFollower(User user) {
-    		followers.remove(user);
+    public void removeFollower(int userId) {
+     	for(int i = 0; i < followers.size(); i++) {
+			if(((ArrayList<User>)followers).get(i).getId() == userId) {
+				((ArrayList<User>)followers).remove(i);
+				return;
+			}
+		}
     }
     
     /**

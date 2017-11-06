@@ -87,8 +87,13 @@ class Concert implements Viewable {
      *
      * @param artist The artist to be removed to the venue
      */
-    public void removeArtist(Artist artist) {
-        this.artists.remove(artist);
+    public void removeArtist(int artistId) {
+    		for(int i = 0; i < artists.size(); i++) {
+			if(((ArrayList<Artist>)artists).get(i).getId() == artistId) {
+				((ArrayList<Artist>)artists).remove(i);
+				return;
+			}
+		}
     }
     
     /**
