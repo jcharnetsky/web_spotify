@@ -5,18 +5,27 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import web_spotify.spotify.SongCollection.Genre;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  * Represents the base user functionality for the Spotify project
  *
  * @author Cardinals
  */
+@Entity
+@Table(name = "Users")
 public class User implements Viewable {
 
     /**
      * The user's unique identifier. CANNOT be changed.
      */
-    private final int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
     /**
      * The user's name.
@@ -123,8 +132,7 @@ public class User implements Viewable {
      * @param address The physical address of the user
      * @param birthday The birthday of the user
      */
-    public User(int id, String name, String email, String address, Date birthday, Image image) {
-        this.id = id;
+    public User(String name, String email, String address, Date birthday, Image image) {
         this.name = name;
         this.email = email;
         this.address = address;
@@ -139,12 +147,17 @@ public class User implements Viewable {
         savedAlbums = new ArrayList<Album>();
         followedPlaylists = new ArrayList<Playlist>();
         ownedPlaylists = new ArrayList<Playlist>();
-        savedSongs = new Playlist(id, "Songs", this, null, null, "");
+        savedSongs = new Playlist(0, "Songs", this, null, null, "");
         songQueue = new SongQueue();
         downloadedPlaylists = new ArrayList<Playlist>();
         downloadedAlbums = new ArrayList<Album>();
         downloadedSongs = new ArrayList<Song>();
     }
+    
+    /**
+     * Default constructor for the sake of JPA.
+     */
+    protected User() {}
     
     /**
      * Add a follower.
@@ -370,6 +383,13 @@ public class User implements Viewable {
         if((u != null) && (u instanceof User)) {
             return ((User) u).getId() == this.getId();
         } else return false;
+    }
+    
+    @Override
+    public String toString() {
+    		return String.format(
+    				"User[id = '%d', name = '%s', email = '%s', address = '%s', birthday = '%t']",
+    				id, name, email, address, birthday);
     }
     
     /* Getters */
