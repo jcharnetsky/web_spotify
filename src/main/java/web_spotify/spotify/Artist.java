@@ -86,8 +86,13 @@ public class Artist extends User {
      * Remove a song from an artist's owned songs
      * @param song A song the artist owns
      */
-    public void removeOwnedSong(Song song) {
-    		ownedSongs.remove(song);
+    public void removeOwnedSong(int songId) {
+    		for(int i = 0; i < ownedSongs.size(); i++) {
+			if(((ArrayList<Song>)ownedSongs).get(i).getId() == songId) {
+				((ArrayList<Song>)ownedSongs).remove(i);
+				return;
+			}
+		}
     }
     
     /**
@@ -102,15 +107,20 @@ public class Artist extends User {
      * Remove an album from an artist's owned songs
      * @param album An album the artist owns
      */
-    public void removeOwnedAlbum(Album album) {
-    		ownedAlbums.remove(album);
+    public void removeOwnedAlbum(int albumId) {
+    		for(int i = 0; i < ownedAlbums.size(); i++) {
+			if(((ArrayList<Album>)ownedAlbums).get(i).getId() == albumId) {
+				((ArrayList<Album>)ownedAlbums).remove(i);
+				return;
+			}
+		}
     }
     
     /**
      * Add an concert to an artist's concerts
      * @param concert A concert the artist is performing at or hosting
      */
-    public void addConcerts(Concert concert) {
+    public void addConcert(Concert concert) {
     		concerts.add(concert);
     }
     
@@ -118,8 +128,13 @@ public class Artist extends User {
      * Remove a concert from an artist's concerts
      * @param concert A concert the artist is performing at or hosting
      */
-    public void removeOwnedConcert(Concert concert) {
-    		concerts.remove(concert);
+    public void removeConcert(int concertId) {
+    	for(int i = 0; i < concerts.size(); i++) {
+			if(((ArrayList<Concert>)concerts).get(i).getId() == concertId) {
+				((ArrayList<Concert>)concerts).remove(i);
+				return;
+			}
+		}
     }
     
 	/**
