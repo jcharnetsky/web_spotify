@@ -36,7 +36,7 @@ class Album extends SongCollection {
      * @param image The image of the collection
      * @param genre The genre of the collection
      */
-    public Album(int id, String title, User owner, Image image, String genre, Date releaseDate, String artist, Collection<Artist> featuredArtists) {
+    public Album(int id, String title, User owner, Image image, Genre genre, Date releaseDate, String artist, Collection<Artist> featuredArtists) {
         super(id, title, owner, image, genre);
         this.releaseDate = releaseDate;
         this.artist = artist;
