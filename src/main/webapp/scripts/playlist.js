@@ -2,6 +2,9 @@ app = angular.module('web_spotify');
 
 app.controller('LoadPlaylistCtrl', function($compile, $scope, $http, $parse){
        console.log("LOAD PLAYLIST CALLED");
+    $scope.playlist_owner = "Owner";
+    $scope.playlist_song_num = "0";
+    $scope.playlist_duration = "0 min";
     $scope.loadPlaylist = function (div, URL, id) {
        controllerPath = "getPlaylistData";
 
