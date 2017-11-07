@@ -39,8 +39,5 @@ app.controller('MainCtrl', function($compile, $scope, $http, $parse){
 
        }
     }
-
-    $scope.playlists = ['On the Road', 'Spotify and Chill', 'Spotify top 50 Sweden', 'Spotify Sessions',
-              'Rock Classics', 'Pop Rising', 'Liked from Radio'];
 });
 
