@@ -132,7 +132,7 @@ public class User implements Viewable {
      * @param address The physical address of the user
      * @param birthday The birthday of the user
      */
-    public User(String name, String email, String address, Date birthday, Image image) {
+    public User(int id, String name, String email, String address, Date birthday, Image image) {
         this.name = name;
         this.email = email;
         this.address = address;
@@ -171,7 +171,7 @@ public class User implements Viewable {
     /**
      * Remove a follower.
      * 
-     * @param user The follower to be removed
+     * @param userId ID of the follower to be removed
      */
     public void removeFollower(int userId) {
 	    	for(int i = 0; i < followers.size(); i++) {
@@ -217,7 +217,7 @@ public class User implements Viewable {
     /**
      * Unfollow an artist.
      * 
-     * @param artist The artist to be unfollowed
+     * @param artistId ID of the artist to be unfollowed
      */
     public void unfollowArtist(int artistId) {
 	    	for(int i = 0; i < followedArtists.size(); i++) {
@@ -240,7 +240,7 @@ public class User implements Viewable {
     /**
      * Unsave an album.
      * 
-     * @param album The album to be unsaved
+     * @param albumId ID of the album to be unsaved
      */
     public void unsaveAlbum(int albumId) {
     		for(int i = 0; i < savedAlbums.size(); i++) {
@@ -263,7 +263,7 @@ public class User implements Viewable {
     /** 
      * Unfollow a playlist.
      * 
-     * @param playlist The playlist to be unfollowed
+     * @param playlistId ID of the playlist to be unfollowed
      */
     public void unfollowPlaylist(int playlistId) {
     		for(int i = 0; i < followedPlaylists.size(); i++) {
@@ -292,7 +292,7 @@ public class User implements Viewable {
     /**
      * Delete a custom playlist.
      * 
-     * @param playlist The playlist to be deleted
+     * @param playlistId ID of the playlist to be deleted
      */
     public void deletePlaylist(int playlistId) {
     		for(int i = 0; i < ownedPlaylists.size(); i++) {
@@ -315,7 +315,7 @@ public class User implements Viewable {
     /**
      * Undownload a playlist
      *
-     * @param playlist Playlist to be no longer downloaded
+     * @param playlistId ID of the playlist to be no longer downloaded
      */
     public void removeDownloadedPlaylist(int playlistId) {
     		for(int i = 0; i < downloadedPlaylists.size(); i++) {
@@ -338,7 +338,7 @@ public class User implements Viewable {
     /**
      * Undownload an album
      *
-     * @param album Album to be no longer downloaded
+     * @param albumId ID of the album to be no longer downloaded
      */
     public void removeDownloadedAlbum(int albumId) {
     		for(int i = 0; i < downloadedAlbums.size(); i++) {
@@ -361,7 +361,7 @@ public class User implements Viewable {
     /**
      * Undownload a song
      *
-     * @param song Song to be no longer downloaded
+     * @param songId ID of the song to be no longer downloaded
      */
     public void removeDownloadedSong(int songId) {
     		for(int i = 0; i < downloadedSongs.size(); i++) {
