@@ -20,16 +20,12 @@ app.controller('LoadPlaylistCtrl', function($compile, $scope, $http, $parse){
 
             console.log(response.data);
             // If there was an error, display an error pop-up
-            $parse('error').assign($scope, response.data.error);
-            node = loadToDiv('error_dialog', 'error.html');
-            $compile(node)($scope);
+            displayErrorPopup(response.data.error, $scope, $parse, $compile);
          }
 
        }).catch(function (err) {
              // Catch and print any server-side error to console
-             $parse('error').assign($scope, err);
-             node = loadToDiv('error_dialog', 'error.html');
-             $compile(node)($scope);
+             displayErrorPopup(err, $scope, $parse, $compile);
        });
 
     }
