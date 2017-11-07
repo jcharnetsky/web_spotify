@@ -9,18 +9,15 @@
     width: auto;
     height: auto;
 
-    background-color: #181818;
+    transition: opacity 0.75s ease 1s;
     opacity: 0;
+    background-color: #181818;
 
     border: 1px solid white;
     border-radius: 5px;
 
     padding: 20px 20px 20px 20px;
     text-align: center;
-
-    transition: opacity .75s ease 1s;
-    -moz-transition: opacity .75s ease 1s;
-    -webkit-transition: opacity .75s ease 1s;
 }
 
 #error_message {

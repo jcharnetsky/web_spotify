@@ -1,27 +1,8 @@
-var app = angular.module('web_spotify',[]);
-
-function loadToDiv(div, URL) {
-    var node = document.getElementById(div);
-
-    //Clear out whatever was in the content container
-    if(node == null) return;
-    while(node.firstChild){
-      node.removeChild(node.firstChild);
-    }
-
-    if(!(URL === 'null')){
-
-       //Add the new include to whatever was clicked
-       var tag = document.createElement('div');
-       tag.setAttribute("ng-include", "'templates/" + URL + "'");
-       node.appendChild(tag);
-    }
-    return node;
-}
+app = angular.module('web_spotify', []);
 
 app.controller('MainCtrl', function($compile, $scope, $http, $parse){
-    $scope.loadTemplateAndJSON = function (div, URL, controllerPath) {
 
+    $scope.loadTemplateAndJSON = function (div, URL, controllerPath) {
         if(!(controllerPath === 'null')){
 
            // Send the XMLHttpRequest
@@ -36,19 +17,13 @@ app.controller('MainCtrl', function($compile, $scope, $http, $parse){
                 $compile(node)($scope);
 
              } else {
-
-                console.log(response.data);
                 // If there was an error, display an error pop-up
-                $parse('error').assign($scope, response.data.error);
-                node = loadToDiv('error_dialog', 'error.html');
-                $compile(node)($scope);
+                displayErrorPopup(response.data.error, $scope, $parse, $compile);
              }
 
            }).catch(function (err) {
-                 // Catch and print any server-side error to console
-                 $parse('error').assign($scope, err);
-                 node = loadToDiv('error_dialog', 'error.html');
-                 $compile(node)($scope);
+                // Catch and print any server-side error to console
+                displayErrorPopup(err, $scope, $parse, $compile);
            });
         } else {
            node = loadToDiv(div, URL);
