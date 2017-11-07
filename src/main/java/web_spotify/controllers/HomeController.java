@@ -18,7 +18,7 @@ public class HomeController {
      * Redirect the user to the home page. If the user is not logged in, send
      * them to the user sign up page.
      * @param session Current session that should contain the logged in user.
-     * @return Either the spotify home page html, or the sign up page html
+     * @return The spotify homepage html if the user is logged in. The sign up page html otherwise.
      */
     @RequestMapping(value="/homepage", method= RequestMethod.GET)
     public String getHomePage(HttpSession session){
