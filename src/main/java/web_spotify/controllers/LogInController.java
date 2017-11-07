@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import org.springframework.web.bind.annotation.ResponseBody;s
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class LogInController {
