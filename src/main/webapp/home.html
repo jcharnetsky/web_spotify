@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-<html ng-app="web_spotify">
+<html>
 
-<head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<title>Web Spotify CSE308</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<title>Web Spotify CSE308</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<!-- Bootstrap for navbar CSS and error modals -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-		  integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+		<!-- Bootstrap for navbar CSS and error modals -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+			  integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
-	<!-- CSS -->
-	<link href="css/home.css" rel="stylesheet" />
-	<link href="css/style.css" rel="stylesheet" />
+		<!-- CSS -->
+		<link href="css/home.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
 
-	<!-- Angular -->
-	<script src="http://code.jquery.com/jquery-2.0.3.min.js" data-semver="2.0.3" data-require="jquery"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-	<script src="scripts/app.js"></script>
-	<script src="scripts/resizer.js"></script>
-	<script src="scripts/playbar.js"></script>
-</head>
+		<!-- Angular -->
+		<script src="http://code.jquery.com/jquery-2.0.3.min.js" data-semver="2.0.3" data-require="jquery"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+        <script src="scripts/helper.js"></script>
+        <script src="scripts/app.js"></script>
+        <script src="scripts/resizer.js"></script>
+        <script src="scripts/playbar.js"></script>
+        <script src="scripts/playlist.js"></script>
+	</head>
 
-	<body ng-app="container" ng-controller="MainCtrl">
-
-
-	<div ng-include="'templates/searchbar.html'"></div>
+	<body ng-app="web_spotify" ng-controller="MainCtrl">
+		<div ng-include="'templates/searchbar.html'"></div>
 
 		<div id="main">
 			<div ng-include="'templates/navigateContent.html'"></div>
@@ -35,5 +35,7 @@
 		<div ng-include="'templates/sidebar.html'"></div>
 		<div ng-include="'templates/playbar.html'"></div>
 		<div id="error_dialog"></div>
+
 	</body>
+
 </html> 
