@@ -16,18 +16,20 @@ app.controller('MainCtrl', function($compile, $scope, $http, $parse){
            });
         }
 
-       var node = document.getElementById(div);
+        if(div == "null" || URL == "null"){
+           var node = document.getElementById(div);
 
-       //Clear out whatever was in the content container
-       if(node == null) return;
-       while(node.firstChild){
-         node.removeChild(node.firstChild);
-       }
+           //Clear out whatever was in the content container
+           if(node.firstChild == null) return;
+           while(node.firstChild){
+             node.removeChild(node.firstChild);
+           }
 
-       //Add the new include to whatever was clicked
-       var tag = document.createElement('div');
-       tag.setAttribute("ng-include", "'templates/" + URL + "'");
-       node.appendChild(tag);
+           //Add the new include to whatever was clicked
+           var tag = document.createElement('div');
+           tag.setAttribute("ng-include", "'templates/" + URL + "'");
+           node.appendChild(tag);
+        }
 
        //Compile the include
        $compile(node)($scope);

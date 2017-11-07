@@ -8,7 +8,7 @@ import java.util.Collection;
  *
  * @author Cardinals
  */
-class Playlist extends SongCollection {
+public class Playlist extends SongCollection {
 
 	/**
      * The description of the playlist
