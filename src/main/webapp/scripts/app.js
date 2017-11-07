@@ -1,16 +1,7 @@
 var app = angular.module('web_spotify',[]);
 
-app.controller('MainCtrl', function($scope) {
-
-  $scope.content = '';
-
-  $scope.playlists = ['On the Road', 'Spotify and Chill', 'Spotify top 50 Sweden', 'Spotify Sessions',
-  'Rock Classics', 'Pop Rising', 'Liked from Radio'];
-
-});
-
-app.controller('NavCtrl', function($compile, $scope, $http, $parse){
-    $scope.selectPane = function (div, URL, controllerPath) {
+app.controller('MainCtrl', function($compile, $scope, $http, $parse){
+    $scope.loadTemplateAndJSON = function (div, URL, controllerPath) {
         if(controllerPath != "null"){
 
            // Send the XMLHttpRequest
@@ -30,19 +21,24 @@ app.controller('NavCtrl', function($compile, $scope, $http, $parse){
        //Clear out whatever was in the content container
        if(node == null) return;
        while(node.firstChild){
-          node.removeChild(node.firstChild);
+         node.removeChild(node.firstChild);
        }
 
-       //Add the new include to whatever was clic   ked
+       //Add the new include to whatever was clicked
        var tag = document.createElement('div');
        tag.setAttribute("ng-include", "'templates/" + URL + "'");
        node.appendChild(tag);
 
        //Compile the include
        $compile(node)($scope);
+
+       //If you the navigateContent page was loaded, load the overview inside it
+       if(div == "main" && URL == "navigateContent.html"){
+
+       }
     }
 
-    $scope.selectPane('content', 'overview.html', 'overview');
-
+    $scope.playlists = ['On the Road', 'Spotify and Chill', 'Spotify top 50 Sweden', 'Spotify Sessions',
+              'Rock Classics', 'Pop Rising', 'Liked from Radio'];
 });
 
