@@ -19,6 +19,7 @@
     width: auto;
     display: inline-block;
     position: relative;
+    border: 1px solid white;
 }
 
 .playlist_data {
