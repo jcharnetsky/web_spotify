@@ -28,7 +28,7 @@ public class Administrator extends User {
      * @return 
      */
     public Administrator(int id, String name, String email, String address, Date birthday, Image image) {
-        super(id, name, email, address, birthday, image);
+        super(name, email, address, birthday, null);
         reports = new ArrayList<Report>();
     }
     

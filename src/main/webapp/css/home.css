@@ -20,6 +20,7 @@
 	padding-right: 1vw;
 	margin-bottom: 0vh;
 }
+
 .navbar li {
 	vertical-align: center;
 	margin-right: 2vw;
@@ -33,6 +34,7 @@
 	left: 2vw;
 	height: auto;
 }
+
 .content_header {
 	position: relative;
 	padding-left: 0.5vw;
