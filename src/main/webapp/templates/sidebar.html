@@ -5,9 +5,9 @@
 <script src="../scripts/resizer.js"></script>
 
 <div id="sidebar">
-    <ul class="sidebar_list" ng-controller="NavCtrl">
+    <ul class="sidebar_list" ng-controller="MainCtrl">
         <li id="active">
-            <a href="#" ng-click="selectPane('main', 'navigateContent.html', 'null')">Browse</a>
+            <a href="#" ng-click="loadTemplateAndJSON('main', 'navigateContent.html', 'null')">Browse</a>
         </li>
     </ul>
 
@@ -22,8 +22,8 @@
 
     <ul class="sidebar_list playlists">
         <li><u>Playlists</u></li>
-        <li ng-repeat="playlist in playlists" ng-controller="NavCtrl">
-            <a href="#" ng-click="selectPane('main', 'playlist.html')">{{playlist}}</a>
+        <li ng-repeat="playlist in playlists" ng-controller="MainCtrl">
+            <a href="#" ng-click="loadTemplateAndJSON('main', 'playlist.html','null')">{{playlist}}</a>
         </li>
     </ul>
 </div>
