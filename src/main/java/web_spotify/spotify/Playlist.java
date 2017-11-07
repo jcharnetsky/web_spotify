@@ -54,7 +54,7 @@ public class Playlist extends SongCollection {
     /**
      * Remove a follower from the playlist
      *
-     * @param user The user to be removed from the playlist's followers
+     * @param userId ID of user to be removed from the playlist's followers
      * @return
      */
     public void removeFollower(int userId) {

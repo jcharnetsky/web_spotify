@@ -63,7 +63,7 @@ public class LogInController {
             valid = true;
 
             // Create a new user
-            User user = new User("Himanshu James Cheung Charnetsky",
+            User user = new User(0, "Himanshu James Cheung Charnetsky",
                     email, null, null, null);
 
             // Create some playlists
@@ -75,7 +75,7 @@ public class LogInController {
                 user.followPlaylist(new Playlist(i, playlists[i],
                         null, null, null, null));
             }
-            
+
             // Add user to session
             session.setAttribute("User", user);
         } else {
