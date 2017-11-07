@@ -1,21 +1,26 @@
 .error {
     position: fixed;
-    left: 35vw;
+    left: 0;
+    right: 0;
     top: 35vh;
-    width: 25vw;
-    height: 10vh;
+    margin-left: 35vw;
+    margin-right: 35vw;
+
+    width: auto;
+    height: auto;
+
     background-color: #181818;
     opacity: 0;
 
     border: 1px solid white;
     border-radius: 5px;
 
-    padding-top: 20px;
+    padding: 20px 20px 20px 20px;
     text-align: center;
 
-    transition: opacity .25s ease-in-out;
-    -moz-transition: opacity .25s ease-in-out;
-    -webkit-transition: opacity .25s ease-in-out;
+    transition: opacity .75s ease 1s;
+    -moz-transition: opacity .75s ease 1s;
+    -webkit-transition: opacity .75s ease 1s;
 }
 
 #error_message {

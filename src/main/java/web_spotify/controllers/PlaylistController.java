@@ -72,7 +72,7 @@ public class PlaylistController {
     {
         // Throw an error if a user isn't logged in
         User user = (User) session.getAttribute("User");
-        if (user == null) throw new SpotifyException("Cannot view playlists if user not logged in.");
+        if (user == null) throw new SpotifyException("Cannot view playlists if a user not logged in.");
 
         // Grab the owned and followed playlists from the user
         JSONArray playlists = new JSONArray();

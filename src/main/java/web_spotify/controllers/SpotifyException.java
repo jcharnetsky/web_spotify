@@ -15,7 +15,7 @@ public class SpotifyException extends Exception {
     public String toJSONString(){
 
         JSONObject errorJSON = new JSONObject();
-        errorJSON.put("error", this.toString());
+        errorJSON.put("error", this.getMessage());
         return errorJSON.toString();
 
     }
