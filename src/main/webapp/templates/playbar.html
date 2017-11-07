@@ -3,15 +3,15 @@
 <link href="css/style.css" rel="stylesheet"/>
 
 <div id="bottom">
-    <ul class="playbar" ng-controller="playbarCtrl">
+	<ul class="playbar" ng-app="web_spotify" ng-controller="playbarCtrl">
 		<audio id="playAudio"src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.mp4"></audio>
-        <li>
-            <a href="#">
-                <img class="current_album_cover" src="../images/album_cover.png" alt="Album Cover">
-            </a>
-        </li>
+		<li>
+			<a href="#">
+				<img class="current_album_cover" src="../images/album_cover.png" alt="Album Cover">
+			</a>
+		</li>
 
-        <li class="current_song_info inline-block">
+		<li class="current_song_info inline-block">
 			<div>
 				<a href="#" class="underline_on_hover">
 					<span class="current_song_title">Washing Dishes</span>
@@ -22,7 +22,7 @@
 					<p class="current_song_artist">Jack Johnson</p>
 				</a>
 			</div>
-        </li>
+		</li>
 		<li class="scrub-bar inline-block">
 			<span id="playSongTimeUp"></span>
 			<input type="range" id="songProgress" ng-click="scrub();" value="0" min="0" max="100"></input>
@@ -52,5 +52,6 @@
 			</ul>
 		</li>
 
-    </ul>
+	</ul>
 </div>
+
