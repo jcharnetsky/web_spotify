@@ -54,7 +54,7 @@ body {
 }
 
 form input {
-	position: absolute;
+/*	position: absolute;*/
 	width: auto;
 	right: 20px;
 	margin-bottom: 20px;
