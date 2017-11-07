@@ -2,6 +2,8 @@ package web_spotify.controllers;
 
 import Utils.JsonUtils;
 import org.json.HTTP;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,7 +16,45 @@ public class BrowseController {
 
     @RequestMapping(value="/overview", method= RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public String getOverviewData(){return "";}
+    public String getOverviewData(){
+
+        // Initialize focuses and charts
+        String[][] focusData = {{"images/rhiannon-giddens-tomorrow-is-my-turn.jpg","Tomorrow Is My Turn","Tomorrow Is My Turn by Rhiannon Giddens"},
+                {"images/tile2.png", "dancePOP", "The guilty pleasures of dance and electronic. Cover: Eden Price and Cassie"},
+                {"images/tile3.png", "Deep Focus", "Keep calm and focus. This playlist has some great, atmospheric rock to help you relax and concentrate."},
+                {"images/tile4.png", "Lush Vibes", "Lo-fi and chill instrumental hip hop. Related playlist: Jazz Vibes"},
+                {"images/tile5.png", "The Pulse of Americana", "Keep your finger on the pulse of Americana. We\"re featuring artists performing at AMERICANAFEST."},
+                {"images/tile6.png", "Young & Free", "Live your life... this is Young & Free"}};
+
+        String[][] chartData = {{"images/charts.png","Global and Regional Top Charts"},
+                {"images/new_releases.png", "Macklemore, The Killers, Illenium"},
+                {"images/discover.png", "Recommended For You"}};
+
+        JSONObject overview = new JSONObject();
+
+        // Load the focuses
+        JSONArray focuses = new JSONArray();
+        for(int i = 0; i < 6;i++){
+            JSONObject focus = new JSONObject();
+            focus.put("img", focusData[i][0]);
+            focus.put("head", focusData[i][1]);
+            focus.put("desc", focusData[i][2]);
+            focuses.put(focus);
+        }
+        overview.put("focus", focuses);
+
+        // Load the charts
+        JSONArray charts = new JSONArray();
+        for(int i = 0; i < 3;i++){
+            JSONObject chart = new JSONObject();
+            chart.put("img", chartData[i][0]);
+            chart.put("desc", chartData[i][1]);
+            charts.put(chart);
+        }
+        overview.put("charts", charts);
+
+        return overview.toString();
+    }
 
     @RequestMapping(value="/charts", method= RequestMethod.GET, produces = "application/json")
     @ResponseBody
