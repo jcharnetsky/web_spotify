@@ -49,7 +49,7 @@ public class Artist extends User {
      * @param aliases A collection of aliases the artist goes by
      */
     public Artist(int id, String name, String email, String address, Date birthday, Image image, String bio, Collection<String> aliases) {
-        super(name, email, address, birthday, null);
+        super(id, name, email, address, birthday, null);
         this.bio = bio;
         this.aliases = new ArrayList<String>();
         this.aliases.addAll(aliases);

@@ -20,7 +20,7 @@ app.controller('MainCtrl', function($compile, $scope, $http, $parse){
            var node = document.getElementById(div);
 
            //Clear out whatever was in the content container
-           if(node.firstChild == null) return;
+           if(node == null || node.firstChild == null) return;
            while(node.firstChild){
              node.removeChild(node.firstChild);
            }
