@@ -1,5 +1,13 @@
 package web_spotify.controllers;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import web_spotify.spotify.User;
+import web_spotify.spotify.Playlist;
+
+import java.util.Collection;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -60,7 +68,35 @@ public class PlaylistController {
     @RequestMapping(value="/getPlaylists", method= RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public String getPlaylists(HttpSession session) throws SpotifyException
-    {return "";}
+    {
+        // Throw an error if a user isn't logged in
+        User user = (User) session.getAttribute("User");
+        if (user == null) throw new SpotifyException("Cannot view playlists if user not logged in.");
+
+        // Grab the owned and followed playlists from the user
+        JSONArray playlists = new JSONArray();
+        Playlist[] ownedPlaylists = (Playlist[]) user.getOwnedPlaylists().toArray();
+        Playlist[] followedPlaylists = (Playlist[]) user.getFollowedPlaylists().toArray();
+
+        // Populate JSON with the playlists from the user
+        for(int i = 0; i < ownedPlaylists.length; i++){
+            JSONObject playlist = new JSONObject();
+            playlist.put("title", ownedPlaylists[i].getTitle());
+            playlist.put("id", ownedPlaylists[i].getId());
+            playlists.put(playlist);
+        }
+        for(int i = 0; i < followedPlaylists.length; i++){
+            JSONObject playlist = new JSONObject();
+            playlist.put("title", followedPlaylists[i].getTitle());
+            playlist.put("id", followedPlaylists[i].getId());
+            playlists.put(playlist);
+        }
+
+        // Return the JSON
+        JSONObject toReturn = new JSONObject();
+        toReturn.put("playlists", playlists);
+        return toReturn.toString();
+    }
 
     /**
      * Follow a playlist with a specified name owned by a user with the a specified ID.

@@ -4,6 +4,12 @@
 
 <script src="../scripts/resizer.js"></script>
 
+<!-- Load the user's playlists whenever this page is initially loaded -->
+<script>
+    var scope = angular.element(document.getElementById('sidebar')).scope();
+    scope.loadTemplateAndJSON('null', 'null', 'getPlaylists');
+</script>
+
 <div id="sidebar">
     <ul class="sidebar_list" ng-controller="MainCtrl">
         <li id="active">
@@ -23,7 +29,9 @@
     <ul class="sidebar_list playlists">
         <li><u>Playlists</u></li>
         <li ng-repeat="playlist in playlists" ng-controller="MainCtrl">
-            <a href="#" ng-click="loadTemplateAndJSON('main', 'playlist.html','null')">{{playlist}}</a>
+            <a href="#" id={{playlist.id}} ng-click="loadTemplateAndJSON('main', 'playlist.html','getPlaylistData')">
+                {{playlist.title}}
+            </a>
         </li>
     </ul>
 </div>
