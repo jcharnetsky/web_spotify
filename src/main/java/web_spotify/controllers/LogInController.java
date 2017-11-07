@@ -1,5 +1,7 @@
 package web_spotify.controllers;
 
+import web_spotify.spotify.Playlist;
+
 import Utils.JsonUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.ResponseBody;
+import web_spotify.spotify.User;
 
 @Controller
 public class LogInController {
@@ -58,7 +61,23 @@ public class LogInController {
         /* Load the user into the session */
         if (validEmail.equals(email) && validPassword.equals(password)) {
             valid = true;
-            session.setAttribute("User", "HI");
+
+            // Create a new user
+            User user = new User("Himanshu James Cheung Charnetsky",
+                    email, null, null, null);
+
+            // Create some playlists
+            String[] playlists = {"On the Road", "Spotify and Chill", "Spotify top 50 Sweden", "Spotify Sessions",
+                    "Rock Classics", "Pop Rising", "Liked from Radio"};
+
+            // Add playlists to user
+            for(int i = 0; i < playlists.length; i++){
+                user.followPlaylist(new Playlist(i, playlists[i],
+                        null, null, null, null));
+            }
+            
+            // Add user to session
+            session.setAttribute("User", user);
         } else {
             errorMessage = "Invalid Username/Password";
         }
