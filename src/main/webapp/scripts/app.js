@@ -20,42 +20,42 @@ app.controller('MainCtrl', function($scope) {
   'Rock Classics', 'Pop Rising', 'Liked from Radio'];
 
   for (i = 0; i < focuses.length; i++){
-       var item = {
-         img  : focuses[i][0],
-         head : focuses[i][1],
-         desc : focuses[i][2]
-       };
-       $scope.focus.push(item);
-     }
+    var item = {
+      img  : focuses[i][0],
+      head : focuses[i][1],
+      desc : focuses[i][2]
+    };
+    $scope.focus.push(item);
+  }
 
-     for (i = 0; i < charts.length; i++){
-       var chart = {
-         img : charts[i][0],
-         desc : charts[i][1]
-       };
-       $scope.charts.push(chart);
-     }
+  for (i = 0; i < charts.length; i++){
+    var chart = {
+      img : charts[i][0],
+      desc : charts[i][1]
+    };
+    $scope.charts.push(chart);
+ }
 
 });
 
 app.controller('NavCtrl', function($compile, $scope){
-$scope.selectPane = function (div, URL) {
-   console.log(div, URL);
-   var node = document.getElementById(div);
+    $scope.selectPane = function (div, URL) {
+       console.log(div, URL);
+       var node = document.getElementById(div);
 
-   //Clear out whatever was in the content container
-   while(node.firstChild){
-      node.removeChild(node.firstChild);
-   }
+       //Clear out whatever was in the content container
+       while(node.firstChild){
+          node.removeChild(node.firstChild);
+       }
 
-   //Add the new include to whatever was clic   ked
-   var tag = document.createElement('div');
-   tag.setAttribute("ng-include", "'templates/" + URL + "'");
-   node.appendChild(tag);
+       //Add the new include to whatever was clic   ked
+       var tag = document.createElement('div');
+       tag.setAttribute("ng-include", "'templates/" + URL + "'");
+       node.appendChild(tag);
 
-   //Compile the include
-   $compile(node)($scope);
-}
+       //Compile the include
+       $compile(node)($scope);
+    }
 
 });
 
