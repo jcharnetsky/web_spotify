@@ -47,13 +47,13 @@
 }
 
 .playlist_tile span, .playlist_tile a {
-    font-size: 100%;
     display: table-cell;
     vertical-align: middle;
     text-align: center;
 }
 
 .add_button {
+    font-size: 180%;
     width: 10%;
     text-align: right;
 }
