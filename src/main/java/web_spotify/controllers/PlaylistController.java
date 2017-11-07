@@ -57,7 +57,11 @@ public class PlaylistController {
     @ResponseBody
     public String getPlaylistData(@RequestParam(value = "playlistId", required = true) int playlistId)
     throws SpotifyException
-    {return "";}
+    {
+        JSONObject temp = new JSONObject();
+        temp.put("temporary data", "temporary data");
+        return temp.toString();
+    }
 
     /**
      * Get JSON containing the name and ID of all the playlists that the logged in user owns

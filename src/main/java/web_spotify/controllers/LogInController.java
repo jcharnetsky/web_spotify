@@ -48,7 +48,7 @@ public class LogInController {
 
         /* Check to see if the user is logged in, if so, throw an already logged error */
         if (session.getAttribute("User") != null) {
-            return JsonUtils.createBlankError("User already logged in.");
+            throw new SpotifyException("User already logged in.");
         }
 
         final String validEmail = "user@yahoo.com";
@@ -79,11 +79,11 @@ public class LogInController {
             // Add user to session
             session.setAttribute("User", user);
         } else {
-            errorMessage = "Invalid Username/Password";
+            throw new SpotifyException("Invalid Username/Password");
         }
 
         /* If valid, return success, else, return error json */
-        return valid ? JsonUtils.createBlankSuccess() : JsonUtils.createBlankError(errorMessage);
+        return JsonUtils.createBlankSuccess();
     }
 
     /**
