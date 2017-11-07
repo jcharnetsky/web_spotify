@@ -28,7 +28,7 @@ public class Administrator extends User {
      * @return 
      */
     public Administrator(int id, String name, String email, String address, Date birthday, Image image) {
-        super(name, email, address, birthday, null);
+        super(id, name, email, address, birthday, null);
         reports = new ArrayList<Report>();
     }
     
@@ -44,7 +44,7 @@ public class Administrator extends User {
     /**
      * Remove a report from the collection of reports
      * 
-     * @param report A report
+     * @param reportId ID of the report to remove
      */
     public void removeReport(int reportId) {
     		for(int i = 0; i < reports.size(); i++) {

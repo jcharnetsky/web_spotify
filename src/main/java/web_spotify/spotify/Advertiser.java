@@ -28,7 +28,7 @@ public class Advertiser extends User {
      * @param companyName The name of the company
      */
     public Advertiser(int id, String name, String email, String address, Date birthday, Image image, String companyName) {
-    		super(name, email, address, birthday, null);
+    		super(id, name, email, address, birthday, null);
         this.companyName = companyName;
         advertisements = new ArrayList<Advertisement>();
     }

@@ -5,9 +5,6 @@ import org.json.JSONObject;
 import web_spotify.spotify.User;
 import web_spotify.spotify.Playlist;
 
-import java.util.Collection;
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +13,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.text.CollationElementIterator;
+import java.util.Collection;
+import java.util.Iterator;
 
 @Controller
 public class PlaylistController {
@@ -75,20 +76,22 @@ public class PlaylistController {
 
         // Grab the owned and followed playlists from the user
         JSONArray playlists = new JSONArray();
-        Playlist[] ownedPlaylists = (Playlist[]) user.getOwnedPlaylists().toArray();
-        Playlist[] followedPlaylists = (Playlist[]) user.getFollowedPlaylists().toArray();
+        Iterator<Playlist> ownedPlaylists = user.getOwnedPlaylists().iterator();
+        Iterator<Playlist> followedPlaylists = user.getFollowedPlaylists().iterator();
 
         // Populate JSON with the playlists from the user
-        for(int i = 0; i < ownedPlaylists.length; i++){
+        while(ownedPlaylists.hasNext()){
             JSONObject playlist = new JSONObject();
-            playlist.put("title", ownedPlaylists[i].getTitle());
-            playlist.put("id", ownedPlaylists[i].getId());
+            Playlist temp = ownedPlaylists.next();
+            playlist.put("title", temp.getTitle());
+            playlist.put("id", temp.getId());
             playlists.put(playlist);
         }
-        for(int i = 0; i < followedPlaylists.length; i++){
+        while(followedPlaylists.hasNext()){
             JSONObject playlist = new JSONObject();
-            playlist.put("title", followedPlaylists[i].getTitle());
-            playlist.put("id", followedPlaylists[i].getId());
+            Playlist temp = followedPlaylists.next();
+            playlist.put("title", temp.getTitle());
+            playlist.put("id", temp.getId());
             playlists.put(playlist);
         }
 
