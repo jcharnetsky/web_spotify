@@ -16,7 +16,6 @@ function loadToDiv(div, URL) {
        tag.setAttribute("ng-include", "'templates/" + URL + "'");
        node.appendChild(tag);
     }
-    console.log(node);
     return node;
 }
 

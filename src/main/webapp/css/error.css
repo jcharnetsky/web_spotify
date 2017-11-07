@@ -1,0 +1,23 @@
+.error {
+    position: fixed;
+    left: 35vw;
+    top: 35vh;
+    width: 25vw;
+    height: 10vh;
+    background-color: #181818;
+    opacity: 0;
+
+    border: 1px solid white;
+    border-radius: 5px;
+
+    padding-top: 20px;
+    text-align: center;
+
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
+}
+
+#error_message {
+    color: white;
+}
