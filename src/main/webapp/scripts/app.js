@@ -46,10 +46,9 @@ app.controller('MainCtrl', function($compile, $scope, $http, $parse){
 
            }).catch(function (err) {
                  // Catch and print any server-side error to console
-                 console.log(err);
                  $parse('error').assign($scope, err);
                  node = loadToDiv('error_dialog', 'error.html');
-                 $compile(node)(scope);
+                 $compile(node)($scope);
            });
         } else {
            node = loadToDiv(div, URL);
