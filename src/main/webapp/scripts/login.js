@@ -20,8 +20,7 @@ function loadToDiv(div, URL) {
 }
 
 app.controller('logInCtrl', function ($http, $scope, $parse, $compile) {
-    $scope.name = "";
-    $scope.password = "";
+
     $scope.logIn = function () {
 
         $http.get(location.origin + "/login", {params:{"email":$scope.name, "password":$scope.password}}).

@@ -2,10 +2,8 @@
 <link href="css/sidebar.css" rel="stylesheet" />
 <link href="css/style.css" rel="stylesheet"/>
 
-<script src="../scripts/resizer.js"></script>
-
-<div id="sidebar">
-    <ul class="sidebar_list" ng-controller="MainCtrl">
+<div id="sidebar" >
+    <ul class="sidebar_list">
         <li id="active">
             <a href="#" ng-click="loadTemplateAndJSON('main', 'navigateContent.html', 'null')">Browse</a>
         </li>
@@ -20,10 +18,10 @@
         <li><a href="#">Local Files</a></li>
     </ul>
 
-    <ul class="sidebar_list playlists">
+    <ul class="sidebar_list playlists" ng-app="sidebar_app" >
         <li><u>Playlists</u></li>
-        <li id="playlists" ng-repeat="playlist in getPlaylists.playlists" ng-controller="MainCtrl">
-            <a href="#" id={{playlist.id}} ng-click="loadTemplateAndJSON('main', 'playlist.html','getPlaylistData')">
+        <li id="playlists" ng-controller="LoadPlaylistCtrl" ng-repeat="playlist in getPlaylists.playlists">
+            <a href="#" id={{playlist.id}} ng-click="loadPlaylist('main', 'playlist.html', playlist.id)">
                 {{playlist.title}}
             </a>
         </li>
@@ -39,9 +37,8 @@
      resizer-min="5">
 </div>
 
-
 <!-- Load the user's playlists whenever this page is initially loaded -->
 <script>
-    var scope = angular.element(document.getElementById('sidebar')).scope();
+    var scope = angular.element(document.getElementById('playlists')).scope();
     scope.loadTemplateAndJSON('playlists', 'null', 'getPlaylists');
 </script>

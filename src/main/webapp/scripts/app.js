@@ -1,4 +1,4 @@
-var app = angular.module('web_spotify',[]);
+app = angular.module('web_spotify', []);
 
 function loadToDiv(div, URL) {
     var node = document.getElementById(div);
@@ -20,8 +20,8 @@ function loadToDiv(div, URL) {
 }
 
 app.controller('MainCtrl', function($compile, $scope, $http, $parse){
-    $scope.loadTemplateAndJSON = function (div, URL, controllerPath) {
 
+    $scope.loadTemplateAndJSON = function (div, URL, controllerPath) {
         if(!(controllerPath === 'null')){
 
            // Send the XMLHttpRequest
