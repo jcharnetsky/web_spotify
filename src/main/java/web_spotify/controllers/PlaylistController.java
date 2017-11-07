@@ -7,50 +7,86 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class PlaylistController {
 
-    @RequestMapping(value="/", method= RequestMethod.GET, produces = "application/json")
+    /**
+     * Create a playlist for the logged in user with the specified name
+     * @param name The specified name.
+     * @param session Current session containing the logged in user.
+     * @return JSON containing the information of the playlist just created or an error message
+     * if a playlist with that name already exists.
+     */
+    @RequestMapping(value="/createPlaylist", method= RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public String createPlaylist(String name){return "";}
+    public String createPlaylist(@RequestParam(value = "name", required = true)String name, HttpSession session)
+    {return "";}
 
-    @RequestMapping(value="/overview", method= RequestMethod.GET, produces = "application/json")
+    /**
+     * Delete for the logged in user with the specified name
+     * @param name The specified name.
+     * @param session Current session containing the logged in user.
+     * @return JSON containing either a success or failure message if the playlist was deleted.
+     */
+    @RequestMapping(value="/deletePlaylist", method= RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public String deletePlaylist(String name){return "";}
+    public String deletePlaylist(@RequestParam(value = "name", required = true) String name, HttpSession session)
+    {return "";}
 
-    @RequestMapping(value="/overview", method= RequestMethod.GET, produces = "application/json")
+    /**
+     * Get JSON containing the data of the a playlist with the specified ID.
+     * @param playlistId The specified playlist ID.
+     * @return JSON containing the information of the playlist
+     */
+    @RequestMapping(value="/getPlaylistData", method= RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public String getPlaylistData(int playlistId){return "";}
+    public String getPlaylistData(@RequestParam(value = "playlistId", required = true) int playlistId)
+    {return "";}
 
-    @RequestMapping(value="/overview", method= RequestMethod.GET, produces = "application/json")
+    
+    @RequestMapping(value="/getPlaylists", method= RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public String getPlaylists(){return "";}
 
-    @RequestMapping(value="/overview", method= RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value="/followPlaylist", method= RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public String followPlaylist(String name, int ownerId){return "";}
+    public String followPlaylist(@RequestParam(value = "name", required = true) String name,
+                                 @RequestParam(value = "ownerId", required = true) int ownerId)
+    {return "";}
 
-    @RequestMapping(value="/overview", method= RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value="/unfollowPlaylist", method= RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public String unfollowPlaylist(String name, int ownerId){return "";}
+    public String unfollowPlaylist(@RequestParam(value = "name", required = true) String name,
+                                   @RequestParam(value = "ownerId", required = true) int ownerId)
+    {return "";}
 
-    @RequestMapping(value="/overview", method= RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value="/addSongToPlaylist", method= RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public String addSongToPlaylist(int songId, String name){return "";}
+    public String addSongToPlaylist(@RequestParam(value = "songId", required = true) int songId,
+                                    @RequestParam(value = "name", required = true) String name)
+    {return "";}
 
-    @RequestMapping(value="/overview", method= RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value="/removeSongFromPlaylist", method= RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public String removeSongFromPlaylist(int songId, int playlistId){return "";}
+    public String removeSongFromPlaylist(@RequestParam(value = "songId", required = true) int songId,
+                                         @RequestParam(value = "playlistId", required = true) int playlistId)
+    {return "";}
 
-    @RequestMapping(value="/overview", method= RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value="/changeTitle", method= RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public String changeTitle(String newTitle, String playlistName){return "";}
+    public String changeTitle(@RequestParam(value = "newTitle", required = true) String newTitle,
+                              @RequestParam(value = "playlistName", required = true) String playlistName)
+    {return "";}
 
     // Leave out changeImage for now
 
-    @RequestMapping(value="/overview", method= RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value="/changePrivacy", method= RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public String changePrivacy(int playlistId, boolean isPublic){return "";}
+    public String changePrivacy(@RequestParam(value = "playlistId", required = true) int playlistId,
+                                @RequestParam(value = "isPublic", required = true) boolean isPublic)
+    {return "";}
 }
