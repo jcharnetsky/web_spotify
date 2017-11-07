@@ -34,14 +34,14 @@ public class LogInController {
      * @param email The given email of the user attempting to log in.
      * @param password The given password of the user attempting to log in.
      * @param session Current session that may contain a logged in user.
-     * @return If the credentials match and no user is logged in, a JSON containing a success message. Otherwise, a
-     * JSON containing a failure message.
+     * @throws Error If the credentials did not match or a user is already logged in.
+     * @return If the credentials match and no user is logged in, a JSON containing a success message.
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public String loginUser(@RequestParam(value = "email", required = true) String email,
             @RequestParam(value = "password", required = true) String password,
-            HttpSession session) {
+            HttpSession session) throws SpotifyException {
 
         /* Check to see if the user is logged in, if so, throw an already logged error */
         if (session.getAttribute("User") != null) {
@@ -71,11 +71,12 @@ public class LogInController {
      * Remove the user from the current session object and return a JSON object with a success message. If a user is
      * not logged in, return a JSON object with a failure message.
      * @param session Current session that may contain a logged in user
+     * @throws Error If there was no user to log out
      * @return If the user was successfully logged out, a success JSON object. Otherwise, a failure JSON object.
      */
     @RequestMapping(value = "/logout", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public String logoutUser(HttpSession session) {
+    public String logoutUser(HttpSession session) throws SpotifyException {
 
         /* Invalidate the session */
         session.invalidate();
