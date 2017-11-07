@@ -28,6 +28,7 @@ app.controller('NavCtrl', function($compile, $scope, $http, $parse){
        var node = document.getElementById(div);
 
        //Clear out whatever was in the content container
+       if(node == null) return;
        while(node.firstChild){
           node.removeChild(node.firstChild);
        }
@@ -40,6 +41,8 @@ app.controller('NavCtrl', function($compile, $scope, $http, $parse){
        //Compile the include
        $compile(node)($scope);
     }
+
+    $scope.selectPane('content', 'overview.html', 'overview');
 
 });
 
