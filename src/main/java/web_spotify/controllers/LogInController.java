@@ -93,15 +93,13 @@ public class LogInController {
      * @throws Error If there was no user to log out
      * @return If the user was successfully logged out, a success JSON object. Otherwise, a failure JSON object.
      */
-    @RequestMapping(value = "/logout", method = RequestMethod.GET, produces = "application/json")
-    @ResponseBody
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logoutUser(HttpSession session) throws SpotifyException {
 
         /* Invalidate the session */
         session.invalidate();
 
-        /* Return a success */
-        return JsonUtils.createBlankSuccess();
+        return "";
     }
 
 }
