@@ -1,9 +1,9 @@
 #main {
     position: absolute;
     left: 8vw; bottom: 4vh; top: 5vh;
+    width: 88vw;
 	color: #979797;
 	background-color: #181818;
-	overflow: auto;
 }
 
 .advertisement {
@@ -31,7 +31,7 @@
 	padding-left: 0vw;
 	padding-bottom: 3vw;
 	background-color: #181818;
-	left: 2vw;
+	padding-left: 2vw;
 	height: auto;
 }
 
