@@ -23,7 +23,7 @@ public class PlaylistController {
      * Create a playlist for the logged in user with the specified name
      * @param name The specified name.
      * @param session Current session containing the logged in user.
-     * @throws Error  If a playlist with that name already exists
+     * @throws SpotifyException If a playlist with that name already exists
      * @return JSON containing the information of the playlist just created.
      */
     @RequestMapping(value="/createPlaylist", method= RequestMethod.GET, produces = "application/json")
@@ -36,7 +36,7 @@ public class PlaylistController {
      * Delete for the logged in user with the specified name
      * @param name The specified name.
      * @param session Current session containing the logged in user.
-     * @throws Error If the playlist failed to be deleted
+     * @throws SpotifyException If the playlist failed to be deleted
      * @return JSON containing a success message that the playlist was deleted.
      */
     @RequestMapping(value="/deletePlaylist", method= RequestMethod.GET, produces = "application/json")
@@ -48,7 +48,7 @@ public class PlaylistController {
     /**
      * Get JSON containing the data of the a playlist with the specified ID.
      * @param playlistId The specified playlist ID.
-     * @throws Error If the playlist information could not be retrieved.
+     * @throws SpotifyException If the playlist information could not be retrieved.
      * @return JSON containing the information of the playlist
      */
     @RequestMapping(value="/getPlaylistData", method= RequestMethod.GET, produces = "application/json")
@@ -65,7 +65,7 @@ public class PlaylistController {
      * Get JSON containing the name and ID of all the playlists that the logged in user owns
      * or follows.
      * @param session Current session containing the logged in user.
-     * @throws Error If the playlist information could not be retrieved
+     * @throws SpotifyException If the playlist information could not be retrieved
      * @return JSON containing the information of the playlists
      */
     @RequestMapping(value="/getPlaylists", method= RequestMethod.GET, produces = "application/json")
@@ -138,7 +138,7 @@ public class PlaylistController {
      * @param songId The specified song ID
      * @param name The specified playlist name
      * @param session Current session containing the logged in user.
-     * @throws Error If the song could not be added to the playlist
+     * @throws SpotifyException If the song could not be added to the playlist
      * @return JSON containing the the new data of the playlist that was added to
      */
     @RequestMapping(value="/addSongToPlaylist", method= RequestMethod.GET, produces = "application/json")
@@ -153,7 +153,7 @@ public class PlaylistController {
      * @param songId The specified song ID
      * @param playlistId The specified playlist ID
      * @param session Current session containing the logged in user.
-     * @throws Error If the song could not be removed from the playlist
+     * @throws SpotifyException If the song could not be removed from the playlist
      * @return JSON containing the the new data of the playlist that had a song removed
      */
     @RequestMapping(value="/removeSongFromPlaylist", method= RequestMethod.GET, produces = "application/json")
@@ -168,7 +168,7 @@ public class PlaylistController {
      * @param newTitle The new title for the playlist
      * @param playlistName The name of the playlist to change
      * @param session Current session containing the logged in user.
-     * @throws Error If the playlist title could not be changed.
+     * @throws SpotifyException If the playlist title could not be changed.
      * @return JSON containing the the new data of the playlist that had its title changed
      */
     @RequestMapping(value="/changeTitle", method= RequestMethod.GET, produces = "application/json")
@@ -185,7 +185,7 @@ public class PlaylistController {
      * @param playlistId The specified playlist ID
      * @param isPublic True to set the playlist as public, False to set it as private
      * @param session Current session containing the logged in user.
-     * @throws Error If the playlist privacy could not be changed
+     * @throws SpotifyException If the playlist privacy could not be changed
      * @return JSON containing the the new data of the playlist that had its privacy changed
      */
     @RequestMapping(value="/changePrivacy", method= RequestMethod.GET, produces = "application/json")

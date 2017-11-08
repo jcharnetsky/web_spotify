@@ -22,22 +22,43 @@ public class UserInfoController {
 
     // Ignore get and change profile image for now
 
-
+    /**
+     * Change the name of the logged in user to a specified name
+     * @param newName The specified new name to change to
+     * @param session Current session that should contain the user
+     * @return A JSON object containing only the new user name
+     * @throws SpotifyException If there is no logged in user
+     */
     @RequestMapping(value="/editName", method= RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public String editName(String newName, HttpSession session) throws SpotifyException{
+    public String editName(@RequestParam(value = "newName", required = true) String newName,
+                           HttpSession session) throws SpotifyException{
         return "";
     }
 
+    /**
+     * Get the name of the logged in user
+     * @param session Current session containing the logged in user
+     * @return A JSON object containing the logged in user's name
+     * @throws SpotifyException If there is no logged in user
+     */
     @RequestMapping(value="/getName", method= RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public String getName(String newName, HttpSession session) throws SpotifyException{
+    public String getName(HttpSession session) throws SpotifyException{
         return "";
     }
 
+    /**
+     * Change the password of the logged in user to a specified password
+     * @param newPassword The specified new password to change to
+     * @param session Current session that should contain the user
+     * @return A JSON object containing a success message
+     * @throws SpotifyException If there is no logged in user or the password does not meet validation criteria
+     */
     @RequestMapping(value="/editPassword", method= RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public String editPassword(String newPassword, HttpSession session) throws SpotifyException{
+    public String editPassword(@RequestParam(value = "newPassword", required = true) String newPassword,
+                               HttpSession session) throws SpotifyException{
         return "";
     }
 

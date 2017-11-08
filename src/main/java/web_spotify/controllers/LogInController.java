@@ -37,7 +37,7 @@ public class LogInController {
      * @param email The given email of the user attempting to log in.
      * @param password The given password of the user attempting to log in.
      * @param session Current session that may contain a logged in user.
-     * @throws Error If the credentials did not match or a user is already logged in.
+     * @throws SpotifyException If the credentials did not match or a user is already logged in.
      * @return If the credentials match and no user is logged in, a JSON containing a success message.
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET, produces = "application/json")
@@ -90,7 +90,7 @@ public class LogInController {
      * Remove the user from the current session object and return a JSON object with a success message. If a user is
      * not logged in, return a JSON object with a failure message.
      * @param session Current session that may contain a logged in user
-     * @throws Error If there was no user to log out
+     * @throws SpotifyException If there was no user to log out
      * @return If the user was successfully logged out, a success JSON object. Otherwise, a failure JSON object.
      */
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
