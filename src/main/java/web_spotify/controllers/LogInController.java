@@ -21,7 +21,7 @@ public class LogInController {
      * @param session Current session that may contain the logged in user.
      * @return The login page html if the user is not logged in. The homepage html otherwise.
      */
-    @RequestMapping(value = "/attemptLogin", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String loginPage(HttpSession session) {
         if (session.getAttribute("User") == null) {
             return "logIn.html";
