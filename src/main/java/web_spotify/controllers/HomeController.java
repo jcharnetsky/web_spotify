@@ -18,11 +18,13 @@ public class HomeController {
      */
     @RequestMapping(value="/homepage", method= RequestMethod.GET)
     public String getHomePage(HttpSession session){
-        // Check to make sure that the user is logged in to view this page
 
+        // Check to make sure that the user is logged in to view this page
+        if(session.getAttribute("User") == null){
+            return "logIn.html";
+        }
 
         // Grab content for page
-
         return "home.html";
     }
 }
