@@ -48,6 +48,7 @@
 
 .playlist_tile span, .playlist_tile a {
     display: table-cell;
+    max-width: 10vw;
     vertical-align: middle;
     text-align: center;
 }
