@@ -27,7 +27,9 @@
 }
 
 .logout {
-    margin-left: 30vw;
+    position: absolute;
+    top: 8px;
+    right: 20px;
 }
 
 .nav_history {
