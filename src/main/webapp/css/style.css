@@ -54,10 +54,8 @@ body {
 }
 
 form input {
-	position: absolute;
 	width: auto;
 	right: 20px;
-	margin-bottom: 20px;
 }
 
 span {
@@ -98,7 +96,7 @@ a:hover, a:active, #current {
 
 /* Scrollbar */
 ::-webkit-scrollbar{
-	width: 12px ;
+	width: 12px;
 }
   
 ::-webkit-scrollbar-track{ /* TRACK */

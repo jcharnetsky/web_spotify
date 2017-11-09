@@ -1,16 +1,29 @@
 package web_spotify.spotify;
 
+import java.util.ArrayList;
+
 /**
  * Represents an advertisement that a user can play
  *
  * @author Cardinals
  */
 public class Advertisement extends Song {
+	
+	/** 
+	 * The advertiser who owns this advertisement
+	 */
+	private final Advertiser advertiser;
 
-    public Advertisement(String title, int id, int ownerID, double trackLength, int totalListens, int monthlyListens, boolean isBanned, boolean isPublic) {
-        super(title, id, ownerID, trackLength, totalListens, monthlyListens, isBanned, isPublic);
+    public Advertisement(int songId, int artistId, int albumId, ArrayList<Artist> featuredArtists, String title, double trackLength, byte[] audioFile, Advertiser advertiser) {
+    		super(songId, artistId, albumId, featuredArtists, title, trackLength, audioFile);
+    		this.advertiser = advertiser;
+	}
+
+    /** Getters **/
+    public Advertiser getAdvertiser() {
+    		return advertiser;
     }
-
+    
     /**
      * Compare Advertisement objects to determine equivalence
      *

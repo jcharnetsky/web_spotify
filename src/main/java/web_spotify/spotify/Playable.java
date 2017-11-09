@@ -15,19 +15,9 @@ public interface Playable {
     public abstract boolean isAvailable();
 
     /**
-     * Responsible for setting the playable to play its audio
-     */
-    public abstract void play();
-
-    /**
-     * Responsible for setting the playable to pause its audio
-     */
-    public abstract void pause();
-
-    /**
      * Gets the length of the playable
      *
-     * @return A double representing the duration fo the track in seconds.
+     * @return A double representing the duration of the track in seconds.
      */
     public abstract double getTrackLength();
 

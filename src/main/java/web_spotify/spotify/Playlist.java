@@ -1,4 +1,5 @@
 package web_spotify.spotify;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -7,17 +8,22 @@ import java.util.Collection;
  *
  * @author Cardinals
  */
-class Playlist extends SongCollection {
+public class Playlist extends SongCollection {
 
+	/**
+     * The description of the playlist
+     */
+    private String description;
+    
+    /**
+     * Represents whether the playlist is collaborative. By default is FALSE.
+     */
+    private boolean isCollaborative;
+	
     /**
      * The collection of followers
      */
     private Collection<User> followers;
-
-    /**
-     * The description of the playlist
-     */
-    private String description;
 
     /**
      * The default constructor of the Playlist Class
@@ -27,10 +33,12 @@ class Playlist extends SongCollection {
      * @param owner The owner of the collection
      * @param image The image of the collection
      * @param genre The genre of the collection
+     * @param description The description of the collection
      */
-    public Playlist(int id, String title, User owner, String imageURL, String genre, String description, boolean isPublic, boolean isBanned) {
-        super(id, title, owner, imageURL, genre, isPublic, isBanned);
+    public Playlist(int id, String title, User owner, Image image, Genre genre, String description) {
+        super(id, title, owner, image, genre);
         this.description = description;
+        this.isCollaborative = false;
         followers = new ArrayList<User>();
     }
 
@@ -39,47 +47,25 @@ class Playlist extends SongCollection {
      *
      * @param user The user to be added to the playlist's followers
      */
-    public boolean addFollower(User user) {
-        return this.followers.add(user);
+    public void addFollower(User user) {
+    		followers.add(user);
     }
 
     /**
      * Remove a follower from the playlist
      *
-     * @param user The user to be removed from the playlist's followers
+     * @param userId ID of user to be removed from the playlist's followers
      * @return
      */
-    public boolean removeFollower(User user) {
-        return this.followers.remove(user);
+    public void removeFollower(int userId) {
+     	for(int i = 0; i < followers.size(); i++) {
+			if(((ArrayList<User>)followers).get(i).getId() == userId) {
+				((ArrayList<User>)followers).remove(i);
+				return;
+			}
+		}
     }
-
-    /**
-     * Change the description of the playlist
-     *
-     * @param description
-     */
-    public void changeDescription(String description) {
-        this.description = description;
-    }
-
-    /**
-     * Return the description of the playlist
-     *
-     * @return description
-     */
-    public String getDescription() {
-        return this.description;
-    }
-
-    /**
-     * Return the list of followers.
-     *
-     * @return followers
-     */
-    public Collection<User> getFollowersList() {
-        return this.followers;
-    }
-
+    
     /**
      * Compare Playlist objects to determine equivalence
      *
@@ -91,5 +77,34 @@ class Playlist extends SongCollection {
         if((p != null) && (p instanceof Playlist)) {
             return ((Playlist) p).getId() == this.getId();
         } else return false;
+    }
+    
+    /** Getters **/
+    public String getDescription() {
+        return description;
+    }
+    
+    public boolean isCollaborative() {
+    		return isCollaborative;
+    }
+
+    public Collection<User> getFollowersList() {
+        return followers;
+    }
+    
+    /** Setters **/
+    public void setDescription(String description) {
+    		this.description = description;
+    }
+    
+    /**
+     * Set collaborative to value. If true, public must be set to false.
+     * @param value Whether or not playlist is collaborative
+     */
+    public void setCollaborative(boolean value) {
+    		if(value) {
+    			this.setPublic(false);
+    		}
+    		this.isCollaborative = value;
     }
 }
