@@ -17,6 +17,9 @@ app.controller('playbarCtrl', function($scope, $interval){
 	$scope.playSong = function () {
 		const aud = document.getElementById("playAudio");
 		const plb = document.getElementById("playButton");
+		const vol = document.getElementById("songVolume");
+        aud.volume = vol.value / 100;
+
 		if(!$scope.play) {
 			$scope.doPlay();
 		} else {
@@ -44,12 +47,18 @@ app.controller('playbarCtrl', function($scope, $interval){
 		}
     }
 
-	$scope.scrub = function() {
+	$scope.scrubSong = function() {
 		const aud = document.getElementById("playAudio");
 		const pro = document.getElementById("songProgress");
 
 		pro.max = aud.duration;
 		aud.currentTime = pro.value;
+	}
+
+	$scope.scrubVolume = function() {
+	    const aud = document.getElementById("playAudio");
+        const vol = document.getElementById("songVolume");
+        aud.volume = vol.value / 100;
 	}
 
 	$scope.doPlay = function () {

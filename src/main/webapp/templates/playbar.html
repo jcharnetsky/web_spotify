@@ -14,18 +14,18 @@
 		<li class="current_song_info inline-block">
 			<div>
 				<a href="#" class="underline_on_hover">
-					<span class="current_song_title">Washing Dishes</span>
+					<span class="current_song_title">Death becomes fur</span>
 				</a>
 			</div>
 			<div>
 				<a href="#" class="underline_on_hover">
-					<p class="current_song_artist">Jack Johnson</p>
+					<p class="current_song_artist">Jan Morgenstern</p>
 				</a>
 			</div>
 		</li>
 		<li class="scrub-bar inline-block">
 			<span id="playSongTimeUp"></span>
-			<input type="range" id="songProgress" ng-click="scrub();" value="0" min="0" max="100"></input>
+			<input type="range" id="songProgress" ng-click="scrubSong();" value="0" min="0" max="100"/>
 			<span id="playSongTimeDown"></span>
 		</li>
 		<li class="music_controls inline-block">
@@ -53,14 +53,12 @@
 		</li>
 		<li class="other_controls">
 			<ul>
-				<li><a href="#" ng-click="loadTemplateAndJSON('main','queue.html','null')">
-					<img src="../images/queue.png" alt="Queue">
-				</a></li>
 				<li>
-
-				</li>
-				<li>
-
+                    <a href="#" ng-click="loadTemplateAndJSON('main','queue.html','null')">
+					    <img src="../images/queue.png" alt="Queue">
+				    </a>
+                    <img src="../images/volume.png" alt="Volume"/>
+                    <input type="range" id="songVolume" ng-click="scrubVolume();" value="50" min="0" max="100"/>
 				</li>
 			</ul>
 		</li>
