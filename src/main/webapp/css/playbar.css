@@ -113,6 +113,6 @@ input[type='range']::-webkit-slider-thumb {
 .other_controls{
     display: inline-block !important;
     vertical-align: middle !important;
-    margin-left: 15vw;
+    margin-left: 5vw;
     width: auto;
 }
