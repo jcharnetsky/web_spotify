@@ -27,12 +27,7 @@
 }
 
 .logout {
-    margin-left: 61vw;
-}
-
-.account {
-    margin-left: 0vw;
-    padding-right: 0vw;
+    margin-left: 30vw;
 }
 
 .nav_history {
@@ -55,10 +50,13 @@
 }
 
 .account {
+    display: inline-block;
     height: 5vh;
 	padding-right: 2vw;
 	padding-top: 0.5vh;
 	padding-bottom: 0.5vh;
+	margin-left: 0vw;
+    padding-right: 0vw;
 }
 .account li {
     height: 5vh;
