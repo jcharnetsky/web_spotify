@@ -63,7 +63,7 @@ public class LogInController {
             valid = true;
 
             // Create a new user
-            User user = new User(0, "Himanshu James Cheung Charnetsky",
+            User user = new User(0, "Pepe the frog",
                     email, null, null, null);
 
             // Create some playlists

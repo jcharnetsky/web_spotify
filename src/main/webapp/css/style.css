@@ -96,7 +96,7 @@ a:hover, a:active, #current {
 
 /* Scrollbar */
 ::-webkit-scrollbar{
-	width: 12px ;
+	width: 12px;
 }
   
 ::-webkit-scrollbar-track{ /* TRACK */
