@@ -24,6 +24,7 @@
 
 input[type="range"] {
     display: inline;
+    overflow: hidden;
     -webkit-appearance: none;
     width: 15vw;
     background: transparent;
@@ -33,19 +34,30 @@ input[type="range"]:focus {
     outline: none;
 }
 
+input[type=range]::-ms-fill-lower {
+    background: #777;
+    border-radius: 10px;
+}
+input[type=range]::-ms-fill-upper {
+    background: #ddd;
+    border-radius: 10px;
+}
+
 input[type="range"]::-ms-track {
     width: 100%;
     -webkit-appearance: none;
     color: transparent;
     background: transparent;
-    background-color: transparent;
     border-radius: 4px;
 }
+
 
 input[type="range"]::-webkit-slider-runnable-track {
     width: 100%;
     height: 6px;
     cursor: pointer;
+    -webkit-appearance: none;
+    background: transparent;
     box-shadow: 1px 1px 1px #000000;
     background: #121212;
     border-radius: 1.3px;
@@ -62,15 +74,12 @@ input[type='range']::-webkit-slider-thumb {
     margin-top: -2px;
 }
 
-#bottom {
+.playbar {
     left: 0vw; bottom: 0vh; top: 92vh; right: 0vw;
     height: 8vh;
-	background-color: #282828;
-	width: auto;
-	position: fixed;
-}
-
-.playbar {
+    background-color: #282828;
+    width: auto;
+    position: fixed;
 	height: 8vh;
 	padding-left: 0vw;
 	display: inline-block;
@@ -111,8 +120,8 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 .other_controls{
-    display: inline-block !important;
-    vertical-align: middle !important;
-    margin-left: 5vw;
-    width: auto;
+    position: absolute;
+    display: inline-block;
+    top: 2vh;
+    right: 20px;
 }

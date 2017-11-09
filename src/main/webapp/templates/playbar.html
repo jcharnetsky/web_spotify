@@ -2,67 +2,64 @@
 <link href="css/playbar.css" rel="stylesheet" />
 <link href="css/style.css" rel="stylesheet"/>
 
-<div id="bottom">
-	<ul class="playbar" ng-app="web_spotify" ng-controller="playbarCtrl">
-		<audio id="playAudio"src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.mp4"></audio>
-		<li>
-			<a href="#">
-				<img class="current_album_cover" src="../images/album_cover.png" alt="Album Cover">
-			</a>
-		</li>
+<ul class="playbar" ng-app="web_spotify" ng-controller="playbarCtrl">
+    <audio id="playAudio"src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.mp4"></audio>
+    <li>
+        <a href="#">
+            <img class="current_album_cover" src="../images/album_cover.png" alt="Album Cover">
+        </a>
+    </li>
 
-		<li class="current_song_info inline-block">
-			<div>
-				<a href="#" class="underline_on_hover">
-					<span class="current_song_title">Death becomes fur</span>
-				</a>
-			</div>
-			<div>
-				<a href="#" class="underline_on_hover">
-					<p class="current_song_artist">Jan Morgenstern</p>
-				</a>
-			</div>
-		</li>
-		<li class="scrub-bar inline-block">
-			<span id="playSongTimeUp"></span>
-			<input type="range" id="songProgress" ng-click="scrubSong();" value="0" min="0" max="100"/>
-			<span id="playSongTimeDown"></span>
-		</li>
-		<li class="music_controls inline-block">
-			<ul class="music_buttons">
-				<li><a href="#">
-					<img class="shuffle" src="../images/shuffle.png" alt="Shuffle">
-				</a></li>
+    <li class="current_song_info inline-block">
+        <div>
+            <a href="#" class="underline_on_hover">
+                <span class="current_song_title">Death becomes fur</span>
+            </a>
+        </div>
+        <div>
+            <a href="#" class="underline_on_hover">
+                <p class="current_song_artist">Jan Morgenstern</p>
+            </a>
+        </div>
+    </li>
+    <li class="scrub-bar inline-block">
+        <span id="playSongTimeUp"></span>
+        <input type="range" id="songProgress" ng-click="scrubSong();" value="0" min="0" max="100"/>
+        <span id="playSongTimeDown"></span>
+    </li>
+    <li class="music_controls inline-block">
+        <ul class="music_buttons">
+            <li><a href="#">
+                <img class="shuffle" src="../images/shuffle.png" alt="Shuffle">
+            </a></li>
 
-				<li><a href="#">
-					<img class="previous" src="../images/prev.png" alt="Previous">
-				</a></li>
+            <li><a href="#">
+                <img class="previous" src="../images/prev.png" alt="Previous">
+            </a></li>
 
-				<li><a ng-click="playSong();" href="#">
-					<img class="play" id="playButton" src="../images/play.png" alt="Play">
-				</a></li>
+            <li><a ng-click="playSong();" href="#">
+                <img class="play" id="playButton" src="../images/play.png" alt="Play">
+            </a></li>
 
-				<li><a href="#">
-					<img class="next" src="../images/next.png" alt="Next">
-				</a></li>
+            <li><a href="#">
+                <img class="next" src="../images/next.png" alt="Next">
+            </a></li>
 
-				<li><a href="#">
-					<img class="repeat" src="../images/repeat.png" alt="Repeat">
-				</a></li>
-			</ul>
-		</li>
-		<li class="other_controls">
-			<ul>
-				<li>
-                    <a href="#" ng-click="loadTemplateAndJSON('main','queue.html','null')">
-					    <img src="../images/queue.png" alt="Queue">
-				    </a>
-                    <img src="../images/volume.png" alt="Volume"/>
-                    <input type="range" id="songVolume" ng-click="scrubVolume();" value="50" min="0" max="100"/>
-				</li>
-			</ul>
-		</li>
+            <li><a href="#">
+                <img class="repeat" src="../images/repeat.png" alt="Repeat">
+            </a></li>
+        </ul>
+    </li>
+    <li class="other_controls">
+        <ul>
+            <li>
+                <a href="#" ng-click="loadTemplateAndJSON('main','queue.html','null')">
+                    <img src="../images/queue.png" alt="Queue">
+                </a>
+                <img src="../images/volume.png" alt="Volume"/>
+                <input type="range" id="songVolume" ng-click="scrubVolume();" value="50" min="0" max="100"/>
+            </li>
+        </ul>
+    </li>
 
-	</ul>
-</div>
-
+</ul>

@@ -13,19 +13,15 @@
                 <li><a href="#" class="next_history">
                     <p class="horizontal_chevron">>
                 </a></li>
+                <li><form class="search">
+                    <input class="search" type="text" ng-model="search_querey" placeholder="Search"><br>
+                </form></li>
             </ul>
         </li>
 
-        <li>
-            <form class="search">
-                <input class="search" type="text" ng-model="search_querey" placeholder="Search"><br>
-            </form>
-        </li>
-
-        <li><a class="logout" href="/logout">Log out</a></li>
-
-        <li>
-            <a href="#" id="username"><u>{{getName.name}}</u></a>
+        <li class="logout" >
+            <a href="/logout">Log out </a>&#8226;
+            <a href="#" id="username">{{getName.name}}</a>
         </li>
     </ul>
 </div>
