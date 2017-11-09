@@ -66,8 +66,10 @@ input[type='range']::-webkit-slider-thumb {
     left: 0vw; bottom: 0vh; top: 92vh; right: 0vw;
     height: 8vh;
 	background-color: #282828;
+	width: auto;
 	position: fixed;
 }
+
 .playbar {
 	height: 8vh;
 	padding-left: 0vw;
@@ -106,4 +108,11 @@ input[type='range']::-webkit-slider-thumb {
 	font-size: 80%;
 	color: #7a7a7a;
 	padding-top: 0vh;
+}
+
+.other_controls{
+    display: inline-block !important;
+    vertical-align: middle !important;
+    margin-left: 15vw;
+    width: auto;
 }
