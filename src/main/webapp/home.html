@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="web_spotify">
 
 	<head>
 		<!-- Required meta tags -->
@@ -26,17 +26,18 @@
 		<script src="scripts/songs.js"></script>
 	</head>
 
-	<body ng-app="web_spotify" ng-controller="MainCtrl">
-		<div ng-include="'templates/searchbar.html'"></div>
+	<body ng-controller="MainCtrl">
+		<ng-view>
+			<div ng-include="'templates/searchbar.html'"></div>
 
-		<div id="main">
-			<div ng-include="'templates/navigateContent.html'"></div>
-		</div>
+			<div id="main">
+				<div ng-include="'templates/navigateContent.html'"></div>
+			</div>
 
-		<div ng-include="'templates/sidebar.html'"></div>
-		<div ng-include="'templates/playbar.html'"></div>
-		<div id="error_dialog"></div>
-
+			<div ng-include="'templates/sidebar.html'"></div>
+			<div ng-include="'templates/playbar.html'"></div>
+			<div id="error_dialog"></div>
+		</ng-view>
 	</body>
 
 </html> 

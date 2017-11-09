@@ -1,10 +1,8 @@
 package web_spotify.controllers;
 
-import org.json.HTTP;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import web_spotify.spotify.User;
-import web_spotify.spotify.Playlist;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,7 +43,13 @@ public class UserInfoController {
     @RequestMapping(value="/getName", method= RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public String getName(HttpSession session) throws SpotifyException{
-        return "";
+
+        User user = (User) session.getAttribute("User");
+        if(user == null) throw new SpotifyException("Cannot get name if User is not logged in");
+
+        JSONObject name = new JSONObject();
+        name.put("name", user.getName());
+        return name.toString();
     }
 
     /**

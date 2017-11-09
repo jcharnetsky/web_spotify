@@ -31,5 +31,6 @@ app.controller('MainCtrl', function($compile, $scope, $http, $parse){
         }
 
     }
+
 });
 

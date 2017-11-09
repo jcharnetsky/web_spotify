@@ -1,11 +1,8 @@
-<!--Angular-->
-<script src="http://code.jquery.com/jquery-2.0.3.min.js" data-semver="2.0.3" data-require="jquery"></script>
-
 <!-- CSS -->
 <link href="css/searchbar.css" rel="stylesheet" />
 <link href="css/style.css" rel="stylesheet"/>
 
-<div class="top">
+<div class="top" ng-app="web_spotify">
     <ul class="top_list">
         <li>
             <ul class="nav_history">
@@ -25,14 +22,16 @@
             </form>
         </li>
 
-        <li><a class="logout" href="/logout">Log Out</a></li>
+        <li><a class="logout" href="/logout">Log out</a></li>
 
         <li>
-            <ul class="account">
-                <a href="#">
-                    <li class="username"> User Name</li>
-                </a>
-            </ul>
+            <a href="#" id="username"><u>{{getName.name}}</u></a>
         </li>
     </ul>
 </div>
+
+<!-- Load the user's name whenever this page is initially loaded -->
+<script>
+    var scope = angular.element(document.getElementById('username')).scope();
+    scope.loadTemplateAndJSON('', 'null', 'getName');
+</script>
