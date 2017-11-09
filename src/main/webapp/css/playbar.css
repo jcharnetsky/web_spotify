@@ -1,10 +1,34 @@
 .current_song_info {
 	width: 9vw;
-	height: 8vw;
+	height: 6vh;
 	padding-top: 1vh;
+	padding-bottom: 1vh;
 	padding-left: 1vw;
 }
 
+.current_song_info div {
+    width: 9vw;
+    white-space: nowrap;
+    height: 3vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.current_album_cover {
+	padding-left: 0.5vw;
+	padding-top: 0.5vw;
+	height: 7vh;
+	width: auto;
+}
+
+.current_song_title {
+	font-size: 85%;
+	color: #dedede;
+}
+.current_song_artist {
+	font-size: 80%;
+	color: #7a7a7a;
+}
 .inline-block {
     display: inline-block !important;
 }
@@ -18,6 +42,7 @@
 }
 
 .scrub-bar {
+    margin-left: 2vw;
     padding-top: 2vh;
     width: 25vw;
 }
@@ -80,7 +105,6 @@ input[type='range']::-webkit-slider-thumb {
     background-color: #282828;
     width: auto;
     position: fixed;
-	height: 8vh;
 	padding-left: 0vw;
 	display: inline-block;
 }
@@ -101,27 +125,10 @@ input[type='range']::-webkit-slider-thumb {
 .music_buttons li {
 	padding-left: 2vw;
 }
-.current_album_cover {
-	padding-left: 0.5vw;
-	padding-top: 0.5vw;
-	height: 7vh;
-	width: auto;
-}
-
-.current_song_title {
-	font-size: 85%;
-	color: #dedede;
-	padding-bottom: 0vh;
-}
-.current_song_artist {
-	font-size: 80%;
-	color: #7a7a7a;
-	padding-top: 0vh;
-}
 
 .other_controls{
     position: absolute;
     display: inline-block;
     top: 2vh;
-    right: 20px;
+    right: 5vw;
 }
