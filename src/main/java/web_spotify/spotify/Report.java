@@ -6,11 +6,11 @@ package web_spotify.spotify;
  * @author Cardinals
  */
 public class Report {
-
+	
 	/**
-	 * The contents of the report
+	 * The id of the report
 	 */
-	private String description;
+	private final int reportId;
 	
 	/**
 	 * The subject of the report
@@ -18,9 +18,9 @@ public class Report {
 	private String subject;
 	
 	/**
-	 * The id of the report
+	 * The contents of the report
 	 */
-	private final int reportID;
+	private String description;
 	
 	/**
 	 * The default constructor of a report.
@@ -28,49 +28,44 @@ public class Report {
 	 * @param subject The subject of the report
 	 * @param id The report id
 	 */
-    public Report(String description, String subject, int reportID) {
-    		this.description = description;
+    public Report(int reportId, String subject, String description) {
+    		this.reportId = reportId;
     		this.subject = subject;
-    		this.reportID = reportID;
-    }
-    
-    /**
-     * Set the description of the report.
-     * @param description
-     */
-    public void setDescription(String description) {
     		this.description = description;
     }
     
     /**
-     * Get the description of the report
-     * @return
+     * Compare Report objects to determine equivalence
+     *
+     * @param a object to compare
+     * @return True if object is an instance of Administrator and has the same id; False otherwise
      */
-    public String getDescription() {
-    		return description;
+    @Override
+    public boolean equals(Object r) {
+        if((r != null) && (r instanceof Report)) {
+            return ((Report) r).getReportId() == this.getReportId();
+        } else return false;
     }
     
-    /**
-     * Set the subject of the report
-     * @param subject
-     */
-    public void setSubject(String subject) {
-    		this.subject = subject;
+    /** Getters **/
+    public int getReportId() {
+    		return reportId;
     }
     
-    /**
-     * Get the subject of the report
-     * @return
-     */
     public String getSubject() {
     		return subject;
     }
     
-    /**
-     * Get the reportID of the report
-     * @return
-     */
-    public int getReportID() {
-    		return reportID;
+    public String getDescription() {
+    		return description;
+    }
+    
+    /** Setters **/
+    public void setSubject(String subject) {
+    		this.subject = subject;
+    }
+    
+    public void setDescription(String description) {
+    		this.description = description;
     }
 }

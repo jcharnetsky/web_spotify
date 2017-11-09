@@ -1,9 +1,9 @@
 #main {
     position: absolute;
-    left: 8vw; bottom: 4vh; top: 5vh; right: 8vw;
+    left: 8vw; bottom: 4vh; top: 5vh;
+    width: 88vw;
 	color: #979797;
 	background-color: #181818;
-	overflow: auto;
 }
 
 .advertisement {
@@ -20,6 +20,7 @@
 	padding-right: 1vw;
 	margin-bottom: 0vh;
 }
+
 .navbar li {
 	vertical-align: center;
 	margin-right: 2vw;
@@ -30,9 +31,10 @@
 	padding-left: 0vw;
 	padding-bottom: 3vw;
 	background-color: #181818;
-	left: 2vw;
+	padding-left: 2vw;
 	height: auto;
 }
+
 .content_header {
 	position: relative;
 	padding-left: 0.5vw;

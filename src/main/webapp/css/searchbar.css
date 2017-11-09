@@ -1,5 +1,6 @@
 .top, .top_list {
 	position: fixed;
+	display: inline-block;
 	left: 0vw; right: 0vw;
 	color: #979797;
 	background-color: #121212;
@@ -12,26 +13,36 @@
 .top_list li {
 	line-height: 3vh;
 	text-align: center;
-	display: inline;
+	display: inline-block;
+	vertical-align: middle;
 	margin-bottom: 0vh;
 }
 
 .search {
-	float: left;
-    height: 3vh;
-	padding-left: 2vw;
-	padding-top: 0.5vh;
-	padding-bottom: 0.5vh;
+	display: inline;
+    height: 4vh;
+    padding-left: 1vw;
+	padding-right: 5vw;
+	margin-top: 0.5vh;
+}
+
+.logout {
+    position: absolute;
+    top: 8px;
+    right: 20px;
 }
 
 .nav_history {
-	float: left;
+	display: inline-block;
     height: 5vh;
 	padding-left: 0vw;
 }
 .nav_history li {
     height: 5vh;
+    margin-right: 0vw;
+    margin-left: 0vw;
 }
+
 .prev_history {
 	height: 5vh;
 	line-height: 200px;
@@ -41,14 +52,15 @@
 }
 
 .account {
+    display: inline-block;
     height: 5vh;
-	float: right;
 	padding-right: 2vw;
 	padding-top: 0.5vh;
 	padding-bottom: 0.5vh;
+	margin-left: 0vw;
+    padding-right: 0vw;
 }
 .account li {
     height: 5vh;
-	float: left;
 	padding-left: 1vw;
 }

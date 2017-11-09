@@ -1,5 +1,10 @@
 package web_spotify.spotify;
 
+import java.awt.Image;
+import java.sql.Date;
+import java.util.Collection;
+import java.util.ArrayList;
+
 /**
  * A collection of songs that are an album
  *
@@ -7,6 +12,21 @@ package web_spotify.spotify;
  */
 class Album extends SongCollection {
 
+	/**
+	 * The album's release date
+	 */
+	private final Date releaseDate;
+	
+	/**
+	 * The main artist of the album
+	 */
+	private final String artist;
+	
+	/**
+	 * The featured artists on the album
+	 */
+	private final Collection<Artist> featuredArtists;
+	
     /**
      * The default constructor of the Album Class
      *
@@ -16,8 +36,12 @@ class Album extends SongCollection {
      * @param image The image of the collection
      * @param genre The genre of the collection
      */
-    public Album(int id, String title, User owner, String imageURL, String genre, boolean isPublic, boolean isBanned) {
-        super(id, title, owner, imageURL, genre, isPublic, isBanned);
+    public Album(int id, String title, User owner, Image image, Genre genre, Date releaseDate, String artist, Collection<Artist> featuredArtists) {
+        super(id, title, owner, image, genre);
+        this.releaseDate = releaseDate;
+        this.artist = artist;
+        this.featuredArtists = new ArrayList<Artist>();
+        this.featuredArtists.addAll(featuredArtists);
     }
 
     /**
@@ -33,4 +57,16 @@ class Album extends SongCollection {
         } else return false;
     }
     
+    /** Getters **/
+    public Date getReleaseDate() {
+    		return releaseDate;
+    }
+    
+    public String getArtist() {
+    		return artist;
+    }
+    
+    public Collection<Artist> getFeaturedArtists() {
+    		return featuredArtists;
+    }
 }
