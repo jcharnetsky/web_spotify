@@ -1,5 +1,7 @@
 use cardinals;
 
+
+DROP TABLE IF EXISTS PlaylistFollowers;
 DROP TABLE IF EXISTS PlaylistCollaborators;
 DROP TABLE IF EXISTS SongsInPlaylist;
 DROP TABLE IF EXISTS Playlists;
@@ -32,11 +34,6 @@ CREATE TABLE Users (
 
 	PRIMARY KEY(ID)
 );
-
-INSERT INTO Users VALUES 
-	(0,'BASE', 'jack_the_guy@yahoo.com', 'pass', 'salt', 'Jack', 'Strong Island', TRUE, FALSE, NOW(), ''),
-	(1,'BASE', 'theJerryShore123@yahoo.com', 'pass', 'salt', 'Jerry', 'The Jersey Shore', TRUE, FALSE, NOW(), '')
-;
 
 CREATE TABLE Reports (
 	creatorID INTEGER NOT NULL,
@@ -184,12 +181,14 @@ CREATE TABLE SongAudio (
 
 CREATE TABLE Playlists (
 	ID INTEGER NOT NULL,
+	name VARCHAR(64) NOT NULL,
 	dateCreated DATE NOT NULL,
 	isPublic BOOLEAN NOT NULL,
 	isDeleted BOOLEAN NOT NULL,
 	creator INTEGER NOT NULL,
 	image VARCHAR(2048) NOT NULL,
-	
+	description VARCHAR(512) NOT NULL,
+
 	PRIMARY KEY(ID),
 	FOREIGN KEY(creator) REFERENCES Users(ID)
 );
@@ -207,6 +206,15 @@ CREATE TABLE SongsInPlaylist (
 );
 
 CREATE TABLE PlaylistCollaborators (
+    playlistID INTEGER NOT NULL,
+	userID INTEGER NOT NULL,
+
+    PRIMARY KEY(userID, playlistID),
+    FOREIGN KEY(userID) REFERENCES Users(ID),
+    FOREIGN KEY(playlistID) REFERENCES Playlists(ID)
+);
+
+CREATE TABLE PlaylistFollowers (
     playlistID INTEGER NOT NULL,
 	userID INTEGER NOT NULL,
 
