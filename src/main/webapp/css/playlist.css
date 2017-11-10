@@ -1,8 +1,8 @@
 .playlist_header {
-    display: inline-block;
-    margin-top: 2vw;
-    margin-left: 2vw;
-    margin-bottom: 3vw;
+  display: inline-block;
+  margin-top: 2vw;
+  margin-left: 2vw;
+  margin-bottom: 3vw;
 }
 
 .playlist_title {
@@ -15,48 +15,48 @@
 }
 
 .playlist_img {
-    height: 30vh;
-    width: auto;
-    display: inline-block;
-    position: relative;
-    border: 1px solid white;
+  height: 30vh;
+  width: auto;
+  display: inline-block;
+  position: relative;
+  border: 1px solid white;
 }
 
 .playlist_data {
-    margin-left: 10vw;
-    display: inline-block;
+  margin-left: 10vw;
+  display: inline-block;
 }
 
 .playlist_tiles , .playlist_column_headers {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .playlist_tiles {
-    padding-left: 0;
+  padding-left: 0;
 }
 
 .playlist_tiles li {
-    width: 80vw;
-    height: 3vw;
+  width: 80vw;
+  height: 3vw;
 }
 .playlist_tile {
-    height: 3vw;
-    display: table;
-    width: 100%;
-    table-layout: fixed;    /* For cells of equal size */
+  height: 3vw;
+  display: table;
+  width: 100%;
+  table-layout: fixed;    /* For cells of equal size */
 }
 
 .playlist_tile span, .playlist_tile a {
-    display: table-cell;
-    max-width: 10vw;
-    vertical-align: middle;
-    text-align: center;
+  display: table-cell;
+  max-width: 10vw;
+  vertical-align: middle;
+  text-align: center;
 }
 
 .add_button {
-    font-size: 180%;
-    width: 10%;
-    text-align: right;
+  font-size: 180%;
+  width: 10%;
+  text-align: right;
 }
 
 .highlight_on_hover:hover {
@@ -64,8 +64,8 @@
 }
 
 .playlist_hr {
-    width: 96%;
-	border-color: #282828;
+  width: 96%;
+  border-color: #282828;
 	border-width: 0.3vh;
 	margin-bottom: 0vh;
 }

@@ -1,44 +1,45 @@
 .canvas {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    left: 0; top: 0;
-    background-color: #282828;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  background-color: #282828;
 }
 .log_in_block {
-    position: relative;
-    margin-left: 40vw;
-    margin-right: 40vw;
+  position: relative;
+  margin-left: 40vw;
+  margin-right: 40vw;
 }
 
 .log_in_block input {
-    border-width: 1px;
-    border-radius: 3px;
-    color: #ffffff;
-    background-color: #282828;
+  border-width: 1px;
+  border-radius: 3px;
+  color: #ffffff;
+  background-color: #282828;
 }
 
 .logo {
-    width: 75px;
-    height: 75px;
-    display: block;
-    margin: auto;
-    margin-top: 2%;
-    border-radius: 50%;
+  width: 75px;
+  height: 75px;
+  display: block;
+  margin: auto;
+  margin-top: 2%;
+  border-radius: 50%;
 }
 
 hr {
-    width: 100%;
-    margin-top: 2%;
-    margin-bottom: 2%;
+  width: 100%;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
 
 form input {
-    width: 100%;
+  width: 100%;
 }
 
 .text_input_field {
-    display:inline;
-    width:auto;
-    margin-right: 2vw;
+  display:inline;
+  width:auto;
+  margin-right: 2vw;
 }
