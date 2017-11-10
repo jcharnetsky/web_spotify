@@ -1,32 +1,31 @@
-<!-- CSS -->
-<link href="css/searchbar.css" rel="stylesheet" />
+<link href="css/searchbar.css" rel="stylesheet"/>
 
 <div class="top" ng-app="web_spotify">
-    <ul class="top_list">
+  <ul class="top_list">
+    <li>
+      <ul class="nav_history">
+        <li><a href="#">
+          <p class="horizontal_chevron" class="prev_history"><
+        </a></li>
+        <li><a href="#" class="next_history">
+          <p class="horizontal_chevron">>
+        </a></li>
         <li>
-            <ul class="nav_history">
-                <li><a href="#">
-                    <p class="horizontal_chevron" class="prev_history"><
-                </a></li>
-
-                <li><a href="#" class="next_history">
-                    <p class="horizontal_chevron">>
-                </a></li>
-                <li><form class="search">
-                    <input class="search" type="text" ng-model="search_querey" placeholder="Search"><br>
-                </form></li>
-            </ul>
+          <form class="search">
+            <input class="search" type="text" ng-model="search_querey" placeholder="Search"><br>
+          </form>
         </li>
-
-        <li class="logout" >
-            <a href="/logout">Log out </a>&#8226;
-            <a href="#" id="username">{{getName.name}}</a>
-        </li>
-    </ul>
+      </ul>
+    </li>
+    <li class="logout">
+      <a href="/logout">Log out </a>&#8226;
+      <a href="#" id="username">{{getName.name}}</a>
+    </li>
+  </ul>
 </div>
 
-<!-- Load the user's name whenever this page is initially loaded -->
 <script>
     var scope = angular.element(document.getElementById('username')).scope();
     scope.loadTemplateAndJSON('', 'null', 'getName');
+
 </script>

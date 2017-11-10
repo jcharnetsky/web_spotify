@@ -61,6 +61,4 @@ public class UserInfoController {
                              HttpSession session) throws SpotifyException {
     return "";
   }
-
-
 }
