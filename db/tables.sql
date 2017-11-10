@@ -24,6 +24,7 @@ CREATE TABLE Users (
 	password VARCHAR(1024) NOT NULL,
 	salt VARCHAR(1024) NOT NULL,
 	name VARCHAR(64) NOT NULL,
+	address VARCHAR(64) NOT NULL,
 	isPublic BOOLEAN NOT NULL,
 	isBanned BOOLEAN NOT NULL,
 	birthday DATE NOT NULL,
@@ -32,6 +33,10 @@ CREATE TABLE Users (
 	PRIMARY KEY(ID)
 );
 
+INSERT INTO Users VALUES 
+	(0,'BASE', 'jack_the_guy@yahoo.com', 'pass', 'salt', 'Jack', 'Strong Island', TRUE, FALSE, NOW(), ''),
+	(1,'BASE', 'theJerryShore123@yahoo.com', 'pass', 'salt', 'Jerry', 'The Jersey Shore', TRUE, FALSE, NOW(), '')
+;
 
 CREATE TABLE Reports (
 	creatorID INTEGER NOT NULL,
