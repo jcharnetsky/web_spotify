@@ -14,8 +14,8 @@ public class Advertisement extends Song {
 	 */
 	private final Advertiser advertiser;
 
-    public Advertisement(int songId, int artistId, int albumId, ArrayList<Artist> featuredArtists, String title, double trackLength, byte[] audioFile, Advertiser advertiser) {
-    		super(songId, artistId, albumId, featuredArtists, title, trackLength, audioFile);
+    public Advertisement(int artistId, int albumId, String title, int trackLength, byte[] audioFile, Advertiser advertiser) {
+    		super(artistId, albumId, title, trackLength, audioFile);
     		this.advertiser = advertiser;
 	}
 
