@@ -253,3 +253,15 @@
 .next_tiles {
 	height: 5vh;
 }
+
+.tile_img, .two_tile_img, .three_tile_img, .concert_img, .release_img {
+  -webkit-box-shadow: 0px 0px 1px #979797;
+   box-shadow: 0px 0px 1px #979797;
+}
+
+.tile_img:hover, .two_tile_img:hover, .three_tile_img:hover, .concert_img:hover, .release_img:hover {
+  -webkit-box-shadow: 1px 1px 5px white;
+   box-shadow: 1px 1px 5px white;
+   -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+}

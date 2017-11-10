@@ -1,3 +1,4 @@
+// Clears out div, then loads in the template HTML at URL into div
 function loadToDiv(div, URL) {
   node = document.getElementById(div);
   if(node == null) return;
@@ -14,9 +15,9 @@ function loadToDiv(div, URL) {
 
 function handleJSONResponse(response, div, URL, controllerPath, compile, parse, scope){
   if(!response.data.error){
-    parse(controllerPath).assign(scope, response.data);
+    parse(controllerPath).assign(scope, response.data); // Sets scope.controllerPath to response.data JSON
     node = loadToDiv(div, URL);
-    compile(node)(scope);
+    compile(node)(scope); // Recompiles an ng-include div to load template html
     return;
   }
   displayErrorPopup(response.data.error, scope, parse, compile);
