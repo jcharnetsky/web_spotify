@@ -1,5 +1,6 @@
 package web_spotify.controllers;
 
+import Utils.DBUtils;
 import web_spotify.spotify.Playlist;
 
 import Utils.JsonUtils;
@@ -53,8 +54,9 @@ public class LogInController {
     final String validEmail = "user@yahoo.com";
     final String validPassword = "password";
 
-    if (validEmail.equals(email) && validPassword.equals(password)) {
-      User user = new User(0, "Pepe the frog", email, null, null, null);
+    User user = DBUtils.getUser(email, password);
+    
+    if (user != null) {
       User owner = new User(1, "Owner","owner@gmail.com", null, null, null);
       String[] playlists = {"On the Road", "Spotify and Chill", "Spotify top 50 Sweden", "Spotify Sessions",
                             "Rock Classics", "Pop Rising", "Liked from Radio"};
