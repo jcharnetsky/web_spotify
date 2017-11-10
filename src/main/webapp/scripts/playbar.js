@@ -1,84 +1,52 @@
-var app = angular.module('web_spotify');
-
-function padZero(time){
-  if(time < 10){
-    return "0" + time;
-  }
-  return time;
-}
-
-function secondsToMinSec(time){
-  return Math.floor(time/60) + ":" + padZero((time%60));
-}
-
-app.controller('playbarCtrl', function($scope, $interval){
+angular.module('web_spotify').controller('playbarCtrl', function($scope, $interval){
+  var audio;
+  var volumeBar = document.getElementById("songVolume");
+  var progressBar = document.getElementById("songProgress");
 	$scope.play = false;
 
 	$scope.playSong = function () {
-		const aud = document.getElementById("playAudio");
-		const plb = document.getElementById("playButton");
-		const vol = document.getElementById("songVolume");
-        aud.volume = vol.value / 100;
-
-		if(!$scope.play) {
+		audio = document.getElementById("playAudio");
+		volumeBar = document.getElementById("songVolume");
+    audio.volume = volumeBar.value/100;
+		if (!$scope.play) {
 			$scope.doPlay();
 		} else {
 			$scope.doPause();
 		}
+		$interval(function() {$scope.progressAtInterval();}, 1000);
+    $scope.progressAtInterval();
 	}
 
-    $scope.progressAtInterval = function() {
-		const aud = document.getElementById("playAudio");
-		const pro = document.getElementById("songProgress");
+  $scope.progressAtInterval = function() {
+		progressBar.max = audio.duration;
+		progressBar.value = audio.currentTime;
 
-		pro.max = aud.duration;
-		pro.value = aud.currentTime;
-
-		const tup = document.getElementById("playSongTimeUp");
-		const tdo = document.getElementById("playSongTimeDown");
-
-		tup.innerHTML = secondsToMinSec(Math.floor(pro.value));
-		tdo.innerHTML = secondsToMinSec(Math.floor(pro.max - pro.value));
-
-		if(Math.floor(pro.value)>=Math.floor(pro.max)) {
-		// Play the next song here
+		document.getElementById("playSongTimeUp").innerHTML = secondsToMinSec(progressBar.value);
+		document.getElementById("playSongTimeDown").innerHTML = secondsToMinSec(progressBar.max - progressBar.value);
+		if (Math.floor(progressBar.value) >= Math.floor(progressBar.max)) {
 			$scope.play = false;
 			$scope.doPause();
 		}
-    }
+  }
 
 	$scope.scrubSong = function() {
-		const aud = document.getElementById("playAudio");
-		const pro = document.getElementById("songProgress");
-
-		pro.max = aud.duration;
-		aud.currentTime = pro.value;
+		progressBar.max = audio.duration;
+		audio.currentTime = progressBar.value;
 	}
 
 	$scope.scrubVolume = function() {
-	    const aud = document.getElementById("playAudio");
-        const vol = document.getElementById("songVolume");
-        aud.volume = vol.value / 100;
+    audio.volume = volumeBar.value/100;
 	}
 
 	$scope.doPlay = function () {
-		const aud = document.getElementById("playAudio");
-		const plb = document.getElementById("playButton");
-		aud.play();
-		plb.src = "../images/pause.png";
+		audio.play();
+		document.getElementById("playButton").src = "../images/pause.png";
 		$scope.play = true;
 	}
 
 	$scope.doPause = function () {
-		const aud = document.getElementById("playAudio");
-		const plb = document.getElementById("playButton");
-		aud.pause();
-		plb.src = "../images/play.png";
+		audio.pause();
+	  document.getElementById("playButton").src = "../images/play.png";
 		$scope.play = false;
 	}
-
-	$interval(function() {$scope.progressAtInterval();}, 1000);
-
-	$scope.progressAtInterval();
-
 });

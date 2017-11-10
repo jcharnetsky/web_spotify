@@ -1,31 +1,30 @@
 <a href="#"><img class="advertisement" src="../images/ad.png" alt="Sponsored Advertiesment"></a>
-
 <ul class="navbar">
-    <li id="active">
-        <a href="#" ng-click="loadTemplateAndJSON('content', 'overview.html', 'overview')" id="current">Overview</a>
-    </li>
-    <li>
-        <a href="#" ng-click="loadTemplateAndJSON('content', 'charts.html', 'charts')">Charts</a>
-    </li>
-    <li>
-        <a href="#" ng-click="loadTemplateAndJSON('content', 'genres_moods.html', 'genres_moods')">Genres & Moods</a>
-    </li>
-    <li>
-        <a href="#" ng-click="loadTemplateAndJSON('content', 'new_releases.html', 'new_releases')">New Releases</a>
-    </li>
-    <li>
-        <a href="#" ng-click="loadTemplateAndJSON('content', 'discover.html', 'discover')">Discover</a>
-    </li>
-    <li>
-        <a href="#" ng-click="loadTemplateAndJSON('content', 'concerts.html', 'concerts')">Concerts</a>
-    </li>
+  <li id="active">
+    <a href="#" ng-click="loadTemplateAndJSON('content', 'overview.html', 'overview')" id="current">Overview</a>
+  </li>
+  <li>
+    <a href="#" ng-click="loadTemplateAndJSON('content', 'charts.html', 'charts')">Charts</a>
+  </li>
+  <li>
+    <a href="#" ng-click="loadTemplateAndJSON('content', 'genres_moods.html', 'genres_moods')">Genres & Moods</a>
+  </li>
+  <li>
+    <a href="#" ng-click="loadTemplateAndJSON('content', 'new_releases.html', 'new_releases')">New Releases</a>
+  </li>
+  <li>
+    <a href="#" ng-click="loadTemplateAndJSON('content', 'discover.html', 'discover')">Discover</a>
+  </li>
+  <li>
+    <a href="#" ng-click="loadTemplateAndJSON('content', 'concerts.html', 'concerts')">Concerts</a>
+  </li>
 </ul>
 
 <ul id="content">
 </ul>
 
-<!-- Load the overview section whenever this page is initially loaded -->
 <script>
     scope = angular.element(document.getElementById('main')).scope();
     scope.loadTemplateAndJSON('content', 'overview.html', 'overview');
+
 </script>

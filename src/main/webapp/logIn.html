@@ -1,43 +1,35 @@
 <!DOCTYPE html>
-
-<html >
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Log in to Spotify</title>
-    <!-- CSS -->
-	<link href="css/style.css" rel="stylesheet" />
-	<link href="css/login.css" rel="stylesheet" />
-		
-
-	<!-- Angular -->
-	<script src="http://code.jquery.com/jquery-2.0.3.min.js" data-semver="2.0.3" data-require="jquery"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-	<script src="scripts/helper.js"></script>
-	<script src="scripts/login.js"></script>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Log in to Spotify</title>
+  <link href="css/style.css" rel="stylesheet"/>
+  <link href="css/login.css" rel="stylesheet"/>
+  <script src="http://code.jquery.com/jquery-2.0.3.min.js" data-semver="2.0.3" data-require="jquery"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script src="scripts/helper.js"></script>
+  <script src="scripts/login.js"></script>
 </head>
 
-<body ng-app="login_module" ng-controller="logInCtrl" >
-	<div class="canvas">
-		<img class="logo" src="images/logo.jpg"/>
-		<hr>
-		<div class="center_align log_in_block">
-			<div class="center_align">
-				<form novalidate class="center_align">
-						<input class="text_input_field" type="text" ng-model="name"
-                               placeholder="Username or email address"/><br /><br/>
-						<input class="text_input_field" type="text" ng-model="password"
-                               placeholder="Password"/><br /><br/>
-				</form>
-			</div>
-			<input type="submit" value="Login" ng-click="logIn()" /> <br/>
-			<br/>
-			<span>Don't have an account? </span><a href="/signUpPage">Sign Up</a>
-		</div>
-	</div>
-
-	<div id="error_dialog"></div>
-
+<body ng-app="login_module" ng-controller="logInCtrl">
+  <div class="canvas">
+    <img class="logo" src="images/logo.jpg"/>
+    <hr>
+    <div class="center_align log_in_block">
+      <div class="center_align">
+        <form novalidate class="center_align">
+          <input class="text_input_field" type="text" ng-model="name"
+                 placeholder="Username or email address"/><br/><br/>
+          <input class="text_input_field" type="text" ng-model="password"
+                 placeholder="Password"/><br/><br/>
+        </form>
+      </div>
+      <input type="submit" value="Login" ng-click="logIn()"/> <br/>
+      <br/>
+      <span>Don't have an account? </span><a href="/signUpPage">Sign Up</a>
+    </div>
+  </div>
+  <div id="error_dialog"></div>
 </body>
 </html>

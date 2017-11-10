@@ -7,11 +7,11 @@
 }
 
 .current_song_info div {
-    width: 9vw;
-    white-space: nowrap;
-    height: 3vh;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  width: 9vw;
+  white-space: nowrap;
+  height: 3vh;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .current_album_cover {
@@ -30,88 +30,79 @@
 	color: #7a7a7a;
 }
 .inline-block {
-    display: inline-block !important;
+  display: inline-block !important;
 }
 
 #playSongTimeDown {
-    margin-left: 1vw;
+  margin-left: 1vw;
 }
 
 #playSongTimeUp {
-    margin-right: 1vw;
+  margin-right: 1vw;
 }
 
 .scrub-bar {
-    margin-left: 2vw;
-    padding-top: 2vh;
-    width: 25vw;
+  margin-left: 2vw;
+  padding-top: 2vh;
+  width: 25vw;
 }
 
 input[type="range"] {
-    display: inline;
-    overflow: hidden;
-    -webkit-appearance: none;
-    width: 15vw;
-    background: transparent;
+  display: inline;
+  overflow: hidden;
+  -webkit-appearance: none;
+  width: 15vw;
+  background: transparent;
 }
 
 input[type="range"]:focus {
-    outline: none;
-}
-
-input[type=range]::-ms-fill-lower {
-    background: #777;
-    border-radius: 10px;
-}
-input[type=range]::-ms-fill-upper {
-    background: #ddd;
-    border-radius: 10px;
+  outline: none;
 }
 
 input[type="range"]::-ms-track {
-    width: 100%;
-    -webkit-appearance: none;
-    color: transparent;
-    background: transparent;
-    border-radius: 4px;
+  width: 100%;
+  -webkit-appearance: none;
+  color: transparent;
+  background: transparent;
+  border-radius: 4px;
 }
 
 
 input[type="range"]::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 6px;
-    cursor: pointer;
-    -webkit-appearance: none;
-    background: transparent;
-    box-shadow: 1px 1px 1px #000000;
-    background: #121212;
-    border-radius: 1.3px;
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  background: transparent;
+  box-shadow: 1px 1px 1px #000000;
+  background: #121212;
+  border-radius: 1.3px;
 }
 
 input[type='range']::-webkit-slider-thumb {
-    box-shadow: 1px 1px 1px #000000;
-    height: 10px;
-    width: 10px;
-    border-radius: 5px;
-    background: white;
-    cursor: pointer;
-    -webkit-appearance: none;
-    margin-top: -2px;
+  box-shadow: 1px 1px 1px #000000;
+  height: 10px;
+  width: 10px;
+  border-radius: 5px;
+  background: white;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -2px;
 }
 
 .playbar {
-    left: 0vw; bottom: 0vh; top: 92vh; right: 0vw;
-    height: 8vh;
-    background-color: #282828;
-    width: auto;
-    position: fixed;
+  left: 0vw; bottom: 0vh; top: 92vh; right: 0vw;
+  height: 8vh;
+  background-color: #282828;
+  width: auto;
+  position: fixed;
 	padding-left: 0vw;
 	display: inline-block;
 }
 
 .playbar li , .playbar p , .playbar a{
-    display: inline;
-    vertical-align: top;
+  display: inline;
+  vertical-align: top;
 }
 
 .music_controls {
@@ -120,15 +111,15 @@ input[type='range']::-webkit-slider-thumb {
 	height: 8vh;
 }
 .music_buttons {
-    display: inline;
+  display: inline;
 }
 .music_buttons li {
 	padding-left: 2vw;
 }
 
 .other_controls{
-    position: absolute;
-    display: inline-block;
-    top: 2vh;
-    right: 5vw;
+  position: absolute;
+  display: inline-block;
+  top: 2vh;
+  right: 5vw;
 }

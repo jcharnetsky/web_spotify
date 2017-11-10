@@ -1,24 +1,41 @@
+// Clears out div, then loads in the template HTML at URL into div
 function loadToDiv(div, URL) {
-    var node = document.getElementById(div);
+  node = document.getElementById(div);
+  if(node == null) return;
+  while(node.firstChild){
+    node.removeChild(node.firstChild);
+  }
+  if(!(URL === 'null')){
+     var tag = document.createElement('div');
+     tag.setAttribute("ng-include", "'templates/" + URL + "'");
+     node.appendChild(tag);
+  }
+  return node;
+}
 
-    //Clear out whatever was in the content container
-    if(node == null) return;
-    while(node.firstChild){
-      node.removeChild(node.firstChild);
-    }
-
-    if(!(URL === 'null')){
-
-       //Add the new include to whatever was clicked
-       var tag = document.createElement('div');
-       tag.setAttribute("ng-include", "'templates/" + URL + "'");
-       node.appendChild(tag);
-    }
-    return node;
+function handleJSONResponse(response, div, URL, controllerPath, compile, parse, scope){
+  if(!response.data.error){
+    parse(controllerPath).assign(scope, response.data); // Sets scope.controllerPath to response.data JSON
+    node = loadToDiv(div, URL);
+    compile(node)(scope); // Recompiles an ng-include div to load template html
+    return;
+  }
+  displayErrorPopup(response.data.error, scope, parse, compile);
 }
 
 function displayErrorPopup(error, scope, parse, compile) {
-    parse('error').assign(scope, error);
-    node = loadToDiv('error_dialog', 'error.html');
-    compile(node)(scope);
+  parse('error').assign(scope, error);
+  node = loadToDiv('error_dialog', 'error.html');
+  compile(node)(scope);
+}
+
+function padZero(time){
+  if(time < 10){
+    return "0" + time;
+  }
+  return time;
+}
+
+function secondsToMinSec(time){
+  return Math.floor(time/60) + ":" + padZero((Math.floor(time%60)));
 }
