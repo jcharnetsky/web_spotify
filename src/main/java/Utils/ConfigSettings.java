@@ -12,4 +12,6 @@ class ConfigSettings {
     public static final String DB_FORM = "jdbc:mysql://%s/%s?user=%s&password=%s";
     
     public static final String DB_LOGIN= "SELECT * FROM Users WHERE email='%s' AND password='%s';";
+    public static final String DB_PLAYLIST = "select p.* from Playlists p, PlaylistFollowers f WHERE f.userId = %d AND p.ID=f.playlistID AND NOT(p.isDeleted) AND (p.isPublic OR (p.creator=f.userId));";
+    public static final String DB_USERS="SELECT * FROM Users WHERE ID=%d;";
 }
