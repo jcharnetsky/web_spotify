@@ -70,7 +70,7 @@ public class User implements Viewable {
     /**
      * The user's saved albums.
      */
-    private Collection<SongCollection> savedAlbums;
+    private Collection<Album> savedAlbums;
     
     /** 
      * The playlists this user is following.
