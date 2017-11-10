@@ -51,19 +51,17 @@ public class LogInController {
       throw new SpotifyException("User already logged in.");
     }
 
-    final String validEmail = "user@yahoo.com";
-    final String validPassword = "password";
-
     User user = DBUtils.getUser(email, password);
     
     if (user != null) {
-      User owner = new User(1, "Owner","owner@gmail.com", null, null, null);
-      String[] playlists = {"On the Road", "Spotify and Chill", "Spotify top 50 Sweden", "Spotify Sessions",
-                            "Rock Classics", "Pop Rising", "Liked from Radio"};
-      for (int i = 0; i < playlists.length; i++) {
-        user.followPlaylist(new Playlist(i, playlists[i], owner, null, null, null));
-      }
-      session.setAttribute("User", user);
+//      User owner = new User(1, "Owner","owner@gmail.com", null, null, null);
+//      String[] playlists = {"On the Road", "Spotify and Chill", "Spotify top 50 Sweden", "Spotify Sessions",
+//                            "Rock Classics", "Pop Rising", "Liked from Radio"};
+//      for (int i = 0; i < playlists.length; i++) {
+//        user.followPlaylist(new Playlist(i, playlists[i], owner, null, null, null));
+//      }
+//      session.setAttribute("User", user);
+        session.setAttribute("User", user);
     } else {
       throw new SpotifyException("Invalid Username/Password");
     }
