@@ -21,6 +21,9 @@ public class PlaylistController {
 
   private String[] playlists = {"On the Road", "Spotify and Chill", "Spotify top 50 Sweden", "Spotify Sessions",
           "Rock Classics", "Pop Rising", "Liked from Radio"}; /* Dummy playlist data */
+  private String songTitle = "Gucci gang";
+  private String songArtist = "Lil' pump";
+  private String songDate = "10/10/2017";
 
   /**
    * Create a playlist for the logged in user with the specified name
@@ -61,6 +64,15 @@ public class PlaylistController {
   public String getPlaylistData(@RequestParam(value = "playlistId", required = true) int playlistId)
           throws SpotifyException {
     JSONObject playlist = new JSONObject();
+    JSONArray songs = new JSONArray();
+    for (int i = 0; i < 9; i++) {
+      JSONObject song = new JSONObject();
+      song.put("title", songTitle);
+      song.put("artist", songArtist);
+      song.put("date", songDate);
+      songs.put(song);
+    }
+    playlist.put("songs", songs);
     playlist.put("title", playlists[playlistId]);
     playlist.put("owner", "Owner");
     playlist.put("song_count", 5);

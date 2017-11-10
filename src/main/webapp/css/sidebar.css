@@ -27,7 +27,7 @@
 }
 
 #sidebar-resizer {
-	background-color: #181818;
+	background-color: transparent;
   position: absolute;
   top: 0vh;
   bottom: 8vh;

@@ -1,6 +1,9 @@
 #main {
   position: absolute;
-  left: 8vw; bottom: 4vh; top: 5vh;
+  left: 8vw; top: 5vh;
+  height: auto;
+  padding-top: 2vh;
+  padding-left: 2vw;
   width: 88vw;
 	color: #979797;
 	background-color: #181818;
@@ -28,10 +31,8 @@
 
 #content {
 	position: relative;
-	padding-left: 0vw;
 	padding-bottom: 3vw;
 	background-color: #181818;
-	padding-left: 2vw;
 	height: auto;
 }
 
