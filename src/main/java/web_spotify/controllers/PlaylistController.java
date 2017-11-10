@@ -19,6 +19,9 @@ import java.util.Iterator;
 @Controller
 public class PlaylistController {
 
+  private String[] playlists = {"On the Road", "Spotify and Chill", "Spotify top 50 Sweden", "Spotify Sessions",
+          "Rock Classics", "Pop Rising", "Liked from Radio"}; /* Dummy playlist data */
+
   /**
    * Create a playlist for the logged in user with the specified name
    * @param name    The specified name.
@@ -57,9 +60,12 @@ public class PlaylistController {
   @ResponseBody
   public String getPlaylistData(@RequestParam(value = "playlistId", required = true) int playlistId)
           throws SpotifyException {
-    JSONObject temp = new JSONObject();
-    temp.put("temporary data", "temporary data");
-    return temp.toString();
+    JSONObject playlist = new JSONObject();
+    playlist.put("title", playlists[playlistId]);
+    playlist.put("owner", "Owner");
+    playlist.put("song_count", 5);
+    playlist.put("duration", 100);
+    return playlist.toString();
   }
 
   /**

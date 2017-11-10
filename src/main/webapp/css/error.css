@@ -9,7 +9,7 @@
     width: auto;
     height: auto;
 
-    transition: opacity 0.75s ease 1s;
+    transition: opacity 0.75s ease 3s;
     opacity: 0;
     background-color: #181818;
 

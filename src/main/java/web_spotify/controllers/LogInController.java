@@ -55,10 +55,11 @@ public class LogInController {
 
     if (validEmail.equals(email) && validPassword.equals(password)) {
       User user = new User(0, "Pepe the frog", email, null, null, null);
+      User owner = new User(1, "Owner","owner@gmail.com", null, null, null);
       String[] playlists = {"On the Road", "Spotify and Chill", "Spotify top 50 Sweden", "Spotify Sessions",
                             "Rock Classics", "Pop Rising", "Liked from Radio"};
       for (int i = 0; i < playlists.length; i++) {
-        user.followPlaylist(new Playlist(i, playlists[i], null, null, null, null));
+        user.followPlaylist(new Playlist(i, playlists[i], owner, null, null, null));
       }
       session.setAttribute("User", user);
     } else {
