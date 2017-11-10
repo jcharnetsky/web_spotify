@@ -13,7 +13,6 @@ public class SpotifyException extends Exception {
    * @return The JSON string of the error message
    */
   public String toJSONString() {
-
     JSONObject errorJSON = new JSONObject();
     errorJSON.put("error", this.getMessage());
     return errorJSON.toString();

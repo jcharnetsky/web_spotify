@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class SpotifyExceptionHandler {
 
   /**
-   * Handle a thrown SpotifyException by return a JSON with error data for the client to display.
+   * Handle a thrown SpotifyException by returning a JSON object containing the
+   * error message for the client to display.
    * @param e The exception to handle
    * @return A JSON Object containing the error data in the exception
    */

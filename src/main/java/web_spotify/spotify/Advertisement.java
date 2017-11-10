@@ -8,8 +8,8 @@ import java.util.ArrayList;
  * @author Cardinals
  */
 public class Advertisement extends Song {
-	
-	/** 
+
+	/**
 	 * The advertiser who owns this advertisement
 	 */
 	private final Advertiser advertiser;
@@ -23,7 +23,7 @@ public class Advertisement extends Song {
     public Advertiser getAdvertiser() {
     		return advertiser;
     }
-    
+
     /**
      * Compare Advertisement objects to determine equivalence
      *
