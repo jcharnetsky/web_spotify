@@ -1,68 +1,88 @@
 package web_spotify.spotify;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.SecondaryTable;
+import javax.persistence.SecondaryTables;
+import javax.persistence.Table;
 
 /**
  * Represents a song that a user can play
  *
  * @author Cardinals
  */
+@Entity
+@Table(name = "Songs")
+@SecondaryTables({
+	@SecondaryTable(name = "SongAudio", pkJoinColumns = @PrimaryKeyJoinColumn(name = "songID")),
+	@SecondaryTable(name = "SongListens", pkJoinColumns = @PrimaryKeyJoinColumn(name = "songID"))
+})
+
 public class Song implements Viewable, Playable {
 
 	/** 
      * The ID of the song
      */
-    private final int songId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+    private int songId;
     
     /**
      * The ID of the artist who owns the song
      */
+	@Column(name = "artistID", table = "Songs")
     private final int artistId;
     
     /** 
      * The album the song belongs to
      */
+	@Column(name = "albumID", table = "Songs")
     private final int albumId;
-    
-    /**
-     * The featured artists on the song
-     */
-    private final Collection<Artist> featuredArtists;
     
     /**
      * The title of the song
      */
+    @Column(name = "title", table = "Songs")
     private final String title;
     
     /**
      * The length of the song
      */
-    private final double trackLength;
+    @Column(name = "trackLength", table = "Songs")
+    private final int trackLength;
     
     /**
      * The audio file
      */
+    @Column(name = "audio", table = "SongAudio")
     private final byte[] audioFile;
 
     /**
      * The number of listens this month
      */
+    @Column(name = "count", table = "SongListens")
     private int monthlyListens;
 
     /**
      * The number of total listens
      */
+    //?????????????????????????? DATABASE ????????????????????//
     private int totalListens;
     
     /**
      * Whether or not the song is banned
      */
+    @Column(name = "isBanned", table = "Songs")
     private boolean isBanned;
 
     /**
      * Whether or not the song is public
      */
+    @Column(name = "isPublic", table = "Songs")
     private boolean isPublic;
     
     /**
@@ -75,12 +95,9 @@ public class Song implements Viewable, Playable {
      * @param title The title of the song
      * @param trackLength The runtime of the song
      */ 
-    public Song (int songId, int artistId, int albumId, ArrayList<Artist> featuredArtists, String title, double trackLength, byte[] audioFile) {
-    		this.songId = songId;
+    public Song (int artistId, int albumId, String title, int trackLength, byte[] audioFile) {
     		this.artistId = artistId;
     		this.albumId = albumId;
-    		this.featuredArtists = new ArrayList<Artist>();
-    		this.featuredArtists.addAll(featuredArtists);
     		this.title = title;
     		this.trackLength = trackLength;
     		this.audioFile = audioFile;
@@ -140,10 +157,6 @@ public class Song implements Viewable, Playable {
     
     public int getAlbumid() {
     		return albumId;
-    }
-    
-    public Collection<Artist> getFeaturedArtist() {
-    		return featuredArtists;
     }
     
     public String getTitle() {

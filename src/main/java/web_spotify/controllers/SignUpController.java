@@ -9,14 +9,14 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class SignUpController {
 
-    /**
-     * Redirect the user to the sign up page. If they are already logged in,
-     * send them to the homepage.
-     * @param session Current session that may contain the logged in user
-     * @return The sign up page html.
-     */
-    @RequestMapping(value="/signUpPage", method= RequestMethod.GET)
-    public String signUpPage(HttpSession session){
-        return "signUp.html";
-    }
+  /**
+   * Redirect the user to the sign up page. If they are already logged in,
+   * send them to the homepage.
+   * @param session Current session that may contain the logged in user
+   * @return The sign up page html.
+   */
+  @RequestMapping(value = "/signUpPage", method = RequestMethod.GET)
+  public String signUpPage(HttpSession session) {
+    return "signUp.html";
+  }
 }
