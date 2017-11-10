@@ -14,7 +14,7 @@
   <li ng-repeat="item in overview.focus">
     <div class="tile">
       <a href="#">
-        <img class="tile_img" src={{item.img}} alt="Suggestion"/>
+        <img class="tile_img" ng-src={{item.img}} alt="Suggestion"/>
       </a>
 
       <p class="tile_text">{{item.head}}</p>
@@ -28,7 +28,7 @@
   <li class="center_align" ng-repeat="chart in overview.charts">
     <div class="three_tile">
       <a href="#">
-        <img class="three_tile_img" src={{chart.img}}/>
+        <img class="three_tile_img" ng-src={{chart.img}}>
       </a>
       <p class="tile_desc">{{chart.desc}}</p>
     </div>
@@ -40,7 +40,7 @@
   <li ng-repeat="n in [1,2,3,4,5,6,7,8]">
     <div class="tile">
       <a href="#">
-        <img class="tile_img" src="images/genre_1.png">
+        <img class="tile_img" ng-src="images/genre_{{n}}.png">
       </a>
     </div>
   </li>
