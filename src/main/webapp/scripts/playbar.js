@@ -6,14 +6,13 @@ function padZero(time){
 }
 
 function secondsToMinSec(time){
-  return Math.floor(time/60) + ":" + padZero((time%60));
+  return Math.floor(time/60) + ":" + padZero((Math.floor(time%60)));
 }
 
-audio = document.getElementById("playAudio");
-volumeBar = document.getElementById("songVolume");
-progressBar = document.getElementById("songProgress");
-
 angular.module('web_spotify').controller('playbarCtrl', function($scope, $interval){
+  var audio;
+  var volumeBar = document.getElementById("songVolume");
+  var progressBar = document.getElementById("songProgress");
 	$scope.play = false;
 
 	$scope.playSong = function () {
@@ -25,6 +24,8 @@ angular.module('web_spotify').controller('playbarCtrl', function($scope, $interv
 		} else {
 			$scope.doPause();
 		}
+		$interval(function() {$scope.progressAtInterval();}, 1000);
+    $scope.progressAtInterval();
 	}
 
   $scope.progressAtInterval = function() {
@@ -59,7 +60,4 @@ angular.module('web_spotify').controller('playbarCtrl', function($scope, $interv
 	  document.getElementById("playButton").src = "../images/play.png";
 		$scope.play = false;
 	}
-
-	$interval(function() {$scope.progressAtInterval();}, 1000);
-	$scope.progressAtInterval();
 });

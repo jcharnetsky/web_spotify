@@ -53,7 +53,7 @@ public class UserInfoController {
    * @param newPassword The specified new password to change to
    * @param session Current session that should contain the user
    * @return A JSON object containing a success message
-   * @throws SpotifyException If there is no logged in user or the password does not meet validation criteria
+   * @throws SpotifyException If there is no logged in user or the password is invalid
    */
   @RequestMapping(value = "/editPassword", method = RequestMethod.GET, produces = "application/json")
   @ResponseBody

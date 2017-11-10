@@ -25,7 +25,7 @@ public class Administrator extends User {
      * @param email The current email of the administrator
      * @param address The physical address of the administrator
      * @param birthday The birthday of the administrator
-     * @return 
+     * @return
      */
     public Administrator(int id, String name, String email, String address, Date birthday, Image image) {
         super(id, name, email, address, birthday, null);
