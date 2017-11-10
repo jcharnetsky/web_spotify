@@ -1,12 +1,10 @@
 <link href="css/playlist.css" rel="stylesheet"/>
-<script></script>
-
+<div class="playlist" ng-controller="LoadPlaylistCtrl">
 <div class="playlist_header">
   <img class="playlist_img" src="../images/rhiannon-giddens-tomorrow-is-my-turn.jpg" alt="album_art">
   <div class="playlist_data">
-    <div id="content_title">PLAYLIST</div>
-    <div id="playlist_title" ng-model="playlist_title">Title</div>
-    <div id="playlist_info">Created by: {{ playlist_owner }} / {{ playlist_song_num }} songs, {{ playlist_duration }}
+    <div id="content_title">{{playlist.title}}</div>
+    <div id="playlist_info">Created by: {{ playlist.owner }} / {{ playlist.song_count }} songs, {{ playlist.duration }}
     </div>
   </div>
 </div>
@@ -23,20 +21,23 @@
       </li>
     </ul>
   </li>
-  <li ng-repeat="n in [1,2,3,4,5,6,7]">
+  <li ng-repeat="song in playlist.songs">
     <hr class="playlist_hr">
-
     <ul class="playlist_tiles">
       <li>
         <a href="#">
           <div class="playlist_tile highlight_on_hover">
             <span class="add_button">+</span>
-            <span ng-model="song_title">song</span>
-            <span ng-model="song_artist">artist</span>
-            <span ng-model="date_added">date</span>
+            <span ng-model="song_title">{{song.title}}</span>
+            <span ng-model="song_artist">{{song.artist}}</span>
+            <span ng-model="date_added">{{song.date}}</span>
           </div>
         </a>
       </li>
     </ul>
   </li>
 </ul>
+</div>
+
+
+

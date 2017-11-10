@@ -1,14 +1,9 @@
 angular.module('web_spotify').controller('LoadPlaylistCtrl', function($compile, $scope, $http, $parse){
-  $scope.playlist_owner = "Owner";
-  $scope.playlist_song_num = "0";
-  $scope.playlist_duration = "0 min";
-  $scope.loadPlaylist = function (div, URL, id) {
-    controllerPath = "getPlaylistData";
-
-    $http.get(location.origin + "/" + controllerPath, {params:{"playlistId": id}}).then(function(response) {
+  $scope.loadPlaylist = function (id) {
+    $http.get(location.origin + "/getPlaylistData", {params:{"playlistId": id}}).then(function(response) {
       if(!response.data.error){
-         $parse(controllerPath).assign($scope, response.data);
-         node = loadToDiv(div, URL);
+         $parse("playlist").assign($scope, response.data);
+         node = loadToDiv("main", "playlist.html");
          $compile(node)($scope);
          return;
       }

@@ -17,3 +17,14 @@ function displayErrorPopup(error, scope, parse, compile) {
     node = loadToDiv('error_dialog', 'error.html');
     compile(node)(scope);
 }
+
+function padZero(time){
+  if(time < 10){
+    return "0" + time;
+  }
+  return time;
+}
+
+function secondsToMinSec(time){
+  return Math.floor(time/60) + ":" + padZero((Math.floor(time%60)));
+}

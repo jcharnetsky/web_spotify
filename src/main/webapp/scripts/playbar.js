@@ -1,14 +1,3 @@
-function padZero(time){
-  if(time < 10){
-    return "0" + time;
-  }
-  return time;
-}
-
-function secondsToMinSec(time){
-  return Math.floor(time/60) + ":" + padZero((Math.floor(time%60)));
-}
-
 angular.module('web_spotify').controller('playbarCtrl', function($scope, $interval){
   var audio;
   var volumeBar = document.getElementById("songVolume");
