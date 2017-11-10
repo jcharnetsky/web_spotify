@@ -8,47 +8,47 @@
 }
 
 .song_img {
-    height: 30vh;
-    width: auto;
-    display: inline-block;
-    position: relative;
-    border: 1px solid white;
+  height: 30vh;
+  width: auto;
+  display: inline-block;
+  position: relative;
+  border: 1px solid white;
 }
 
 .song_data {
-    margin-left: 10vw;
-    display: inline-block;
+  margin-left: 10vw;
+  display: inline-block;
 }
 
 .song_tiles , .song_column_headers {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .song_tiles {
-    padding-left: 0;
+  padding-left: 0;
 }
 
 .song_tiles li {
-    width: 80vw;
-    height: 3vw;
+  width: 80vw;
+  height: 3vw;
 }
 .song_tile {
-    height: 3vw;
-    display: table;
-    width: 100%;
-    table-layout: fixed;    /* For cells of equal size */
+  height: 3vw;
+  display: table;
+  width: 100%;
+  table-layout: fixed;    /* For cells of equal size */
 }
 
 .song_tile span, .song_tile a {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
 }
 
 .add_button {
-    font-size: 180%;
-    width: 2%;
-    text-align: right;
+  font-size: 180%;
+  width: 2%;
+  text-align: right;
 }
 
 .highlight_on_hover:hover {

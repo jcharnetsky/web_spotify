@@ -4,8 +4,8 @@
 	left: 0vw; right: 0vw;
 	color: #979797;
 	background-color: #121212;
-    height: 5vh;
-   	padding-left: 0vw;
+  height: 5vh;
+  padding-left: 0vw;
 	margin-bottom: 0vh;
 	z-index: 999999;
 }
@@ -20,16 +20,16 @@
 
 .search {
 	display: inline;
-    height: 4vh;
-    padding-left: 1vw;
+  height: 4vh;
+  padding-left: 1vw;
 	padding-right: 5vw;
 	margin-top: 0.5vh;
 }
 
 .logout {
-    position: absolute;
-    top: 8px;
-    right: 20px;
+  position: absolute;
+  top: 8px;
+  right: 20px;
 }
 
 .nav_history {
@@ -52,15 +52,15 @@
 }
 
 .account {
-    display: inline-block;
-    height: 5vh;
+  display: inline-block;
+  height: 5vh;
 	padding-right: 2vw;
 	padding-top: 0.5vh;
 	padding-bottom: 0.5vh;
 	margin-left: 0vw;
-    padding-right: 0vw;
+  padding-right: 0vw;
 }
 .account li {
-    height: 5vh;
+  height: 5vh;
 	padding-left: 1vw;
 }

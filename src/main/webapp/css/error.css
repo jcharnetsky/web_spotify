@@ -1,25 +1,25 @@
 .error {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 35vh;
-    margin-left: 35vw;
-    margin-right: 35vw;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 35vh;
+  margin-left: 35vw;
+  margin-right: 35vw;
 
-    width: auto;
-    height: auto;
+  width: auto;
+  height: auto;
 
-    transition: opacity 0.75s ease 3s;
-    opacity: 0;
-    background-color: #181818;
+  transition: opacity 0.75s ease 3s;
+  opacity: 0;
+  background-color: #181818;
 
-    border: 1px solid white;
-    border-radius: 5px;
+  border: 1px solid white;
+  border-radius: 5px;
 
-    padding: 20px 20px 20px 20px;
-    text-align: center;
+  padding: 20px 20px 20px 20px;
+  text-align: center;
 }
 
 #error_message {
-    color: white;
+  color: white;
 }
