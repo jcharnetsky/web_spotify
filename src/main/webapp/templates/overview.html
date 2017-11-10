@@ -1,53 +1,47 @@
 <ul class="content_header">
-    <li>
-        <p id="content_title">Focus</p>
-    </li>
-
-    <li class="nav_tiles">
-        <a href="#" class="prev_tiles">
-        </a>
-
-        <a href="#" class="next_tiles">
-        </a>
-    </li>
+  <li>
+    <p id="content_title">Focus</p>
+  </li>
+  <li class="nav_tiles">
+    <a href="#" class="prev_tiles">
+    </a>
+    <a href="#" class="next_tiles">
+    </a>
+  </li>
 </ul>
-
 <hr>
-
 <ul class="list_tiles">
-    <li ng-repeat="item in overview.focus">
-        <div class="tile">
-            <a href="#">
-                <img class="tile_img" src={{item.img}} alt="Suggestion"/>
-            </a>
+  <li ng-repeat="item in overview.focus">
+    <div class="tile">
+      <a href="#">
+        <img class="tile_img" src={{item.img}} alt="Suggestion"/>
+      </a>
 
-            <p class="tile_text">{{item.head}}</p>
-            <p class="tile_desc" class="left_align">{{item.desc}}</p>
-        </div>
-    </li>
+      <p class="tile_text">{{item.head}}</p>
+      <p class="tile_desc" class="left_align">{{item.desc}}</p>
+    </div>
+  </li>
 </ul>
 
 <hr>
-
 <ul class="three_tiles">
-    <li class="center_align" ng-repeat="chart in overview.charts">
-        <div class="three_tile">
-            <a href="#">
-                <img class="three_tile_img" src={{chart.img}}/>
-            </a>
-            <p class="tile_desc">{{chart.desc}}</p>
-        </div>
-    </li>
+  <li class="center_align" ng-repeat="chart in overview.charts">
+    <div class="three_tile">
+      <a href="#">
+        <img class="three_tile_img" src={{chart.img}}/>
+      </a>
+      <p class="tile_desc">{{chart.desc}}</p>
+    </div>
+  </li>
 </ul>
-
 <hr>
 
 <ul class="list_tiles">
-    <li ng-repeat="n in [1,2,3,4,5,6,7,8]">
-        <div class="tile">
-            <a href="#">
-                <img class="tile_img" src="images/genre_1.png">
-            </a>
-        </div>
-    </li>
+  <li ng-repeat="n in [1,2,3,4,5,6,7,8]">
+    <div class="tile">
+      <a href="#">
+        <img class="tile_img" src="images/genre_1.png">
+      </a>
+    </div>
+  </li>
 </ul>
