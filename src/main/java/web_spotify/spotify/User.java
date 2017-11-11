@@ -1,5 +1,6 @@
 package web_spotify.spotify;
 import java.awt.Image;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -18,7 +19,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "Users")
-public class User implements Viewable {
+public class User implements Viewable, Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;

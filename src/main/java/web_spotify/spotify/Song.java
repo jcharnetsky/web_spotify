@@ -1,4 +1,5 @@
 package web_spotify.spotify;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +17,7 @@ import javax.persistence.Table;
 	@SecondaryTable(name = "SongAudio", pkJoinColumns = @PrimaryKeyJoinColumn(name = "songID")),
 	@SecondaryTable(name = "SongListens", pkJoinColumns = @PrimaryKeyJoinColumn(name = "songID"))
 })
-public class Song implements Viewable, Playable {
+public class Song implements Viewable, Playable, Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int songId;
