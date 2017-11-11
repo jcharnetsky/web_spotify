@@ -4,37 +4,50 @@ import java.util.Collection;
 import java.util.Date;
 import java.awt.Image;
 import java.util.ArrayList;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Represents the base functionality of a User who is an Artist
  *
  * @author Cardinals
  */
+@Entity
+@Table(name = "Artists")
 public class Artist extends User {
-	
 	 /**
      * A description of the Artist
      */
+	@Basic
     private String bio;
     
     /**
      * A collection of the artist's aliases
      */
+	@Column(name = "aliases")
     private Collection<String> aliases;
 
     /**
      * A collection of songs that the artist owns
      */
+	@Column(name = "ownedSongs")
     private Collection<Song> ownedSongs;
 
     /**
      * A collection of albums that the artist owns
      */
+	@Column(name = "ownedAlbums")
     private Collection<Album> ownedAlbums;
 
     /**
      * A collection of concerts that the artist has/is attended/attending
      */
+	@Column(name = "concerts")
     private Collection<Concert> concerts;
 
     /**

@@ -1,17 +1,23 @@
 package web_spotify.spotify;
 
 import java.util.ArrayList;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * Represents an advertisement that a user can play
  *
  * @author Cardinals
  */
+@Entity
+@Table(name = "advertisements")
 public class Advertisement extends Song {
 
 	/**
 	 * The advertiser who owns this advertisement
 	 */
+	@Column(name = "advertiser")
 	private final Advertiser advertiser;
 
     public Advertisement(int artistId, int albumId, String title, int trackLength, byte[] audioFile, Advertiser advertiser) {

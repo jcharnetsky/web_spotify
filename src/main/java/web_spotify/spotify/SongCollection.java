@@ -2,6 +2,12 @@ package web_spotify.spotify;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 
 
@@ -11,6 +17,7 @@ import java.util.Collection;
  *
  * @author Cardinals
  */
+@Entity
 public abstract class SongCollection implements Viewable {
 	/**
 	 * The Genre enum
@@ -20,41 +27,50 @@ public abstract class SongCollection implements Viewable {
     /**
      * The unique id of the Song Collection
      */
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
     private final int id;
 
     /**
      * The displayed title of the collection
      */
+	@Basic
     private String title;
 
     /**
      * The owner of the Collection
      */
+	@Column(name = "owner")
     private final User owner;
 
     /**
      * The cover art of the collection
      */
+	@Column(name = "image")
     private Image image;
 
     /**
      * The genre of the collection
      */
+	@Column(name = "genre")
     private Genre genre;
 
     /**
      * The collection of songs
      */
+	@Column(name = "songs")
     private Collection<Song> songs;
 
     /**
      * A boolean which determines if the user is public. DEFAULT FALSE.
      */
+	@Basic
     private boolean isPublic;
 
     /**
      * A boolean which determines if the user is banned. DEFAULT FALSE.
      */
+	@Basic
     private boolean isBanned;
 
     /**

@@ -1,25 +1,39 @@
 package web_spotify.spotify;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Table;
+import javax.persistence.Id;
+
 /**
  * Represents a report
  *
  * @author Cardinals
  */
+@Entity
+@Table(name = "Reports")
 public class Report {
 	
 	/**
 	 * The id of the report
 	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private final int reportId;
 	
 	/**
 	 * The subject of the report
 	 */
+	@Basic
 	private String subject;
 	
 	/**
 	 * The contents of the report
 	 */
+	@Basic
 	private String description;
 	
 	/**
