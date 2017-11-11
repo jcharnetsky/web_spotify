@@ -1,5 +1,4 @@
 package web_spotify.spotify;
-
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,11 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- * Represents the base user functionality for the Spotify project
- *
- * @author Cardinals
- */
 @Entity
 @Table(name = "Users")
 public class User implements Viewable {
@@ -133,7 +127,7 @@ public class User implements Viewable {
 	/**
 	 * Unfollow a user.
 	 * 
-	 * @param user The user to be unfollowed
+	 * @param userId The user to be unfollowed
 	 */
 	public void unfollowUser(int userId) {
 		for(int i = 0; i < followedUsers.size(); i++) {
@@ -263,7 +257,7 @@ public class User implements Viewable {
 		downloadedAlbums.add(album);
 	}
 	/**
-	 * Undownload an album
+	 * Remove a downloaded album
 	 *
 	 * @param albumId ID of the album to be no longer downloaded
 	 */
@@ -284,7 +278,7 @@ public class User implements Viewable {
 		downloadedSongs.add(song);
 	}
 	/**
-	 * Undownload a song
+	 * Remove a downloaded song
 	 *
 	 * @param songId ID of the song to be no longer downloaded
 	 */

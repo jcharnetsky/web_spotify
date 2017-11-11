@@ -11,11 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- * A collection of songs that are a playlist
- *
- * @author Cardinals
- */
 @Entity
 @Table(name = "Playlists")
 public class Playlist extends SongCollection {
@@ -23,14 +18,13 @@ public class Playlist extends SongCollection {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@Basic
-  private String description; /* The description of the playlist */
+  private String description;
 	@Basic
-  private boolean isCollaborative = false; /* Represents whether the playlist is collaborative. By default is FALSE. */
+  private boolean isCollaborative = false;
 	@Column(name = "followers")
   private Collection<User> followers;
 	@Column(name = "songs")
   private List<Song> songs;
-
   /**
    * The default constructor of the Playlist Class
    *
@@ -42,36 +36,29 @@ public class Playlist extends SongCollection {
    * @param description The description of the collection
    */
   public Playlist(int id, String title, User owner, Image image, Genre genre, String description) {
-      super(id, title, owner, image, genre);
-      this.description = description;
-      this.isCollaborative = false;
-      followers = new ArrayList<User>();
+		super(id, title, owner, image, genre);
+		this.description = description;
+		this.isCollaborative = false;
+		followers = new ArrayList<User>();
   }
-
   /**
    * Add a follower to the playlist
    *
    * @param user The user to be added to the playlist's followers
    */
   public void addFollower(User user) {
-      followers.add(user);
+		followers.add(user);
   }
-
   /**
    * Remove a follower from the playlist
    *
    * @param userId ID of user to be removed from the playlist's followers
-   * @return
    */
   public void removeFollower(int userId) {
     for(int i = 0; i < followers.size(); i++) {
-      if(((ArrayList<User>)followers).get(i).getId() == userId) {
-        ((ArrayList<User>)followers).remove(i);
-        return;
-      }
+      if(((ArrayList<User>)followers).get(i).getId() == userId) ((ArrayList<User>)followers).remove(i);
     }
   }
-
   /**
    * Compare Playlist objects to determine equivalence
    *
@@ -80,37 +67,28 @@ public class Playlist extends SongCollection {
    */
   @Override
   public boolean equals(Object p) {
-      if((p != null) && (p instanceof Playlist)) {
-          return ((Playlist) p).getId() == this.getId();
-      } else return false;
+		if((p != null) && (p instanceof Playlist)) return ((Playlist) p).getId() == this.getId();
+		else return false;
   }
-
-  /** Getters **/
   public String getDescription() {
-      return description;
+		return description;
   }
-
   public boolean isCollaborative() {
-      return isCollaborative;
+		return isCollaborative;
   }
-
   public Collection<User> getFollowersList() {
-      return followers;
+		return followers;
   }
-
-  /** Setters **/
   public void setDescription(String description) {
-      this.description = description;
+		this.description = description;
   }
-
   /**
    * Set collaborative to value. If true, public must be set to false.
+	 * 
    * @param value Whether or not playlist is collaborative
    */
   public void setCollaborative(boolean value) {
-      if(value) {
-        this.setPublic(false);
-      }
-      this.isCollaborative = value;
+		if(value) this.setPublic(false);
+		this.isCollaborative = value;
   }
 }
