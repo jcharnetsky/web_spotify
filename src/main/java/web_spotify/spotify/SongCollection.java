@@ -1,5 +1,6 @@
 package web_spotify.spotify;
 import java.awt.Image;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -11,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public abstract class SongCollection implements Viewable {
+public abstract class SongCollection implements Viewable, Serializable {
 	public enum Genre {ROCK, METAL, RAP, EDM, POP, CLASSICAL, INDIE}
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

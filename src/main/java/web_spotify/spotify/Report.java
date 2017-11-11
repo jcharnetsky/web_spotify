@@ -1,4 +1,5 @@
 package web_spotify.spotify;
+import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +9,7 @@ import javax.persistence.Id;
 
 @Entity
 @Table(name = "Reports")
-public class Report {
+public class Report implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private final int reportId;

@@ -8,7 +8,6 @@ public class SongQueue {
 	/**
 	 * The constructor for the SongQueue
 	 *
-	 * @param owner The owner of the song queue
 	 */
 	public SongQueue() {
 		this.queue = new LinkedList<Song>();
