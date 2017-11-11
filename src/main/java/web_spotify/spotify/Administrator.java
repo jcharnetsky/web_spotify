@@ -4,17 +4,21 @@ import java.sql.Date;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 
 /**
  * Represents an administrator
  *
  * @author Cardinals
  */
+@Entity
 public class Administrator extends User {
 
 	/**
 	 * A collection of the reports
 	 */
+	@Column(name = "reports")
 	private Collection<Report> reports;
 	
     /**

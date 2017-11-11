@@ -4,12 +4,18 @@ import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import web_spotify.spotify.SongCollection.Genre;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * Represents the base user functionality for the Spotify project
@@ -22,24 +28,47 @@ public class User implements Viewable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	@Column(name = "name")
 	private String name;
+	@Column(name = "email")
 	private String email;
+	@Column(name = "address")
 	private String address;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "birthday")
 	private Date birthday;
+	@Column(name = "image")
 	private Image image;
+	@Column(name = "followers")
+	@ManyToMany
 	private Collection<User> followers;
+	@Column(name = "followedUsers")
+	@ManyToMany
 	private Collection<User> followedUsers;
+	@Column(name = "followedArtists")
+	@ManyToMany
 	private Collection<Artist> followedArtists;
+	@Column(name = "savedAlbums")
+	@ManyToMany
 	private Collection<Album> savedAlbums;
+	@Column(name = "followedPlaylists")
+	@ManyToMany
 	private Collection<Playlist> followedPlaylists;
+	@Column(name = "ownedPlaylists")
+	@OneToMany
 	private Collection<Playlist> ownedPlaylists;
+	@Column(name = "savedSongs")
+	@ManyToMany
 	private Playlist savedSongs;
 	private SongQueue songQueue;
 	private Collection<Playlist> downloadedPlaylists;
 	private Collection<Album> downloadedAlbums;
 	private Collection<Song> downloadedSongs;
+	@Basic
 	private boolean isPublic;
+	@Basic
 	private boolean isBanned;
+	@Basic
 	private boolean isPremium;
 	/**
 	 * The Constructor for the User Object

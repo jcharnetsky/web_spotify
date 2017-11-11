@@ -3,17 +3,32 @@ import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * A collection of songs that are a playlist
  *
  * @author Cardinals
  */
+@Entity
+@Table(name = "Playlists")
 public class Playlist extends SongCollection {
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	@Basic
   private String description; /* The description of the playlist */
+	@Basic
   private boolean isCollaborative = false; /* Represents whether the playlist is collaborative. By default is FALSE. */
+	@Column(name = "followers")
   private Collection<User> followers;
+	@Column(name = "songs")
   private List<Song> songs;
 
   /**

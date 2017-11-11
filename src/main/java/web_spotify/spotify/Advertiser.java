@@ -4,22 +4,29 @@ import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * Represents companies that host advertisements on the service
  *
  * @author Cardinals
  */
+@Entity
 public class Advertiser extends User {
 
     /**
      * The name of the company.
      */
+	@Basic
     private String companyName;
     
     /**
      * The collection of all advertisements.
      */
+	@Column(name = "advertisements")
     private Collection<Advertisement> advertisements;
 
     /**

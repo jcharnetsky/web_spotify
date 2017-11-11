@@ -4,52 +4,72 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * Represents a concert that artists can play at
  *
  * @author Cardinals
- */
+ */@Entity
+@Table(name = "Concerts")
 class Concert implements Viewable {
 
 	 /**
      * The id of this concert
      */
+	 @Id
+	 @GeneratedValue(strategy = GenerationType.AUTO)
     private final int concertId;
     
     /**
      * The name of the venue
      */
+	 @Basic
     private String venueName;
     
     /**
      * The name of the concert
      */
+	 @Basic
     private String concertName;
     
     /**
      * The grouping of artists that are to play at the concert
      */
+	 @Column(name = "artists")
     private Collection<Artist> artists;
 
     /**
      * The date at which the concert will take place
      */
+	 @Temporal(TemporalType.DATE)
+	 @Column(name = "date")
     private Date date;
 
     /**
      * The URL of where to purchase the tickets
      */
+	 @Basic
     private String URL;
 
     /**
      * A boolean which determines if the user is public. DEFAULT FALSE.
      */
+	 @Basic
     private boolean isPublic;
 
     /**
      * A boolean which determines if the user is banned. DEFAULT FALSE.
      */
+	 @Basic
     private boolean isBanned;
 
     /**
