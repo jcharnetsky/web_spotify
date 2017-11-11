@@ -1,5 +1,4 @@
 package web_spotify.spotify;
-
 import java.awt.Image;
 import java.sql.Date;
 import java.util.Collection;
@@ -11,11 +10,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- * A collection of songs that are an album
- *
- * @author Cardinals
- */
 @Entity
 @Table(name = "Albums")
 class Album extends SongCollection {
