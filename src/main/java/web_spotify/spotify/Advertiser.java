@@ -6,11 +6,13 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Advertiser extends User {
 	@Basic
   private String companyName;
+	@OneToMany
 	@Column(name = "advertisements")
   private Collection<Advertisement> advertisements;
 	/**

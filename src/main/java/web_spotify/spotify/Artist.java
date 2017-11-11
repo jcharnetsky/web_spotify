@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,12 +15,16 @@ import javax.persistence.Table;
 public class Artist extends User {
 	@Basic
 	private String bio;
+	@OneToMany
 	@Column(name = "aliases")
 	private Collection<String> aliases;
+	@OneToMany
 	@Column(name = "ownedSongs")
 	private Collection<Song> ownedSongs;
+	@OneToMany
 	@Column(name = "ownedAlbums")
 	private Collection<Album> ownedAlbums;
+	@ManyToMany
 	@Column(name = "concerts")
 	private Collection<Concert> concerts;
 	/**

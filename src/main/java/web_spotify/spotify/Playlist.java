@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,8 +22,10 @@ public class Playlist extends SongCollection {
   private String description;
 	@Basic
   private boolean isCollaborative = false;
+	@ManyToMany
 	@Column(name = "followers")
   private Collection<User> followers;
+	@ManyToMany
 	@Column(name = "songs")
   private List<Song> songs;
   /**

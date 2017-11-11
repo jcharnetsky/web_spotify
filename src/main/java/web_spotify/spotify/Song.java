@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SecondaryTable;
 import javax.persistence.SecondaryTables;
@@ -19,8 +20,10 @@ public class Song implements Viewable, Playable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int songId;
+	@OneToMany
 	@Column(name = "artistID", table = "Songs")
 	private final int artistId;
+	@OneToMany
 	@Column(name = "albumID", table = "Songs")
 	private final int albumId;
 	@Column(name = "title", table = "Songs")
