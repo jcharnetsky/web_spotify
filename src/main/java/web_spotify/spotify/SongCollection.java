@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public abstract class SongCollection implements Viewable {
@@ -23,6 +24,7 @@ public abstract class SongCollection implements Viewable {
 	private Image image;
 	@Column(name = "genre")
 	private Genre genre;
+	@ManyToMany
 	@Column(name = "songs")
 	private Collection<Song> songs;
 	@Basic

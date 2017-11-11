@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,6 +19,7 @@ class Album extends SongCollection {
 	private final Date releaseDate;
 	@Basic
 	private final String artist;
+	@ManyToMany
 	@Column(name = "featuredArtists")
 	private final Collection<Artist> featuredArtists;
 	/**
