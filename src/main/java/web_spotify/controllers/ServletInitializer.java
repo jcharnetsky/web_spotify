@@ -14,7 +14,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
   }
 
   public static void main(String[] args) throws Exception {
-    DBUtils.testReport();
+//    DBUtils.testReport();
     SpringApplication.run(ServletInitializer.class, args);
   }
 }

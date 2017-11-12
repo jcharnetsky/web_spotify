@@ -92,7 +92,7 @@ public class DBUtils {
     }
 
     public static void testReport() {
-        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("spotify_web_spotify_jar_LATESTPU");
+        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("spotify_web_persistence");
         EntityManager entitymanager = emfactory.createEntityManager();
         entitymanager.getTransaction().begin();
 
