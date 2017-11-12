@@ -1,4 +1,5 @@
 package web_spotify.spotify;
+
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,10 +15,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Songs")
 @SecondaryTables({
-	@SecondaryTable(name = "SongAudio", pkJoinColumns = @PrimaryKeyJoinColumn(name = "songID")),
+	@SecondaryTable(name = "SongAudio", pkJoinColumns = @PrimaryKeyJoinColumn(name = "songID"))
+	,
 	@SecondaryTable(name = "SongListens", pkJoinColumns = @PrimaryKeyJoinColumn(name = "songID"))
 })
 public class Song implements Viewable, Playable, Serializable {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int songId;
@@ -41,19 +44,19 @@ public class Song implements Viewable, Playable, Serializable {
 	@Column(name = "isPublic", table = "Songs")
 	private boolean isPublic;
 
-    public Song() {
-    }
+	public Song() {
+	}
 	/**
 	 * Default constructor for a song
-	 * 
+	 *
 	 * @param songId The song id
 	 * @param artistId The id of the song's artist
 	 * @param albumId The id of the song's album
 	 * @param featuredArtists The collection of the song's featured artists
 	 * @param title The title of the song
 	 * @param trackLength The runtime of the song
-	 */ 
-	public Song (int artistId, int albumId, String title, int trackLength, byte[] audioFile) {
+	 */
+	public Song(int artistId, int albumId, String title, int trackLength, byte[] audioFile) {
 		this.artistId = artistId;
 		this.albumId = albumId;
 		this.title = title;
@@ -85,16 +88,20 @@ public class Song implements Viewable, Playable, Serializable {
 	public void incrementTotalListens() {
 		this.totalListens++;
 	}
-	 /**
+	/**
 	 * Compare Song objects to determine equivalence
 	 *
 	 * @param s object to compare
-	 * @return True if object is an instance of Song and has the same id; False otherwise
+	 * @return True if object is an instance of Song and has the same id; False
+	 * otherwise
 	 */
 	@Override
 	public boolean equals(Object s) {
-		if((s != null) && (s instanceof Song)) return ((Song) s).getId() == this.getId();
-		else return false;
+		if ((s != null) && (s instanceof Song)) {
+			return ((Song) s).getId() == this.getId();
+		} else {
+			return false;
+		}
 	}
 	@Override
 	public int getId() {
