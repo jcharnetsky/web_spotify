@@ -1,5 +1,6 @@
 package web_spotify.spotify;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -17,10 +18,10 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "Concerts")
-class Concert implements Viewable {
+class Concert implements Viewable, Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private final int concertId;
+	private int concertId;
 	@Basic
 	private String venueName;
 	@Basic
@@ -57,6 +58,7 @@ class Concert implements Viewable {
 		isPublic = false;
 		isBanned = false;
 	}
+	public Concert(){}
 	/**
 	 * Adds an artist to the current venue
 	 *

@@ -13,6 +13,9 @@ public class Advertisement extends Song {
 		super(artistId, albumId, title, trackLength, audioFile);
 		this.advertiser = advertiser;
 	}
+	public Advertisement(){
+		super();
+	}
 	public Advertiser getAdvertiser() {
 		return advertiser;
 	}

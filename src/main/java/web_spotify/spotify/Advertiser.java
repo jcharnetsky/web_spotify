@@ -25,6 +25,9 @@ public class Advertiser extends User {
 		this.companyName = companyName;
 		advertisements = new ArrayList<Advertisement>();
 	}
+	public Advertiser(){
+		super();
+	}
 	/**
 	 * Add an advertisement to the company
 	 *
