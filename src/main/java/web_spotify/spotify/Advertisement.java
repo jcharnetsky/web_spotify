@@ -24,7 +24,11 @@ public class Advertisement extends Song {
 	 */
 	@Override
 	public boolean equals(Object a) {
-		if((a != null) && (a instanceof Advertisement)) return ((Advertisement) a).getId() == this.getId();
-		else return false;
+		if((a != null) && (a instanceof Advertisement)) {
+			return ((Advertisement) a).getId() == this.getId();
+		}
+		else {
+			return false;
+		}
 	}
 }

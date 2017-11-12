@@ -38,7 +38,9 @@ public class Administrator extends User {
 	 */
 	public void removeReport(int reportId) {
 		for(int i = 0; i < reports.size(); i++) {
-			if(((ArrayList<Report>) reports).get(i).getReportId() == reportId) ((ArrayList<Report>) reports).remove(i);
+			if(((ArrayList<Report>) reports).get(i).getReportId() == reportId) {
+				((ArrayList<Report>) reports).remove(i);
+			}
 		}
 	}
 	/**
@@ -112,8 +114,12 @@ public class Administrator extends User {
 	 */
 	@Override
 	public boolean equals(Object a) {
-		if((a != null) && (a instanceof Administrator)) return ((Administrator) a).getId() == this.getId();
-		else return false;
+		if((a != null) && (a instanceof Administrator)) {
+			return ((Administrator) a).getId() == this.getId();
+		}
+		else {
+			return false;
+		}
 	}
 	public Collection<Report> getReports() {
 		return reports;

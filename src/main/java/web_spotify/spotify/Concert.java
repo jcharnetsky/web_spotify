@@ -74,7 +74,6 @@ class Concert implements Viewable {
 		for(int i = 0; i < artists.size(); i++) {
 			if(((ArrayList<Artist>)artists).get(i).getId() == artistId) {
 				((ArrayList<Artist>)artists).remove(i);
-				return;
 			}
 		}
 	}
@@ -88,7 +87,9 @@ class Concert implements Viewable {
 	public boolean equals(Object c) {
 		if((c != null) && (c instanceof Concert)) {
 			return ((Concert) c).getId() == this.getId();
-		} else return false;
+		} else {
+			return false;
+		}
 	}
 	@Override
 	public int getId() {
