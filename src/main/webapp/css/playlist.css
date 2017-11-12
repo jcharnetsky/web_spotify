@@ -4,7 +4,6 @@
   margin-left: 2vw;
   margin-bottom: 3vw;
 }
-
 .playlist_title {
 	font-weight: 500;
 	color: #ffffff;
@@ -13,7 +12,6 @@
 	padding-top: 2vh;
 	padding-bottom: 1vh;
 }
-
 .playlist_img {
   height: 30vh;
   width: auto;
@@ -21,23 +19,21 @@
   position: relative;
   border: 1px solid white;
 }
-
 .playlist_data {
   margin-left: 10vw;
   display: inline-block;
 }
-
 .playlist_tiles , .playlist_column_headers {
   margin-bottom: 0;
 }
-
 .playlist_tiles {
   padding-left: 0;
 }
-
+.playlist {
+	padding-left: 3vw;
+}
 .playlist_tiles li {
   width: 80vw;
-  height: 3vw;
 }
 .playlist_tile {
   height: 3vw;
@@ -45,14 +41,12 @@
   width: 100%;
   table-layout: fixed;    /* For cells of equal size */
 }
-
 .playlist_tile span, .playlist_tile a {
   display: table-cell;
   max-width: 10vw;
   vertical-align: middle;
   text-align: center;
 }
-
 .add_button {
   font-size: 180%;
   width: 10%;
@@ -62,9 +56,8 @@
 .highlight_on_hover:hover {
 	background-color: #333333;
 }
-
 .playlist_hr {
-  width: 96%;
+  width: 80vw;
   border-color: #282828;
 	border-width: 0.3vh;
 	margin-bottom: 0vh;
