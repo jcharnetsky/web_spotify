@@ -23,16 +23,16 @@ public class Song implements Viewable, Playable, Serializable {
 	private int songId;
 	@OneToMany
 	@Column(name = "artistID", table = "Songs")
-	private final int artistId;
+	private int artistId;
 	@OneToMany
 	@Column(name = "albumID", table = "Songs")
-	private final int albumId;
+	private int albumId;
 	@Column(name = "title", table = "Songs")
-	private final String title;
+	private String title;
 	@Column(name = "trackLength", table = "Songs")
-	private final int trackLength;
+	private int trackLength;
 	@Column(name = "audio", table = "SongAudio")
-	private final byte[] audioFile;
+	private byte[] audioFile;
 	@Column(name = "count", table = "SongListens")
 	private int monthlyListens;
 	private int totalListens;
@@ -40,6 +40,9 @@ public class Song implements Viewable, Playable, Serializable {
 	private boolean isBanned;
 	@Column(name = "isPublic", table = "Songs")
 	private boolean isPublic;
+
+    public Song() {
+    }
 	/**
 	 * Default constructor for a song
 	 * 
