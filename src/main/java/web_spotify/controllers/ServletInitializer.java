@@ -1,5 +1,6 @@
 package web_spotify.controllers;
 
+import Utils.DBUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -13,6 +14,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
   }
 
   public static void main(String[] args) throws Exception {
+    DBUtils.testReport();
     SpringApplication.run(ServletInitializer.class, args);
   }
 }
