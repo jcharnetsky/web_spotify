@@ -12,11 +12,13 @@ import javax.persistence.Id;
 public class Report implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private final int reportId;
+	private int reportId;
 	@Basic
 	private String subject;
 	@Basic
 	private String description;
+
+    public Report() {}
 	/**
 	 * The default constructor of a report.
 	 * @param description The contents of the report

@@ -27,6 +27,9 @@ public class Artist extends User {
 	@ManyToMany
 	@Column(name = "concerts")
 	private Collection<Concert> concerts;
+
+    public Artist() {
+    }
 	/**
 	 * The constructor the BasicArtist
 	 *

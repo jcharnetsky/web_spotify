@@ -1,13 +1,19 @@
 package web_spotify.spotify;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "advertisements")
 public class Advertisement extends Song {
 	@Column(name = "advertiser")
-	private final Advertiser advertiser;
+        @ManyToOne
+	private Advertiser advertiser;
+
+        public Advertisement() {
+            super(0,0,null,0,null);
+        }
 
 	public Advertisement(int artistId, int albumId, String title, int trackLength, byte[] audioFile, Advertiser advertiser) {
 		super(artistId, albumId, title, trackLength, audioFile);
