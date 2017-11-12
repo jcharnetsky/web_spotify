@@ -11,10 +11,6 @@ public class Advertisement extends Song {
         @ManyToOne
 	private Advertiser advertiser;
 
-        public Advertisement() {
-            super(0,0,null,0,null);
-        }
-
 	public Advertisement(int artistId, int albumId, String title, int trackLength, byte[] audioFile, Advertiser advertiser) {
 		super(artistId, albumId, title, trackLength, audioFile);
 		this.advertiser = advertiser;
