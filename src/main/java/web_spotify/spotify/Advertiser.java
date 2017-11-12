@@ -27,6 +27,9 @@ public class Advertiser extends User {
 		this.companyName = companyName;
 		advertisements = new ArrayList<Advertisement>();
 	}
+	public Advertiser(){
+		super();
+	}
 	/**
 	 * Add an advertisement to the company
 	 *
@@ -42,7 +45,9 @@ public class Advertiser extends User {
 	 */
 	public void removeAdvertisement(int advertisementId) {
 		for(int i = 0; i < advertisements.size(); i++) {
-			if(((ArrayList<Advertisement>) advertisements).get(i).getId() == advertisementId) ((ArrayList<Advertisement>) advertisements).remove(i);
+			if(((ArrayList<Advertisement>) advertisements).get(i).getId() == advertisementId) {
+				((ArrayList<Advertisement>) advertisements).remove(i);
+			}
 		}
 	}
 	/**
@@ -53,8 +58,12 @@ public class Advertiser extends User {
 	 */
 	@Override
 	public boolean equals(Object a) {
-		if((a != null) && (a instanceof Advertiser)) return ((Advertiser) a).getId() == this.getId();
-		else return false;
+		if((a != null) && (a instanceof Advertiser)) {
+			return ((Advertiser) a).getId() == this.getId();
+		}
+		else {
+			return false;
+		}
 	}
 	public String getCompanyName() {
 		return companyName;
