@@ -77,6 +77,7 @@ public class User implements Viewable, Serializable {
      * @param birthday The birthday of the user
      */
     public User(int id, String name, String email, String address, Date birthday, String image) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.address = address;

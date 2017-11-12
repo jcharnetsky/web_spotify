@@ -91,6 +91,27 @@ public class DBUtils {
         return userToFind;
     }
 
+    public static boolean putUser(User user, String password) {
+        try {
+            if (utilSingleton == null) {
+                utilSingleton = new DBUtils();
+            }
+            int id = user.getId();
+            String name = user.getName();
+            String email = user.getEmail();
+            String addr = user.getAddress();
+            boolean isPublic = user.isPublic();
+            boolean isBanned = user.isBanned();
+            String form = String.format(ConfigSettings.DB_USR_IN, 
+                    email, password, name, addr, isPublic, isBanned);
+            utilSingleton.conn.createStatement().executeUpdate(form);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public static void testReport() {
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("spotify_web_persistence");
         EntityManager entitymanager = emfactory.createEntityManager();
