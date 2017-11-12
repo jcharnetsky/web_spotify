@@ -2,7 +2,6 @@ body {
 	background-color: #121212;
 	color: #ffffff;
 }
-
 .horizontal_chevron {
 	height: 1vh;
 	padding-left: 1vw;
@@ -14,7 +13,6 @@ body {
   -o-transform:scale(1,2); /* Opera */
   transform:scale(1,2); /* W3C */
 }
-
 .vertical_chevron {
 	display:inline-block;
   -webkit-transform:scale(2,1); /* Safari and Chrome */
@@ -23,18 +21,15 @@ body {
   -o-transform:scale(2,1); /* Opera */
   transform:scale(2,1); /* W3C */
 }
-
 .left_align {
 	text-align: left;
 }
 .center_align {
 	text-align: center;
 }
-
 .vertical_center {
 	margin-top: 25vh;
 }
-
 .sign_in_block {
 	position: relative;
 	margin-left: 35vw;
@@ -45,27 +40,22 @@ body {
 	border: 2px solid #ffffff;
 	border-radius: 3px;
 }
-
 .sign_in_block input {
 	border-width: 1px;
 	border-radius: 3px;
 	color: #ffffff;
 	background-color: #181818
 }
-
 form input {
 	width: auto;
 	right: 20px;
 }
-
 span {
 	font-size: 80%;
 }
-
 ul {
 	list-style-type: none;
 }
-
 hr {
 	border-color: #282828;
 	border-width: 0.3vh;
@@ -73,11 +63,11 @@ hr {
 	margin-right: 3vw;
 }
 .concert_hr {
+	width: 80vw;
 	border-color: #282828;
 	border-width: 0.3vh;
 	margin-bottom: 0vh;
 }
-
 a {
 	outline:none
 }
@@ -89,20 +79,15 @@ a:hover, a:active, #current {
 	text-decoration: none;
 	color: #c2c2c2;
 }
-
 .underline_on_hover:hover {
 	text-decoration: underline;
 }
-
-/* Scrollbar */
 ::-webkit-scrollbar{
 	width: 12px;
 }
-  
 ::-webkit-scrollbar-track{ /* TRACK */
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0,0.3);
 }
-
 ::-webkit-scrollbar-thumb{ /* Cursor */
 	background: rgba(24,24,24,1);
 }

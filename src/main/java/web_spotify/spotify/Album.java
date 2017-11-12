@@ -47,7 +47,9 @@ class Album extends SongCollection {
 	public boolean equals(Object a) {
 		if((a != null) && (a instanceof Album)) {
 			return ((Album) a).getId() == this.getId();
-		} else return false;
+		} else {
+			return false;
+		}
 	}
 	public Date getReleaseDate() {
 		return releaseDate;

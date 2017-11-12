@@ -81,7 +81,9 @@ public class Artist extends User {
 	 */
 	public void removeOwnedSong(int songId) {
 		for(int i = 0; i < ownedSongs.size(); i++) {
-			if(((ArrayList<Song>)ownedSongs).get(i).getId() == songId) ((ArrayList<Song>)ownedSongs).remove(i);
+			if(((ArrayList<Song>)ownedSongs).get(i).getId() == songId) {
+				((ArrayList<Song>)ownedSongs).remove(i);
+			}
 		}
 	}
 	/**
@@ -99,7 +101,9 @@ public class Artist extends User {
 	 */
 	public void removeOwnedAlbum(int albumId) {
 		for(int i = 0; i < ownedAlbums.size(); i++) {
-			if(((ArrayList<Album>)ownedAlbums).get(i).getId() == albumId) ((ArrayList<Album>)ownedAlbums).remove(i);
+			if(((ArrayList<Album>)ownedAlbums).get(i).getId() == albumId) {
+				((ArrayList<Album>)ownedAlbums).remove(i);
+			}
 		}
 	}
 	/**
@@ -117,7 +121,9 @@ public class Artist extends User {
 	 */
 	public void removeConcert(int concertId) {
 		for(int i = 0; i < concerts.size(); i++) {
-			if(((ArrayList<Concert>)concerts).get(i).getId() == concertId) ((ArrayList<Concert>)concerts).remove(i);
+			if(((ArrayList<Concert>)concerts).get(i).getId() == concertId) {
+				((ArrayList<Concert>)concerts).remove(i);
+			}
 		}
 	}
 	/**
@@ -128,8 +134,12 @@ public class Artist extends User {
 	*/
 	@Override
 	public boolean equals(Object a) {
-		if((a != null) && (a instanceof Artist)) return ((Artist) a).getId() == this.getId();
-		else return false;
+		if((a != null) && (a instanceof Artist)) {
+			return ((Artist) a).getId() == this.getId();
+		}
+		else {
+			return false;
+		}
 	}
 	public String getBio() {
 		return bio;
