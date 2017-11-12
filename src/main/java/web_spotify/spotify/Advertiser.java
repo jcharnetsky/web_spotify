@@ -14,9 +14,6 @@ public class Advertiser extends User {
 	@OneToMany
 	@Column(name = "advertisements")
   private Collection<Advertisement> advertisements;
-
-    public Advertiser() {
-    }
 	/**
 	 * The default constructor for Advertiser
 	 *
