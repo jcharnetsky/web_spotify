@@ -1,6 +1,9 @@
 angular.module('signup_module', []).controller('signUpCtrl', function ($http, $scope, $parse, $compile) {
+    $scope.email="mail";
   $scope.createAccount = function () {
-    $http.get(location.origin + "/registerUser", {params:{"name":$scope.name,"email":$scope.email, "birthdate":$scope.birthdate,"password":$scope.password}}).
+    const toPass = JSON.stringify({"name":$scope.name,"email":$scope.email, "birthdate":$scope.birthdate,"password":$scope.password});
+    console.log(toPass);
+    $http.post(location.origin + "/registerUser", {data:toPass}).
     then(function(response) {
       if (!response.data.error) {
         window.location = location.origin + "/home.html";
