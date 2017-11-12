@@ -1,6 +1,5 @@
 package web_spotify.spotify;
 
-import java.awt.Image;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -35,7 +34,7 @@ public class User implements Viewable, Serializable {
     @Temporal(TemporalType.DATE)
     private Date birthday;
     @Basic
-    private Image image;
+    private String image;
     @Column(name = "followers")
     @ManyToMany
     private Collection<User> followers;
@@ -77,7 +76,7 @@ public class User implements Viewable, Serializable {
      * @param address The physical address of the user
      * @param birthday The birthday of the user
      */
-    public User(int id, String name, String email, String address, Date birthday, Image image) {
+    public User(int id, String name, String email, String address, Date birthday, String image) {
         this.name = name;
         this.email = email;
         this.address = address;
@@ -222,7 +221,7 @@ public class User implements Viewable, Serializable {
      * @param genre The genre of the collection
      * @param description The description of the collection
      */
-    public void createPlaylist(int id, String title, User owner, Image image, Genre genre, String description) {
+    public void createPlaylist(int id, String title, User owner, String image, Genre genre, String description) {
         Playlist playlist = new Playlist(id, title, owner, image, genre, description);
         ownedPlaylists.add(playlist);
     }
@@ -354,7 +353,7 @@ public class User implements Viewable, Serializable {
         return birthday;
     }
 
-    public Image getImage() {
+    public String getString() {
         return image;
     }
 
@@ -428,7 +427,7 @@ public class User implements Viewable, Serializable {
         this.birthday = birthday;
     }
 
-    public void setImage(Image image) {
+    public void setString(String image) {
         this.image = image;
     }
 

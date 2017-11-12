@@ -1,5 +1,4 @@
 package web_spotify.spotify;
-import java.awt.Image;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,7 +21,7 @@ public abstract class SongCollection implements Viewable, Serializable {
 	@Column(name = "owner")
 	private final User owner;
 	@Column(name = "image")
-	private Image image;
+	private String image;
 	@Column(name = "genre")
 	private Genre genre;
 	@ManyToMany
@@ -41,7 +40,7 @@ public abstract class SongCollection implements Viewable, Serializable {
 	 * @param image The image of the collection
 	 * @param genre The genre of the collection
 	 */
-	public SongCollection(int id, String title, User owner, Image image, Genre genre) {
+	public SongCollection(int id, String title, User owner, String image, Genre genre) {
 		this.id = id;
 		this.title = title;
 		this.owner = owner;
@@ -118,7 +117,7 @@ public abstract class SongCollection implements Viewable, Serializable {
 	public User getOwner() {
 		return owner;
 	}
-	public Image getImage() {
+	public String getString() {
 		return image;
 	}
 	public Genre getGenre() {
@@ -130,7 +129,7 @@ public abstract class SongCollection implements Viewable, Serializable {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public void setImage(Image image) {
+	public void setString(String image) {
 		this.image = image;
 	}
 	public void setGenre(Genre genre) {

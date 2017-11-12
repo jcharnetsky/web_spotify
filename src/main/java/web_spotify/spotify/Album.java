@@ -1,5 +1,4 @@
 package web_spotify.spotify;
-import java.awt.Image;
 import java.sql.Date;
 import java.util.Collection;
 import java.util.ArrayList;
@@ -31,7 +30,7 @@ class Album extends SongCollection {
 	 * @param image The image of the collection
 	 * @param genre The genre of the collection
 	 */
-	public Album(int id, String title, User owner, Image image, Genre genre, Date releaseDate, String artist, Collection<Artist> featuredArtists) {
+	public Album(int id, String title, User owner, String image, Genre genre, Date releaseDate, String artist, Collection<Artist> featuredArtists) {
 		super(id, title, owner, image, genre);
 		this.releaseDate = releaseDate;
 		this.artist = artist;
