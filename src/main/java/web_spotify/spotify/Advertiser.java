@@ -1,5 +1,4 @@
 package web_spotify.spotify;
-import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -15,12 +14,15 @@ public class Advertiser extends User {
 	@OneToMany
 	@Column(name = "advertisements")
   private Collection<Advertisement> advertisements;
+
+    public Advertiser() {
+    }
 	/**
 	 * The default constructor for Advertiser
 	 *
 	 * @param companyName The name of the company
 	 */
-	public Advertiser(int id, String name, String email, String address, Date birthday, Image image, String companyName) {
+	public Advertiser(int id, String name, String email, String address, Date birthday, String image, String companyName) {
 		super(id, name, email, address, birthday, null);
 		this.companyName = companyName;
 		advertisements = new ArrayList<Advertisement>();
