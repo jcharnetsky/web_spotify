@@ -7,7 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import web_spotify.spotify.Playlist;
+import web_spotify.spotify.Report;
 import web_spotify.spotify.User;
 
 /**
@@ -55,7 +59,7 @@ public class DBUtils {
         );
         while (playlistResults.next()) {
             int creatorId = playlistResults.getInt("creator");
-            User creator = creatorId==user.getId()?user:DBUtils.getUser(creatorId);            
+            User creator = creatorId == user.getId() ? user : DBUtils.getUser(creatorId);
             int id = playlistResults.getInt("ID");
             String name = playlistResults.getString("name");
             Date created = playlistResults.getDate("dateCreated");
@@ -87,4 +91,20 @@ public class DBUtils {
         return userToFind;
     }
 
+    public static void testReport() {
+        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("spotify_web_spotify_jar_LATESTPU");
+        EntityManager entitymanager = emfactory.createEntityManager();
+        entitymanager.getTransaction().begin();
+
+        Report report = new Report();
+        report.setDescription("HI");
+        report.setSubject("hello");
+
+        entitymanager.persist(report);
+        entitymanager.getTransaction().commit();
+
+        entitymanager.close();
+        emfactory.close();
+
+    }
 }
