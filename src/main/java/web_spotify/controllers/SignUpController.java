@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import org.json.JSONObject;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import web_spotify.spotify.User;
@@ -42,4 +44,20 @@ public class SignUpController {
 //    return JsonUtils.createBlankSuccess();
 //  }
 
+    @RequestMapping(value = "/registerUser", method = RequestMethod.POST, consumes = "text/plain", produces = "application/json")
+    public String registerUser(@RequestBody String payload) throws Exception {
+        JSONObject obj = new JSONObject(payload);
+        User user = new User();
+        user.setAddress(obj.getString("address"));
+        user.setBanned(false);
+        user.setPublic(true);
+        user.setName(obj.getString("name"));
+        user.setEmail(obj.getString("email"));
+        user.setBirthday(new Date());
+        if (!DBUtils.putUser(user, obj.getString("password"))) {
+            throw new SpotifyException("Could not create account");
+        }
+        return JsonUtils.createBlankSuccess();
+    }
+  
 }
