@@ -9,22 +9,26 @@
     <link href="css/style.css" rel="stylesheet" />
     <link href="css/signup.css" rel="stylesheet" />
 
-
+    
     <!-- Angular -->
     <script src="http://code.jquery.com/jquery-2.0.3.min.js" data-semver="2.0.3" data-require="jquery"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    
+    <!-- JS -->
+    <script src="scripts/signup.js"></script>
+    <script src="scripts/helper.js"></script>
 
 </head>
-<body>
-    <div class="center_align vertical_center sign_in_block" ng-controller="signUpCtrl">
+<body ng-app="signup_module" ng-controller="signUpCtrl">
+    <div  class="center_align vertical_center sign_in_block" >
         <img class="logo" src="images/logo.jpg"/>
         <h2>Sign in to Spotify</h2>
 		<hr>
 		<form novalidate class="simple-form left_align">
-				<label>Name: <input type="text" ng-model="user.name" /></label><br /><br/>
-                <label>E-mail: <input type="email" ng-model="user.email" /></label><br /><br/>
-                <label>Date of birth: <input type="date" ng-model="user.birthdate" /></label><br /><br/>
-                <label>Password: <input type="text" ng-model="user.password" /></label><br /><br/>
+                <label>Name: <input type="text" ng-model="name" /></label><br /><br/>
+                <label>E-mail: <input type="email" ng-model="email" /></label><br /><br/>
+                <label>Date of birth: <input type="date: 'shortDate'" ng-model="birthdate" /></label><br /><br/>
+                <label>Password: <input type="text" ng-model="password" /></label><br /><br/>
             </form>
             <input type="button" ng-click="reset()" value="Reset" />
             <input type="submit" ng-click="createAccount()" value="Create an account" /> <br/>
