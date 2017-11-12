@@ -23,6 +23,7 @@ public class Administrator extends User {
 		super(id, name, email, address, birthday, null);
 		reports = new ArrayList<Report>();
 	}
+	public Administrator(){}
 	/** 
 	 * Add a report to the collection of reports
 	 * 
