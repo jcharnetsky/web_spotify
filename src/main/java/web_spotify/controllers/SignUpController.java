@@ -28,36 +28,19 @@ public class SignUpController {
     return "signUp.html";
   }
   
-//  @RequestMapping(value = "/signup", method = RequestMethod.GET, produces = "application/json")
-//  @ResponseBody
-//  public String signUpUser(@RequestParam(value = "name", required = true) String name,
-//                          @RequestParam(value = "email", required = true) String email,
-//                          @RequestParam(value = "birthdate", required = true) Date birthdate,
-//                          @RequestParam(value = "password", required = true) String password,
-//                          HttpSession session) throws SpotifyException {
-//    User user = DBUtils.putUser(name, email, birthdate, password);
-//    if (user != null) {
-//      session.setAttribute("User", user);
-//    } else {
-//      throw new SpotifyException("Invalid Username/Password");
-//    }
-//    return JsonUtils.createBlankSuccess();
-//  }
-
-    @RequestMapping(value = "/registerUser", method = RequestMethod.POST, consumes = "text/plain", produces = "application/json")
-    public String registerUser(@RequestBody String payload) throws Exception {
-        JSONObject obj = new JSONObject(payload);
-        User user = new User();
-        user.setAddress(obj.getString("address"));
-        user.setBanned(false);
-        user.setPublic(true);
-        user.setName(obj.getString("name"));
-        user.setEmail(obj.getString("email"));
-        user.setBirthday(new Date());
-        if (!DBUtils.putUser(user, obj.getString("password"))) {
-            throw new SpotifyException("Could not create account");
-        }
-        return JsonUtils.createBlankSuccess();
+  @RequestMapping(value = "/registerUser", method = RequestMethod.GET, produces = "application/json")
+  @ResponseBody
+  public String signUpUser(@RequestParam(value = "name", required = true) String name,
+                          @RequestParam(value = "email", required = true) String email,
+                          @RequestParam(value = "birthdate", required = true) Date birthdate,
+                          @RequestParam(value = "password", required = true) String password,
+                          HttpSession session) throws SpotifyException {
+    User user = new User(-1, name, email, null, new Date(), "");
+    boolean valid = DBUtils.putUser(user, password);
+    if (!valid) {
+      throw new SpotifyException("Insufficient information");
     }
-  
+    return JsonUtils.createBlankSuccess();
+  }
+
 }
