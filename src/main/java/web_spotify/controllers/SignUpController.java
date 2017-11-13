@@ -35,7 +35,7 @@ public class SignUpController {
                           @RequestParam(value = "birthdate", required = true) Date birthdate,
                           @RequestParam(value = "password", required = true) String password,
                           HttpSession session) throws SpotifyException {
-    User user = new User(-1, name, email, null, new Date(), "");
+    User user = new User(-1, name, email, null, birthdate, "");
     boolean valid = DBUtils.putUser(user, password);
     if (!valid) {
       throw new SpotifyException("Insufficient information");
