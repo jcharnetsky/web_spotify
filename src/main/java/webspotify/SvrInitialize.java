@@ -12,11 +12,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  *
  * @author Cardinals
  */
-//@EnableJpaRepositories(basePackages = "webspotify.repo")
-//@Configuration
-//@SpringBootApplication
+@EnableJpaRepositories(basePackages = "webspotify.repo")
+@Configuration
+@SpringBootApplication
 public class SvrInitialize {
-//    public static void main(String... arguments) {
-//        SpringApplication.run(SvrInitialize.class, arguments);
-//    }
+    public static void main(String... arguments) {
+        SpringApplication.run(SvrInitialize.class, arguments);
+    }
 }
