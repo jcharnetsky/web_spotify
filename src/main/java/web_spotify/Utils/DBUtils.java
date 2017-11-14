@@ -1,4 +1,4 @@
-package Utils;
+package web_spotify.Utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,7 +1,7 @@
 package web_spotify.controllers;
 
-import Utils.DBUtils;
-import Utils.JsonUtils;
+import web_spotify.Utils.DBUtils;
+import web_spotify.Utils.JsonUtils;
 import java.util.Date;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
