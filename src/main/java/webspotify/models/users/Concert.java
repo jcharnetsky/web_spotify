@@ -17,18 +17,18 @@ public class Concert implements Serializable, Viewable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
+	@Column(name = "id", nullable=false)
 	private Integer id;
-	@Column(name = "venue")
+	@Column(name = "venue", nullable=false)
 	private String venueName;
-	@Column(name = "concertDate")
+	@Column(name = "concertDate", nullable=false)
 	@Temporal(TemporalType.DATE)
 	private Date concertDate;
-	@Column(name = "url")
+	@Column(name = "url", nullable=false)
 	private String concertURL;
-	@Column(name = "isPublic")
+	@Column(name = "isPublic", nullable=false)
 	private Boolean isPublic;
-	@Column(name = "isBanned")
+	@Column(name = "isBanned", nullable=false)
 	private Boolean isBanned;
 	@ManyToMany
 	@JoinTable(

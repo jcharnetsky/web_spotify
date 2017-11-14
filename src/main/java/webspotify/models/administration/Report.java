@@ -14,19 +14,19 @@ import webspotify.types.SpotifyObjectEnum;
 public class Report implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "reportID")
+	@Column(name = "reportID", nullable=false)
 	private int reportId;
 	@ManyToOne
-	@JoinColumn(name = "creatorID")
+	@JoinColumn(name = "creatorID", nullable=false)
 	private User creator;
-	@Column(name = "subject")
+	@Column(name = "subject", nullable=false)
 	private String subject;
-	@Column(name = "description")
+	@Column(name = "description", nullable=false)
 	private String description;
-	@Column(name = "entity")
+	@Column(name = "entity", nullable=false)
 	@Enumerated(EnumType.STRING)
 	private SpotifyObjectEnum entityType;
-	@Column(name = "entityID")
+	@Column(name = "entityID", nullable=false)
 	private Integer entityId;
 
 	public Report() {

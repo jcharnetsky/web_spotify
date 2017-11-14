@@ -18,28 +18,28 @@ import webspotify.interfaces.Viewable;
 public class User implements Viewable, Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "ID")
+	@Column(name = "ID", nullable=false)
 	private Integer id;
-	@Column(name = "name")
+	@Column(name = "name", nullable=false)
 	private String name;
-	@Column(name = "email")
+	@Column(name = "email", nullable=false)
 	private String email;
-	@Column(name = "address")
+	@Column(name = "address", nullable=false)
 	private String address;
-	@Column(name = "birthdate")
+	@Column(name = "birthdate", nullable=false)
 	@Temporal(TemporalType.DATE)
 	private Date birthdate;
-	@Column(name = "image")
+	@Column(name = "image", nullable=false)
 	private String image;
-	@Column(name = "isbanned")
+	@Column(name = "isbanned", nullable=false)
 	private Boolean isBanned;
-	@Column(name = "ispublic")
+	@Column(name = "ispublic", nullable=false)
 	private Boolean isPublic;
-	@Column(name = "ispremium")
+	@Column(name = "ispremium", nullable=false)
 	private Boolean isPremium;
-	@Column(name = "password")
+	@Column(name = "password", nullable=false)
 	private String password;
-	@Column(name = "salt")
+	@Column(name = "salt", nullable=false)
 	private String passwordSalt;
 
 	public User() {
