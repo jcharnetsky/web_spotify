@@ -57,7 +57,7 @@ public class UserController {
 		if(userRepo.findByEmail(newUser.getEmail()).size() > 0) {
 			return ResponseUtilities.filledFailure("Email address is already registered.");
 		}
-		Artist user = new Artist();
+		User user = new User();
 		user.setAddress(newUser.getAddress());
 		user.setBirthdate(newUser.getBirthdate());
 		user.setEmail(newUser.getEmail());
@@ -67,10 +67,6 @@ public class UserController {
 		user.setIsBanned(false);
 		user.setIsPremium(false);
 		user.setIsPublic(true);
-		user.setStageName("Hiya");
-		user.setAbout("This is about me");
-		user.setStageName("First");
-		user.setStageName("swag");
 		userRepo.saveAndFlush(user);
 		return ResponseUtilities.emptySuccess();
 	}
