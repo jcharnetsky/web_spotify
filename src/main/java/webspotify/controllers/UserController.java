@@ -81,12 +81,12 @@ public class UserController {
     }
 
     @GetMapping("/info/set/name")
-    public Response setUserName(@RequestParam String newName, HttpSession session) {
+    public Response setUserName(@RequestParam String name, HttpSession session) {
         User u = (User) session.getAttribute("User");
         if (u == null) {
             return ResponseUtilities.filledFailure("User is not logged in.");
         }
-        u.setName(newName);
+        u.setName(name);
         userRepo.saveAndFlush(u);
         return ResponseUtilities.emptySuccess();
     }
