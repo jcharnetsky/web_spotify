@@ -1,6 +1,6 @@
 use cardinals;
 
-
+DROP TABLE IF EXISTS artist_concerts;
 DROP TABLE IF EXISTS PlaylistFollowers;
 DROP TABLE IF EXISTS PlaylistCollaborators;
 DROP TABLE IF EXISTS SongsInPlaylist;
