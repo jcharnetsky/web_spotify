@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import webspotify.Utilities.*;
 import webspotify.models.users.Artist;
-import webspotify.models.users.Concert;
+import webspotify.models.media.Concert;
 import webspotify.models.users.User;
 import webspotify.posts.ConcertArtistChangeRequest;
 import webspotify.repo.ArtistRepository;

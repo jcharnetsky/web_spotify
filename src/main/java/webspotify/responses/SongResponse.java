@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 import webspotify.models.media.Song;
 import webspotify.models.users.Artist;
-import webspotify.models.users.Concert;
+import webspotify.models.media.Concert;
 
 /**
  *

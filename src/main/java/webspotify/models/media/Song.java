@@ -3,6 +3,7 @@ package webspotify.models.media;
 import java.io.Serializable;
 import javax.persistence.*;
 import webspotify.models.users.Artist;
+import webspotify.types.GenreType;
 
 /**
  *
@@ -24,6 +25,9 @@ public class Song implements Serializable {
     private Boolean isBanned;
     @Column(name = "isPublic", nullable = false)
     private Boolean isPublic;
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "genre", nullable = false)
+    private GenreType genre;
     @ManyToOne
     @JoinColumn(name = "artistID", nullable = false)
     private Artist owner;
@@ -76,4 +80,12 @@ public class Song implements Serializable {
         this.owner = owner;
     }
 
+    public GenreType getGenre() {
+        return genre;
+    }
+
+    public void setGenre(GenreType genre) {
+        this.genre = genre;
+    }
+    
 }
