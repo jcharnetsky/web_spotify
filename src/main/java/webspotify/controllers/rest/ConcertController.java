@@ -1,4 +1,4 @@
-package webspotify.controllers;
+package webspotify.controllers.rest;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package webspotify.controllers;
+package webspotify.controllers.rest;
 
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import webspotify.Utilities.Response;
 import webspotify.Utilities.ResponseUtilities;
-import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 import webspotify.posts.SignupRequest;
 import webspotify.repo.UserRepository;
@@ -101,4 +100,39 @@ public class UserController {
         userRepo.saveAndFlush(u);
         return ResponseUtilities.emptySuccess();
     }
-}
+
+    @GetMapping("/info/get/email")
+    public Response getUserEmail(HttpSession session) {
+        User u = (User) session.getAttribute("User");
+        if (u == null) {
+            return ResponseUtilities.filledFailure("User is not logged in.");
+        }
+        return ResponseUtilities.filledSuccess(u.getEmail());
+    }
+
+    @GetMapping("/info/set/email")
+    public Response setUserEmail(@RequestParam String email, HttpSession session) {
+        User u = (User) session.getAttribute("User");
+        if (u == null) {
+            return ResponseUtilities.filledFailure("User is not logged in.");
+        }
+        List<User> userWithEmail = userRepo.findByEmail(email);
+        if (userWithEmail.isEmpty()) {
+            u.setEmail(email);
+            userRepo.saveAndFlush(u);
+            return ResponseUtilities.emptySuccess();
+        } else {
+            return ResponseUtilities.filledFailure("Email set unsuccessful.");
+        }
+    }
+    
+    @GetMapping("/info/set/premium")
+    public Response setUserPremium(@RequestParam Boolean premium, HttpSession session) {
+        User u = (User) session.getAttribute("User");
+        if (u == null) {
+            return ResponseUtilities.filledFailure("User is not logged in.");
+        }
+        u.setIsPremium(premium);
+        userRepo.saveAndFlush(u);
+        return ResponseUtilities.emptySuccess();
+    }}
