@@ -1,11 +1,11 @@
-package webspotify.models.users;
+package webspotify.models.media;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
 import webspotify.interfaces.Viewable;
+import webspotify.models.users.Artist;
 
 /**
  *

@@ -2,7 +2,7 @@ package webspotify.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import webspotify.models.users.Concert;
+import webspotify.models.media.Concert;
 
 /**
  *

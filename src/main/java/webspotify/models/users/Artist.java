@@ -1,5 +1,6 @@
 package webspotify.models.users;
 
+import webspotify.models.media.Concert;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
