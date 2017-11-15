@@ -16,8 +16,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity
-@Table(name = "Concerts")
+//@Entity
+//@Table(name = "Concerts")
 class Concert implements Viewable, Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

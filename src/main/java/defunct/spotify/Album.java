@@ -10,8 +10,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity
-@Table(name = "Albums")
+//@Entity
+//@Table(name = "Albums")
 class Album extends SongCollection {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "releaseDate")

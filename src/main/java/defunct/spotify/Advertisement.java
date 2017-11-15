@@ -4,8 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "advertisements")
+//@Entity
+//@Table(name = "advertisements")
 public class Advertisement extends Song {
 	@Column(name = "advertiser")
         @ManyToOne

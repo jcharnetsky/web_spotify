@@ -7,8 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.persistence.Id;
 
-@Entity
-@Table(name = "Reports")
+//@Entity
+//@Table(name = "Reports")
 public class Report implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

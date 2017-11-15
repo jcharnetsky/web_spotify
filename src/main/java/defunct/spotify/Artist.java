@@ -10,8 +10,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "Artists")
+//@Entity
+//@Table(name = "Artists")
 public class Artist extends User {
 	@Basic
 	private String bio;
