@@ -2,6 +2,7 @@ package webspotify.models.users;
 
 import webspotify.models.media.Concert;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
@@ -32,6 +33,7 @@ public class Artist extends User {
     public Artist() {
         super();
         this.aliases = new ArrayList<String>();
+        this.concerts = new HashSet<Concert>();
     }
 
     public String getStageName() {
