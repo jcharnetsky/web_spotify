@@ -12,8 +12,8 @@ import javax.persistence.SecondaryTable;
 import javax.persistence.SecondaryTables;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "Songs")
+//@Entity
+//@Table(name = "Songs")
 @SecondaryTables({
 	@SecondaryTable(name = "SongAudio", pkJoinColumns = @PrimaryKeyJoinColumn(name = "songID"))
 	,

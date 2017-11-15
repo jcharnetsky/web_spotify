@@ -6,7 +6,7 @@ import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-@Entity
+//@Entity
 public class Administrator extends User {
 	@Column(name = "reports")
 	private Collection<Report> reports;

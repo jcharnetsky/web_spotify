@@ -7,7 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
-@Entity
+//@Entity
 public class Advertiser extends User {
 	@Basic
   private String companyName;

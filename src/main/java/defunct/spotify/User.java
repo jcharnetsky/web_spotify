@@ -17,8 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity
-@Table(name = "Users")
+//@Entity
+//@Table(name = "Users")
 public class User implements Viewable, Serializable {
 
     @Id

@@ -11,8 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "Playlists")
+//@Entity
+//@Table(name = "Playlists")
 public class Playlist extends SongCollection {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
