@@ -2,6 +2,7 @@ package webspotify.models.media;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 import webspotify.interfaces.Viewable;
@@ -38,6 +39,7 @@ public class Concert implements Serializable, Viewable {
 	private Set<Artist> artists;
 
 	public Concert() {
+            artists = new HashSet<Artist>();
 	}
 
 	@Override
