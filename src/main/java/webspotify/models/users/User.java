@@ -183,12 +183,12 @@ public class User implements Viewable, Serializable {
 
 	@Override
 	public void setBanned(boolean value) {
-		this.setIsBanned(isBanned);
+		this.setIsBanned(value);
 	}
 
 	@Override
 	public void setPublic(boolean value) {
-		this.setIsPublic(isPublic);
+		this.setIsPublic(value);
 	}
 
 	@Override
