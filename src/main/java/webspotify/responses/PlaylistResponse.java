@@ -20,6 +20,7 @@ public class PlaylistResponse {
   private List<SongResponse> songs;
   private Integer songCount;
   private Integer duration;
+  private String ownerName;
 
   public PlaylistResponse(Playlist playlist) {
     this.id = playlist.getId();
@@ -34,6 +35,7 @@ public class PlaylistResponse {
       this.duration += song.getTrackLength();
     }
     this.songCount = this.songs.size();
+    this.ownerName = playlist.getOwner().getName();
   }
 
   public Boolean getCollaborative() {
@@ -84,11 +86,27 @@ public class PlaylistResponse {
     this.id = id;
   }
 
-  public Integer getSongCount() { return songCount; }
+  public String getOwnerName() {
+    return ownerName;
+  }
 
-  public void setSongCount(Integer songCount) { this.songCount = songCount; }
+  public void setOwnerName(String ownerName) {
+    this.ownerName = ownerName;
+  }
 
-  public Integer getDuration() { return duration; }
+  public Integer getSongCount() {
+    return songCount;
+  }
 
-  public void setDuration(Integer duration) { this.duration = duration; }
+  public void setSongCount(Integer songCount) {
+    this.songCount = songCount;
+  }
+
+  public Integer getDuration() {
+    return duration;
+  }
+
+  public void setDuration(Integer duration) {
+    this.duration = duration;
+  }
 }
