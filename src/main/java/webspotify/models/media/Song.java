@@ -1,5 +1,4 @@
 package webspotify.models.media;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +13,6 @@ import webspotify.types.GenreType;
 @Entity
 @Table(name = "Songs")
 public class Song implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", nullable = false)
@@ -104,5 +102,4 @@ public class Song implements Serializable {
     public void setAudio(byte[] audio) {
         this.audio = audio;
     }
-
 }
