@@ -12,7 +12,7 @@ angular.module('signup_module', []).controller('signUpCtrl', function ($http, $s
         window.location = location.origin;
         return;
       }
-      displayErrorPopup(response.data.error, $scope, $parse, $compile);
+      displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
     }).catch(function(err){
       displayErrorPopup(err, $scope, $parse, $compile);
     });

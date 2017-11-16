@@ -6,7 +6,7 @@ angular.module('login_module', []).controller('logInCtrl', function ($http, $sco
         window.location = location.origin + "/home.html";
         return;
       }
-      displayErrorPopup(response.data.error, $scope, $parse, $compile);
+      displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
     }).catch(function(err){
       displayErrorPopup(err, $scope, $parse, $compile);
     });
