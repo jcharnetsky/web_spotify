@@ -25,7 +25,7 @@ public class PlaylistController {
 
   @Autowired
   private PlaylistRepository playlistRepo;
-  @Autowired 
+  @Autowired
   private SongRepository songRepo;
 
   @GetMapping("/getData/{playlistId}")
@@ -74,21 +74,41 @@ public class PlaylistController {
       return ResponseUtilities.filledFailure("Playlist Could not be Created");
     }
   }
-  
+
   @PostMapping("/addSong")
   public Response addSongToPlaylist(@RequestBody PlaylistChangeSongRequest request, HttpSession session) {
     if (session.getAttribute("User") == null) {
       return ResponseUtilities.filledFailure("User is not logged in.");
     }
-    if(!playlistRepo.exists(request.getPlaylistID()) || !songRepo.exists(request.getSongID())) {
+    if (!playlistRepo.exists(request.getPlaylistID()) || !songRepo.exists(request.getSongID())) {
       return ResponseUtilities.filledFailure("Song/Playlist does not exist");
     }
     Playlist playlistToUpdate = playlistRepo.findOne(request.getPlaylistID());
     Song songToAdd = songRepo.findOne(request.getSongID());
-    
+
     boolean success = playlistToUpdate.getSongs().add(songToAdd);
-    if(!success) {
+    if (!success) {
       return ResponseUtilities.filledFailure("Song/Playlist could not be added.");
+    } else {
+      playlistRepo.save(playlistToUpdate);
+      return ResponseUtilities.emptySuccess();
+    }
+  }
+
+  @PostMapping("/remSong")
+  public Response remSongToPlaylist(@RequestBody PlaylistChangeSongRequest request, HttpSession session) {
+    if (session.getAttribute("User") == null) {
+      return ResponseUtilities.filledFailure("User is not logged in.");
+    }
+    if (!playlistRepo.exists(request.getPlaylistID()) || !songRepo.exists(request.getSongID())) {
+      return ResponseUtilities.filledFailure("Song/Playlist does not exist");
+    }
+    Playlist playlistToUpdate = playlistRepo.findOne(request.getPlaylistID());
+    Song songToRemove = songRepo.findOne(request.getSongID());
+
+    boolean success = playlistToUpdate.getSongs().remove(songToRemove);
+    if (!success) {
+      return ResponseUtilities.filledFailure("Song/Playlist could not be removed.");
     } else {
       playlistRepo.save(playlistToUpdate);
       return ResponseUtilities.emptySuccess();
