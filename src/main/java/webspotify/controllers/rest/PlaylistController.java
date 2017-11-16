@@ -1,5 +1,6 @@
 package webspotify.controllers.rest;
 
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -7,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import webspotify.Utilities.*;
 import webspotify.models.media.Playlist;
+import webspotify.models.media.Song;
+import webspotify.posts.PlaylistChangeSongRequest;
 import webspotify.posts.PlaylistCreateRequest;
 import webspotify.repo.PlaylistRepository;
+import webspotify.repo.SongRepository;
 import webspotify.responses.PlaylistResponse;
 
 /**
@@ -21,6 +25,8 @@ public class PlaylistController {
 
   @Autowired
   private PlaylistRepository playlistRepo;
+  @Autowired 
+  private SongRepository songRepo;
 
   @GetMapping("/getData/{playlistId}")
   public Response getPlaylistData(@PathVariable final int playlistId, HttpSession session) {
@@ -60,10 +66,31 @@ public class PlaylistController {
     playlistToAdd.setDescription(request.getDescription());
     playlistToAdd.setTitle(request.getTitle());
     playlistToAdd.setGenre(request.getGenre());
-    Playlist added = playlistRepo.save(playlistToAdd);
-    if (added == null) {
+    try {
+      playlistRepo.save(playlistToAdd);
+      return ResponseUtilities.emptySuccess();
+    } catch (Exception e) {
+      System.out.println(e);
       return ResponseUtilities.filledFailure("Playlist Could not be Created");
+    }
+  }
+  
+  @PostMapping("/addSong")
+  public Response addSongToPlaylist(@RequestBody PlaylistChangeSongRequest request, HttpSession session) {
+    if (session.getAttribute("User") == null) {
+      return ResponseUtilities.filledFailure("User is not logged in.");
+    }
+    if(!playlistRepo.exists(request.getPlaylistID()) || !songRepo.exists(request.getSongID())) {
+      return ResponseUtilities.filledFailure("Song/Playlist does not exist");
+    }
+    Playlist playlistToUpdate = playlistRepo.findOne(request.getPlaylistID());
+    Song songToAdd = songRepo.findOne(request.getSongID());
+    
+    boolean success = playlistToUpdate.getSongs().add(songToAdd);
+    if(!success) {
+      return ResponseUtilities.filledFailure("Song/Playlist could not be added.");
     } else {
+      playlistRepo.save(playlistToUpdate);
       return ResponseUtilities.emptySuccess();
     }
   }
