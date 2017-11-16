@@ -12,6 +12,7 @@ import webspotify.types.GenreType;
  */
 public class PlaylistResponse {
 
+    private Integer id;
     private Boolean collaborative;
     private String description;
     private GenreType genre;
@@ -19,6 +20,7 @@ public class PlaylistResponse {
     private List<SongResponse> songs;
     
     public PlaylistResponse(Playlist playlist) {
+        this.id = playlist.getId();
         this.title = playlist.getTitle();
         this.genre = playlist.getGenre();
         this.description = playlist.getDescription();
