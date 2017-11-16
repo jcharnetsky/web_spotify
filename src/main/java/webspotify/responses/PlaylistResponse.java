@@ -12,64 +12,71 @@ import webspotify.types.GenreType;
  */
 public class PlaylistResponse {
 
-    private Integer id;
-    private Boolean collaborative;
-    private String description;
-    private GenreType genre;
-    private String title;
-    private List<SongResponse> songs;
-    
-    public PlaylistResponse(Playlist playlist) {
-        this.id = playlist.getId();
-        this.title = playlist.getTitle();
-        this.genre = playlist.getGenre();
-        this.description = playlist.getDescription();
-        this.collaborative = playlist.getCollaborative();
-        this.songs = new ArrayList<SongResponse>();
-        for(Song song : playlist.getSongs()) {
-            this.songs.add(new SongResponse(song));
-        }
-    }
+  private Integer id;
+  private Boolean collaborative;
+  private String description;
+  private GenreType genre;
+  private String title;
+  private List<SongResponse> songs;
 
-    public Boolean getCollaborative() {
-        return collaborative;
+  public PlaylistResponse(Playlist playlist) {
+    this.id = playlist.getId();
+    this.title = playlist.getTitle();
+    this.genre = playlist.getGenre();
+    this.description = playlist.getDescription();
+    this.collaborative = playlist.getCollaborative();
+    this.songs = new ArrayList<SongResponse>();
+    for (Song song : playlist.getSongs()) {
+      this.songs.add(new SongResponse(song));
     }
+  }
 
-    public void setCollaborative(Boolean collaborative) {
-        this.collaborative = collaborative;
-    }
+  public Boolean getCollaborative() {
+    return collaborative;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public void setCollaborative(Boolean collaborative) {
+    this.collaborative = collaborative;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public GenreType getGenre() {
-        return genre;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    public void setGenre(GenreType genre) {
-        this.genre = genre;
-    }
+  public GenreType getGenre() {
+    return genre;
+  }
 
-    public String getTitle() {
-        return title;
-    }
+  public void setGenre(GenreType genre) {
+    this.genre = genre;
+  }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+  public String getTitle() {
+    return title;
+  }
 
-    public List<SongResponse> getSongs() {
-        return songs;
-    }
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-    public void setSongs(List<SongResponse> songs) {
-        this.songs = songs;
-    }
-    
-    
+  public List<SongResponse> getSongs() {
+    return songs;
+  }
+
+  public void setSongs(List<SongResponse> songs) {
+    this.songs = songs;
+  }
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
 }
