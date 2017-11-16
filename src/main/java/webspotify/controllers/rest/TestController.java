@@ -9,11 +9,13 @@ import java.util.Scanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import webspotify.models.media.Concert;
+import webspotify.models.media.Playlist;
 import webspotify.models.media.Song;
 import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 import webspotify.repo.ArtistRepository;
 import webspotify.repo.ConcertRepository;
+import webspotify.repo.PlaylistRepository;
 import webspotify.repo.SongRepository;
 import webspotify.repo.UserRepository;
 import webspotify.types.GenreType;
@@ -34,6 +36,8 @@ public class TestController {
     private ConcertRepository concertRepo;
     @Autowired
     private SongRepository songRepo;
+    @Autowired
+    private PlaylistRepository playlistRepo;
 
     @GetMapping("/")
     public String runTest() {
@@ -82,6 +86,15 @@ public class TestController {
         s.setOwner(a);
         s.setTitle("Song Title");
         s.setTrackLength(10);
+        
+        Playlist pl = new Playlist();
+        pl.setTitle("Cool Playlist");
+        pl.setBanned(false);
+        pl.setPublic(true);
+        pl.setGenre(GenreType.POP);
+        pl.setCollaborative(true);
+        pl.setDescription("This is a playlist");
+        pl.getSongs().add(s);
 
         String content = "";
         try {
@@ -96,6 +109,7 @@ public class TestController {
         artistRepo.save(a);
         songRepo.save(s);
         concertRepo.save(c);
+        playlistRepo.save(pl);
 
         return "test data inputted.";
     }
