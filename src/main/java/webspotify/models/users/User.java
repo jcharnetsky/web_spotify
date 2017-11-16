@@ -1,9 +1,14 @@
 package webspotify.models.users;
+
 import java.io.Serializable;
 import java.security.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 import webspotify.interfaces.Viewable;
+import webspotify.models.media.Playlist;
+import webspotify.models.media.SongCollection;
 
 /**
  *
@@ -11,206 +16,218 @@ import webspotify.interfaces.Viewable;
  */
 @Entity
 @Table(name = "Users")
-@Inheritance(strategy=InheritanceType.JOINED)
-@DiscriminatorColumn(name="userType", discriminatorType=DiscriminatorType.STRING)
-@DiscriminatorValue(value="BASE")
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "userType", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue(value = "BASE")
 public class User implements Viewable, Serializable {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "ID", nullable=false)
-	private Integer id;
-	@Column(name = "name", nullable=false)
-	private String name;
-	@Column(name = "email", nullable=false)
-	private String email;
-	@Column(name = "address", nullable=false)
-	private String address;
-	@Column(name = "birthdate", nullable=false)
-	@Temporal(TemporalType.DATE)
-	private Date birthdate;
-	@Column(name = "image", nullable=false)
-	private String image;
-	@Column(name = "isbanned", nullable=false)
-	private Boolean isBanned;
-	@Column(name = "ispublic", nullable=false)
-	private Boolean isPublic;
-	@Column(name = "ispremium", nullable=false)
-	private Boolean isPremium;
-	@Column(name = "password", nullable=false)
-	private String password;
-	@Column(name = "salt", nullable=false)
-	private String passwordSalt;
-	
-	public User() {
-	}
-	
-	public boolean createSecurePassword(final String plainPassword) {
-		try {
-			SecureRandom rand = new SecureRandom();
-			byte[] preSalt = new byte[12];
-			rand.nextBytes(preSalt);
-			String saltValue = new String(preSalt);
-			String saltedPassword = saltValue + plainPassword;
-			MessageDigest md = MessageDigest.getInstance("SHA-512");
-			md.update(saltedPassword.getBytes());
-			String hashedPassword = new String(md.digest());
-			this.password = hashedPassword;
-			this.passwordSalt = saltValue;
-			return true;
-		} catch (Exception e) {
-			System.out.println("Error occurred on Password Creation.");
-			return false;
-		}
-	}
 
-	public boolean authenticateLogin(final String plainPassword) {
-		try {
-			String saltedPassword = this.passwordSalt + plainPassword;
-			MessageDigest md = MessageDigest.getInstance("SHA-512");
-			md.update(saltedPassword.getBytes());
-			String hashedPassword = new String(md.digest());
-			return hashedPassword.equals(this.password);
-		} catch (Exception ex) {
-			System.out.println("Error occurred on Password Auth.");
-			return false;
-		}
-	}
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "ID", nullable = false)
+  private Integer id;
+  @Column(name = "name", nullable = false)
+  private String name;
+  @Column(name = "email", nullable = false)
+  private String email;
+  @Column(name = "address", nullable = false)
+  private String address;
+  @Column(name = "birthdate", nullable = false)
+  @Temporal(TemporalType.DATE)
+  private Date birthdate;
+  @Column(name = "image", nullable = false)
+  private String image;
+  @Column(name = "isbanned", nullable = false)
+  private Boolean isBanned;
+  @Column(name = "ispublic", nullable = false)
+  private Boolean isPublic;
+  @Column(name = "ispremium", nullable = false)
+  private Boolean isPremium;
+  @Column(name = "password", nullable = false)
+  private String password;
+  @Column(name = "salt", nullable = false)
+  private String passwordSalt;
+  @OneToMany(mappedBy = "owner")
+  private Set<SongCollection> ownedPlaylists;
 
-	@Override
-	public Integer getId() {
-		return id;
-	}
+  public User() {
+    this.ownedPlaylists = new HashSet<SongCollection>();
+  }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+  public boolean createSecurePassword(final String plainPassword) {
+    try {
+      SecureRandom rand = new SecureRandom();
+      byte[] preSalt = new byte[12];
+      rand.nextBytes(preSalt);
+      String saltValue = new String(preSalt);
+      String saltedPassword = saltValue + plainPassword;
+      MessageDigest md = MessageDigest.getInstance("SHA-512");
+      md.update(saltedPassword.getBytes());
+      String hashedPassword = new String(md.digest());
+      this.password = hashedPassword;
+      this.passwordSalt = saltValue;
+      return true;
+    } catch (Exception e) {
+      System.out.println("Error occurred on Password Creation.");
+      return false;
+    }
+  }
 
-	public String getName() {
-		return name;
-	}
+  public boolean authenticateLogin(final String plainPassword) {
+    try {
+      String saltedPassword = this.passwordSalt + plainPassword;
+      MessageDigest md = MessageDigest.getInstance("SHA-512");
+      md.update(saltedPassword.getBytes());
+      String hashedPassword = new String(md.digest());
+      return hashedPassword.equals(this.password);
+    } catch (Exception ex) {
+      System.out.println("Error occurred on Password Auth.");
+      return false;
+    }
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  @Override
+  public Integer getId() {
+    return id;
+  }
 
-	public String getEmail() {
-		return email;
-	}
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+  public String getName() {
+    return name;
+  }
 
-	public String getAddress() {
-		return address;
-	}
+  public void setName(String name) {
+    this.name = name;
+  }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+  public String getEmail() {
+    return email;
+  }
 
-	public Date getBirthdate() {
-		return birthdate;
-	}
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-	public void setBirthdate(Date birthdate) {
-		this.birthdate = birthdate;
-	}
+  public String getAddress() {
+    return address;
+  }
 
-	public String getImage() {
-		return image;
-	}
+  public void setAddress(String address) {
+    this.address = address;
+  }
 
-	public void setImage(String image) {
-		this.image = image;
-	}
+  public Date getBirthdate() {
+    return birthdate;
+  }
 
-	public Boolean getIsBanned() {
-		return isBanned;
-	}
+  public void setBirthdate(Date birthdate) {
+    this.birthdate = birthdate;
+  }
 
-	public void setIsBanned(Boolean isBanned) {
-		this.isBanned = isBanned;
-	}
+  public String getImage() {
+    return image;
+  }
 
-	public Boolean getIsPublic() {
-		return isPublic;
-	}
+  public void setImage(String image) {
+    this.image = image;
+  }
 
-	public void setIsPublic(Boolean isPublic) {
-		this.isPublic = isPublic;
-	}
+  public Boolean getIsBanned() {
+    return isBanned;
+  }
 
-	public Boolean getIsPremium() {
-		return isPremium;
-	}
+  public void setIsBanned(Boolean isBanned) {
+    this.isBanned = isBanned;
+  }
 
-	public void setIsPremium(Boolean isPremium) {
-		this.isPremium = isPremium;
-	}
+  public Boolean getIsPublic() {
+    return isPublic;
+  }
 
-	public String getPassword() {
-		return password;
-	}
+  public void setIsPublic(Boolean isPublic) {
+    this.isPublic = isPublic;
+  }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+  public Boolean getIsPremium() {
+    return isPremium;
+  }
 
-	public String getPasswordSalt() {
-		return passwordSalt;
-	}
+  public void setIsPremium(Boolean isPremium) {
+    this.isPremium = isPremium;
+  }
 
-	public void setPasswordSalt(String passwordSalt) {
-		this.passwordSalt = passwordSalt;
-	}
+  public String getPassword() {
+    return password;
+  }
 
-	@Override
-	public boolean isBanned() {
-		return this.getIsBanned();
-	}
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-	@Override
-	public boolean isPublic() {
-		return this.getIsPremium();
-	}
+  public String getPasswordSalt() {
+    return passwordSalt;
+  }
 
-	@Override
-	public int ownedBy() {
-		return -1;
-	}
+  public void setPasswordSalt(String passwordSalt) {
+    this.passwordSalt = passwordSalt;
+  }
 
-	@Override
-	public void setBanned(boolean value) {
-		this.setIsBanned(value);
-	}
+  public Set<SongCollection> getOwnedPlaylists() {
+    return ownedPlaylists;
+  }
 
-	@Override
-	public void setPublic(boolean value) {
-		this.setIsPublic(value);
-	}
+  public void setOwnedPlaylists(Set<SongCollection> ownedPlaylists) {
+    this.ownedPlaylists = ownedPlaylists;
+  }
 
-	@Override
-	public int hashCode() {
-		int hash = 7;
-		return hash;
-	}
+  @Override
+  public boolean isBanned() {
+    return this.getIsBanned();
+  }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final User other = (User) obj;
-		if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
-			return false;
-		}
-		return true;
-	}
+  @Override
+  public boolean isPublic() {
+    return this.getIsPremium();
+  }
+
+  @Override
+  public int ownedBy() {
+    return -1;
+  }
+
+  @Override
+  public void setBanned(boolean value) {
+    this.setIsBanned(value);
+  }
+
+  @Override
+  public void setPublic(boolean value) {
+    this.setIsPublic(value);
+  }
+
+  @Override
+  public int hashCode() {
+    int hash = 7;
+    return hash;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    final User other = (User) obj;
+    if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+      return false;
+    }
+    return true;
+  }
 }
