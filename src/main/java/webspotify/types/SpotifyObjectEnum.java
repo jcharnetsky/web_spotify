@@ -10,5 +10,5 @@ package webspotify.types;
  * @author lemon
  */
 public enum SpotifyObjectEnum {
-	USER, SONG, ALBUM, PLAYLIST
+  USER, SONG, ALBUM, PLAYLIST
 }

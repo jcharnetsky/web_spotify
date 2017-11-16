@@ -1,5 +1,4 @@
 package webspotify.models.users;
-
 import java.io.Serializable;
 import java.security.*;
 import java.util.Date;
@@ -41,10 +40,10 @@ public class User implements Viewable, Serializable {
 	private String password;
 	@Column(name = "salt", nullable=false)
 	private String passwordSalt;
-
+	
 	public User() {
 	}
-
+	
 	public boolean createSecurePassword(final String plainPassword) {
 		try {
 			SecureRandom rand = new SecureRandom();
@@ -214,5 +213,4 @@ public class User implements Viewable, Serializable {
 		}
 		return true;
 	}
-
 }

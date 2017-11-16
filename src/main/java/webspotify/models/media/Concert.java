@@ -15,7 +15,6 @@ import webspotify.models.users.Artist;
 @Entity
 @Table(name = "concerts")
 public class Concert implements Serializable, Viewable {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", nullable=false)
@@ -123,5 +122,4 @@ public class Concert implements Serializable, Viewable {
 	public void setPublic(boolean value) {
 		this.setIsPublic(isPublic);
 	}
-
 }
