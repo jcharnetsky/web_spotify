@@ -17,7 +17,6 @@ function handleJSONResponse(response, div, URL, controllerPath, compile, parse, 
   if(!response.data.error){
     controllerPath = controllerPath.replace(new RegExp('/', 'g'),'_');
     parse(controllerPath).assign(scope, response.data.content); // Sets scope.controllerPath to response.data
-    console.log(scope.api_users_info_get_name);
     node = loadToDiv(div, URL);
     compile(node)(scope); // Recompiles an ng-include div to load template html
     return;
