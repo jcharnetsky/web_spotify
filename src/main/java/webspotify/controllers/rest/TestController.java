@@ -1,14 +1,22 @@
 package webspotify.controllers.rest;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
+import java.util.Scanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import webspotify.models.media.Concert;
+import webspotify.models.media.Song;
 import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 import webspotify.repo.ArtistRepository;
 import webspotify.repo.ConcertRepository;
+import webspotify.repo.SongRepository;
 import webspotify.repo.UserRepository;
+import webspotify.types.GenreType;
 
 /**
  *
@@ -24,13 +32,15 @@ public class TestController {
     private ArtistRepository artistRepo;
     @Autowired
     private ConcertRepository concertRepo;
+    @Autowired
+    private SongRepository songRepo;
 
     @GetMapping("/")
     public String runTest() {
-        if(!userRepo.findByEmail("user@yahoo.com").isEmpty()) {
+        if (!userRepo.findByEmail("user@yahoo.com").isEmpty()) {
             return "Test Data has already been inputted";
         }
-        
+
         User u = new User();
         u.setAddress("TestAddress");
         u.setBanned(false);
@@ -55,7 +65,7 @@ public class TestController {
         a.setAbout("THis is a test bio");
         a.setStageName("Mary Doe");
         a.setStageName("John Doe");
-        
+
         Concert c = new Concert();
         c.setBanned(false);
         c.setIsPublic(true);
@@ -64,12 +74,29 @@ public class TestController {
         c.setConcertDate(new Date());
         c.setConcertURL("www.google.com");
         c.getArtists().add(a);
-        
+
+        Song s = new Song();
+        s.setGenre(GenreType.POP);
+        s.setIsBanned(false);
+        s.setIsPublic(true);
+        s.setOwner(a);
+        s.setTitle("Song Title");
+        s.setTrackLength(10);
+
+        String content = "";
+        try {
+            Path p = Paths.get("db/horse.mp3");
+            content = new String(Files.readAllBytes(p));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        s.setAudio(content.getBytes());
+
         userRepo.save(u);
         artistRepo.save(a);
+        songRepo.save(s);
         concertRepo.save(c);
 
-        
         return "test data inputted.";
     }
 }
