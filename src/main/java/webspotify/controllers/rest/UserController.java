@@ -18,56 +18,56 @@ import webspotify.repo.UserRepository;
 @RequestMapping("/api/users")
 public class UserController {
 
-    @Autowired
-    private UserRepository userRepo;
+  @Autowired
+  private UserRepository userRepo;
 
-    @GetMapping("/login")
-    public Response loginUser(@RequestParam String email, @RequestParam String password, HttpSession session) {
-        if (session.getAttribute("User") != null) {
-            return ResponseUtilities.filledFailure("User is already logged in.");
-        }
-        List<User> userList = userRepo.findByEmail(email);
-        if (userList.size() != 1) {
-            return ResponseUtilities.filledFailure("Email/Password combination is invalid.");
-        }
-        User user = userList.get(0);
-        if (!user.authenticateLogin(password)) {
-            return ResponseUtilities.filledFailure("Email/Password combination is invalid.");
-        }
-        session.setAttribute("User", user);
-        return ResponseUtilities.emptySuccess();
+  @GetMapping("/login")
+  public Response loginUser(@RequestParam String email, @RequestParam String password, HttpSession session) {
+    if (session.getAttribute("User") != null) {
+      return ResponseUtilities.filledFailure("User is already logged in.");
     }
+    List<User> userList = userRepo.findByEmail(email);
+    if (userList.size() != 1) {
+      return ResponseUtilities.filledFailure("Email/Password combination is invalid.");
+    }
+    User user = userList.get(0);
+    if (!user.authenticateLogin(password)) {
+      return ResponseUtilities.filledFailure("Email/Password combination is invalid.");
+    }
+    session.setAttribute("User", user);
+    return ResponseUtilities.emptySuccess();
+  }
 
-    @GetMapping("/logout")
-    public Response logoutUser(HttpSession session) {
-        if (session.getAttribute("User") == null) {
-            session.invalidate();
-            return ResponseUtilities.filledFailure("User previously logged out.");
-        }
-        session.invalidate();
-        return ResponseUtilities.emptySuccess();
+  @GetMapping("/logout")
+  public Response logoutUser(HttpSession session) {
+    if (session.getAttribute("User") == null) {
+      session.invalidate();
+      return ResponseUtilities.filledFailure("User previously logged out.");
     }
+    session.invalidate();
+    return ResponseUtilities.emptySuccess();
+  }
 
-    @PostMapping("/register")
-    public Response postUser(@RequestBody SignupRequest newUser, HttpSession session) {
-        if (session.getAttribute("User") != null) {
-            return ResponseUtilities.filledFailure("User is already logged in.");
-        }
-        if (userRepo.findByEmail(newUser.getEmail()).size() > 0) {
-            return ResponseUtilities.filledFailure("Email address is already registered.");
-        }
-        User user = new User();
-        user.setAddress(newUser.getAddress());
-        user.setBirthdate(newUser.getBirthdate());
-        user.setEmail(newUser.getEmail());
-        user.setName(newUser.getName());
-        user.createSecurePassword(newUser.getPassword());
-        user.setImage("");
-        user.setIsBanned(false);
-        user.setIsPremium(false);
-        user.setIsPublic(true);
-        userRepo.saveAndFlush(user);
-        return ResponseUtilities.emptySuccess();
+  @PostMapping("/register")
+  public Response postUser(@RequestBody SignupRequest newUser, HttpSession session) {
+    if (session.getAttribute("User") != null) {
+      return ResponseUtilities.filledFailure("User is already logged in.");
     }
+    if (userRepo.findByEmail(newUser.getEmail()).size() > 0) {
+      return ResponseUtilities.filledFailure("Email address is already registered.");
+    }
+    User user = new User();
+    user.setAddress(newUser.getAddress());
+    user.setBirthdate(newUser.getBirthdate());
+    user.setEmail(newUser.getEmail());
+    user.setName(newUser.getName());
+    user.createSecurePassword(newUser.getPassword());
+    user.setImage("");
+    user.setIsBanned(false);
+    user.setIsPremium(false);
+    user.setIsPublic(true);
+    userRepo.saveAndFlush(user);
+    return ResponseUtilities.emptySuccess();
+  }
 
 }
