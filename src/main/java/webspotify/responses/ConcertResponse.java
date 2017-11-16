@@ -1,5 +1,4 @@
 package webspotify.responses;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,19 +24,19 @@ public class ConcertResponse {
 			this.artists.add(new ArtistResponse(artist));
 		}
 	}
-
+	
 	public String getVenueName() {
 		return venueName;
 	}
-
+	
 	public void setVenueName(String venueName) {
 		this.venueName = venueName;
 	}
-
+	
 	public Date getConcertDate() {
 		return concertDate;
 	}
-
+	
 	public void setConcertDate(Date concertDate) {
 		this.concertDate = concertDate;
 	}
@@ -45,17 +44,16 @@ public class ConcertResponse {
 	public String getConcertURL() {
 		return concertURL;
 	}
-
+	
 	public void setConcertURL(String concertURL) {
 		this.concertURL = concertURL;
 	}
-
+	
 	public List<ArtistResponse> getArtists() {
 		return artists;
 	}
-
+	
 	public void setArtists(List<ArtistResponse> artists) {
 		this.artists = artists;
 	}
-	
 }
