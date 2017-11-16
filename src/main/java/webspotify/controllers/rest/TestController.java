@@ -95,6 +95,7 @@ public class TestController {
         pl.setCollaborative(true);
         pl.setDescription("This is a playlist");
         pl.getSongs().add(s);
+        pl.setOwner(u);
 
         String content = "";
         try {
