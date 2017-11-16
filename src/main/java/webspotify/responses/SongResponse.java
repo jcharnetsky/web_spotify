@@ -1,11 +1,7 @@
 package webspotify.responses;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import webspotify.models.media.Song;
-import webspotify.models.users.Artist;
-import webspotify.models.media.Concert;
+import webspotify.types.GenreType;
 
 /**
  *
@@ -16,11 +12,13 @@ public class SongResponse {
     private String trackName;
     private Integer trackLength;
     private ArtistResponse artist;
+    private GenreType genre;
 
     public SongResponse(Song build) {
         this.trackLength = build.getTrackLength();
         this.trackName = build.getTitle();
         this.artist = new ArtistResponse(build.getOwner());
+        this.genre = build.getGenre();
     }
 
     public String getTrackName() {
@@ -45,6 +43,14 @@ public class SongResponse {
 
     public void setArtist(ArtistResponse artist) {
         this.artist = artist;
+    }
+
+    public GenreType getGenre() {
+        return genre;
+    }
+
+    public void setGenre(GenreType genre) {
+        this.genre = genre;
     }
 
 }

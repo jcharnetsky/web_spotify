@@ -1,6 +1,8 @@
 package webspotify.models.media;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 import webspotify.models.users.Artist;
 import webspotify.types.GenreType;
@@ -31,6 +33,13 @@ public class Song implements Serializable {
     @ManyToOne
     @JoinColumn(name = "artistID", nullable = false)
     private Artist owner;
+    @Lob
+    @Column(name = "songAudio", length = 100000)
+    private byte[] audio;
+
+    public Song() {
+        super();
+    }
 
     public Integer getId() {
         return id;
@@ -87,5 +96,13 @@ public class Song implements Serializable {
     public void setGenre(GenreType genre) {
         this.genre = genre;
     }
-    
+
+    public byte[] getAudio() {
+        return audio;
+    }
+
+    public void setAudio(byte[] audio) {
+        this.audio = audio;
+    }
+
 }
