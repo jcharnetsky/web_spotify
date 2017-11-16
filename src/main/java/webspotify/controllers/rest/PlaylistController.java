@@ -28,7 +28,7 @@ public class PlaylistController {
   @Autowired
   private SongRepository songRepo;
 
-  @GetMapping("/getData/{playlistId}")
+  @GetMapping("/get/specific/{playlistId}")
   public Response getPlaylistData(@PathVariable final int playlistId, HttpSession session) {
     if (session.getAttribute("User") == null) {
       return ResponseUtilities.filledFailure("User is not logged in.");
@@ -42,7 +42,7 @@ public class PlaylistController {
     return ResponseUtilities.filledSuccess(response);
   }
 
-  @GetMapping("/getAll")
+  @GetMapping("/get/all")
   public Response getAllData(HttpSession session) {
     if (session.getAttribute("User") == null) {
       return ResponseUtilities.filledFailure("User is not logged in.");
@@ -75,7 +75,7 @@ public class PlaylistController {
     }
   }
 
-  @PostMapping("/addSong")
+  @PostMapping("/add/song")
   public Response addSongToPlaylist(@RequestBody PlaylistChangeSongRequest request, HttpSession session) {
     if (session.getAttribute("User") == null) {
       return ResponseUtilities.filledFailure("User is not logged in.");
