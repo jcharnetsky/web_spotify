@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-@Entity
+//@Entity
 public abstract class SongCollection implements Viewable, Serializable {
 	public enum Genre {ROCK, METAL, RAP, EDM, POP, CLASSICAL, INDIE}
 	@Id
