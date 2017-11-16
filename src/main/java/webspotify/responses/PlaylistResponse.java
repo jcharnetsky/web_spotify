@@ -84,4 +84,11 @@ public class PlaylistResponse {
     this.id = id;
   }
 
+  public Integer getSongCount() { return songCount; }
+
+  public void setSongCount(Integer songCount) { this.songCount = songCount; }
+
+  public Integer getDuration() { return duration; }
+
+  public void setDuration(Integer duration) { this.duration = duration; }
 }

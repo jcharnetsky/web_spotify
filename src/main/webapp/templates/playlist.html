@@ -1,11 +1,11 @@
 <link href="css/playlist.css" rel="stylesheet"/>
-<div class="playlist" ng-controller="LoadPlaylistCtrl">
+<div class="playlist" ng-controller="LoadPlaylistCtrl" ng-repeat="playlist in playlists">
 <div class="playlist_header">
   <img class="playlist_img" src="../images/rhiannon-giddens-tomorrow-is-my-turn.jpg" alt="album_art">
   <div class="playlist_data">
     <div id="content_title">{{playlist.title}}</div>
     <div id="playlist_info">
-      Created by: {{ playlist.owner }} / {{ playlist.songCount }} songs / Duration: {{ playlist.duration }} seconds
+      Created by: {{ playlist.ownerName }} / {{ playlist.songCount }} songs / Duration: {{ playlist.duration }} seconds
     </div>
   </div>
 </div>
@@ -17,7 +17,7 @@
           <span class="add_button"></span>
           <a href="#">Title</a>
           <a href="#">Artist</a>
-          <a href="#">Date added</a>
+          <a href="#">Length</a>
         </div>
       </li>
     </ul>
@@ -29,9 +29,9 @@
         <a href="#">
           <div class="playlist_tile highlight_on_hover">
             <span class="add_button">+</span>
-            <span>{{song.title}}</span>
-            <span>{{song.artist}}</span>
-            <span>{{song.date}}</span>
+            <span>{{song.trackName}}</span>
+            <span>{{song.artist.stageName}}</span>
+            <span>{{song.trackLength}}</span>
           </div>
         </a>
       </li>
