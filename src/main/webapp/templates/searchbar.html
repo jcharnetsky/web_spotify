@@ -19,13 +19,13 @@
     </li>
     <li class="logout">
       <a href="/logout">Log out </a>&#8226;
-      <a href="#" id="username">{{getName.name}}</a>
+      <a href="#" id="username">{{api_users_info_get_name}}</a>
     </li>
   </ul>
 </div>
 
 <script>
     var scope = angular.element(document.getElementById('username')).scope();
-    scope.loadTemplateAndJSON('', 'null', 'getName');
+    scope.loadTemplateAndJSON('', 'null', 'api/users/info/get/name');
 
 </script>

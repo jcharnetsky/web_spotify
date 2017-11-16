@@ -15,12 +15,14 @@ function loadToDiv(div, URL) {
 
 function handleJSONResponse(response, div, URL, controllerPath, compile, parse, scope){
   if(!response.data.error){
-    parse(controllerPath).assign(scope, response.data); // Sets scope.controllerPath to response.data JSON
+    controllerPath = controllerPath.replace(new RegExp('/', 'g'),'_');
+    parse(controllerPath).assign(scope, response.data.content); // Sets scope.controllerPath to response.data
+    console.log(scope.api_users_info_get_name);
     node = loadToDiv(div, URL);
     compile(node)(scope); // Recompiles an ng-include div to load template html
     return;
   }
-  displayErrorPopup(response.data.error, scope, parse, compile);
+  displayErrorPopup(response.data.errorMessage, scope, parse, compile);
 }
 
 function displayErrorPopup(error, scope, parse, compile) {

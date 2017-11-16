@@ -18,6 +18,8 @@ public class PlaylistResponse {
   private GenreType genre;
   private String title;
   private List<SongResponse> songs;
+  private Integer songCount;
+  private Integer duration;
 
   public PlaylistResponse(Playlist playlist) {
     this.id = playlist.getId();
@@ -26,9 +28,12 @@ public class PlaylistResponse {
     this.description = playlist.getDescription();
     this.collaborative = playlist.getCollaborative();
     this.songs = new ArrayList<SongResponse>();
+    this.duration = 0;
     for (Song song : playlist.getSongs()) {
       this.songs.add(new SongResponse(song));
+      this.duration += song.getTrackLength();
     }
+    this.songCount = this.songs.size();
   }
 
   public Boolean getCollaborative() {
