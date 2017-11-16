@@ -6,33 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Sign in to Spotify</title>
     <!-- CSS -->
-    <link href="css/style.css" rel="stylesheet" />
-    <link href="css/signup.css" rel="stylesheet" />
-
-    
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="css/signup.css" rel="stylesheet"/>
     <!-- Angular -->
     <script src="http://code.jquery.com/jquery-2.0.3.min.js" data-semver="2.0.3" data-require="jquery"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    
     <!-- JS -->
     <script src="scripts/signup.js"></script>
     <script src="scripts/helper.js"></script>
-
 </head>
 <body ng-app="signup_module" ng-controller="signUpCtrl">
-    <div  class="center_align vertical_center sign_in_block" >
-        <img class="logo" src="images/logo.jpg"/>
-        <h2>Sign in to Spotify</h2>
+	<div  class="canvas" >
+		<img class="logo" src="images/logo.jpg"/>
 		<hr>
-		<form novalidate class="simple-form left_align">
-                <label>Name: <input type="text" ng-model="name" /></label><br /><br/>
-                <label>E-mail: <input type="email" ng-model="email" /></label><br /><br/>
-                <label>Date of birth: <input type="date: 'shortDate'" ng-model="birthdate" /></label><br /><br/>
-                <label>Password: <input type="text" ng-model="password" /></label><br /><br/>
-            </form>
-            <input type="button" ng-click="reset()" value="Reset" />
-            <input type="submit" ng-click="createAccount()" value="Create an account" /> <br/>
-            <a href="/">Already have an account? Log in</a>
+		<div class="center_align">
+			<form novalidate class="center_align">
+				<input class="text_input_field" type="text" ng-model="name"
+							 placeholder="Name"/><br/><br/>
+				<input class="text_input_field" type="text" ng-model="email"
+							 placeholder="Email address"/><br/><br/>
+				<input class="text_input_field" type="date" ng-model="birthdate"
+							 placeholder="MM/DD/YYYY"/><br/><br/>
+				<input class="text_input_field" type="password" ng-model="password"
+							 placeholder="Password"/><br/><br/>
+				<input class="text_input_field" type="password" ng-model="password2"
+							 placeholder="Confirm password"/><br/><br/>
+				<input type="submit" ng-click="createAccount()" value="Create account"/><br/><br/>
+			</form>
+			<span>Already have an account? <a href="/">Log in</a></span>
+		</div>
 	</div>
 
 </body>
