@@ -1,11 +1,15 @@
 <link href="css/playlist.css" rel="stylesheet"/>
 <div class="playlist" ng-controller="LoadPlaylistCtrl" ng-repeat="playlist in playlists">
 <div class="playlist_header">
-  <img class="playlist_img" src="../images/rhiannon-giddens-tomorrow-is-my-turn.jpg" alt="album_art">
+  <img class="playlist_img" alt="album_art" src="../images/rhiannon-giddens-tomorrow-is-my-turn.jpg">
   <div class="playlist_data">
     <div id="content_title">{{playlist.title}}</div>
     <div id="playlist_info">
       Created by: {{ playlist.ownerName }} / {{ playlist.songCount }} songs / Duration: {{ playlist.duration }} seconds
+    </div>
+    <div id="playlist_buttons">
+      <a href="#">Play</a>
+      <a class="Follow" href="#">Follow</a>
     </div>
   </div>
 </div>
