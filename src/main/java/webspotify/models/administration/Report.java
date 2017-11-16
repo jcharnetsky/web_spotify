@@ -1,5 +1,4 @@
 package webspotify.models.administration;
-
 import java.io.Serializable;
 import javax.persistence.*;
 import webspotify.models.users.User;
@@ -87,7 +86,4 @@ public class Report implements Serializable {
 	public void setEntityId(Integer entityId) {
 		this.entityId = entityId;
 	}
-
-
-
 }
