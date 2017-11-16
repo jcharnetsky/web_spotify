@@ -1,9 +1,94 @@
-<link href="css/queue.css" rel="stylesheet"/>
+<link href="css/playlist.css" rel="stylesheet"/>
 <div class="queue">
-  <p id="content_title">Song Queue</p>
-  <ul>
-    <li ng-repeat="n in [1,2,3,4,5,6]">
+  <p id="content_title">Coming up</p>
+  <ul class="playlist">
+    <li>
+      <ul class="playlist_tiles">
+        <li>
+          <div class="playlist_tile">
+            <span class="add_button"></span>
+            <a href="#">Title</a>
+            <a href="#">Artist</a>
+            <a href="#">Length</a>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <hr class="playlist_hr">
+      <ul class="playlist_tiles">
+        <li>
+          <a href="#">
+            <div class="playlist_tile highlight_on_hover">
+              <span class="add_button">+</span>
+              <span>song.trackName</span>
+              <span>song.artist.stageName</span>
+              <span>song.trackLength</span>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <hr class="playlist_hr">
+      <ul class="playlist_tiles">
+        <li>
+          <a href="#">
+            <div class="playlist_tile highlight_on_hover">
+              <span class="add_button">+</span>
+              <span>song.trackName</span>
+              <span>song.artist.stageName</span>
+              <span>song.trackLength</span>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <hr class="playlist_hr">
+      <ul class="playlist_tiles">
+        <li>
+          <a href="#">
+            <div class="playlist_tile highlight_on_hover">
+              <span class="add_button">+</span>
+              <span>song.trackName</span>
+              <span>song.artist.stageName</span>
+              <span>song.trackLength</span>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
 
+  <p id="content_title">Recently played</p>
+  <ul class="playlist">
+    <li>
+      <ul class="playlist_tiles">
+        <li>
+          <div class="playlist_tile">
+            <span class="add_button"></span>
+            <a href="#">Title</a>
+            <a href="#">Artist</a>
+            <a href="#">Length</a>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li ng-repeat="song in playlist.songs">
+      <hr class="playlist_hr">
+      <ul class="playlist_tiles">
+        <li>
+          <a href="#">
+            <div class="playlist_tile highlight_on_hover">
+              <span class="add_button">+</span>
+              <span>{{song.trackName}}</span>
+              <span>{{song.artist.stageName}}</span>
+              <span>{{song.trackLength}}</span>
+            </div>
+          </a>
+        </li>
+      </ul>
     </li>
   </ul>
 </div>
