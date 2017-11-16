@@ -1,5 +1,8 @@
 use cardinals;
 
+DROP TABLE IF EXISTS songs_in_collection;
+DROP TABLE IF EXISTS playlists;
+DROP TABLE IF EXISTS song_collections;
 DROP TABLE IF EXISTS song_audio;
 DROP TABLE IF EXISTS artist_aliases;
 DROP TABLE IF EXISTS artist_concerts;
