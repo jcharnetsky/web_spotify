@@ -4,11 +4,14 @@ import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
+
+import org.json.HTTP;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import webspotify.Utilities.*;
 import webspotify.models.media.Playlist;
 import webspotify.models.media.Song;
+import webspotify.models.users.User;
 import webspotify.posts.PlaylistChangeSongRequest;
 import webspotify.posts.PlaylistCreateRequest;
 import webspotify.repo.PlaylistRepository;
@@ -113,6 +116,21 @@ public class PlaylistController {
       playlistRepo.save(playlistToUpdate);
       return ResponseUtilities.emptySuccess();
     }
+  }
+
+  @PostMapping("/delete/{playlistId}")
+  public Response deletePlaylist(@PathVariable final int playlistId ,HttpSession session){
+    User user = (User) session.getAttribute("User");
+    if(user == null){
+      return ResponseUtilities.filledFailure("User is not logged in");
+    }
+    Playlist playlistToDelete = playlistRepo.findOne(playlistId);
+    if(playlistToDelete == null){
+      return ResponseUtilities.filledFailure("Playlist with that ID does not exist");
+    }
+    // Check to see that user owns the playlist
+    playlistRepo.delete(playlistToDelete);
+    return ResponseUtilities.emptySuccess();
   }
 
 }
