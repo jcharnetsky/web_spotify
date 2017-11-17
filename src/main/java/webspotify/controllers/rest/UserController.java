@@ -4,6 +4,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import webspotify.models.media.SongQueue;
 import webspotify.responses.UserInfoResponse;
 import webspotify.Utilities.Response;
 import webspotify.Utilities.ResponseUtilities;
@@ -37,6 +38,7 @@ public class UserController {
       return ResponseUtilities.filledFailure("Email/Password combination is invalid.");
     }
     session.setAttribute("User", user);
+    session.setAttribute("Queue", new SongQueue());
     return ResponseUtilities.emptySuccess();
   }
 
