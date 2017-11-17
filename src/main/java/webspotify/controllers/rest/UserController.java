@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import webspotify.Utilities.Response;
 import webspotify.Utilities.ResponseUtilities;
-import webspotify.controllers.services.ResponseTuple;
-import webspotify.controllers.services.UserService;
 import webspotify.posts.SignupRequest;
+import webspotify.services.ResponseTuple;
+import webspotify.services.UserService;
 
 /**
  *
