@@ -18,14 +18,12 @@
       <hr class="playlist_hr">
       <ul class="playlist_tiles">
         <li>
-          <a href="#">
-            <div class="playlist_tile highlight_on_hover">
-              <span class="add_button">+</span>
-              <span>{{song.trackName}}</span>
-              <span>{{song.artist.stageName}}</span>
-              <span>{{song.trackLength}}</span>
-            </div>
-          </a>
+          <div class="playlist_tile highlight_on_hover">
+            <a class="add_button">+</a>
+            <a>{{song.trackName}}</a>
+            <a ng-attr-id="{{song.artist.id}}">{{song.artist.stageName}}</a>
+            <a>{{song.trackLength}}</a>
+          </div>
         </li>
       </ul>
     </li>
@@ -37,14 +35,12 @@
       <hr class="playlist_hr">
       <ul class="playlist_tiles">
         <li>
-          <a href="#">
-            <div class="playlist_tile highlight_on_hover">
-              <span class="add_button">+</span>
-              <span>{{song.trackName}}</span>
-              <span>{{song.artist.stageName}}</span>
-              <span>{{song.trackLength}}</span>
-            </div>
-          </a>
+          <div class="playlist_tile highlight_on_hover">
+            <a class="add_button">+</a>
+            <a>{{song.trackName}}</a>
+            <a ng-attr-id="{{song.artist.id}}">{{song.artist.stageName}}</a>
+            <a>{{song.trackLength}}</a>
+          </div>
         </li>
       </ul>
     </li>
