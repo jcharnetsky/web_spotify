@@ -5,17 +5,17 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class SongQueue implements Serializable{
+public class SongQueue implements Serializable {
 
   private Queue<Song> songQueue;
   private Queue<Song> recentlyPlayed;
 
-  public SongQueue(){
+  public SongQueue() {
     songQueue = new LinkedList<Song>();
     recentlyPlayed = new LinkedList<Song>();
   }
 
-  public void push(Song song){
+  public void push(Song song) {
     songQueue.add(song);
   }
 
@@ -25,7 +25,7 @@ public class SongQueue implements Serializable{
     }
   }
 
-  public void clear(){
+  public void clear() {
     songQueue.clear();
   }
 
@@ -33,17 +33,17 @@ public class SongQueue implements Serializable{
     return songQueue.isEmpty();
   }
 
-  public void pushCollection(SongCollection collection){
-    for (Song song: collection.getSongs()) {
+  public void pushCollection(SongCollection collection) {
+    for (Song song : collection.getSongs()) {
       push(song);
     }
   }
 
-  public List<Song> getUpcomingList(){
+  public List<Song> getUpcomingList() {
     return (List) songQueue;
   }
 
-  public List<Song> getRecentList(){
+  public List<Song> getRecentList() {
     return (List) songQueue;
   }
 

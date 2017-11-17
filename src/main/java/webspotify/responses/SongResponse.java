@@ -3,7 +3,6 @@ import webspotify.models.media.Song;
 import webspotify.types.GenreType;
 
 /**
- *
  * @author Cardinals
  */
 public class SongResponse {

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import webspotify.models.media.SongCollection;
 
 /**
- *
  * @author Cardinals
  */
 @Repository

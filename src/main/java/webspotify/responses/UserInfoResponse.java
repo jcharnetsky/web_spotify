@@ -1,7 +1,6 @@
 package webspotify.responses;
 
 /**
- *
  * @author Cardinals
  */
 public class UserInfoResponse {
@@ -11,7 +10,7 @@ public class UserInfoResponse {
   private Boolean isArtist;
   private Boolean isAdmin;
 
-  public UserInfoResponse(String name, Boolean premium, Boolean artist, Boolean admin){
+  public UserInfoResponse(String name, Boolean premium, Boolean artist, Boolean admin) {
     this.name = name;
     this.isPremium = premium;
     this.isArtist = artist;

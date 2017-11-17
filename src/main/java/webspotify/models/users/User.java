@@ -6,12 +6,12 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
+
 import webspotify.interfaces.Viewable;
 import webspotify.models.media.Playlist;
 import webspotify.models.media.SongCollection;
 
 /**
- *
  * @author Cardinals
  */
 @Entity

@@ -23,14 +23,14 @@ public class BrowseController {
   @ResponseBody
   public String getOverviewData() {
     String[][] focusData = {{"images/rhiannon-giddens-tomorrow-is-my-turn.jpg", "Tomorrow Is My Turn", "Tomorrow Is My Turn by Rhiannon Giddens"},
-                            {"images/tile2.png", "dancePOP", "The guilty pleasures of dance and electronic. Cover: Eden Price and Cassie"},
-                            {"images/tile3.png", "Deep Focus", "Keep calm and focus. This playlist has some great, atmospheric rock to help you relax and concentrate."},
-                            {"images/tile4.png", "Lush Vibes", "Lo-fi and chill instrumental hip hop. Related playlist: Jazz Vibes"},
-                            {"images/tile5.png", "The Pulse of Americana", "Keep your finger on the pulse of Americana. We\"re featuring artists performing at AMERICANAFEST."},
-                            {"images/tile6.png", "Young & Free", "Live your life... this is Young & Free"}};
+            {"images/tile2.png", "dancePOP", "The guilty pleasures of dance and electronic. Cover: Eden Price and Cassie"},
+            {"images/tile3.png", "Deep Focus", "Keep calm and focus. This playlist has some great, atmospheric rock to help you relax and concentrate."},
+            {"images/tile4.png", "Lush Vibes", "Lo-fi and chill instrumental hip hop. Related playlist: Jazz Vibes"},
+            {"images/tile5.png", "The Pulse of Americana", "Keep your finger on the pulse of Americana. We\"re featuring artists performing at AMERICANAFEST."},
+            {"images/tile6.png", "Young & Free", "Live your life... this is Young & Free"}};
     String[][] chartData = {{"images/charts.png", "Global and Regional Top Charts"},
-                            {"images/new_releases.png", "Macklemore, The Killers, Illenium"},
-                            {"images/discover.png", "Recommended For You"}};
+            {"images/new_releases.png", "Macklemore, The Killers, Illenium"},
+            {"images/discover.png", "Recommended For You"}};
 
     JSONObject overview = new JSONObject();
     JSONArray focuses = new JSONArray();
