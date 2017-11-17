@@ -10,4 +10,15 @@ angular.module('web_spotify', []).controller('MainCtrl', function($compile, $sco
       $compile(loadToDiv(div, URL))($scope);
     }
   }
+
+  $scope.logout = function(){
+    $http.get(location.origin + "/api/users/logout").then(function(response){
+      if (response.data.error) {
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }
+      window.location = location.origin + "/logIn.html";
+    }).catch(function(err){
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  }
 });
