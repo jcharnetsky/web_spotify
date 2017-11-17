@@ -23,14 +23,14 @@
   margin-left: 10vw;
   display: inline-block;
 }
+.playlist {
+	padding-left: 3vw;
+}
 .playlist_tiles , .playlist_column_headers {
   margin-bottom: 0;
 }
 .playlist_tiles {
   padding-left: 0;
-}
-.playlist {
-	padding-left: 3vw;
 }
 .playlist_tiles li {
   width: 80vw;
@@ -52,7 +52,6 @@
   width: 10%;
   text-align: right;
 }
-
 .highlight_on_hover:hover {
 	background-color: #333333;
 }

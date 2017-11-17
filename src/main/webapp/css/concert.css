@@ -1,64 +1,45 @@
-.playlist_header {
-  display: inline-block;
-  margin-top: 2vw;
-  margin-left: 2vw;
-  margin-bottom: 3vw;
-}
-.playlist_title {
+.concert_title {
 	font-weight: 500;
 	color: #ffffff;
+	display: inline-block;
 	width: 30vw;
 	padding-left: 2vh;
 	padding-top: 2vh;
 	padding-bottom: 1vh;
 }
-.playlist_img {
-  height: 30vh;
-  width: auto;
-  display: inline-block;
-  position: relative;
-  border: 1px solid white;
+.concert_img {
+	position: relative;
+	width: 2vw;
+	padding-top: 2vh;
+	padding-bottom: 2vh;
 }
-.playlist_data {
-  margin-left: 10vw;
-  display: inline-block;
-}
-.playlist_tiles , .playlist_column_headers {
-  margin-bottom: 0;
-}
-.playlist_tiles {
-  padding-left: 0;
-}
-.playlist {
+.concert {
 	padding-left: 3vw;
 }
-.playlist_tiles li {
-  width: 80vw;
+.concert_tiles {
+	padding-left: 0vw;
 }
-.playlist_tile {
-  height: 3vw;
-  display: table;
-  width: 100%;
-  table-layout: fixed;    /* For cells of equal size */
+.concert_tiles li {
+	width: 80vw;
+	height: 4vw;
 }
-.playlist_tile span, .playlist_tile a {
-  display: table-cell;
-  max-width: 10vw;
-  vertical-align: middle;
-  text-align: center;
+.concert_tile {
+	padding-left: 4vw;
+	height: 4vw;
 }
-.add_button {
-  font-size: 180%;
-  width: 10%;
-  text-align: right;
-}
-
-.highlight_on_hover:hover {
+.concert_tile:hover {
 	background-color: #333333;
 }
-.playlist_hr {
-  width: 80vw;
-  border-color: #282828;
+.concert_date {
+	display: inline-block;
+	padding-left: 2vh;
+	padding-top: 2vh;
+	padding-bottom: 1vh;
+	width: 15vw;
+}
+.concert_hr {
+	width: 80vw;
+	border-color: #282828;
 	border-width: 0.3vh;
 	margin-bottom: 0vh;
 }
