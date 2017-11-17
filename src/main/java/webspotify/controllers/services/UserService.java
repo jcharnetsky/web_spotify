@@ -1,6 +1,5 @@
 package webspotify.controllers.services;
 import java.util.List;
-import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,7 @@ public class UserService {
   UserRepository userRepository;
   
   @Transactional
-  public ResponseTuple loginUser(String email, String password, HttpSession session) {
+  public ResponseTuple loginUser(String email, String password) {
     ResponseTuple responseTuple = new ResponseTuple();
     List<User> userList = userRepository.findByEmail(email);
     if (userList.size() != 1) {
@@ -36,7 +35,7 @@ public class UserService {
   }
   
   @Transactional
-  public Response postUser(SignupRequest newUser, HttpSession session) {
+  public Response postUser(SignupRequest newUser) {
     if (userRepository.findByEmail(newUser.getEmail()).size() != 0) {
       return ResponseUtilities.filledFailure("Email address is already registered.");
     }

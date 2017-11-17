@@ -1,5 +1,6 @@
 package webspotify.controllers.rest;
 import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import webspotify.Utilities.Response;
 import webspotify.Utilities.ResponseUtilities;
@@ -14,6 +15,7 @@ import webspotify.posts.SignupRequest;
 @RestController
 @RequestMapping("/api/users")
 public class UserController { 
+  @Autowired
   UserService userService;
   
   @GetMapping("/login")
@@ -21,7 +23,7 @@ public class UserController {
     if (session.getAttribute("User") != null) {
       return ResponseUtilities.filledFailure("User is already logged in.");
     }
-    ResponseTuple responseTuple = userService.loginUser(email, password, session);
+    ResponseTuple responseTuple = userService.loginUser(email, password);
     if(!(responseTuple.getResponse().isError())) {
       session.setAttribute("User", responseTuple.getUser());
       session.setAttribute("Queue", responseTuple.getSongQueue());
@@ -47,6 +49,6 @@ public class UserController {
     if (session.getAttribute("User") != null) {
       return ResponseUtilities.filledFailure("User is already logged in.");
     }
-    return userService.postUser(newUser, session);
+    return userService.postUser(newUser);
   }
 }
