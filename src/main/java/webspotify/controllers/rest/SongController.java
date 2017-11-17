@@ -31,9 +31,9 @@ public class SongController {
       return ResponseUtilities.filledFailure("User is not logged in.");
     }
     List<SongResponse> responseList = new ArrayList<SongResponse>();
-    for (Song s : songRepo.findAll()) {
-      responseList.add(new SongResponse(s));
-    }
+    //for (Song s : songRepo.findAll()) {
+    //  responseList.add(new SongResponse(s));
+    //}
     return ResponseUtilities.filledSuccess(responseList);
   }
 
