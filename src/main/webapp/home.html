@@ -19,7 +19,7 @@
 </head>
 <body ng-controller="MainCtrl">
   <div ng-include="'templates/searchbar.html'"></div>
-  <div id="main">
+  <div id="main" ng-view>
     <div ng-include="'templates/navigateContent.html'"></div>
   </div>
   <div ng-include="'templates/sidebar.html'"></div>
