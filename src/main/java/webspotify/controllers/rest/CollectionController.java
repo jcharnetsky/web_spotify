@@ -25,8 +25,7 @@ public class CollectionController {
 
   @Autowired
   SongCollectionService collectionService;
-
-
+  
   @GetMapping("/{collectionId}/get/info")
   public Response getCollectionInfo(@PathVariable final int collectionId, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);

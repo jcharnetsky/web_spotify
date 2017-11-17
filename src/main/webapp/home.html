@@ -4,11 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Web Spotify CSE308</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-        integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="http://getbootstrap.com/dist/js/bootstrap.js"></script>
   <link href="css/home.css" rel="stylesheet"/>
   <link href="css/style.css" rel="stylesheet"/>
-  <script src="http://code.jquery.com/jquery-2.0.3.min.js" data-semver="2.0.3" data-require="jquery"></script>
+
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
   <script src="scripts/helper.js"></script>
   <script src="scripts/app.js"></script>
@@ -19,12 +22,21 @@
   <script src="scripts/songs.js"></script>
 </head>
 <body ng-controller="MainCtrl">
-  <div ng-include="'templates/searchbar.html'"></div>
+<div ng-include="'templates/searchbar.html'"></div>
   <div id="main" ng-view>
     <div ng-include="'templates/navigateContent.html'"></div>
   </div>
   <div ng-include="'templates/sidebar.html'"></div>
   <div ng-include="'templates/playbar.html'"></div>
   <div id="error_dialog"></div>
+  <div id="contextMenu" class="dropdown clearfix">
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+      <li><a tabindex="-1" href="#">Action</a></li>
+      <li><a tabindex="-1" href="#">Another action</a></li>
+      <li><a tabindex="-1" href="#">Something else here</a></li>
+      <li class="divider"></li>
+      <li><a tabindex="-1" href="#">Separated link</a></li>
+    </ul>
+  </div>
 </body>
-</html> 
+</html>
