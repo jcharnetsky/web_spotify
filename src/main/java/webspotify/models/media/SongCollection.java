@@ -1,7 +1,9 @@
 package webspotify.models.media;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -55,10 +57,10 @@ public class SongCollection implements Serializable, Viewable {
           name = "songsInCollection",
           joinColumns = @JoinColumn(name = "collectionID", referencedColumnName = "id"),
           inverseJoinColumns = @JoinColumn(name = "songID", referencedColumnName = "id"))
-  private Set<Song> songs;
+  private List<Song> songs;
 
   public SongCollection() {
-    songs = new HashSet();
+    songs = new ArrayList();
   }
 
   @Override
@@ -127,11 +129,11 @@ public class SongCollection implements Serializable, Viewable {
     this.setIsPublic(value);
   }
 
-  public Set<Song> getSongs() {
+  public List<Song> getSongs() {
     return songs;
   }
 
-  public void setSongs(Set<Song> songs) {
+  public void setSongs(List<Song> songs) {
     this.songs = songs;
   }
 

@@ -1,5 +1,7 @@
 package webspotify.responses;
 
+import java.util.ArrayList;
+import java.util.List;
 import webspotify.models.media.Playlist;
 import webspotify.models.media.Song;
 import webspotify.models.media.SongCollection;
@@ -20,6 +22,7 @@ public class CollectionInfoResponse {
   private Integer ownerId;
   private Integer songCount;
   private Integer songTrackLength;
+  private List<SongResponse> songs;
 
   public CollectionInfoResponse(SongCollection collection) {
     this.id = collection.getId();
@@ -35,8 +38,10 @@ public class CollectionInfoResponse {
     }
     this.ownerId = collection.getOwner().getId();
     this.songCount = collection.getSongs().size();
+    this.songs = new ArrayList<SongResponse>();
     this.songTrackLength = 0;
     for (Song song : collection.getSongs()) {
+      this.songs.add(new SongResponse(song));
       this.songTrackLength += song.getTrackLength();
     }
   }
@@ -63,14 +68,6 @@ public class CollectionInfoResponse {
 
   public void setDescription(String description) {
     this.description = description;
-  }
-
-  public GenreType getType() {
-    return genre;
-  }
-
-  public void setType(GenreType type) {
-    this.genre = type;
   }
 
   public String getOwnerName() {
@@ -105,4 +102,22 @@ public class CollectionInfoResponse {
     this.songTrackLength = songTrackLength;
   }
 
+  public GenreType getGenre() {
+    return genre;
+  }
+
+  public void setGenre(GenreType genre) {
+    this.genre = genre;
+  }
+
+  public List<SongResponse> getSongs() {
+    return songs;
+  }
+
+  public void setSongs(List<SongResponse> songs) {
+    this.songs = songs;
+  }
+
+  
+  
 }
