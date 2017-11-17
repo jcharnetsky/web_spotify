@@ -4,7 +4,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import webspotify.responses.LoginResponse;
+import webspotify.responses.UserInfoResponse;
 import webspotify.Utilities.Response;
 import webspotify.Utilities.ResponseUtilities;
 import webspotify.models.users.Artist;
@@ -37,10 +37,7 @@ public class UserController {
       return ResponseUtilities.filledFailure("Email/Password combination is invalid.");
     }
     session.setAttribute("User", user);
-
-    // Assume user cannot be an administrator for now
-    LoginResponse response = new LoginResponse(user.getIsPremium(), user instanceof Artist, false);
-    return ResponseUtilities.filledSuccess(response);
+    return ResponseUtilities.emptySuccess();
   }
 
   @GetMapping("/logout")

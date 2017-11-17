@@ -1,5 +1,4 @@
 <link href="css/searchbar.css" rel="stylesheet"/>
-
 <div class="top" ng-app="web_spotify">
   <ul class="top_list">
     <li>
@@ -17,19 +16,16 @@
         </li>
       </ul>
     </li>
-    <li class="logout">
-      <a href="#" ng-click="logout()">Log out </a>&#8226;
-      <a href="#" id="username">{{api_users_info_get_name}}</a>
-      <span ng-if="$root.isPremium">&#8226 Premium</span>
-      <span ng-if="$root.isArtist">&#8226 Artist</span>
-      <span ng-if="$root.isAdmin">&#8226 Administrator</span>
-
+    <li id="logout">
+      <a href="#" ng-click="logout()">Log out </a>&#8226
+      <a href="#" id="username">{{api_users_info_get_userInfo.name}}</a>
+      <a ng-show="api_users_info_get_userInfo.premium">&#8226 Premium</a>
+      <a ng-show="api_users_info_get_userInfo.artist">&#8226 Artist</a>
+      <a ng-show="api_users_info_get_userInfo.admin">&#8226 Administrator</a>
     </li>
   </ul>
 </div>
-
 <script>
     var scope = angular.element(document.getElementById('username')).scope();
-    scope.loadTemplateAndJSON('', 'null', 'api/users/info/get/name');
-
+    scope.loadTemplateAndJSON('', 'null', 'api/users/info/get/userInfo');
 </script>

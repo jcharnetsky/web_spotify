@@ -1,4 +1,5 @@
-angular.module('web_spotify', []).controller('MainCtrl', function($compile, $scope, $http, $parse, $rootScope){
+angular.module('web_spotify', []).controller('MainCtrl', function($compile, $scope, $location, $http, $parse){
+
   $scope.loadTemplateAndJSON = function (div, URL, controllerPath) {
     if(!(controllerPath === 'null')){
       $http.get(location.origin + "/" + controllerPath).then(function(response) {
@@ -16,9 +17,6 @@ angular.module('web_spotify', []).controller('MainCtrl', function($compile, $sco
       if (response.data.error) {
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
       }
-      $rootScope.isPremium = false;
-      $rootScope.isArtist = false;
-      $rootScope.isAdmin = false;
       window.location = location.origin + "/logIn.html";
     }).catch(function(err){
       displayErrorPopup(err, $scope, $parse, $compile);

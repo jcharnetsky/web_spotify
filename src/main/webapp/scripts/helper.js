@@ -16,7 +16,7 @@ function loadToDiv(div, URL) {
 function handleJSONResponse(response, div, URL, controllerPath, compile, parse, scope){
   if(!response.data.error){
     controllerPath = controllerPath.replace(new RegExp('/', 'g'),'_');
-    parse(controllerPath).assign(scope, response.data.content); // Sets scope.controllerPath to response.data
+    parse(controllerPath).assign(scope, response.data.content); // Sets scope.controllerPath to response.data.content
     node = loadToDiv(div, URL);
     compile(node)(scope); // Recompiles an ng-include div to load template html
     return;
