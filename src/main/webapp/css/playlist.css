@@ -47,6 +47,11 @@
   vertical-align: middle;
   text-align: center;
 }
+
+.playlist_tile a:hover {
+  text-decoration: underline;
+}
+
 .add_button {
   font-size: 180%;
   width: 10%;

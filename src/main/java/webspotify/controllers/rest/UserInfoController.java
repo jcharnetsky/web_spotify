@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import webspotify.Utilities.Response;
 import webspotify.Utilities.ResponseUtilities;
+import webspotify.Utilities.SessionUtilities;
 import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 import webspotify.responses.UserInfoResponse;
@@ -20,7 +21,7 @@ public class UserInfoController {
 
   @GetMapping("/get/userInfo")
   public Response getUserName(HttpSession session) {
-    User u = (User) session.getAttribute("User");
+    User u = SessionUtilities.getUserFromSession(session);
     if (u == null) {
         return ResponseUtilities.filledFailure("User is not logged in.");
     }
@@ -30,7 +31,7 @@ public class UserInfoController {
 
   @GetMapping("/set/name")
   public Response setUserName(@RequestParam String name, HttpSession session) {
-    User u = (User) session.getAttribute("User");
+    User u = SessionUtilities.getUserFromSession(session);
     if (u == null) {
         return ResponseUtilities.filledFailure("User is not logged in.");
     }
@@ -39,7 +40,7 @@ public class UserInfoController {
 
   @GetMapping("/set/password")
   public Response setUserPassword(@RequestParam String password, HttpSession session) {
-    User u = (User) session.getAttribute("User");
+    User u = SessionUtilities.getUserFromSession(session);
     if (u == null) {
         return ResponseUtilities.filledFailure("User is not logged in.");
     }
@@ -48,7 +49,7 @@ public class UserInfoController {
 
   @GetMapping("/get/email")
   public Response getUserEmail(HttpSession session) {
-    User u = (User) session.getAttribute("User");
+    User u = SessionUtilities.getUserFromSession(session);
     if (u == null) {
         return ResponseUtilities.filledFailure("User is not logged in.");
     }
@@ -57,7 +58,7 @@ public class UserInfoController {
 
   @GetMapping("/set/email")
   public Response setEmail(@RequestParam String email, HttpSession session) {
-    User u = (User) session.getAttribute("User");
+    User u = SessionUtilities.getUserFromSession(session);
     if (u == null) {
         return ResponseUtilities.filledFailure("User is not logged in.");
     }
@@ -66,7 +67,7 @@ public class UserInfoController {
 
   @GetMapping("/set/premium")
   public Response setUserPremium(@RequestParam Boolean premium, HttpSession session) {
-    User u = (User) session.getAttribute("User");
+    User u = SessionUtilities.getUserFromSession(session);
     if (u == null) {
         return ResponseUtilities.filledFailure("User is not logged in.");
     }

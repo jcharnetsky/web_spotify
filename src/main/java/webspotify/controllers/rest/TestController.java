@@ -79,13 +79,21 @@ public class TestController {
     c.setConcertURL("www.google.com");
     c.getArtists().add(a);
 
-    Song s = new Song();
-    s.setGenre(GenreType.POP);
-    s.setIsBanned(false);
-    s.setIsPublic(true);
-    s.setOwner(a);
-    s.setTitle("Song Title");
-    s.setTrackLength(10);
+    Song dummySong1 = new Song();
+    dummySong1.setGenre(GenreType.POP);
+    dummySong1.setIsBanned(false);
+    dummySong1.setIsPublic(true);
+    dummySong1.setOwner(a);
+    dummySong1.setTitle("Song Title");
+    dummySong1.setTrackLength(10);
+
+    Song dummySong2 = new Song();
+    dummySong2.setGenre(GenreType.ROCK);
+    dummySong2.setIsBanned(false);
+    dummySong2.setIsPublic(true);
+    dummySong2.setOwner(a);
+    dummySong2.setTitle("Here come dat boi");
+    dummySong2.setTrackLength(120);
 
     Playlist pl = new Playlist();
     pl.setTitle("Cool Playlist");
@@ -94,7 +102,7 @@ public class TestController {
     pl.setGenre(GenreType.POP);
     pl.setCollaborative(true);
     pl.setDescription("This is a playlist");
-    pl.getSongs().add(s);
+    pl.getSongs().add(dummySong1);
     pl.setOwner(u);
 
     String content = "";
@@ -104,11 +112,12 @@ public class TestController {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    s.setAudio(content.getBytes());
+    dummySong1.setAudio(content.getBytes());
 
     userRepo.save(u);
     artistRepo.save(a);
-    songRepo.save(s);
+    songRepo.save(dummySong1);
+    songRepo.save(dummySong2);
     concertRepo.save(c);
     playlistRepo.save(pl);
 

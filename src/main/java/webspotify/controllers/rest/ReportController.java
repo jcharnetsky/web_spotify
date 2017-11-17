@@ -1,15 +1,11 @@
 package webspotify.controllers.rest;
-
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import webspotify.Utilities.*;
 import webspotify.models.administration.Report;
 import webspotify.models.users.User;
-import webspotify.repo.ReportRepository;
+import webspotify.services.ReportService;
 
 /**
  * @author Cardinals
@@ -17,16 +13,15 @@ import webspotify.repo.ReportRepository;
 @RestController
 @RequestMapping("/api/reports")
 public class ReportController {
-
   @Autowired
-  private ReportRepository reportRepo;
+  private ReportService reportService;
 
   @GetMapping("/all")
   public Response getReports(HttpSession session) {
-    if (session.getAttribute("User") == null) {
+    if (SessionUtilities.getUserFromSession(session) == null) {
       return ResponseUtilities.filledFailure("User is not logged in.");
     }
-    return ResponseUtilities.filledSuccess(reportRepo.findAll());
+    return reportService.getReports();
   }
 
   @GetMapping("/reportNo/{reportId}")
@@ -34,14 +29,7 @@ public class ReportController {
     if (session.getAttribute("User") == null) {
       return ResponseUtilities.filledFailure("User is not logged in.");
     }
-    Report r = reportRepo.findOne(reportId);
-    if (r == null) {
-      return ResponseUtilities.filledFailure("Report does not exist.");
-    } else {
-      List<Report> contentBody = new ArrayList<Report>();
-      contentBody.add(r);
-      return ResponseUtilities.filledSuccess(contentBody);
-    }
+    return reportService.getReport(reportId);
   }
 
   @PostMapping("/create")
@@ -50,13 +38,6 @@ public class ReportController {
     if (u == null) {
       return ResponseUtilities.filledFailure("User is not logged in.");
     }
-    report.setCreator(u);
-    report.setReportId(0);
-    Report resp = reportRepo.saveAndFlush(report);
-    if (resp == null) {
-      return ResponseUtilities.filledFailure("Could not log report.");
-    } else {
-      return ResponseUtilities.emptySuccess();
-    }
+    return reportService.postReport(u, report);
   }
 }
