@@ -57,10 +57,10 @@ public class SongCollection implements Serializable, Viewable {
           name = "songsInCollection",
           joinColumns = @JoinColumn(name = "collectionID", referencedColumnName = "id"),
           inverseJoinColumns = @JoinColumn(name = "songID", referencedColumnName = "id"))
-  private List<Song> songs;
+  private Set<Song> songs;
 
   public SongCollection() {
-    songs = new ArrayList();
+    songs = new HashSet();
   }
 
   @Override
@@ -129,11 +129,11 @@ public class SongCollection implements Serializable, Viewable {
     this.setIsPublic(value);
   }
 
-  public List<Song> getSongs() {
+  public Set<Song> getSongs() {
     return songs;
   }
 
-  public void setSongs(List<Song> songs) {
+  public void setSongs(Set<Song> songs) {
     this.songs = songs;
   }
 
