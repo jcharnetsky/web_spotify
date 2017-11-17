@@ -20,6 +20,10 @@
     <li class="logout">
       <a href="#" ng-click="logout()">Log out </a>&#8226;
       <a href="#" id="username">{{api_users_info_get_name}}</a>
+      <span ng-if="$root.isPremium">&#8226 Premium</span>
+      <span ng-if="$root.isArtist">&#8226 Artist</span>
+      <span ng-if="$root.isAdmin">&#8226 Administrator</span>
+
     </li>
   </ul>
 </div>
