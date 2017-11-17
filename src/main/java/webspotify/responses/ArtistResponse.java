@@ -18,6 +18,14 @@ public class ArtistResponse implements Serializable {
     this.about = build.getAbout();
   }
 
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
   public String getStageName() {
     return stageName;
   }
