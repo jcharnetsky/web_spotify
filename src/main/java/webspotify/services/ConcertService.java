@@ -83,12 +83,12 @@ public class ConcertService {
   }
   
   @Transactional
-  public Response removeConcert(int concertId) {
-    Concert concert = concertRepository.findOne(concertId);
-    if(concert == null) {
+  public Response removeConcert(Concert concert) {
+    Concert c = concertRepository.findOne(concert.getId());
+    if(c == null) {
       return ResponseUtilities.filledFailure("Concert did not exist, so it could not be deleted.");
     }
-    concertRepository.delete(concertId);
+    concertRepository.delete(c);
     return ResponseUtilities.emptySuccess();
   }
   

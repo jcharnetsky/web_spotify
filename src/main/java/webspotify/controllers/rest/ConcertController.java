@@ -59,11 +59,11 @@ public class ConcertController {
   }
 
   @PostMapping("/remConcert")
-  public Response removeConcert(@RequestBody int concertId, HttpSession session) {
+  public Response removeConcert(@RequestBody Concert concert, HttpSession session) {
     if(SessionUtilities.getUserFromSession(session) == null) {
       return ResponseUtilities.filledFailure("User is not logged in.");
     }
-    return concertService.removeConcert(concertId);
+    return concertService.removeConcert(concert);
   }
   
   @PostMapping("/create")
