@@ -10,7 +10,7 @@ import webspotify.models.administration.Report;
 import webspotify.models.users.User;
 import webspotify.repo.ReportRepository;
 
-@Service
+@Service("reportService")
 public class ReportService {
   @Autowired 
   ReportRepository reportRepository;

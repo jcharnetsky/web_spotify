@@ -26,14 +26,6 @@ public class CollectionController {
   @Autowired
   SongCollectionService collectionService;
 
-  @GetMapping("/{collectionId}/get/songs")
-  public Response getCollectionSongs(@PathVariable final int collectionId, HttpSession session) {
-    User user = SessionUtilities.getUserFromSession(session);
-    if (user == null) {
-      return ResponseUtilities.filledFailure("User not logged in.");
-    }
-    return collectionService.getSongsInCollection(user, collectionId);
-  }
 
   @GetMapping("/{collectionId}/get/info")
   public Response getCollectionInfo(@PathVariable final int collectionId, HttpSession session) {
