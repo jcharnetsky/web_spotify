@@ -8,7 +8,7 @@ import webspotify.Utilities.ResponseUtilities;
 import webspotify.models.users.User;
 import webspotify.repo.UserRepository;
 
-@Service
+@Service("userInfoService")
 public class UserInfoService {
   @Autowired 
   UserRepository userRepository;

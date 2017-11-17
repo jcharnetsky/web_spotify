@@ -13,7 +13,7 @@ import webspotify.models.media.Song;
 import webspotify.repo.SongRepository;
 import webspotify.responses.SongResponse;
 
-@Service
+@Service("songService")
 public class SongService {
   @Autowired 
   SongRepository songRepository;
