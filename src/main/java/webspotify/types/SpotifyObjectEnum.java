@@ -6,7 +6,6 @@
 package webspotify.types;
 
 /**
- *
  * @author lemon
  */
 public enum SpotifyObjectEnum {

@@ -1,6 +1,7 @@
 package webspotify.controllers.rest;
 
 import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -19,7 +20,6 @@ import webspotify.repo.SongRepository;
 import webspotify.responses.PlaylistResponse;
 
 /**
- *
  * @author Cardinals
  */
 @RestController
@@ -119,13 +119,13 @@ public class PlaylistController {
   }
 
   @PostMapping("/delete/{playlistId}")
-  public Response deletePlaylist(@PathVariable final int playlistId ,HttpSession session){
+  public Response deletePlaylist(@PathVariable final int playlistId, HttpSession session) {
     User user = (User) session.getAttribute("User");
-    if(user == null){
+    if (user == null) {
       return ResponseUtilities.filledFailure("User is not logged in");
     }
     Playlist playlistToDelete = playlistRepo.findOne(playlistId);
-    if(playlistToDelete == null){
+    if (playlistToDelete == null) {
       return ResponseUtilities.filledFailure("Playlist with that ID does not exist");
     }
     // Check to see that user owns the playlist

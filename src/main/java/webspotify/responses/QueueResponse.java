@@ -6,7 +6,6 @@ import webspotify.models.media.SongQueue;
 import java.util.List;
 
 /**
- *
  * @author Cardinals
  */
 public class QueueResponse {
@@ -14,7 +13,7 @@ public class QueueResponse {
   private List<Song> queue;
   private List<Song> recent;
 
-  public QueueResponse(SongQueue queue){
+  public QueueResponse(SongQueue queue) {
     this.queue = queue.getUpcomingList();
     this.recent = queue.getRecentList();
   }
