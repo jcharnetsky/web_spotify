@@ -52,5 +52,6 @@ public class UserService {
     userRepository.saveAndFlush(user);
     return ResponseUtilities.emptySuccess();
   }
+
 }
 

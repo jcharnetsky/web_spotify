@@ -35,7 +35,7 @@
     <hr class="playlist_hr">
     <ul class="playlist_tiles">
       <li>
-        <div class="playlist_tile highlight_on_hover">
+        <div class="playlist_tile highlight_on_hover"  ng-controller="UserCtrl">
           <a class="add_button">+</a>
           <a>{{song.trackName}}</a>
           <a href="#" ng-attr-id="{{song.artist.id}}" ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
