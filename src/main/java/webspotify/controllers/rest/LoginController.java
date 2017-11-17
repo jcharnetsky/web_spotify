@@ -1,19 +1,11 @@
 package webspotify.controllers.rest;
 
-import defunct.controllers.*;
-import defunct.Utils.DBUtils;
-import defunct.spotify.Playlist;
-
-import defunct.Utils.JsonUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-
-import org.springframework.web.bind.annotation.ResponseBody;
-import defunct.spotify.User;
 
 @Controller
 public class LoginController {

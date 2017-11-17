@@ -44,8 +44,8 @@
   </li>
   <li class="other_controls">
     <ul>
-      <li>
-        <a href="#" ng-click="loadTemplateAndJSON('main','queue.html','null')">
+      <li ng-controller="MainCtrl">
+        <a href="#" ng-click="loadTemplateAndJSON('main','queue.html','api/queue/get/all')">
           <img src="../images/queue.png" alt="Queue">
         </a>
         <img src="../images/volume.png" alt="Volume"/>
