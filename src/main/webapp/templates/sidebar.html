@@ -16,7 +16,7 @@
   <ul class="sidebar_list playlists" ng-app="sidebar_app">
     <li><u>Playlists</u></li>
     <li id="playlists" ng-repeat="list in api_playlists_get_all">
-      <a href="#" ng-controller="LoadPlaylistCtrl" ng-click="loadCollection(list.id)">
+      <a href="#" ng-controller="LoadCollectionCtrl" ng-click="loadCollection(list.id)">
         {{list.title}}
       </a>
     </li>

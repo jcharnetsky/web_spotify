@@ -33,9 +33,7 @@
         <div class="playlist_tile highlight_on_hover">
           <a href="#" class="add_button">+</a>
           <a href="#">{{song.trackName}}</a>
-          <a href="#" ng-attr-id="{{song.artist.id}}" ng-click="loadTemplateAndJSON('main','user.html','')">
-            {{song.artist.stageName}}
-          </a>
+          <a href="#" ng-attr-id="{{song.artist.id}}" ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
           <a href="#">{{song.trackLength}}</a>
         </div>
       </li>
