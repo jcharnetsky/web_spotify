@@ -1,6 +1,4 @@
 package webspotify.controllers.rest;
-
-import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,21 +7,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import webspotify.Utilities.Response;
 import webspotify.Utilities.ResponseUtilities;
+import webspotify.Utilities.SessionUtilities;
 import webspotify.models.users.Artist;
 import webspotify.models.users.User;
-import webspotify.repo.UserRepository;
 import webspotify.responses.UserInfoResponse;
+import webspotify.services.UserInfoService;
 
 @RestController
 @RequestMapping("/api/users/info")
 public class UserInfoController {
-
   @Autowired
-  private UserRepository userRepo;
+  private UserInfoService userInfoService;
 
   @GetMapping("/get/userInfo")
   public Response getUserName(HttpSession session) {
-    User u = (User) session.getAttribute("User");
+    User u = SessionUtilities.getUserFromSession(session);
     if (u == null) {
         return ResponseUtilities.filledFailure("User is not logged in.");
     }
@@ -33,29 +31,25 @@ public class UserInfoController {
 
   @GetMapping("/set/name")
   public Response setUserName(@RequestParam String name, HttpSession session) {
-    User u = (User) session.getAttribute("User");
+    User u = SessionUtilities.getUserFromSession(session);
     if (u == null) {
         return ResponseUtilities.filledFailure("User is not logged in.");
     }
-    u.setName(name);
-    userRepo.saveAndFlush(u);
-    return ResponseUtilities.emptySuccess();
+    return userInfoService.setName(u, name);
   }
 
   @GetMapping("/set/password")
   public Response setUserPassword(@RequestParam String password, HttpSession session) {
-    User u = (User) session.getAttribute("User");
+    User u = SessionUtilities.getUserFromSession(session);
     if (u == null) {
         return ResponseUtilities.filledFailure("User is not logged in.");
     }
-    u.createSecurePassword(password);
-    userRepo.saveAndFlush(u);
-    return ResponseUtilities.emptySuccess();
+    return userInfoService.setPassword(u, password);
   }
 
   @GetMapping("/get/email")
   public Response getUserEmail(HttpSession session) {
-    User u = (User) session.getAttribute("User");
+    User u = SessionUtilities.getUserFromSession(session);
     if (u == null) {
         return ResponseUtilities.filledFailure("User is not logged in.");
     }
@@ -63,29 +57,20 @@ public class UserInfoController {
   }
 
   @GetMapping("/set/email")
-  public Response setUserEmail(@RequestParam String email, HttpSession session) {
-    User u = (User) session.getAttribute("User");
+  public Response setEmail(@RequestParam String email, HttpSession session) {
+    User u = SessionUtilities.getUserFromSession(session);
     if (u == null) {
         return ResponseUtilities.filledFailure("User is not logged in.");
     }
-    List<User> userWithEmail = userRepo.findByEmail(email);
-    if (userWithEmail.isEmpty()) {
-        u.setEmail(email);
-        userRepo.saveAndFlush(u);
-        return ResponseUtilities.emptySuccess();
-    } else {
-        return ResponseUtilities.filledFailure("Email set unsuccessful.");
-    }
+    return userInfoService.setEmail(u, email);
   }
 
   @GetMapping("/set/premium")
   public Response setUserPremium(@RequestParam Boolean premium, HttpSession session) {
-    User u = (User) session.getAttribute("User");
+    User u = SessionUtilities.getUserFromSession(session);
     if (u == null) {
         return ResponseUtilities.filledFailure("User is not logged in.");
     }
-    u.setIsPremium(premium);
-    userRepo.saveAndFlush(u);
-    return ResponseUtilities.emptySuccess();
+    return userInfoService.setPremium(u, premium);
   }
 }
