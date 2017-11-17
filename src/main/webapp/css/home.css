@@ -8,7 +8,6 @@
 	color: #979797;
 	background-color: #181818;
 }
-
 .advertisement {
 	display: block;
   margin: auto;
@@ -23,19 +22,16 @@
 	padding-right: 1vw;
 	margin-bottom: 0vh;
 }
-
 .navbar li {
 	vertical-align: center;
 	margin-right: 2vw;
 }
-
 #content {
 	position: relative;
 	padding-bottom: 3vw;
 	background-color: #181818;
 	height: auto;
 }
-
 .content_header {
 	position: relative;
 	padding-left: 0.5vw;
@@ -51,11 +47,9 @@
 	font-weight: 600;
 	color: #ffffff;
 }
-
 .three_tiles, .two_tiles, .list_tiles, .chart_tiles {
 	padding-left: 0vw;
 }
-
 .tile {
 	display: inline-block;
 	vertical-align: top;
@@ -67,7 +61,6 @@
 	height: 12.1vw;
 	position: relative;
 }
-
 .tile_text {
 	text-align: left;
 	margin-top: 0.5vh;
@@ -79,7 +72,6 @@
 	margin-top: 0.5vh;
 	font-size: 65%;
 }
-
 .three_tiles {
 	padding-left: 0.1vw;
 	margin-bottom: 3vh;
@@ -99,7 +91,6 @@
 	position: relative;
 	width: 25.5vw;
 }
-
 .list_tiles {
 	position: relative;
 }
@@ -109,18 +100,6 @@
 	height: 19vw;
 	padding-right: 0.5vw;
 	padding-left: 0.5vw;
-}
-
-.concert_tiles {
-	padding-left: 0vw;
-}
-.concert_tiles li {
-	width: 80vw;
-	height: 4vw;
-}
-.concert_tile {
-	padding-left: 4vw;
-	height: 4vw;
 }
 #location {
 	position: relative;
@@ -132,32 +111,6 @@
 	color: #ffffff;
 	margin-bottom: 2vh;
 }
-.concert_img {
-	position: relative;
-	width: 2vw;
-	padding-top: 2vh;
-	padding-bottom: 2vh;
-}
-.concert_title {
-	font-weight: 500;
-	color: #ffffff;
-	display: inline-block;
-	width: 30vw;
-	padding-left: 2vh;
-	padding-top: 2vh;
-	padding-bottom: 1vh;
-}
-.concert_date {
-	display: inline-block;
-	padding-left: 2vh;
-	padding-top: 2vh;
-	padding-bottom: 1vh;
-	width: 15vw;
-}
-.concert_tile:hover {
-	background-color: #333333;
-}
-
 .chart_tiles {
 	margin-bottom: 8vh;
 }
@@ -177,7 +130,6 @@
 	position: relative;
 	width: 19vw;
 }
-
 .two_tiles li {
 	display: inline;
 	position: relative;
@@ -191,7 +143,6 @@
 .two_tile_img {
 	width: 39vw;
 }
-
 .release_tiles {
 	position: relative;
 	padding-left: 0vw;
@@ -245,17 +196,14 @@
 	margin-top: 0.5vh;
 	font-size: 65%;
 }
-
 .nav_tiles {
 	height: 5vh;
 	float: right;
 	padding-right: 0.5vw;
 }
-
 .next_tiles {
 	height: 5vh;
 }
-
 .tile_img:hover, .two_tile_img:hover, .three_tile_img:hover, .concert_img:hover, .release_img:hover {
   -webkit-box-shadow: 1px 1px 5px white;
    box-shadow: 1px 1px 5px white;
