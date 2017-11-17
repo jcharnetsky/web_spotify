@@ -1,6 +1,7 @@
 package webspotify.models.media;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class SongQueue {
@@ -33,6 +34,14 @@ public class SongQueue {
     for (Song song: collection.getSongs()) {
       push(song);
     }
+  }
+
+  public List<Song> getUpcomingList(){
+    return (List) songQueue;
+  }
+
+  public List<Song> getRecentList(){
+    return (List) songQueue;
   }
 
 }
