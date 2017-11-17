@@ -7,6 +7,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import webspotify.config.ConfigConstants;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
 import webspotify.models.media.Song;
@@ -22,7 +23,7 @@ public class SongService {
   public Response getSong(final int songId) {
     Song song = songRepository.findOne(songId);
     if(song == null) {
-      return ResponseUtilities.filledFailure("Song does not exist.");
+      return ResponseUtilities.filledFailure(ConfigConstants.SONG_NO_EXIST);
     }
     else {
       List<SongResponse> contentBody = new ArrayList<SongResponse>();
@@ -41,7 +42,7 @@ public class SongService {
     if(songAudio == null || songAudio.length == 0) {
       return null;
     }
-    MediaType type = MediaType.parseMediaType("audio/mpeg3");
+    MediaType type = MediaType.parseMediaType(ConfigConstants.AUDIO_TYPE);
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(type);
     headers.setContentLength(songAudio.length);

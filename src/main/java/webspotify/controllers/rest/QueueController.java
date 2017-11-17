@@ -14,6 +14,8 @@ import webspotify.responses.QueueResponse;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import webspotify.config.ConfigConstants;
+import webspotify.utilities.SessionUtilities;
 
 /**
  *
@@ -28,13 +30,13 @@ public class QueueController {
 
   @GetMapping("/get/all")
   public Response getQueue(HttpSession session) {
-    if (session.getAttribute("User") == null) {
-      return ResponseUtilities.filledFailure("User is not logged in.");
+    if (SessionUtilities.getUserFromSession(session) == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
     //Creates some infinite loop, not sure why.
     SongQueue dummy = new SongQueue(); // Dummy data
     List<Song> songs = songRepo.findAll();
-    for(Song song: songs){
+    for (Song song : songs) {
       dummy.push(song);
     }
     dummy.pop();

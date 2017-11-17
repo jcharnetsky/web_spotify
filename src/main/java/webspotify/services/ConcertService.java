@@ -4,6 +4,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import webspotify.config.ConfigConstants;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
 import webspotify.models.media.Concert;
@@ -33,7 +34,7 @@ public class ConcertService {
   public Response getConcert(final int concertId) {
     Concert concertToFind = concertRepository.findOne(concertId);
     if (concertToFind == null) {
-      return ResponseUtilities.filledFailure("Concert does not exist.");
+      return ResponseUtilities.filledFailure(ConfigConstants.CONCERT_NO_EXIST);
     } 
     else {
       List<Concert> contentBody = new ArrayList<Concert>();
@@ -47,10 +48,10 @@ public class ConcertService {
     Concert concert = concertRepository.findOne(change.getConcertID());
     Artist artist = (Artist) userRepository.findOne(change.getArtistID());
     if (concert == null) {
-      return ResponseUtilities.filledFailure("Concert does not exist.");
+      return ResponseUtilities.filledFailure(ConfigConstants.CONCERT_NO_EXIST);
     }
     if (artist == null) {
-      return ResponseUtilities.filledFailure("Artist does not exist.");
+      return ResponseUtilities.filledFailure(ConfigConstants.ARTIST_NO_EXIST);
     }
     if (!(concert.getArtists().contains(artist))) {
       concert.getArtists().add(artist);
@@ -58,7 +59,7 @@ public class ConcertService {
       return ResponseUtilities.emptySuccess();
     } 
     else {
-      return ResponseUtilities.filledFailure("Artist could not be added.");
+      return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_ADD);
     }
   }
   
@@ -67,10 +68,10 @@ public class ConcertService {
     Concert concert = concertRepository.findOne(change.getConcertID());
     Artist artist = (Artist) userRepository.findOne(change.getArtistID());
     if (concert == null) {
-      return ResponseUtilities.filledFailure("Concert does not exist.");
+      return ResponseUtilities.filledFailure(ConfigConstants.CONCERT_NO_EXIST);
     }
     if (artist == null) {
-      return ResponseUtilities.filledFailure("Artist does not exist.");
+      return ResponseUtilities.filledFailure(ConfigConstants.ARTIST_NO_EXIST);
     }
     if (concert.getArtists().contains(artist)) {
       concert.getArtists().remove(artist);
@@ -78,7 +79,7 @@ public class ConcertService {
       return ResponseUtilities.emptySuccess();
     } 
     else {
-      return ResponseUtilities.filledFailure("Artist could not be removed.");
+      return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_REM);
     }
   }
   
@@ -86,7 +87,7 @@ public class ConcertService {
   public Response removeConcert(Concert concert) {
     Concert c = concertRepository.findOne(concert.getId());
     if(c == null) {
-      return ResponseUtilities.filledFailure("Concert did not exist, so it could not be deleted.");
+      return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_REM);
     }
     concertRepository.delete(c);
     return ResponseUtilities.emptySuccess();

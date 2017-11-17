@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import webspotify.config.ConfigConstants;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
 import webspotify.models.media.Playlist;
@@ -41,10 +42,10 @@ public class SongCollectionService {
         }
         return ResponseUtilities.filledSuccess(songsToReturn);
       } else {
-        return ResponseUtilities.filledFailure("User does not have access to Collection.");
+        return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
       }
     } else {
-      return ResponseUtilities.filledFailure("Collection does not exist.");
+      return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
     }
   }
 
@@ -55,10 +56,10 @@ public class SongCollectionService {
       if (collection.isPublic() || (!collection.isPublic() && collection.getOwner().equals(user))) {
         return ResponseUtilities.filledSuccess(new CollectionInfoResponse(collection));
       } else {
-        return ResponseUtilities.filledFailure("User does not have access to Collection.");
+        return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
       }
     } else {
-      return ResponseUtilities.filledFailure("Collection does not exist.");
+      return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
     }
   }
 
@@ -72,13 +73,13 @@ public class SongCollectionService {
           songCollectionRepo.save(collection);
           return ResponseUtilities.emptySuccess();
         } else {
-          return ResponseUtilities.filledFailure("Collection could not be updated.");
+          return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_REM);
         }
       } else {
-        return ResponseUtilities.filledFailure("User does not have access to Collection.");
+        return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
       }
     } else {
-      return ResponseUtilities.filledFailure("Collection/Song does not exist.");
+      return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
     }
   }
 
@@ -92,13 +93,13 @@ public class SongCollectionService {
           songCollectionRepo.save(collection);
           return ResponseUtilities.emptySuccess();
         } else {
-          return ResponseUtilities.filledFailure("Collection could not be updated.");
+          return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_ADD);
         }
       } else {
-        return ResponseUtilities.filledFailure("User does not have access to Collection.");
+        return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
       }
     } else {
-      return ResponseUtilities.filledFailure("Collection/Song does not exist.");
+      return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
     }
   }
 
@@ -116,7 +117,7 @@ public class SongCollectionService {
       return ResponseUtilities.emptySuccess();
     } catch (Exception e) {
       System.out.println(e);
-      return ResponseUtilities.filledFailure("Playlist Could not be Created");
+      return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_CREATE);
     }
   }
 
@@ -125,7 +126,7 @@ public class SongCollectionService {
       songCollectionRepo.delete(collectionId);
       return ResponseUtilities.emptySuccess();
     } else {
-      return ResponseUtilities.filledFailure("Collection does not exist.");
+      return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
     }
   }
 

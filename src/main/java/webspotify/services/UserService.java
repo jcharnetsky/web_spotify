@@ -3,6 +3,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import webspotify.config.ConfigConstants;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
 import webspotify.models.media.SongQueue;
@@ -20,12 +21,12 @@ public class UserService {
     ResponseTuple responseTuple = new ResponseTuple();
     List<User> userList = userRepository.findByEmail(email);
     if (userList.size() != 1) {
-      responseTuple.setResponse(ResponseUtilities.filledFailure("Email/Password combination is invalid."));
+      responseTuple.setResponse(ResponseUtilities.filledFailure(ConfigConstants.INVALID_CREDENTIALS));
       return responseTuple;
     }
     User user = userList.get(0);
     if (!user.authenticateLogin(password)) {
-      responseTuple.setResponse(ResponseUtilities.filledFailure("Email/Password combination is invalid."));
+      responseTuple.setResponse(ResponseUtilities.filledFailure(ConfigConstants.INVALID_CREDENTIALS));
       return responseTuple;
     }
     responseTuple.setResponse(ResponseUtilities.emptySuccess());
@@ -36,8 +37,8 @@ public class UserService {
   
   @Transactional
   public Response postUser(SignupRequest newUser) {
-    if (userRepository.findByEmail(newUser.getEmail()).size() != 0) {
-      return ResponseUtilities.filledFailure("Email address is already registered.");
+    if (!userRepository.findByEmail(newUser.getEmail()).isEmpty()) {
+      return ResponseUtilities.filledFailure(ConfigConstants.EMAIL_EXIST);
     }
     User user = new User();
     user.setAddress(newUser.getAddress());

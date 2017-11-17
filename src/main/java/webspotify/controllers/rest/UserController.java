@@ -8,6 +8,7 @@ import webspotify.utilities.SessionUtilities;
 import webspotify.posts.SignupRequest;
 import webspotify.services.ResponseTuple;
 import webspotify.services.UserService;
+import webspotify.config.ConfigConstants;
 
 /**
  *
@@ -22,12 +23,12 @@ public class UserController {
   @GetMapping("/login")
   public Response loginUser(@RequestParam String email, @RequestParam String password, HttpSession session) {
     if (SessionUtilities.getUserFromSession(session) != null) {
-      return ResponseUtilities.filledFailure("User is already logged in.");
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_ALREADY_LOGGED);
     }
     ResponseTuple responseTuple = userService.loginUser(email, password);
     if(!(responseTuple.getResponse().isError())) {
-      session.setAttribute("User", responseTuple.getUser());
-      session.setAttribute("Queue", responseTuple.getSongQueue());
+      session.setAttribute(ConfigConstants.USER_SESSION, responseTuple.getUser());
+      session.setAttribute(ConfigConstants.QUEUE_SESSION, responseTuple.getSongQueue());
       return responseTuple.getResponse();
     }
     else {
@@ -39,7 +40,7 @@ public class UserController {
   public Response logoutUser(HttpSession session) {
     if (SessionUtilities.getUserFromSession(session) == null) {
       session.invalidate();
-      return ResponseUtilities.filledFailure("User previously logged out.");
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
     session.invalidate();
     return ResponseUtilities.emptySuccess();
@@ -48,7 +49,7 @@ public class UserController {
   @PostMapping("/register")
   public Response postUser(@RequestBody SignupRequest newUser, HttpSession session) {
     if (SessionUtilities.getUserFromSession(session) != null) {
-      return ResponseUtilities.filledFailure("User is already logged in.");
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_ALREADY_LOGGED);
     }
     return userService.postUser(newUser);
   }
@@ -56,7 +57,7 @@ public class UserController {
   @GetMapping("/get/{userId}")
   public Response getUser(@PathVariable final int userId, HttpSession session) {
     if (SessionUtilities.getUserFromSession(session) != null) {
-      return ResponseUtilities.filledFailure("User is already logged in.");
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_ALREADY_LOGGED);
     }
     return ResponseUtilities.emptySuccess();
   }

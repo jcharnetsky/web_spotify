@@ -3,6 +3,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import webspotify.config.ConfigConstants;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
 import webspotify.models.users.User;
@@ -36,7 +37,7 @@ public class UserInfoService {
       return ResponseUtilities.emptySuccess();
     }
     else {
-      return ResponseUtilities.filledFailure("Set email unsuccessful.");
+      return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_CHANGE);
     }
   }
   
