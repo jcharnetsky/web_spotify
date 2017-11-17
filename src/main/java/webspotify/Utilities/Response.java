@@ -1,5 +1,4 @@
 package webspotify.Utilities;
-
 import java.io.Serializable;
 
 /**

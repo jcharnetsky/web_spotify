@@ -1,17 +1,11 @@
 package webspotify.controllers.rest;
-
-import java.util.List;
 import javax.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import webspotify.models.media.SongQueue;
-import webspotify.responses.UserInfoResponse;
 import webspotify.Utilities.Response;
 import webspotify.Utilities.ResponseUtilities;
-import webspotify.models.users.Artist;
-import webspotify.models.users.User;
+import webspotify.controllers.services.ResponseTuple;
+import webspotify.controllers.services.UserService;
 import webspotify.posts.SignupRequest;
-import webspotify.repo.UserRepository;
 
 /**
  *
@@ -19,29 +13,25 @@ import webspotify.repo.UserRepository;
  */
 @RestController
 @RequestMapping("/api/users")
-public class UserController {
-
-  @Autowired
-  private UserRepository userRepo;
-
+public class UserController { 
+  UserService userService;
+  
   @GetMapping("/login")
   public Response loginUser(@RequestParam String email, @RequestParam String password, HttpSession session) {
     if (session.getAttribute("User") != null) {
       return ResponseUtilities.filledFailure("User is already logged in.");
     }
-    List<User> userList = userRepo.findByEmail(email);
-    if (userList.size() != 1) {
-      return ResponseUtilities.filledFailure("Email/Password combination is invalid.");
+    ResponseTuple responseTuple = userService.loginUser(email, password, session);
+    if(!(responseTuple.getResponse().isError())) {
+      session.setAttribute("User", responseTuple.getUser());
+      session.setAttribute("Queue", responseTuple.getSongQueue());
+      return responseTuple.getResponse();
     }
-    User user = userList.get(0);
-    if (!user.authenticateLogin(password)) {
-      return ResponseUtilities.filledFailure("Email/Password combination is invalid.");
+    else {
+      return responseTuple.getResponse();
     }
-    session.setAttribute("User", user);
-    session.setAttribute("Queue", new SongQueue());
-    return ResponseUtilities.emptySuccess();
   }
-
+  
   @GetMapping("/logout")
   public Response logoutUser(HttpSession session) {
     if (session.getAttribute("User") == null) {
@@ -51,27 +41,12 @@ public class UserController {
     session.invalidate();
     return ResponseUtilities.emptySuccess();
   }
-
+  
   @PostMapping("/register")
   public Response postUser(@RequestBody SignupRequest newUser, HttpSession session) {
     if (session.getAttribute("User") != null) {
       return ResponseUtilities.filledFailure("User is already logged in.");
     }
-    if (userRepo.findByEmail(newUser.getEmail()).size() > 0) {
-      return ResponseUtilities.filledFailure("Email address is already registered.");
-    }
-    User user = new User();
-    user.setAddress(newUser.getAddress());
-    user.setBirthdate(newUser.getBirthdate());
-    user.setEmail(newUser.getEmail());
-    user.setName(newUser.getName());
-    user.createSecurePassword(newUser.getPassword());
-    user.setImage("");
-    user.setIsBanned(false);
-    user.setIsPremium(false);
-    user.setIsPublic(true);
-    userRepo.saveAndFlush(user);
-    return ResponseUtilities.emptySuccess();
+    return userService.postUser(newUser, session);
   }
-
 }
