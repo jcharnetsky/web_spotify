@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import webspotify.Utilities.Response;
 import webspotify.Utilities.ResponseUtilities;
+import webspotify.Utilities.SessionUtilities;
 import webspotify.posts.SignupRequest;
 import webspotify.services.ResponseTuple;
 import webspotify.services.UserService;
@@ -20,7 +21,7 @@ public class UserController {
   
   @GetMapping("/login")
   public Response loginUser(@RequestParam String email, @RequestParam String password, HttpSession session) {
-    if (session.getAttribute("User") != null) {
+    if (SessionUtilities.getUserFromSession(session) != null) {
       return ResponseUtilities.filledFailure("User is already logged in.");
     }
     ResponseTuple responseTuple = userService.loginUser(email, password);
@@ -36,7 +37,7 @@ public class UserController {
   
   @GetMapping("/logout")
   public Response logoutUser(HttpSession session) {
-    if (session.getAttribute("User") == null) {
+    if (SessionUtilities.getUserFromSession(session) == null) {
       session.invalidate();
       return ResponseUtilities.filledFailure("User previously logged out.");
     }
@@ -46,7 +47,7 @@ public class UserController {
   
   @PostMapping("/register")
   public Response postUser(@RequestBody SignupRequest newUser, HttpSession session) {
-    if (session.getAttribute("User") != null) {
+    if (SessionUtilities.getUserFromSession(session) != null) {
       return ResponseUtilities.filledFailure("User is already logged in.");
     }
     return userService.postUser(newUser);
