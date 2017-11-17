@@ -14,46 +14,16 @@
         </li>
       </ul>
     </li>
-    <li>
+    <li ng-repeat="song in api_queue_get_all.queue">
       <hr class="playlist_hr">
       <ul class="playlist_tiles">
         <li>
           <a href="#">
             <div class="playlist_tile highlight_on_hover">
               <span class="add_button">+</span>
-              <span>song.trackName</span>
-              <span>song.artist.stageName</span>
-              <span>song.trackLength</span>
-            </div>
-          </a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <hr class="playlist_hr">
-      <ul class="playlist_tiles">
-        <li>
-          <a href="#">
-            <div class="playlist_tile highlight_on_hover">
-              <span class="add_button">+</span>
-              <span>song.trackName</span>
-              <span>song.artist.stageName</span>
-              <span>song.trackLength</span>
-            </div>
-          </a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <hr class="playlist_hr">
-      <ul class="playlist_tiles">
-        <li>
-          <a href="#">
-            <div class="playlist_tile highlight_on_hover">
-              <span class="add_button">+</span>
-              <span>song.trackName</span>
-              <span>song.artist.stageName</span>
-              <span>song.trackLength</span>
+              <span>{{song.trackName}}</span>
+              <span>{{song.artist.stageName}}</span>
+              <span>{{song.trackLength}}</span>
             </div>
           </a>
         </li>
@@ -63,24 +33,12 @@
 
   <p id="content_title">Recently played</p>
   <ul class="playlist">
-    <li>
-      <ul class="playlist_tiles">
-        <li>
-          <div class="playlist_tile">
-            <span class="add_button"></span>
-            <a href="#">Title</a>
-            <a href="#">Artist</a>
-            <a href="#">Length</a>
-          </div>
-        </li>
-      </ul>
-    </li>
-    <li ng-repeat="song in playlist.songs">
+    <li ng-repeat="song in api_queue_get_all.recent">
       <hr class="playlist_hr">
       <ul class="playlist_tiles">
         <li>
           <a href="#">
-            <div class="song playlist_tile highlight_on_hover">
+            <div class="playlist_tile highlight_on_hover">
               <span class="add_button">+</span>
               <span>{{song.trackName}}</span>
               <span>{{song.artist.stageName}}</span>
