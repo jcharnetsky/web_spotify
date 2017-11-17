@@ -13,7 +13,7 @@ import webspotify.repo.ConcertRepository;
 import webspotify.repo.UserRepository;
 import webspotify.responses.ConcertResponse;
 
-@Service
+@Service("concertService")
 public class ConcertService {
   @Autowired 
   ConcertRepository concertRepository;

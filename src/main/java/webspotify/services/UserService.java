@@ -10,7 +10,7 @@ import webspotify.models.users.User;
 import webspotify.posts.SignupRequest;
 import webspotify.repo.UserRepository;
 
-@Service
+@Service("userService")
 public class UserService {
   @Autowired 
   UserRepository userRepository;
