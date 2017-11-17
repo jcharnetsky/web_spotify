@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 import webspotify.Utilities.Response;
 import webspotify.Utilities.ResponseUtilities;
 import webspotify.models.media.Song;
+import webspotify.models.media.SongQueue;
+import webspotify.responses.QueueResponse;
 import webspotify.responses.SongResponse;
 
 import javax.servlet.http.HttpSession;
@@ -25,7 +27,7 @@ public class QueueController {
     if (session.getAttribute("User") == null) {
       return ResponseUtilities.filledFailure("User is not logged in.");
     }
-    QueueResponse response = new QueueResponse(session.getAttribute("Queue"));
+    QueueResponse response = new QueueResponse((SongQueue) session.getAttribute("Queue"));
     return ResponseUtilities.filledSuccess(response);
   }
 }
