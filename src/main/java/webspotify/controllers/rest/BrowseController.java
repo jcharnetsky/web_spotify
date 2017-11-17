@@ -1,4 +1,4 @@
-package webspotify.controllers;
+package webspotify.controllers.rest;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
+@RequestMapping("/api/home")
 public class BrowseController {
 
   /**
@@ -46,8 +48,10 @@ public class BrowseController {
       chart.put("desc", chartData[i][1]);
       charts.put(chart);
     }
-    overview.put("focus", focuses);
-    overview.put("charts", charts);
+    JSONObject content = new JSONObject();
+    content.put("focus", focuses);
+    content.put("charts", charts);
+    overview.put("content", content);
     return overview.toString();
   }
 
