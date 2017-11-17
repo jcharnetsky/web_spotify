@@ -37,6 +37,7 @@ public class QueueController {
     for(Song song: songs){
       dummy.push(song);
     }
+    dummy.pop();
     return ResponseUtilities.filledSuccess(new QueueResponse(dummy));
   }
 }
