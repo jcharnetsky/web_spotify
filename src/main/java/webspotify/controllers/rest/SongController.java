@@ -1,5 +1,7 @@
 package webspotify.controllers.rest;
 
+import webspotify.utilities.Response;
+import webspotify.utilities.ResponseUtilities;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +13,6 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import webspotify.Utilities.*;
 import webspotify.models.media.Song;
 import webspotify.responses.SongResponse;
 import webspotify.services.SongService;

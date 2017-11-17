@@ -1,5 +1,7 @@
 package webspotify.controllers.rest;
 
+import webspotify.utilities.Response;
+import webspotify.utilities.ResponseUtilities;
 import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 
 import java.util.ArrayList;
@@ -9,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import org.json.HTTP;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import webspotify.Utilities.*;
 import webspotify.models.media.Playlist;
 import webspotify.models.media.Song;
 import webspotify.models.users.User;

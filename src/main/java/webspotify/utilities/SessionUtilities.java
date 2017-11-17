@@ -1,4 +1,4 @@
-package webspotify.Utilities;
+package webspotify.utilities;
 
 import javax.servlet.http.HttpSession;
 import webspotify.models.media.SongQueue;

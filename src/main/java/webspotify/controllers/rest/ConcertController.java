@@ -1,12 +1,14 @@
 package webspotify.controllers.rest;
 
+import webspotify.utilities.Response;
+import webspotify.utilities.ResponseUtilities;
+import webspotify.utilities.SessionUtilities;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import webspotify.Utilities.*;
 import webspotify.models.users.Artist;
 import webspotify.models.media.Concert;
 import webspotify.models.users.User;
