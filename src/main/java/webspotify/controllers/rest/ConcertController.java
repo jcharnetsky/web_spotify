@@ -13,7 +13,9 @@ import webspotify.models.users.User;
 import webspotify.posts.ConcertArtistChangeRequest;
 import webspotify.repo.ArtistRepository;
 import webspotify.repo.ConcertRepository;
+import webspotify.repo.UserRepository;
 import webspotify.responses.ConcertResponse;
+import webspotify.services.ConcertService;
 
 /**
  * @author Cardinals
@@ -21,100 +23,54 @@ import webspotify.responses.ConcertResponse;
 @RestController
 @RequestMapping("/api/concerts")
 public class ConcertController {
-
   @Autowired
-  private ConcertRepository concertRepo;
-
-  @Autowired
-  private ArtistRepository artistRepo;
+  private ConcertService concertService;
 
   @GetMapping("/all")
   public Response getConcerts(HttpSession session) {
-    if (session.getAttribute("User") == null) {
+    if(SessionUtilities.getUserFromSession(session) == null) {
       return ResponseUtilities.filledFailure("User is not logged in.");
     }
-    List<ConcertResponse> responseList = new ArrayList<ConcertResponse>();
-    for (Concert c : concertRepo.findAll()) {
-      responseList.add(new ConcertResponse(c));
-    }
-    return ResponseUtilities.filledSuccess(responseList);
+    return concertService.getConcerts();
   }
 
-  @GetMapping("/conertNo/{conertId}")
+  @GetMapping("/concertNo/{concertId}")
   public Response getConcert(@PathVariable final int concertId, HttpSession session) {
-    if (session.getAttribute("User") == null) {
+    if(SessionUtilities.getUserFromSession(session) == null) {
       return ResponseUtilities.filledFailure("User is not logged in.");
     }
-    Concert concertToFind = concertRepo.findOne(concertId);
-    if (concertToFind == null) {
-      return ResponseUtilities.filledFailure("Concert does not exist.");
-    } else {
-      List<Concert> contentBody = new ArrayList<Concert>();
-      contentBody.add(concertToFind);
-      return ResponseUtilities.filledSuccess(contentBody);
-    }
+    return concertService.getConcert(concertId);
   }
 
   @PostMapping("/addArtist")
   public Response addArtistToConcert(@RequestBody ConcertArtistChangeRequest change, HttpSession session) {
-    if (session.getAttribute("User") == null) {
+    if(SessionUtilities.getUserFromSession(session) == null) {
       return ResponseUtilities.filledFailure("User is not logged in.");
     }
-    Concert c = concertRepo.findOne(change.getConcertID());
-    Artist a = artistRepo.findOne(change.getArtistID());
-    if (c == null) {
-      return ResponseUtilities.filledFailure("Concert Does Not Exist.");
-    }
-    if (a == null) {
-      return ResponseUtilities.filledFailure("Artist Does Not Exist.");
-    }
-
-    if (!c.getArtists().contains(a)) {
-      c.getArtists().add(a);
-      concertRepo.save(c);
-      return ResponseUtilities.emptySuccess();
-    } else {
-      return ResponseUtilities.filledFailure("Artist Could not be added.");
-    }
+    return concertService.addArtistToConcert(change);
   }
 
   @PostMapping("/remArtist")
   public Response remArtistFromConcert(@RequestBody ConcertArtistChangeRequest change, HttpSession session) {
-    if (session.getAttribute("User") == null) {
+    if(SessionUtilities.getUserFromSession(session) == null) {
       return ResponseUtilities.filledFailure("User is not logged in.");
     }
-    Concert c = concertRepo.findOne(change.getConcertID());
-    Artist a = artistRepo.findOne(change.getArtistID());
-    if (c == null) {
-      return ResponseUtilities.filledFailure("Concert Does Not Exist.");
-    }
-    if (a == null) {
-      return ResponseUtilities.filledFailure("Artist Does Not Exist.");
-    }
-    if (c.getArtists().contains(a)) {
-      c.getArtists().remove(a);
-      concertRepo.save(c);
-      return ResponseUtilities.emptySuccess();
-    } else {
-      return ResponseUtilities.filledFailure("Artist Could not be removed.");
-    }
-
+    return concertService.removeArtistFromConcert(change);
   }
 
-  @PostMapping("/create")
-  public Response postConcert(@RequestBody Concert concert, HttpSession session) {
-    User u = (User) session.getAttribute("User");
-    if (u == null) {
+  @PostMapping("/remConcert")
+  public Response removeConcert(@RequestBody int concertId, HttpSession session) {
+    if(SessionUtilities.getUserFromSession(session) == null) {
       return ResponseUtilities.filledFailure("User is not logged in.");
     }
-    concert.setId(null);
-    concert.setIsPublic(true);
-    concert.setIsBanned(false);
-    Concert resp = concertRepo.saveAndFlush(concert);
-    if (resp == null) {
-      return ResponseUtilities.filledFailure("Could not create concert.");
-    } else {
-      return ResponseUtilities.emptySuccess();
+    return concertService.removeConcert(concertId);
+  }
+  
+  @PostMapping("/create")
+  public Response postConcert(@RequestBody Concert concert, HttpSession session) {
+    if(SessionUtilities.getUserFromSession(session) == null) {
+      return ResponseUtilities.filledFailure("User is not logged in.");
     }
+    return concertService.postConcert(concert);
   }
 }
