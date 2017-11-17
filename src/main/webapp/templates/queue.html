@@ -22,7 +22,7 @@
             <div class="playlist_tile highlight_on_hover">
               <span class="add_button">+</span>
               <span>{{song.trackName}}</span>
-              <span>{{song.artist.stageName}}</span>
+              <span ng-attr-id="{{song.artist.id}}">{{song.artist.stageName}}</span>
               <span>{{song.trackLength}}</span>
             </div>
           </a>
@@ -41,7 +41,7 @@
             <div class="playlist_tile highlight_on_hover">
               <span class="add_button">+</span>
               <span>{{song.trackName}}</span>
-              <span>{{song.artist.stageName}}</span>
+              <span ng-attr-id="{{song.artist.id}}">{{song.artist.stageName}}</span>
               <span>{{song.trackLength}}</span>
             </div>
           </a>
