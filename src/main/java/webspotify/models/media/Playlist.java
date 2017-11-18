@@ -28,16 +28,20 @@ public class Playlist extends SongCollection implements Serializable {
   private String description;
   @Column(name = "collaborative", nullable = false)
   private Boolean collaborative;
-  @ManyToMany(fetch = FetchType.EAGER)
-  @JoinTable(
-          name = "usersFollowingPlaylists",
-          joinColumns = @JoinColumn(name = "playlistID", referencedColumnName = "id"),
-          inverseJoinColumns = @JoinColumn(name = "userID", referencedColumnName = "id"))
-  private Set<User> followers;
+  @Column(name = "followerCount", nullable = false)
+  private Integer followerCount;
 
   public Playlist() {
     super();
-    followers = new HashSet();
+    this.followerCount = 0;
+  }
+
+  public void incrementFollowerCount() {
+    this.followerCount++;
+  }
+
+  public void decrementFollowerCount() {
+    this.followerCount--;
   }
 
   public String getDescription() {
@@ -56,12 +60,12 @@ public class Playlist extends SongCollection implements Serializable {
     this.collaborative = collaborative;
   }
 
-  public Set<User> getFollowers() {
-    return followers;
+  public Integer getFollowerCount() {
+    return followerCount;
   }
 
-  public void setFollowers(Set<User> followers) {
-    this.followers = followers;
+  public void setFollowerCount(Integer followerCount) {
+    this.followerCount = followerCount;
   }
 
 }

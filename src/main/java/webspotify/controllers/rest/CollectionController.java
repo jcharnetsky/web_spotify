@@ -26,11 +26,11 @@ public class CollectionController {
 
   @Autowired
   SongCollectionService collectionService;
-  
+
   @GetMapping("/playlists")
   public Response getPlaylistsToUser(HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
-    if(user == null) {
+    if (user == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
     return collectionService.getAllRelevantPlaylists(user);
@@ -70,6 +70,24 @@ public class CollectionController {
       return ResponseUtilities.filledFailure("User not logged in");
     }
     return collectionService.deleteCollection(user, collectionId);
+  }
+
+  @GetMapping("/{collectionId}/save")
+  public Response saveCollectionToUser(@PathVariable final int collectionId, HttpSession session) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
+      return ResponseUtilities.filledFailure("User not logged in");
+    }
+    return collectionService.saveCollection(user, collectionId);
+  }
+
+  @GetMapping("/{collectionId}/unsave")
+  public Response unsaveCollectionToUser(@PathVariable final int collectionId, HttpSession session) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
+      return ResponseUtilities.filledFailure("User not logged in");
+    }
+    return collectionService.unsaveCollection(user, collectionId);
   }
 
   @PostMapping("/create/playlist")

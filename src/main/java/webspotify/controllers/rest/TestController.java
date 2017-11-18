@@ -104,8 +104,8 @@ public class TestController {
     pl.setDescription("This is a playlist");
     pl.getSongs().add(dummySong1);
     pl.setOwner(u);
-    pl.getFollowers().add(a);
-
+    pl.incrementFollowerCount();
+    
     String content = "";
     try {
       Path p = Paths.get("db/horse.mp3");
@@ -121,6 +121,9 @@ public class TestController {
     songRepo.save(dummySong2);
     concertRepo.save(c);
     playlistRepo.save(pl);
+    
+    a.getFollowedPlaylists().add(pl);
+    artistRepo.save(a);
 
     return "test data inputted.";
   }
