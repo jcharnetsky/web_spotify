@@ -14,6 +14,7 @@ import webspotify.types.GenreType;
 @Entity
 @Table(name = "Songs")
 public class Song implements Serializable {
+
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "ID", nullable = false)
@@ -29,9 +30,12 @@ public class Song implements Serializable {
   @Enumerated(EnumType.ORDINAL)
   @Column(name = "genre", nullable = false)
   private GenreType genre;
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "artistID", nullable = false)
   private Artist owner;
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "albumID", nullable = false)
+  private Album album;
   @Lob
   @Column(name = "songAudio", length = 100000)
   private byte[] audio;
@@ -103,4 +107,13 @@ public class Song implements Serializable {
   public void setAudio(byte[] audio) {
     this.audio = audio;
   }
+
+  public Album getAlbum() {
+    return album;
+  }
+
+  public void setAlbum(Album album) {
+    this.album = album;
+  }
+
 }
