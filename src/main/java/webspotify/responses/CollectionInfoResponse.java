@@ -2,6 +2,7 @@ package webspotify.responses;
 
 import java.util.ArrayList;
 import java.util.List;
+import webspotify.config.ConfigConstants;
 import webspotify.models.media.Playlist;
 import webspotify.models.media.Song;
 import webspotify.models.media.SongCollection;
@@ -22,6 +23,7 @@ public class CollectionInfoResponse {
   private Integer ownerId;
   private Integer songCount;
   private Integer songTrackLength;
+  private Integer followerCount;
   private List<SongResponse> songs;
 
   public CollectionInfoResponse(SongCollection collection) {
@@ -30,9 +32,13 @@ public class CollectionInfoResponse {
     this.genre = collection.getGenre();
     if (collection instanceof Playlist) {
       this.description = ((Playlist) collection).getDescription();
+      this.followerCount = ((Playlist) collection).getFollowers().size();
+    } else {
+      this.description = ConfigConstants.IS_ALBUM;
+      this.followerCount = ConfigConstants.ALBUM_FOLLOWERS;
     }
     if (collection.getOwner() instanceof Artist) {
-      this.ownerName = ((Artist)collection.getOwner()).getStageName();
+      this.ownerName = ((Artist) collection.getOwner()).getStageName();
     } else {
       this.ownerName = collection.getOwner().getName();
     }
@@ -118,6 +124,11 @@ public class CollectionInfoResponse {
     this.songs = songs;
   }
 
-  
-  
+  public Integer getFollowerCount() {
+    return followerCount;
+  }
+
+  public void setFollowerCount(Integer followerCount) {
+    this.followerCount = followerCount;
+  }
 }
