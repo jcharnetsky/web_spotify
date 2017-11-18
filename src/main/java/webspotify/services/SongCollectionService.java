@@ -122,9 +122,15 @@ public class SongCollectionService {
   }
 
   public Response deleteCollection(User user, int collectionId) {
+
     if (songCollectionRepo.exists(collectionId)) {
-      songCollectionRepo.delete(collectionId);
-      return ResponseUtilities.emptySuccess();
+      SongCollection collection = songCollectionRepo.findOne(collectionId);
+      if (collection.getOwner().equals(user)) {
+        songCollectionRepo.delete(collectionId);
+        return ResponseUtilities.emptySuccess();
+      } else {
+        return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
+      }
     } else {
       return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
     }
