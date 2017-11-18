@@ -1,4 +1,4 @@
-package webspotify.Utilities;
+package webspotify.utilities;
 
 /**
  * @author Cardinals

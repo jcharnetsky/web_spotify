@@ -1,7 +1,9 @@
 package webspotify.services;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +14,7 @@ import webspotify.models.media.Playlist;
 import webspotify.models.media.Song;
 import webspotify.models.media.SongCollection;
 import webspotify.models.users.User;
+import webspotify.posts.AlbumCreateRequest;
 import webspotify.posts.PlaylistCreateRequest;
 import webspotify.repo.SongCollectionRepository;
 import webspotify.repo.SongRepository;
@@ -24,10 +27,8 @@ import webspotify.responses.SongResponse;
  */
 @Service("songCollectionService")
 public class SongCollectionService {
-
   @Autowired
   SongCollectionRepository songCollectionRepo;
-
   @Autowired
   SongRepository songRepo;
 
@@ -63,6 +64,7 @@ public class SongCollectionService {
     }
   }
 
+  @Transactional
   public Response removeSongFromCollection(User user, int collectionId, int songId) {
     if (songCollectionRepo.exists(collectionId) && songRepo.exists(songId)) {
       SongCollection collection = songCollectionRepo.findOne(collectionId);
@@ -83,6 +85,7 @@ public class SongCollectionService {
     }
   }
 
+  @Transactional
   public Response addSongFromCollection(User user, int collectionId, int songId) {
     if (songCollectionRepo.exists(collectionId) && songRepo.exists(songId)) {
       SongCollection collection = songCollectionRepo.findOne(collectionId);
@@ -103,6 +106,7 @@ public class SongCollectionService {
     }
   }
 
+  @Transactional
   public Response createPlaylistCollection(User user, PlaylistCreateRequest request) {
     Playlist playlistToAdd = new Playlist();
     playlistToAdd.setBanned(false);
@@ -120,14 +124,38 @@ public class SongCollectionService {
       return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_CREATE);
     }
   }
+  
+  @Transactional
+  //NOT FINISHED
+  public Response createAlbum(User user, AlbumCreateRequest request) {
+    return ResponseUtilities.emptySuccess();
+  }
 
+  @Transactional
   public Response deleteCollection(User user, int collectionId) {
+
     if (songCollectionRepo.exists(collectionId)) {
-      songCollectionRepo.delete(collectionId);
-      return ResponseUtilities.emptySuccess();
+      SongCollection collection = songCollectionRepo.findOne(collectionId);
+      if (collection.getOwner().equals(user)) {
+        songCollectionRepo.delete(collectionId);
+        return ResponseUtilities.emptySuccess();
+      } else {
+        return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
+      }
     } else {
       return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
     }
+  }
+
+  public Response getAllRelevantPlaylists(User user) {
+    Set<SongCollection> setOfRelevantPlaylists = new HashSet<SongCollection>();
+    List<CollectionInfoResponse> dataToReturn = new ArrayList<CollectionInfoResponse>();
+    setOfRelevantPlaylists.addAll(user.getFollowedPlaylists());
+    setOfRelevantPlaylists.addAll(user.getOwnedPlaylists());
+    for (SongCollection collection : setOfRelevantPlaylists) {
+      dataToReturn.add(new CollectionInfoResponse(collection));
+    }
+    return ResponseUtilities.filledSuccess(dataToReturn);
   }
 
 }

@@ -2,9 +2,9 @@ package webspotify.controllers.rest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import webspotify.Utilities.Response;
-import webspotify.Utilities.ResponseUtilities;
-import webspotify.Utilities.SessionUtilities;
+import webspotify.utilities.Response;
+import webspotify.utilities.ResponseUtilities;
+import webspotify.utilities.SessionUtilities;
 import webspotify.posts.SignupRequest;
 import webspotify.services.ResponseTuple;
 import webspotify.services.UserService;
@@ -56,12 +56,9 @@ public class UserController {
 
   @GetMapping("/get/{userId}")
   public Response getUser(@PathVariable final int userId, HttpSession session) {
-<<<<<<< HEAD
-=======
     if (SessionUtilities.getUserFromSession(session) != null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_ALREADY_LOGGED);
     }
->>>>>>> 5e01496a7c1ebadffba56a1da35353b5dd8e4129
     return ResponseUtilities.emptySuccess();
   }
 }
