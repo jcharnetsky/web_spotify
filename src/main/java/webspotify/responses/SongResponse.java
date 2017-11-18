@@ -10,12 +10,16 @@ public class SongResponse {
   private Integer trackLength;
   private ArtistResponse artist;
   private GenreType genre;
+  private Integer albumId;
+  private String albumName;
   
   public SongResponse(Song build) {
     this.trackLength = build.getTrackLength();
     this.trackName = build.getTitle();
     this.artist = new ArtistResponse(build.getOwner());
     this.genre = build.getGenre();
+    this.albumId = build.getAlbum().getId();
+    this.albumName = build.getAlbum().getTitle();
   }
   
   public String getTrackName() {
