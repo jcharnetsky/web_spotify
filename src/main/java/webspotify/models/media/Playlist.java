@@ -8,6 +8,7 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -27,7 +28,7 @@ public class Playlist extends SongCollection implements Serializable {
   private String description;
   @Column(name = "collaborative", nullable = false)
   private Boolean collaborative;
-  @ManyToMany
+  @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(
           name = "usersFollowingPlaylists",
           joinColumns = @JoinColumn(name = "playlistID", referencedColumnName = "id"),
