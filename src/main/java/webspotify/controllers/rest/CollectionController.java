@@ -13,6 +13,7 @@ import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
 import webspotify.utilities.SessionUtilities;
 import webspotify.models.users.User;
+import webspotify.posts.AlbumCreateRequest;
 import webspotify.posts.PlaylistCreateRequest;
 import webspotify.services.SongCollectionService;
 
@@ -79,5 +80,15 @@ public class CollectionController {
       return ResponseUtilities.filledFailure("User not logged in");
     }
     return collectionService.createPlaylistCollection(user, request);
+  }
+  
+
+  @PostMapping("/create/album")
+  public Response createAlbum(@PathVariable AlbumCreateRequest request, HttpSession session) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if(user == null) {
+      return ResponseUtilities.filledFailure("User not logged in.");
+    }
+    return collectionService.createAlbum(user, request);
   }
 }

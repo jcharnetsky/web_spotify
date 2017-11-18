@@ -14,6 +14,7 @@ import webspotify.models.media.Playlist;
 import webspotify.models.media.Song;
 import webspotify.models.media.SongCollection;
 import webspotify.models.users.User;
+import webspotify.posts.AlbumCreateRequest;
 import webspotify.posts.PlaylistCreateRequest;
 import webspotify.repo.SongCollectionRepository;
 import webspotify.repo.SongRepository;
@@ -26,10 +27,8 @@ import webspotify.responses.SongResponse;
  */
 @Service("songCollectionService")
 public class SongCollectionService {
-
   @Autowired
   SongCollectionRepository songCollectionRepo;
-
   @Autowired
   SongRepository songRepo;
 
@@ -65,6 +64,7 @@ public class SongCollectionService {
     }
   }
 
+  @Transactional
   public Response removeSongFromCollection(User user, int collectionId, int songId) {
     if (songCollectionRepo.exists(collectionId) && songRepo.exists(songId)) {
       SongCollection collection = songCollectionRepo.findOne(collectionId);
@@ -85,6 +85,7 @@ public class SongCollectionService {
     }
   }
 
+  @Transactional
   public Response addSongFromCollection(User user, int collectionId, int songId) {
     if (songCollectionRepo.exists(collectionId) && songRepo.exists(songId)) {
       SongCollection collection = songCollectionRepo.findOne(collectionId);
@@ -105,6 +106,7 @@ public class SongCollectionService {
     }
   }
 
+  @Transactional
   public Response createPlaylistCollection(User user, PlaylistCreateRequest request) {
     Playlist playlistToAdd = new Playlist();
     playlistToAdd.setBanned(false);
@@ -122,7 +124,14 @@ public class SongCollectionService {
       return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_CREATE);
     }
   }
+  
+  @Transactional
+  //NOT FINISHED
+  public Response createAlbum(User user, AlbumCreateRequest request) {
+    return ResponseUtilities.emptySuccess();
+  }
 
+  @Transactional
   public Response deleteCollection(User user, int collectionId) {
 
     if (songCollectionRepo.exists(collectionId)) {
