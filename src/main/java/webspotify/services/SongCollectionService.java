@@ -1,7 +1,9 @@
 package webspotify.services;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -137,7 +139,14 @@ public class SongCollectionService {
   }
 
   public Response getAllRelevantPlaylists(User user) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Set<SongCollection> setOfRelevantPlaylists = new HashSet<SongCollection>();
+    List<CollectionInfoResponse> dataToReturn = new ArrayList<CollectionInfoResponse>();
+    setOfRelevantPlaylists.addAll(user.getFollowedPlaylists());
+    setOfRelevantPlaylists.addAll(user.getOwnedPlaylists());
+    for (SongCollection collection : setOfRelevantPlaylists) {
+      dataToReturn.add(new CollectionInfoResponse(collection));
+    }
+    return ResponseUtilities.filledSuccess(dataToReturn);
   }
 
 }
