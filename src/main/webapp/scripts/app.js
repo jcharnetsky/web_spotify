@@ -22,4 +22,6 @@ angular.module('web_spotify', []).controller('MainCtrl', function($compile, $sco
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
+
+  $scope.secondsToMinSec = secondsToMinSec;
 });

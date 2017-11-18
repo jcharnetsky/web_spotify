@@ -5,7 +5,8 @@
   <div class="playlist_data">
     <div id="content_title">{{playlist.title}}</div>
     <div id="playlist_info">
-      Created by: {{ playlist.ownerName }} / {{ playlist.songCount }} songs / Duration: {{ playlist.songTrackLength }} seconds
+      Created by: {{ playlist.ownerName }} / {{ playlist.songCount }} songs / Duration:
+      {{ secondsToMinSec(playlist.songTrackLength) }}
     </div>
     <div id="playlist_buttons">
       <a href="#">Play</a>
@@ -34,7 +35,7 @@
           <a href="#" class="add_button">+</a>
           <a href="#">{{song.trackName}}</a>
           <a href="#" ng-attr-id="{{song.artist.id}}" ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
-          <a href="#">{{song.trackLength}}</a>
+          <a href="#">{{secondsToMinSec(song.trackLength)}}</a>
         </div>
       </li>
     </ul>
