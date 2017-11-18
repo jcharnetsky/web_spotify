@@ -47,13 +47,16 @@ public class User implements Viewable, Serializable {
   private String passwordSalt;
   @OneToMany(mappedBy = "owner", fetch=FetchType.EAGER)
   private Set<SongCollection> ownedPlaylists;
-  @ManyToMany(mappedBy = "followers", fetch=FetchType.EAGER)
-  private Set<Playlist> followedPlaylists;
-
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(
+          name = "usersFollowingPlaylists",
+          joinColumns = @JoinColumn(name = "userID", referencedColumnName = "id"),
+          inverseJoinColumns = @JoinColumn(name = "playlistID", referencedColumnName = "id"))
+  private Set<SongCollection> followedPlaylists;
 
   public User() {
     this.ownedPlaylists = new HashSet<SongCollection>();
-    this.followedPlaylists = new HashSet<Playlist>();
+    this.followedPlaylists = new HashSet<SongCollection>();
   }
 
   public boolean createSecurePassword(final String plainPassword) {
@@ -185,11 +188,11 @@ public class User implements Viewable, Serializable {
     this.ownedPlaylists = ownedPlaylists;
   }
 
-  public Set<Playlist> getFollowedPlaylists() {
+  public Set<SongCollection> getFollowedPlaylists() {
     return followedPlaylists;
   }
 
-  public void setFollowedPlaylists(Set<Playlist> followedPlaylists) {
+  public void setFollowedPlaylists(Set<SongCollection> followedPlaylists) {
     this.followedPlaylists = followedPlaylists;
   }
 

@@ -32,7 +32,7 @@ public class CollectionInfoResponse {
     this.genre = collection.getGenre();
     if (collection instanceof Playlist) {
       this.description = ((Playlist) collection).getDescription();
-      this.followerCount = ((Playlist) collection).getFollowers().size();
+      this.followerCount = ((Playlist) collection).getFollowerCount();
     } else {
       this.description = ConfigConstants.IS_ALBUM;
       this.followerCount = ConfigConstants.ALBUM_FOLLOWERS;

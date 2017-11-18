@@ -146,4 +146,22 @@ public class SongCollection implements Serializable, Viewable {
     this.owner = owner;
   }
 
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    final SongCollection other = (SongCollection) obj;
+    if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+      return false;
+    }
+    return true;
+  }
+  
+  
+
 }

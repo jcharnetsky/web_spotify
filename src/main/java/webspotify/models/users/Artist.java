@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import webspotify.models.media.Song;
 
@@ -23,11 +25,12 @@ public class Artist extends User {
   @Column(name = "about")
   private String about;
   @ElementCollection
+  @LazyCollection(LazyCollectionOption.FALSE)
   @CollectionTable(name = "artistAliases")
   private List<String> aliases;
-  @ManyToMany(mappedBy = "artists")
+  @ManyToMany(mappedBy = "artists", fetch = FetchType.EAGER)
   private Set<Concert> concerts;
-  @OneToMany(mappedBy = "owner")
+  @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
   private List<Song> ownedSongs;
 
   public Artist() {

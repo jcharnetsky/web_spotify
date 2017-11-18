@@ -30,7 +30,7 @@ public class Concert implements Serializable, Viewable {
   private Boolean isPublic;
   @Column(name = "isBanned", nullable = false)
   private Boolean isBanned;
-  @ManyToMany
+  @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(
           name = "artistConcerts",
           joinColumns = @JoinColumn(name = "concertID", referencedColumnName = "id"),

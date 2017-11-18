@@ -18,6 +18,7 @@ import webspotify.posts.AlbumCreateRequest;
 import webspotify.posts.PlaylistCreateRequest;
 import webspotify.repo.SongCollectionRepository;
 import webspotify.repo.SongRepository;
+import webspotify.repo.UserRepository;
 import webspotify.responses.CollectionInfoResponse;
 import webspotify.responses.SongResponse;
 
@@ -29,6 +30,9 @@ import webspotify.responses.SongResponse;
 public class SongCollectionService {
   @Autowired
   SongCollectionRepository songCollectionRepo;
+  @Autowired
+  UserRepository userRepo;
+  
   @Autowired
   SongRepository songRepo;
 
@@ -156,6 +160,50 @@ public class SongCollectionService {
       dataToReturn.add(new CollectionInfoResponse(collection));
     }
     return ResponseUtilities.filledSuccess(dataToReturn);
+  }
+
+  @Transactional
+  public Response unsaveCollection(User user, int collectionId) {
+    if (songCollectionRepo.exists(collectionId)) {
+      SongCollection collection = songCollectionRepo.findOne(collectionId);
+      if (collection instanceof Playlist) {
+        boolean successful = user.getFollowedPlaylists().remove(collection);
+        if (successful) {
+          userRepo.save(user);
+          ((Playlist) collection).decrementFollowerCount();
+          songCollectionRepo.save(collection);
+          return ResponseUtilities.emptySuccess();
+        } else {
+          return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_REM);
+        }
+      } else {
+        return ResponseUtilities.filledFailure(ConfigConstants.NOT_IMPLEMENTED);
+      }
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
+    }
+  }
+
+  @Transactional
+  public Response saveCollection(User user, int collectionId) {
+    if (songCollectionRepo.exists(collectionId)) {
+      SongCollection collection = songCollectionRepo.findOne(collectionId);
+      if (collection instanceof Playlist) {
+        boolean successful = user.getFollowedPlaylists().add(collection);
+        if (successful) {
+          userRepo.save(user);
+          ((Playlist) collection).incrementFollowerCount();
+          songCollectionRepo.save(collection);
+          return ResponseUtilities.emptySuccess();
+        } else {
+          return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_ADD);
+        }
+      } else {
+        return ResponseUtilities.filledFailure(ConfigConstants.NOT_IMPLEMENTED);
+      }
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
+    }
   }
 
 }
