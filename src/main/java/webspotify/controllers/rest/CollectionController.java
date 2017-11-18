@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import webspotify.Utilities.Response;
-import webspotify.Utilities.ResponseUtilities;
-import webspotify.Utilities.SessionUtilities;
+
+import webspotify.models.media.Playlist;
 import webspotify.models.users.User;
 import webspotify.posts.PlaylistChangeSongRequest;
+import webspotify.posts.PlaylistCreateRequest;
 import webspotify.services.SongCollectionService;
 
 /**
@@ -25,7 +25,7 @@ public class CollectionController {
 
   @Autowired
   SongCollectionService collectionService;
-  
+
   @GetMapping("/{collectionId}/get/info")
   public Response getCollectionInfo(@PathVariable final int collectionId, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
@@ -53,4 +53,21 @@ public class CollectionController {
     return collectionService.removeSongFromCollection(user, collectionId, songId);
   }
 
+  @GetMapping("/{collectionId}/delete")
+  public Response deleteCollection(@PathVariable final int collectionId, HttpSession session) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
+      return ResponseUtilities.filledFailure("User not logged in");
+    }
+    return collectionService.deleteCollection(user, collectionId);
+  }
+
+  @PostMapping("/create/playlist")
+  public Response createPlaylist(@RequestBody PlaylistCreateRequest request, HttpSession session) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
+      return ResponseUtilities.filledFailure("User not logged in");
+    }
+    return collectionService.createPlaylistCollection(user, request);
+  }
 }

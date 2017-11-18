@@ -4,8 +4,9 @@ import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import webspotify.Utilities.Response;
-import webspotify.Utilities.ResponseUtilities;
+import webspotify.config.ConfigConstants;
+import webspotify.utilities.Response;
+import webspotify.utilities.ResponseUtilities;
 import webspotify.models.administration.Report;
 import webspotify.models.users.User;
 import webspotify.repo.ReportRepository;
@@ -24,7 +25,7 @@ public class ReportService {
   public Response getReport(final int reportId) {
     Report report = reportRepository.findOne(reportId);
     if (report == null) {
-      return ResponseUtilities.filledFailure("Report does not exist.");
+      return ResponseUtilities.filledFailure(ConfigConstants.REPORT_NO_EXIST);
     } 
     else {
       List<Report> contentBody = new ArrayList<Report>();
@@ -39,7 +40,7 @@ public class ReportService {
     report.setReportId(0);
     Report resp = reportRepository.saveAndFlush(report);
     if (resp == null) {
-      return ResponseUtilities.filledFailure("Could not log report.");
+      return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_ADD);
     } else {
       return ResponseUtilities.emptySuccess();
     }
