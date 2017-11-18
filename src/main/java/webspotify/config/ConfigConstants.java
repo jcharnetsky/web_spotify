@@ -23,4 +23,6 @@ public class ConfigConstants {
   public static String COULD_NOT_CHANGE = "Content could not be changed.";
   public static String INVALID_CREDENTIALS = "Email/Password combination is invalid.";
   public static String EMAIL_EXIST = "Desired Email already exists.";
+  public static String IS_ALBUM = "This is an album.";
+  public static Integer ALBUM_FOLLOWERS = 0;
 }

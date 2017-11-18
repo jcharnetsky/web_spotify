@@ -1,7 +1,9 @@
 package webspotify.services;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -131,12 +133,29 @@ public class SongCollectionService {
 
   @Transactional
   public Response deleteCollection(User user, int collectionId) {
+
     if (songCollectionRepo.exists(collectionId)) {
-      songCollectionRepo.delete(collectionId);
-      return ResponseUtilities.emptySuccess();
+      SongCollection collection = songCollectionRepo.findOne(collectionId);
+      if (collection.getOwner().equals(user)) {
+        songCollectionRepo.delete(collectionId);
+        return ResponseUtilities.emptySuccess();
+      } else {
+        return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
+      }
     } else {
       return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
     }
+  }
+
+  public Response getAllRelevantPlaylists(User user) {
+    Set<SongCollection> setOfRelevantPlaylists = new HashSet<SongCollection>();
+    List<CollectionInfoResponse> dataToReturn = new ArrayList<CollectionInfoResponse>();
+    setOfRelevantPlaylists.addAll(user.getFollowedPlaylists());
+    setOfRelevantPlaylists.addAll(user.getOwnedPlaylists());
+    for (SongCollection collection : setOfRelevantPlaylists) {
+      dataToReturn.add(new CollectionInfoResponse(collection));
+    }
+    return ResponseUtilities.filledSuccess(dataToReturn);
   }
 
 }

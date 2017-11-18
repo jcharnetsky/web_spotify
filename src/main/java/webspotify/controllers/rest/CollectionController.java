@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import webspotify.config.ConfigConstants;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
 import webspotify.utilities.SessionUtilities;
@@ -26,6 +27,15 @@ public class CollectionController {
 
   @Autowired
   SongCollectionService collectionService;
+  
+  @GetMapping("/playlists")
+  public Response getPlaylistsToUser(HttpSession session) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if(user == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    }
+    return collectionService.getAllRelevantPlaylists(user);
+  }
 
   @GetMapping("/{collectionId}/get/info")
   public Response getCollectionInfo(@PathVariable final int collectionId, HttpSession session) {

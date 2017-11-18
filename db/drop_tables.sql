@@ -1,5 +1,6 @@
 use cardinals;
 
+DROP TABLE IF EXISTS users_following_playlists;
 DROP TABLE IF EXISTS Albums;
 DROP TABLE IF EXISTS songs_in_collection;
 DROP TABLE IF EXISTS playlists;

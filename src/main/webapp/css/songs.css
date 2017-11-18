@@ -6,7 +6,6 @@
 	padding-top: 2vh;
 	padding-bottom: 1vh;
 }
-
 .song_img {
   height: 30vh;
   width: auto;
@@ -14,20 +13,16 @@
   position: relative;
   border: 1px solid white;
 }
-
 .song_data {
   margin-left: 10vw;
   display: inline-block;
 }
-
 .song_tiles , .song_column_headers {
   margin-bottom: 0;
 }
-
 .song_tiles {
   padding-left: 0;
 }
-
 .song_tiles li {
   width: 80vw;
   height: 3vw;
@@ -38,25 +33,21 @@
   width: 100%;
   table-layout: fixed;    /* For cells of equal size */
 }
-
 .song_tile span, .song_tile a {
   display: table-cell;
   vertical-align: middle;
-  text-align: center;
+  text-align: left;
 }
-
-.add_button {
+.button {
   font-size: 180%;
   width: 2%;
   text-align: right;
 }
-
 .highlight_on_hover:hover {
 	background-color: #333333;
 }
-
 .song_hr {
-    width: 96%;
+	width: 100%;
 	border-color: #282828;
 	border-width: 0.3vh;
 	margin-bottom: 0vh;

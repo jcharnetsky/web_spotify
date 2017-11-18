@@ -1,4 +1,5 @@
 package webspotify.models.users;
+
 import java.io.Serializable;
 import java.security.*;
 import java.util.Date;
@@ -6,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 import webspotify.interfaces.Viewable;
+import webspotify.models.media.Playlist;
 import webspotify.models.media.SongCollection;
 
 /**
@@ -17,6 +19,7 @@ import webspotify.models.media.SongCollection;
 @DiscriminatorColumn(name = "userType", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue(value = "BASE")
 public class User implements Viewable, Serializable {
+
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "ID", nullable = false)
@@ -42,11 +45,15 @@ public class User implements Viewable, Serializable {
   private String password;
   @Column(name = "salt", nullable = false)
   private String passwordSalt;
-  @OneToMany(mappedBy = "owner")
+  @OneToMany(mappedBy = "owner", fetch=FetchType.EAGER)
   private Set<SongCollection> ownedPlaylists;
+  @ManyToMany(mappedBy = "followers", fetch=FetchType.EAGER)
+  private Set<Playlist> followedPlaylists;
+
 
   public User() {
     this.ownedPlaylists = new HashSet<SongCollection>();
+    this.followedPlaylists = new HashSet<Playlist>();
   }
 
   public boolean createSecurePassword(final String plainPassword) {
@@ -176,6 +183,14 @@ public class User implements Viewable, Serializable {
 
   public void setOwnedPlaylists(Set<SongCollection> ownedPlaylists) {
     this.ownedPlaylists = ownedPlaylists;
+  }
+
+  public Set<Playlist> getFollowedPlaylists() {
+    return followedPlaylists;
+  }
+
+  public void setFollowedPlaylists(Set<Playlist> followedPlaylists) {
+    this.followedPlaylists = followedPlaylists;
   }
 
   @Override

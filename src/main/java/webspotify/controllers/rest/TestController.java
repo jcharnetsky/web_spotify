@@ -104,6 +104,7 @@ public class TestController {
     pl.setDescription("This is a playlist");
     pl.getSongs().add(dummySong1);
     pl.setOwner(u);
+    pl.getFollowers().add(a);
 
     String content = "";
     try {
