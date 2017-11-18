@@ -1,8 +1,8 @@
-<link href="css/playlist.css" rel="stylesheet"/>
-<div class="playlist" ng-controller="LoadCollectionCtrl">
-<div class="playlist_header">
-  <img class="playlist_img" alt="album_art" src="../images/rhiannon-giddens-tomorrow-is-my-turn.jpg">
-  <div class="playlist_data">
+<link href="css/collection.css" rel="stylesheet"/>
+<div class="collection" ng-controller="LoadCollectionCtrl">
+<div class="collection_header">
+  <img class="collection_img" alt="album_art" src="../images/rhiannon-giddens-tomorrow-is-my-turn.jpg">
+  <div class="collection_data">
     <div id="content_title">{{collection.title}}</div>
     <div id="collection_info">
       Created by: {{ collection.ownerName }} /
@@ -10,19 +10,19 @@
       Duration: {{ secondsToMinSec(collection.songTrackLength) }} /
       Genre: {{ collection.genre }}
     </div>
-    <div class="playlist_info"> Followers: {{ collection.followerCount }} </div>
-    <div class="playlist_info"> {{ playlist.description }}</div>
-    <div id="playlist_buttons">
+    <div class="collection_info"> Followers: {{ collection.followerCount }} </div>
+    <div class="collection_info"> {{ collection.description }}</div>
+    <div id="collection_buttons">
       <a href="#">Play</a>
       <a class="Follow" href="#">Follow</a>
     </div>
   </div>
 </div>
-<ul class="playlist">
+<ul class="collection">
   <li>
-    <ul class="playlist_tiles">
+    <ul class="collection_tiles">
       <li>
-        <div class="playlist_tile">
+        <div class="collection_tile">
           <span class="add_button"></span>
           <a href="#">Title</a>
           <a href="#">Artist</a>
@@ -31,11 +31,11 @@
       </li>
     </ul>
   </li>
-  <li ng-repeat="song in playlist.songs">
-    <hr class="playlist_hr">
-    <ul class="playlist_tiles">
+  <li ng-repeat="song in collection.songs">
+    <hr class="collection_hr">
+    <ul class="collection_tiles">
       <li>
-        <div class="playlist_tile highlight_on_hover" ng-controller="UserCtrl">
+        <div class="collection_tile highlight_on_hover" ng-controller="UserCtrl">
           <a href="#" class="add_button">+</a>
           <a href="#">{{song.trackName}}</a>
           <a href="#" ng-attr-id="{{song.artist.id}}" ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>

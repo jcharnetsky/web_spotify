@@ -1,10 +1,10 @@
-.playlist_header {
+.collection_header {
   display: inline-block;
   margin-top: 2vw;
   margin-left: 2vw;
   margin-bottom: 3vw;
 }
-.playlist_title {
+.collection_title {
 	font-weight: 500;
 	color: #ffffff;
 	width: 30vw;
@@ -12,43 +12,43 @@
 	padding-top: 2vh;
 	padding-bottom: 1vh;
 }
-.playlist_img {
+.collection_img {
   height: 30vh;
   width: auto;
   display: inline-block;
   position: relative;
   border: 1px solid white;
 }
-.playlist_data {
+.collection_data {
   margin-left: 10vw;
   display: inline-block;
 }
-.playlist {
+.collection {
 	padding-left: 3vw;
 }
-.playlist_tiles , .playlist_column_headers {
+.collection_tiles , .collection_column_headers {
   margin-bottom: 0;
 }
-.playlist_tiles {
+.collection_tiles {
   padding-left: 0;
 }
-.playlist_tiles li {
+.collection_tiles li {
   width: 80vw;
 }
-.playlist_tile {
+.collection_tile {
   height: 3vw;
   display: table;
   width: 100%;
   table-layout: fixed;    /* For cells of equal size */
 }
-.playlist_tile span, .playlist_tile a {
+.collection_tile span, .collection_tile a {
   display: table-cell;
   max-width: 10vw;
   vertical-align: middle;
   text-align: center;
 }
 
-.playlist_tile a:hover {
+.collection_tile a:hover {
   text-decoration: underline;
 }
 
@@ -60,18 +60,18 @@
 .highlight_on_hover:hover {
 	background-color: #333333;
 }
-.playlist_hr {
+.collection_hr {
   width: 80vw;
   border-color: #282828;
 	border-width: 0.3vh;
 	margin-bottom: 0vh;
 }
 
-#playlist_buttons {
+#collection_buttons {
   margin-top: 30px;
 }
 
-#playlist_buttons a {
+#collection_buttons a {
   color: white;
   border: 2px solid white;
   border-radius: 15px;
@@ -80,7 +80,7 @@
   margin-right: 10px;
 }
 
-#playlist_buttons a:hover {
+#collection_buttons a:hover {
   color: gray;
   text-decoration: none;
 }
