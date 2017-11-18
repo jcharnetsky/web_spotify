@@ -4,7 +4,8 @@
 		<ul class="song_tiles">
 			<li>
 				<div class="song_tile">
-					<span class="button"></span>
+					<span class="play_button_spacer"></span>
+					<span class="add_button"></span>
 					<a href="#">TRACK</a>
 					<a href="#">ARTIST</a>
 					<a href="#">TIME</a>
@@ -15,15 +16,13 @@
 		</ul>
 	</li>
 	<li ng-repeat="n in [1,2,3,4,5,6,7]">
-		
 		<ul class="song_tiles">
-			
 			<li>
 				<a href="#">
 					<hr class="song_hr">
 					<div class="song_tile highlight_on_hover">
-						
-						<span class="button" ng-model="dynamic_button">+</span>
+						<span class="play_button_spacer display_on_hover"><img class="play_button" src="../images/play.png" alt="Play"></span>
+						<span class="add_button" ng-model="dynamic_button">+</span>
 						<span ng-model="song_title">song</span>
 						<span ng-model="song_artist">artist</span>
 						<span ng-model="song_duration">0:00</span>
