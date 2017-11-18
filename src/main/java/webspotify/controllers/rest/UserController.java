@@ -56,9 +56,6 @@ public class UserController {
 
   @GetMapping("/get/{userId}")
   public Response getUser(@PathVariable final int userId, HttpSession session) {
-    if (SessionUtilities.getUserFromSession(session) != null) {
-      return ResponseUtilities.filledFailure(ConfigConstants.USER_ALREADY_LOGGED);
-    }
     return ResponseUtilities.emptySuccess();
   }
 }

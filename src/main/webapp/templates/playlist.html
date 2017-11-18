@@ -3,11 +3,15 @@
 <div class="playlist_header">
   <img class="playlist_img" alt="album_art" src="../images/rhiannon-giddens-tomorrow-is-my-turn.jpg">
   <div class="playlist_data">
-    <div id="content_title">{{playlist.title}}</div>
-    <div id="playlist_info">
-      Created by: {{ playlist.ownerName }} / {{ playlist.songCount }} songs / Duration:
-      {{ secondsToMinSec(playlist.songTrackLength) }}
+    <div id="content_title">{{collection.title}}</div>
+    <div id="collection_info">
+      Created by: {{ collection.ownerName }} /
+      {{ collection.songCount }} songs /
+      Duration: {{ secondsToMinSec(collection.songTrackLength) }} /
+      Genre: {{ collection.genre }}
     </div>
+    <div class="playlist_info"> Followers: {{ collection.followerCount }} </div>
+    <div class="playlist_info"> {{ playlist.description }}</div>
     <div id="playlist_buttons">
       <a href="#">Play</a>
       <a class="Follow" href="#">Follow</a>

@@ -1,6 +1,7 @@
 #sidebar {
   position: absolute;
   left: 0vw; bottom: 8vh; top: 5vh; right: auto;
+  background-color: #121212;
   width: 8vw;
   height: 92vh;
   padding-top: 2vw;
@@ -22,11 +23,8 @@
 	white-space: nowrap;
 }
 
-.playlists li:hover {
-	/* TODO make playlist author visible */
-}
-
 #sidebar-resizer {
+  opacity: 0;
 	background-color: transparent;
   position: absolute;
   top: 0vh;
