@@ -14,6 +14,7 @@ import webspotify.models.media.Playlist;
 import webspotify.models.media.Song;
 import webspotify.models.media.SongCollection;
 import webspotify.models.users.User;
+import webspotify.posts.AlbumCreateRequest;
 import webspotify.posts.PlaylistCreateRequest;
 import webspotify.repo.SongCollectionRepository;
 import webspotify.repo.SongRepository;
@@ -27,10 +28,8 @@ import webspotify.responses.SongResponse;
  */
 @Service("songCollectionService")
 public class SongCollectionService {
-
   @Autowired
   SongCollectionRepository songCollectionRepo;
-
   @Autowired
   UserRepository userRepo;
   
@@ -128,6 +127,12 @@ public class SongCollectionService {
       System.out.println(e);
       return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_CREATE);
     }
+  }
+  
+  @Transactional
+  //NOT FINISHED
+  public Response createAlbum(User user, AlbumCreateRequest request) {
+    return ResponseUtilities.emptySuccess();
   }
 
   @Transactional

@@ -38,10 +38,22 @@
   vertical-align: middle;
   text-align: left;
 }
-.button {
+.play_button_spacer {
+	display: inline;
+	width: 5%;
+	text-align: center !important;
+}
+.play_button {
+	display: none;
+}
+.add_button {
   font-size: 180%;
   width: 2%;
   text-align: right;
+}
+.song_tile:hover .play_button {
+	display: inline;
+	
 }
 .highlight_on_hover:hover {
 	background-color: #333333;
