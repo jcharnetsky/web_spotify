@@ -22,7 +22,7 @@
           <a class="add_button">+</a>
           <a>{{song.trackName}}</a>
           <a href="#" ng-attr-id="{{song.artist.id}}" ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
-          <a>{{song.trackLength}}</a>
+          <a>{{secondsToMinSec(song.trackLength)}}</a>
         </div>
       </li>
     </ul>
@@ -39,7 +39,7 @@
           <a class="add_button">+</a>
           <a>{{song.trackName}}</a>
           <a href="#" ng-attr-id="{{song.artist.id}}" ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
-          <a>{{song.trackLength}}</a>
+          <a>{{secondsToMinSec(song.trackLength)}}</a>
         </div>
       </li>
     </ul>
