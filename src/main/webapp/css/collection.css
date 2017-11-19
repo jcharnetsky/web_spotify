@@ -28,12 +28,13 @@
 }
 .collection_tiles , .collection_column_headers {
   margin-bottom: 0;
+  width: inherit;
 }
 .collection_tiles {
   padding-left: 0;
 }
 .collection_tiles li {
-  width: 80vw;
+  width: inherit;
 }
 .collection_tile {
   height: 3vw;
@@ -62,7 +63,7 @@
 	background-color: #333333;
 }
 .collection_hr {
-  width: 80vw;
+  width: 100%;
   border-color: #282828;
 	border-width: 0.3vh;
 	margin-bottom: 0vh;
@@ -86,6 +87,7 @@
   text-decoration: none;
 }
 
-.options_button {
-
+.queue, .songs, .user, .collection {
+  position: relative;
+  width: auto;
 }
