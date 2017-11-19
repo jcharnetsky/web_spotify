@@ -50,6 +50,7 @@
 
 .collection_tile a:hover {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .add_button {
