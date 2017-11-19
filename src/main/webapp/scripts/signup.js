@@ -1,4 +1,4 @@
-angular.module('signup_module', []).controller('signUpCtrl', function ($http, $scope, $parse, $compile) {
+angular.module('signup_module', []).controller('SignupCtrl', function ($http, $scope, $parse, $compile) {
   $scope.createAccount = function () {
     var data = {"name":$scope.name,"email":$scope.email, "address":"", "birthdate":$scope.birthdate,"password":$scope.password};
     $http({

@@ -1,8 +1,12 @@
-angular.module('web_spotify').controller('playbarCtrl', function($scope, $interval){
+angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $interval){
   var audio;
   var volumeBar = document.getElementById("songVolume");
   var progressBar = document.getElementById("songProgress");
 	$scope.play = false;
+
+	$scope.loadSong = function (id) {
+	  console.log("Loaded Song " + id);
+	}
 
 	$scope.playSong = function () {
 		audio = document.getElementById("playAudio");

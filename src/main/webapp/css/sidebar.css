@@ -1,6 +1,6 @@
 #sidebar {
   position: absolute;
-  left: 0vw; bottom: 8vh; top: 5vh; right: auto;
+  left: 0vw; bottom: 8vh; top: 5vh; right: 92vw;
   background-color: #121212;
   width: 8vw;
   height: 92vh;
@@ -24,12 +24,12 @@
 }
 
 #sidebar-resizer {
-  opacity: 0;
 	background-color: transparent;
   position: absolute;
   top: 0vh;
-  bottom: 8vh;
   left: 8vw;
+  bottom: 8vh;
   width: 0.4vw;
   cursor: e-resize;
+  z-index: 1;
 }

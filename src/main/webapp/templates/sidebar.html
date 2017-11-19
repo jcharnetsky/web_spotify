@@ -11,11 +11,10 @@
     <li><a id="songs" href="#" ng-click="loadTemplateAndJSON('main', 'songs.html', 'api/home/new_releases')">Songs</a></li>
     <li><a href="#">Albums</a></li>
     <li><a href="#">Artists</a></li>
-    <li><a href="#">Local Files</a></li>
   </ul>
   <ul class="sidebar_list playlists" ng-app="sidebar_app">
     <li><u>Playlists</u></li>
-    <li id="playlists" ng-repeat="list in api_collections_playlists">
+    <li id="playlists" ng-repeat="list in api_playlists_">
       <a href="#" ng-controller="LoadCollectionCtrl" ng-click="loadCollection(list.id)">
         {{list.title}}
       </a>
@@ -27,14 +26,13 @@
 </div>
 <div id="sidebar-resizer"
      resizer="left"
-     resizer-width="0.4vw"
-     resizer-left="#sidebar"
-     resizer-right="#main"
-     resizer-max="12"
-     resizer-min="5">
+     resizerwidth="0.4vw"
+     resizerleft="#sidebar"
+     resizerright="#main"
+     resizermax="12"
+     resizermin="5">
 </div>
-
 <script>
-    var scope = angular.element(document.getElementById('playlists')).scope();
-    scope.loadTemplateAndJSON('playlists', 'null', 'api/collections/playlists');
+    scope = angular.element(document.getElementById('playlists')).scope();
+    scope.loadTemplateAndJSON('playlists', 'null', 'api/playlists/');
 </script>

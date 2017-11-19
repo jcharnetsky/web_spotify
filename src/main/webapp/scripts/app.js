@@ -1,4 +1,4 @@
-angular.module('web_spotify', []).controller('MainCtrl', function($compile, $scope, $location, $http, $parse){
+angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function($compile, $scope, $location, $http, $parse){
 
   $scope.loadTemplateAndJSON = function (div, URL, controllerPath) {
     if(!(controllerPath === 'null')){
@@ -21,6 +21,18 @@ angular.module('web_spotify', []).controller('MainCtrl', function($compile, $sco
     }).catch(function(err){
       displayErrorPopup(err, $scope, $parse, $compile);
     });
+  }
+
+  $scope.loadUserInfo = function() {
+    $http.get(location.origin + "/api/users/info/get/userInfo").then(function(response) {
+        if(!response.data.error){
+          $parse("user").assign($scope, response.data.content);
+        } else {
+          displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+        }
+      }).catch(function (err) {
+        displayErrorPopup(err, $scope, $parse, $compile);
+      });
   }
 
   $scope.secondsToMinSec = secondsToMinSec;

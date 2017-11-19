@@ -7,7 +7,7 @@
   height: 5vh;
   padding-left: 0vw;
 	margin-bottom: 0vh;
-	z-index: 999999;
+	z-index: 2;
 }
 
 .top_list li {
@@ -26,7 +26,7 @@
 	margin-top: 0.5vh;
 }
 
-#logout {
+#top_options {
   position: absolute;
   top: 8px;
   right: 20px;

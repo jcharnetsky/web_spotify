@@ -1,20 +1,33 @@
 package webspotify.responses;
 
+import webspotify.models.users.Artist;
+import webspotify.models.users.User;
+
 /**
  * @author Cardinals
  */
 public class UserInfoResponse {
 
+  private Integer id;
   private String name;
   private Boolean isPremium;
   private Boolean isArtist;
   private Boolean isAdmin;
 
-  public UserInfoResponse(String name, Boolean premium, Boolean artist, Boolean admin) {
-    this.name = name;
-    this.isPremium = premium;
-    this.isArtist = artist;
-    this.isAdmin = admin;
+  public UserInfoResponse(User user) {
+    this.id = user.getId();
+    this.name = user.getName();
+    this.isPremium = user.getIsPremium();
+    this.isArtist = user instanceof Artist;
+    this.isAdmin = false;
+  }
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
   }
 
   public Boolean getPremium() {
