@@ -1,4 +1,5 @@
 <link href="css/collection.css" rel="stylesheet"/>
+<link href="css/button.css" rel="stylesheet"/>
 <div class="collection" ng-controller="LoadCollectionCtrl">
 <div class="collection_header">
   <img class="collection_img" alt="album_art" src="../images/rhiannon-giddens-tomorrow-is-my-turn.jpg">
@@ -23,7 +24,7 @@
     <ul class="collection_tiles">
       <li>
         <div class="collection_tile">
-          <span class="add_button"></span>
+          <span class="options_col"></span>
           <a href="#">Title</a>
           <a href="#">Artist</a>
           <a href="#">Length</a>
@@ -36,7 +37,13 @@
     <ul class="collection_tiles">
       <li>
         <div class="collection_tile highlight_on_hover" ng-controller="UserCtrl">
-          <a href="#" class="add_button">+</a>
+          <div class="dropdown options_col">
+            <div class="options_button" onclick="toggleDropdown()">...</div>
+            <div id="other_dropdown" class="dropdown_content">
+              <a href="#">Save</a>
+              <a href="#">Add to Queue</a>
+            </div>
+          </div>
           <a href="#">{{song.trackName}}</a>
           <a href="#" ng-attr-id="{{song.artist.id}}" ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
           <a href="#">{{secondsToMinSec(song.trackLength)}}</a>
@@ -46,3 +53,4 @@
   </li>
 </ul>
 </div>
+<script src="scripts/button.js"></script>

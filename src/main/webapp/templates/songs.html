@@ -1,10 +1,11 @@
 <link href="css/collection.css" rel="stylesheet"/>
+<link href="css/button.css" rel="stylesheet"/>
 <ul>
 	<li>
 		<ul class="collection_tiles">
 			<li>
 				<div class="collection_tile">
-					<span class="add_button"></span>
+					<a href="#" class="options_col"></a>
 					<a href="#">TRACK</a>
 					<a href="#">ARTIST</a>
 					<a href="#">TIME</a>
@@ -17,18 +18,23 @@
 	<li ng-repeat="n in [1,2,3,4,5,6,7]">
 		<ul class="collection_tiles">
 			<li>
-				<a href="#">
-					<hr class="collection_hr">
-					<div class="collection_tile highlight_on_hover">
-						<span class="add_button" ng-model="dynamic_button">+</span>
-						<span ng-model="collection_title">collection</span>
-						<span ng-model="collection_artist">artist</span>
-						<span ng-model="collection_duration">0:00</span>
-						<span ng-model="collection_album">album</span>
-						<span ng-model="date_added">date</span>
-					</div>
-				</a>
+        <hr class="collection_hr">
+        <div class="collection_tile highlight_on_hover">
+          <div class="dropdown options_col">
+            <div class="options_button" onclick="toggleDropdown()">...</div>
+            <div id="other_dropdown" class="dropdown_content">
+              <a href="#">Save</a>
+              <a href="#">Add to Queue</a>
+            </div>
+          </div>
+          <span ng-model="collection_title">collection</span>
+          <span ng-model="collection_artist">artist</span>
+          <span ng-model="collection_duration">0:00</span>
+          <span ng-model="collection_album">album</span>
+          <span ng-model="date_added">date</span>
+        </div>
 			</li>
 		</ul>
 	</li>
 </ul>
+<script src="scripts/button.js"></script>
