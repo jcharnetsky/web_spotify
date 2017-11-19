@@ -1,6 +1,6 @@
 <link href="css/collection.css" rel="stylesheet"/>
 <link href="css/button.css" rel="stylesheet">
-<div class="queue">
+<div class="queue" ng-controller="PlaybarCtrl">
   <p id="content_title">Coming up</p>
   <ul class="collection">
     <li>
@@ -27,8 +27,10 @@
                 <a href="#">Add to Queue</a>
               </div>
             </div>
-            <a>{{song.trackName}}</a>
-            <a href="#" ng-attr-id="{{song.artist.id}}" ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
+            <a href="#"  ng-attr-id="1" ng-dblclick="loadSong(1)">{{song.trackName}}</a>
+            <a href="#"ng-controller="UserCtrl"
+               ng-attr-id="{{song.artist.id}}"
+               ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
             <a>{{secondsToMinSec(song.trackLength)}}</a>
           </div>
         </li>
@@ -50,8 +52,10 @@
                 <a href="#">Add to Queue</a>
               </div>
             </div>
-            <a>{{song.trackName}}</a>
-            <a href="#" ng-attr-id="{{song.artist.id}}" ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
+            <a href="#"  ng-attr-id="1" ng-dblclick="loadSong(1)">{{song.trackName}}</a>
+            <a href="#"ng-controller="UserCtrl"
+               ng-attr-id="{{song.artist.id}}"
+               ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
             <a>{{secondsToMinSec(song.trackLength)}}</a>
           </div>
         </li>
