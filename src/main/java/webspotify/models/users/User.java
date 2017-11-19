@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 import webspotify.interfaces.Viewable;
+import webspotify.models.media.Album;
 import webspotify.models.media.Playlist;
 import webspotify.models.media.SongCollection;
 
@@ -45,7 +46,7 @@ public class User implements Viewable, Serializable {
   private String password;
   @Column(name = "salt", nullable = false)
   private String passwordSalt;
-  @OneToMany(mappedBy = "owner", fetch=FetchType.EAGER)
+  @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
   private Set<Playlist> ownedPlaylists;
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(
@@ -53,6 +54,12 @@ public class User implements Viewable, Serializable {
           joinColumns = @JoinColumn(name = "userID", referencedColumnName = "id"),
           inverseJoinColumns = @JoinColumn(name = "playlistID", referencedColumnName = "id"))
   private Set<Playlist> followedPlaylists;
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(
+          name = "usersSavedAlbums",
+          joinColumns = @JoinColumn(name = "userID", referencedColumnName = "id"),
+          inverseJoinColumns = @JoinColumn(name = "albumID", referencedColumnName = "id"))
+  private Set<Album> savedAlbums;
 
   public User() {
     this.ownedPlaylists = new HashSet<Playlist>();
@@ -194,6 +201,14 @@ public class User implements Viewable, Serializable {
 
   public void setFollowedPlaylists(Set<Playlist> followedPlaylists) {
     this.followedPlaylists = followedPlaylists;
+  }
+
+  public Set<Album> getSavedAlbums() {
+    return savedAlbums;
+  }
+
+  public void setSavedAlbums(Set<Album> savedAlbums) {
+    this.savedAlbums = savedAlbums;
   }
 
   @Override
