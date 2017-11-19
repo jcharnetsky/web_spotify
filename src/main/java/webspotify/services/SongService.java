@@ -1,4 +1,5 @@
 package webspotify.services;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;
@@ -16,30 +17,30 @@ import webspotify.responses.SongResponse;
 
 @Service("songService")
 public class SongService {
-  @Autowired 
+
+  @Autowired
   SongRepository songRepository;
-  
+
   @Transactional
   public Response getSong(final int songId) {
     Song song = songRepository.findOne(songId);
-    if(song == null) {
+    if (song == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.SONG_NO_EXIST);
-    }
-    else {
+    } else {
       List<SongResponse> contentBody = new ArrayList<SongResponse>();
       contentBody.add(new SongResponse(song));
       return ResponseUtilities.filledSuccess(contentBody);
     }
   }
-  
+
   @Transactional
   public HttpEntity<byte[]> getSongAudio(final int songId) {
     Song song = songRepository.findOne(songId);
-    if(song == null) {
+    if (song == null) {
       return null;
     }
     byte[] songAudio = song.getAudio();
-    if(songAudio == null || songAudio.length == 0) {
+    if (songAudio == null || songAudio.length == 0) {
       return null;
     }
     MediaType type = MediaType.parseMediaType(ConfigConstants.AUDIO_TYPE);
@@ -49,4 +50,3 @@ public class SongService {
     return new HttpEntity<byte[]>(songAudio, headers);
   }
 }
-

@@ -1,4 +1,5 @@
 package webspotify.services;
+
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,36 +12,36 @@ import webspotify.repo.UserRepository;
 
 @Service("userInfoService")
 public class UserInfoService {
-  @Autowired 
+
+  @Autowired
   UserRepository userRepository;
-  
-  @Transactional 
+
+  @Transactional
   public Response setName(User user, String userName) {
     user.setName(userName);
     userRepository.saveAndFlush(user);
     return ResponseUtilities.emptySuccess();
   }
-  
-  @Transactional 
+
+  @Transactional
   public Response setPassword(User user, String password) {
     user.createSecurePassword(password);
     userRepository.saveAndFlush(user);
     return ResponseUtilities.emptySuccess();
   }
-  
-  @Transactional 
+
+  @Transactional
   public Response setEmail(User user, String email) {
     List<User> eUser = userRepository.findByEmail(email);
-    if(eUser.isEmpty()) {
+    if (eUser.isEmpty()) {
       user.setEmail(email);
       userRepository.saveAndFlush(user);
       return ResponseUtilities.emptySuccess();
-    }
-    else {
+    } else {
       return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_CHANGE);
     }
   }
-  
+
   @Transactional
   public Response setPremium(User user, Boolean premiumStatus) {
     user.setIsPremium(premiumStatus);
@@ -48,4 +49,3 @@ public class UserInfoService {
     return ResponseUtilities.emptySuccess();
   }
 }
-

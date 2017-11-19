@@ -11,6 +11,7 @@ import webspotify.models.media.Concert;
  * @author Cardinals
  */
 public class ConcertResponse {
+
   private String venueName;
   private Date concertDate;
   private String concertURL;

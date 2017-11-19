@@ -1,8 +1,6 @@
 package webspotify.models.media;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.*;
 
 import webspotify.models.users.Artist;

@@ -8,36 +8,36 @@ import webspotify.types.GenreType;
  */
 public class PlaylistCreateRequest {
 
-    private String description;
-    private GenreType genre;
-    private String title;
+  private String description;
+  private GenreType genre;
+  private String title;
 
-    public PlaylistCreateRequest() {
+  public PlaylistCreateRequest() {
 
-    }
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    public GenreType getGenre() {
-        return genre;
-    }
+  public GenreType getGenre() {
+    return genre;
+  }
 
-    public void setGenre(GenreType genre) {
-        this.genre = genre;
-    }
+  public void setGenre(GenreType genre) {
+    this.genre = genre;
+  }
 
-    public String getTitle() {
-        return title;
-    }
+  public String getTitle() {
+    return title;
+  }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
 }

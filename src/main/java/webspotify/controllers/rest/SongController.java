@@ -5,16 +5,12 @@ import webspotify.utilities.ResponseUtilities;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import webspotify.config.ConfigConstants;
-import webspotify.models.media.Song;
 import webspotify.responses.SongResponse;
 import webspotify.services.SongService;
 import webspotify.utilities.SessionUtilities;

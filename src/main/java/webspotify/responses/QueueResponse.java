@@ -17,10 +17,10 @@ public class QueueResponse {
   public QueueResponse(SongQueue queue) {
     this.queue = new ArrayList<SongResponse>();
     this.recent = new ArrayList<SongResponse>();
-    for(Song song: queue.getUpcomingList()){
+    for (Song song : queue.getUpcomingList()) {
       this.queue.add(new SongResponse(song));
     }
-    for(Song song: queue.getRecentList()){
+    for (Song song : queue.getRecentList()) {
       this.recent.add(new SongResponse(song));
     }
   }

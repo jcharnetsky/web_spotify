@@ -13,7 +13,7 @@ import webspotify.types.GenreType;
  *
  * @author Cardinals
  */
-public class CollectionInfoResponse {
+public class PlaylistInfoResponse {
 
   private Integer id;
   private String title;
@@ -26,27 +26,23 @@ public class CollectionInfoResponse {
   private Integer followerCount;
   private List<SongResponse> songs;
 
-  public CollectionInfoResponse(SongCollection collection) {
-    this.id = collection.getId();
-    this.title = collection.getTitle();
-    this.genre = collection.getGenre();
-    if (collection instanceof Playlist) {
-      this.description = ((Playlist) collection).getDescription();
-      this.followerCount = ((Playlist) collection).getFollowerCount();
+  public PlaylistInfoResponse(Playlist playlist) {
+    this.id = playlist.getId();
+    this.title = playlist.getTitle();
+    this.genre = playlist.getGenre();
+    this.description = playlist.getDescription();
+    this.followerCount = playlist.getFollowerCount();
+
+    if (playlist.getOwner() instanceof Artist) {
+      this.ownerName = ((Artist) playlist.getOwner()).getStageName();
     } else {
-      this.description = ConfigConstants.IS_ALBUM;
-      this.followerCount = ConfigConstants.ALBUM_FOLLOWERS;
+      this.ownerName = playlist.getOwner().getName();
     }
-    if (collection.getOwner() instanceof Artist) {
-      this.ownerName = ((Artist) collection.getOwner()).getStageName();
-    } else {
-      this.ownerName = collection.getOwner().getName();
-    }
-    this.ownerId = collection.getOwner().getId();
-    this.songCount = collection.getSongs().size();
+    this.ownerId = playlist.getOwner().getId();
+    this.songCount = playlist.getSongs().size();
     this.songs = new ArrayList<SongResponse>();
     this.songTrackLength = 0;
-    for (Song song : collection.getSongs()) {
+    for (Song song : playlist.getSongs()) {
       this.songs.add(new SongResponse(song));
       this.songTrackLength += song.getTrackLength();
     }

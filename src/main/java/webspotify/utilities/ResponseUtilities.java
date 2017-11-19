@@ -4,6 +4,7 @@ package webspotify.utilities;
  * @author Cardinals
  */
 public class ResponseUtilities {
+
   public static Response emptySuccess() {
     Response r = new Response(false, "", null);
     return r;

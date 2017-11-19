@@ -4,6 +4,7 @@ package webspotify.responses;
  * @author Cardinals
  */
 public class UserInfoResponse {
+
   private String name;
   private Boolean isPremium;
   private Boolean isArtist;

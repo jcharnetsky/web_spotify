@@ -14,100 +14,90 @@ import webspotify.utilities.ResponseUtilities;
 import webspotify.utilities.SessionUtilities;
 import webspotify.config.ConfigConstants;
 import webspotify.models.users.User;
-import webspotify.posts.AlbumCreateRequest;
 import webspotify.posts.PlaylistCreateRequest;
-import webspotify.services.SongCollectionService;
+import webspotify.services.PlaylistService;
 
 /**
  *
  * @author Cardinals
  */
 @RestController
-@RequestMapping("/api/collections")
-public class CollectionController {
+@RequestMapping("/api/playlists")
+public class PlaylistController {
 
   @Autowired
-  SongCollectionService collectionService;
+  PlaylistService playlistService;
 
-  @GetMapping("/playlists")
+  @GetMapping("/")
   public Response getPlaylistsToUser(HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
-    return collectionService.getAllRelevantPlaylists(user);
+    return playlistService.getAllRelevantPlaylists(user);
   }
 
-  @GetMapping("/{collectionId}/get/info")
-  public Response getCollectionInfo(@PathVariable final int collectionId, HttpSession session) {
+  @GetMapping("/{playlistId}/get/info")
+  public Response getPlaylistInfo(@PathVariable final int playlistId, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
       return ResponseUtilities.filledFailure("User not logged in.");
     }
-    return collectionService.getInfoAboutCollection(user, collectionId);
+    return playlistService.getInfoAboutPlaylist(user, playlistId);
   }
 
-  @GetMapping("/{collectionId}/add/song/{songId}")
-  public Response addSongToCollection(@PathVariable final int collectionId, @PathVariable final int songId, HttpSession session) {
+  @GetMapping("/{playlistId}/add/song/{songId}")
+  public Response addSongToPlaylist(@PathVariable final int playlistId, @PathVariable final int songId, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
       return ResponseUtilities.filledFailure("User not logged in.");
     }
-    return collectionService.addSongFromCollection(user, collectionId, songId);
+    return playlistService.addSongToPlaylist(user, playlistId, songId);
   }
 
-  @GetMapping("/{collectionId}/rem/song/{songId}")
-  public Response remSongToCollection(@PathVariable final int collectionId, @PathVariable final int songId, HttpSession session) {
+  @GetMapping("/{playlistId}/rem/song/{songId}")
+  public Response remSongFromPlaylist(@PathVariable final int playlistId, @PathVariable final int songId, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
       return ResponseUtilities.filledFailure("User not logged in.");
     }
-    return collectionService.removeSongFromCollection(user, collectionId, songId);
+    return playlistService.removeSongFromPlaylist(user, playlistId, songId);
   }
 
-  @GetMapping("/{collectionId}/delete")
-  public Response deleteCollection(@PathVariable final int collectionId, HttpSession session) {
+  @GetMapping("/{playlistId}/delete")
+  public Response deleteCollection(@PathVariable final int playlistId, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
       return ResponseUtilities.filledFailure("User not logged in");
     }
-    return collectionService.deleteCollection(user, collectionId);
+    return playlistService.deletePlaylist(user, playlistId);
   }
 
-  @GetMapping("/{collectionId}/save")
-  public Response saveCollectionToUser(@PathVariable final int collectionId, HttpSession session) {
+  @GetMapping("/{playlistId}/follow")
+  public Response savePlaylistToUser(@PathVariable final int playlistId, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
       return ResponseUtilities.filledFailure("User not logged in");
     }
-    return collectionService.saveCollection(user, collectionId);
+    return playlistService.followPlaylist(user, playlistId);
   }
 
-  @GetMapping("/{collectionId}/unsave")
-  public Response unsaveCollectionToUser(@PathVariable final int collectionId, HttpSession session) {
+  @GetMapping("/{playlistId}/unfollow")
+  public Response unsaveCollectionToUser(@PathVariable final int playlistId, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
       return ResponseUtilities.filledFailure("User not logged in");
     }
-    return collectionService.unsaveCollection(user, collectionId);
+    return playlistService.unfollowPlaylist(user, playlistId);
   }
 
-  @PostMapping("/create/playlist")
+  @PostMapping("/create")
   public Response createPlaylist(@RequestBody PlaylistCreateRequest request, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
       return ResponseUtilities.filledFailure("User not logged in");
     }
-    return collectionService.createPlaylistCollection(user, request);
+    return playlistService.createPlaylistCollection(user, request);
   }
-  
 
-  @PostMapping("/create/album")
-  public Response createAlbum(@PathVariable AlbumCreateRequest request, HttpSession session) {
-    User user = SessionUtilities.getUserFromSession(session);
-    if(user == null) {
-      return ResponseUtilities.filledFailure("User not logged in.");
-    }
-    return collectionService.createAlbum(user, request);
-  }
 }

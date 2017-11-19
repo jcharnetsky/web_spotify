@@ -1,11 +1,9 @@
 package webspotify.controllers.rest;
 
-import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
-import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +15,6 @@ import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 import webspotify.repo.ArtistRepository;
 import webspotify.repo.ConcertRepository;
-import webspotify.repo.PlaylistRepository;
 import webspotify.repo.SongCollectionRepository;
 import webspotify.repo.SongRepository;
 import webspotify.repo.UserRepository;

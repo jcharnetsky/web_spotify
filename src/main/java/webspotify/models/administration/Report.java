@@ -1,4 +1,5 @@
 package webspotify.models.administration;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import webspotify.models.users.User;
@@ -11,79 +12,80 @@ import webspotify.types.SpotifyObjectEnum;
 @Entity
 @Table(name = "Reports")
 public class Report implements Serializable {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "reportID", nullable=false)
-	private int reportId;
-	@ManyToOne
-	@JoinColumn(name = "creatorID", nullable=false)
-	private User creator;
-	@Column(name = "subject", nullable=false)
-	private String subject;
-	@Column(name = "description", nullable=false)
-	private String description;
-	@Column(name = "entity", nullable=false)
-	@Enumerated(EnumType.STRING)
-	private SpotifyObjectEnum entityType;
-	@Column(name = "entityID", nullable=false)
-	private Integer entityId;
 
-	public Report() {
-	}
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "reportID", nullable = false)
+  private int reportId;
+  @ManyToOne
+  @JoinColumn(name = "creatorID", nullable = false)
+  private User creator;
+  @Column(name = "subject", nullable = false)
+  private String subject;
+  @Column(name = "description", nullable = false)
+  private String description;
+  @Column(name = "entity", nullable = false)
+  @Enumerated(EnumType.STRING)
+  private SpotifyObjectEnum entityType;
+  @Column(name = "entityID", nullable = false)
+  private Integer entityId;
 
-	public Report(int reportId, String subject, String description, SpotifyObjectEnum entityType, Integer entityId) {
-		this.reportId = reportId;
-		this.subject = subject;
-		this.description = description;
-		this.entityType = entityType;
-		this.entityId = entityId;
-	}
+  public Report() {
+  }
 
-	public int getReportId() {
-		return reportId;
-	}
+  public Report(int reportId, String subject, String description, SpotifyObjectEnum entityType, Integer entityId) {
+    this.reportId = reportId;
+    this.subject = subject;
+    this.description = description;
+    this.entityType = entityType;
+    this.entityId = entityId;
+  }
 
-	public void setReportId(int reportId) {
-		this.reportId = reportId;
-	}
+  public int getReportId() {
+    return reportId;
+  }
 
-	public User getCreator() {
-		return creator;
-	}
+  public void setReportId(int reportId) {
+    this.reportId = reportId;
+  }
 
-	public void setCreator(User creator) {
-		this.creator = creator;
-	}
+  public User getCreator() {
+    return creator;
+  }
 
-	public String getSubject() {
-		return subject;
-	}
+  public void setCreator(User creator) {
+    this.creator = creator;
+  }
 
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
+  public String getSubject() {
+    return subject;
+  }
 
-	public String getDescription() {
-		return description;
-	}
+  public void setSubject(String subject) {
+    this.subject = subject;
+  }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+  public String getDescription() {
+    return description;
+  }
 
-	public SpotifyObjectEnum getEntityType() {
-		return entityType;
-	}
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-	public void setEntityType(SpotifyObjectEnum entityType) {
-		this.entityType = entityType;
-	}
+  public SpotifyObjectEnum getEntityType() {
+    return entityType;
+  }
 
-	public Integer getEntityId() {
-		return entityId;
-	}
+  public void setEntityType(SpotifyObjectEnum entityType) {
+    this.entityType = entityType;
+  }
 
-	public void setEntityId(Integer entityId) {
-		this.entityId = entityId;
-	}
+  public Integer getEntityId() {
+    return entityId;
+  }
+
+  public void setEntityId(Integer entityId) {
+    this.entityId = entityId;
+  }
 }
