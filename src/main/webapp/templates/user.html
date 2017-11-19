@@ -1,12 +1,55 @@
 <link rel="stylesheet" href="css/collection.css">
-<div class="collection_header">
-  <img class="collection_img" alt="album_art" src="../images/himanshu.png">
-  <div class="collection_data">
-    <div id="content_title">{{ visitingUser.name }}</div>
-    <div>Email: {{ visitingUser.email }}</div>
-    <div> Birthday: {{ visitingUser.birthday }}</div>
-    <div id="collection_buttons">
-      <a ng-show="visitingUser.id != user.id" class="Follow" href="#">Follow</a>
+<div class="user">
+  <div class="collection_header">
+    <img class="collection_img" alt="album_art" src="../images/himanshu.png">
+    <div class="collection_data">
+      <div id="content_title">{{ visitingUser.name }}</div>
+      <div>Email: {{ visitingUser.email }}</div>
+      <div>Birthday: {{ visitingUser.birthday }}</div>
+      <div>Follower count: </div>
+      <div>Listeners: / Monthly Listeners: </div>
+      <div id="collection_buttons">
+        <a ng-show="visitingUser.id != user.id" class="Follow" href="#">Follow</a>
+      </div>
     </div>
   </div>
+  <ul class="content_header"><li><p id="content_title">Albums</p></li></ul>
+  <hr>
+  <ul class="list_tiles">
+    <li ng-repeat="item in api_home_overview.focus">
+      <div class="tile">
+        <a href="#">
+          <img class="tile_img" ng-src={{item.img}} alt="Suggestion"/>
+        </a>
+        <p class="tile_text">{{item.head}}</p>
+        <p class="tile_desc" class="left_align">{{item.desc}}</p>
+      </div>
+    </li>
+  </ul>
+  <ul class="content_header"><li><p id="content_title">Playlists</p></li></ul>
+  <hr>
+  <ul class="list_tiles">
+    <li ng-repeat="item in api_home_overview.focus">
+      <div class="tile">
+        <a href="#">
+          <img class="tile_img" ng-src={{item.img}} alt="Suggestion"/>
+        </a>
+        <p class="tile_text">{{item.head}}</p>
+        <p class="tile_desc" class="left_align">{{item.desc}}</p>
+      </div>
+    </li>
+  </ul>
+  <ul class="content_header"><li><p id="content_title">Followers</p></li></ul>
+  <hr>
+  <ul class="list_tiles">
+    <li ng-repeat="item in api_home_overview.focus">
+      <div class="tile">
+        <a href="#">
+          <img class="tile_img" ng-src={{item.img}} style="border-radius: 50%" alt="Suggestion"/>
+        </a>
+        <p class="tile_text" style="text-align: center">{{item.head}}</p>
+        <p class="tile_desc">{{item.desc}}</p>
+      </div>
+    </li>
+  </ul>
 </div>
