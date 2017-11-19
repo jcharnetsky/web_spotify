@@ -29,4 +29,5 @@ public class ConfigConstants {
   public static String IS_ALBUM = "This is an album.";
   public static Integer ALBUM_FOLLOWERS = 0;
   public static String NOT_IMPLEMENTED = "This feature is not currently implemented.";
+  public static String USER_NOT_FOUND = "The user does not exist.";
 }
