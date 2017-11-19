@@ -28,6 +28,10 @@ public class Song implements Serializable {
   @Enumerated(EnumType.ORDINAL)
   @Column(name = "genre", nullable = false)
   private GenreType genre;
+  @Column(name = "TotalListens", nullable = false)
+  private Integer totalListens;
+  @Column(name = "MonthlyListens", nullable = false)
+  private Integer montlyListens;
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "artistID", nullable = false)
   private Artist owner;
@@ -40,6 +44,13 @@ public class Song implements Serializable {
 
   public Song() {
     super();
+    this.totalListens = 0;
+    this.montlyListens = 0;
+  }
+
+  public void incrementListens () {
+    this.totalListens++;
+    this.montlyListens++;
   }
 
   public Integer getId() {
@@ -114,4 +125,19 @@ public class Song implements Serializable {
     this.album = album;
   }
 
+  public Integer getTotalListens() {
+    return totalListens;
+  }
+
+  public void setTotalListens(Integer totalListens) {
+    this.totalListens = totalListens;
+  }
+
+  public Integer getMontlyListens() {
+    return montlyListens;
+  }
+
+  public void setMontlyListens(Integer montlyListens) {
+    this.montlyListens = montlyListens;
+  }
 }
