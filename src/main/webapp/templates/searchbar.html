@@ -1,5 +1,5 @@
 <link href="css/searchbar.css" rel="stylesheet"/>
-<div class="top" ng-app="web_spotify">
+<div class="top">
   <ul class="top_list">
     <li>
       <ul class="nav_history">
@@ -11,21 +11,21 @@
         </a></li>
         <li>
           <form class="search">
-            <input class="search" type="text" ng-model="search_querey" placeholder="Search"><br>
+            <input class="search" type="text" placeholder="Search"><br>
           </form>
         </li>
       </ul>
     </li>
-    <li id="logout">
+    <li id="top_options" ng-controller="UserCtrl">
       <a href="#" ng-click="logout()">Log out </a>&#8226
-      <a href="#" id="username">{{api_users_info_get_userInfo.name}}</a>
-      <a ng-show="api_users_info_get_userInfo.premium">&#8226 Premium</a>
-      <a ng-show="api_users_info_get_userInfo.artist">&#8226 Artist</a>
-      <a ng-show="api_users_info_get_userInfo.admin">&#8226 Administrator</a>
+      <a href="#" id="username">{{user.name}}</a>
+      <a ng-show="user.premium">&#8226 Premium</a>
+      <a ng-show="user.artist">&#8226 Artist</a>
+      <a ng-show="user.admin">&#8226 Administrator</a>
     </li>
   </ul>
 </div>
 <script>
-    var scope = angular.element(document.getElementById('username')).scope();
-    scope.loadTemplateAndJSON('', 'null', 'api/users/info/get/userInfo');
+  scope = angular.element(document.getElementById("username")).scope();
+  scope.loadUserInfo();
 </script>

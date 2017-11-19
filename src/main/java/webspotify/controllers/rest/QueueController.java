@@ -32,8 +32,7 @@ public class QueueController {
     if (SessionUtilities.getUserFromSession(session) == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
-    //Creates some infinite loop, not sure why.
-    SongQueue dummy = new SongQueue(); // Dummy data
+    SongQueue dummy = new SongQueue();
     List<Song> songs = songRepo.findAll();
     for (Song song : songs) {
       dummy.push(song);
