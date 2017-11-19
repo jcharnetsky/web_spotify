@@ -9,14 +9,24 @@ import java.util.Date;
  */
 public class UserResponse {
 
+  private Integer id;
   private String name;
   private String email;
   private Date birthday;
 
   public UserResponse(User user) {
+    this.id = user.getId();
     this.name  = user.getName();
     this.email = user.getEmail();
     this.birthday = user.getBirthdate();
+  }
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
   }
 
   public String getName() {

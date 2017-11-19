@@ -6,7 +6,7 @@
     <div>Email: {{ visitingUser.email }}</div>
     <div> Birthday: {{ visitingUser.birthday }}</div>
     <div id="collection_buttons">
-      <a class="Follow" href="#">Follow</a>
+      <a ng-show="visitingUser.id != user.id" class="Follow" href="#">Follow</a>
     </div>
   </div>
 </div>

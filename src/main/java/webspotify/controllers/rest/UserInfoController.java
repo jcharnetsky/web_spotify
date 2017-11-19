@@ -28,7 +28,7 @@ public class UserInfoController {
     if (u == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
-    UserInfoResponse response = new UserInfoResponse(u.getName(), u.getIsPremium(), u instanceof Artist, false);
+    UserInfoResponse response = new UserInfoResponse(u);
     return ResponseUtilities.filledSuccess(response);
   }
 
