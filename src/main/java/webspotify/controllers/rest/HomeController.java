@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class LoginController {
+public class HomeController {
 
   /**
    * Direct the user to the login page. If there is a user logged in, direct them to
