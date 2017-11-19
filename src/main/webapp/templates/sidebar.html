@@ -15,7 +15,7 @@
   </ul>
   <ul class="sidebar_list playlists" ng-app="sidebar_app">
     <li><u>Playlists</u></li>
-    <li id="playlists" ng-repeat="list in api_collections_playlists">
+    <li id="playlists" ng-repeat="list in api_playlists_">
       <a href="#" ng-controller="LoadCollectionCtrl" ng-click="loadCollection(list.id)">
         {{list.title}}
       </a>
@@ -36,5 +36,5 @@
 
 <script>
     scope = angular.element(document.getElementById('playlists')).scope();
-    scope.loadTemplateAndJSON('playlists', 'null', 'api/collections/playlists');
+    scope.loadTemplateAndJSON('playlists', 'null', 'api/playlists/');
 </script>
