@@ -1,1 +1,14 @@
-<h1>This is the user page</h1>
+<link rel="stylesheet" href="css/collection.css">
+<div class="collection_header">
+  <img class="collection_img" alt="album_art" src="../images/himanshu.png">
+  <div class="collection_data">
+    <div id="content_title">{{ user.name }}</div>
+    <div>Email: {{ user.email }}</div>
+    <div> Birthday: {{ user.birthdate }}</div>
+    <div> Type: {{ user.user_type }} </div>
+    <div id="collection_buttons">
+      <a href="#">Play</a>
+      <a class="Follow" href="#">Follow</a>
+    </div>
+  </div>
+</div>

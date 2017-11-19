@@ -19,7 +19,7 @@
 		<ul class="collection_tiles">
 			<li>
         <hr class="collection_hr">
-        <div class="collection_tile highlight_on_hover">
+        <div class="collection_tile highlight_on_hover" ng-controller="UserCtrl">
           <div class="dropdown options_col">
             <div class="options_button" onclick="toggleDropdown()">...</div>
             <div id="other_dropdown" class="dropdown_content">
@@ -28,7 +28,7 @@
             </div>
           </div>
           <span ng-model="collection_title">collection</span>
-          <span ng-model="collection_artist">artist</span>
+          <a ng-click="loadUser(1)">artist</a>
           <span ng-model="collection_duration">0:00</span>
           <span ng-model="collection_album">album</span>
           <span ng-model="date_added">date</span>

@@ -5,14 +5,14 @@
   <img class="collection_img" alt="album_art" src="../images/rhiannon-giddens-tomorrow-is-my-turn.jpg">
   <div class="collection_data">
     <div id="content_title">{{collection.title}}</div>
-    <div id="collection_info">
+    <div>
       Created by: {{ collection.ownerName }} /
       {{ collection.songCount }} songs /
       Duration: {{ secondsToMinSec(collection.songTrackLength) }} /
       Genre: {{ collection.genre }}
     </div>
-    <div class="collection_info"> Followers: {{ collection.followerCount }} </div>
-    <div class="collection_info"> {{ collection.description }}</div>
+    <div> Followers: {{ collection.followerCount }} </div>
+    <div> {{ collection.description }}</div>
     <div id="collection_buttons">
       <a href="#">Play</a>
       <a class="Follow" href="#">Follow</a>
