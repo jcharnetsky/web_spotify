@@ -168,14 +168,18 @@ public class PlaylistService {
   public Response followPlaylist(User user, int playlistId) {
     if (playlistRepo.exists(playlistId)) {
       Playlist playlist = playlistRepo.findOne(playlistId);
-      boolean successful = user.getFollowedPlaylists().add(playlist);
-      if (successful) {
-        userRepo.save(user);
-        playlist.incrementFollowerCount();
-        playlistRepo.save(playlist);
-        return ResponseUtilities.emptySuccess();
+      if (playlist.isPublic()) {
+        boolean successful = user.getFollowedPlaylists().add(playlist);
+        if (successful) {
+          userRepo.save(user);
+          playlist.incrementFollowerCount();
+          playlistRepo.save(playlist);
+          return ResponseUtilities.emptySuccess();
+        } else {
+          return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_ADD);
+        }
       } else {
-        return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_ADD);
+        return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
       }
     } else {
       return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
