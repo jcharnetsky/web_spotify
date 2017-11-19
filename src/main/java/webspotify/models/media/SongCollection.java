@@ -55,7 +55,7 @@ public abstract class SongCollection implements Serializable, Viewable {
   @ManyToOne
   @JoinColumn(name = "ownerID", nullable = false)
   private User owner;
-  @ManyToMany(fetch=FetchType.EAGER)
+  @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(
           name = "songsInCollection",
           joinColumns = @JoinColumn(name = "collectionID", referencedColumnName = "id"),
@@ -148,6 +148,12 @@ public abstract class SongCollection implements Serializable, Viewable {
     this.owner = owner;
   }
 
+  @Override
+  public int hashCode() {
+    int hash = 5;
+    hash = 53 * hash + (this.id != null ? this.id.hashCode() : 0);
+    return hash;
+  }
 
   @Override
   public boolean equals(Object obj) {
@@ -157,13 +163,14 @@ public abstract class SongCollection implements Serializable, Viewable {
     if (obj == null) {
       return false;
     }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
     final SongCollection other = (SongCollection) obj;
-    if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+    if (!this.id.equals(other.id) && (this.id == null || !this.id.equals(other.id))) {
       return false;
     }
     return true;
   }
-  
-  
 
 }
