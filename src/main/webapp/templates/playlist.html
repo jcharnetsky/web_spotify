@@ -46,7 +46,7 @@
           </div>
           <a href="#">{{song.trackName}}</a>
           <a href="#" ng-attr-id="{{song.artist.id}}" ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
-          <a href="#">{{secondsToMinSec(song.trackLength)}}</a>
+          <span href="#">{{secondsToMinSec(song.trackLength)}}</span>
         </div>
       </li>
     </ul>
