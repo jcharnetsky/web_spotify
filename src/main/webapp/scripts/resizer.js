@@ -7,7 +7,7 @@ angular.module('mc.resizer', []).directive('resizer', function($document) {
     });
 
     function mousemove(event) {
-      if ($attrs.resizer == 'left') {
+      if ($attrs.resizer === 'left') {
         var x = event.pageX;
         x = x * (100 / document.documentElement.clientWidth);
         if (x > $attrs.resizermax) {
@@ -23,7 +23,7 @@ angular.module('mc.resizer', []).directive('resizer', function($document) {
           width: x + 'vw'
         });
         $($attrs.resizerright).css({
-          left: (x + parseInt($attrs.resizerwidth)) + 'vw !important'
+          left: (x + parseInt($attrs.resizerwidth)) + 'vw'
         });
       } else {
         var x = event.pageX;
