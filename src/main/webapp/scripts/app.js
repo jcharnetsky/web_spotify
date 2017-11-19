@@ -23,5 +23,13 @@ angular.module('web_spotify', []).controller('MainCtrl', function($compile, $sco
     });
   }
 
+  $scope.loadUserInfo = function() {
+      $http.get(location.origin + "/api/users/info/get/userInfo").then(function(response) {
+          handleJSONResponse(response, "main", "user.html", "user", $compile, $parse, $scope);
+        }).catch(function (err) {
+          displayErrorPopup(err, $scope, $parse, $compile);
+        });
+    }
+
   $scope.secondsToMinSec = secondsToMinSec;
 });

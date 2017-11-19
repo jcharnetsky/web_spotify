@@ -16,7 +16,7 @@
         </li>
       </ul>
     </li>
-    <li id="top_options" ng-controller="UserCtrl">
+    <li id="top_options">
       <a href="#" ng-click="logout()">Log out </a>&#8226
       <a href="#" id="username">{{user.name}}</a>
       <a ng-show="user.premium">&#8226 Premium</a>
@@ -25,7 +25,3 @@
     </li>
   </ul>
 </div>
-<script>
-  scope = angular.element(document.getElementById("username")).scope();
-  scope.loadUserInfo();
-</script>
