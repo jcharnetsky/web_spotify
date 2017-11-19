@@ -12,13 +12,11 @@ import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
 import webspotify.models.media.Playlist;
 import webspotify.models.media.Song;
-import webspotify.models.media.SongCollection;
 import webspotify.models.users.User;
 import webspotify.posts.PlaylistCreateRequest;
 import webspotify.repo.PlaylistRepository;
 import webspotify.repo.SongRepository;
 import webspotify.repo.UserRepository;
-import webspotify.responses.CollectionInfoResponse;
 import webspotify.responses.PlaylistInfoResponse;
 import webspotify.responses.SongResponse;
 
