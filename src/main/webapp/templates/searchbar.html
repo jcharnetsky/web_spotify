@@ -24,4 +24,8 @@
       <a ng-show="user.admin">&#8226 Administrator</a>
     </li>
   </ul>
+  <script>
+    app = angular.element(document.getElementById('top_options')).scope();
+    app.loadUserInfo();
+  </script>
 </div>

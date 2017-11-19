@@ -23,12 +23,11 @@ angular.module('mc.resizer', []).directive('resizer', function($document) {
           width: x + 'vw'
         });
         $($attrs.resizerright).css({
-          left: (x + parseInt($attrs.resizerwidth)) + 'vw'
+          left: (x + parseInt($attrs.resizerwidth)) + 'vw !important'
         });
       } else {
         var x = event.pageX;
         x = x * (100 / document.documentElement.clientWidth);
-        console.log(x);
         if (x > $attrs.resizermax) {
             x = parseInt($attrs.resizerMax);
         }
