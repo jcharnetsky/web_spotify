@@ -1,48 +1,62 @@
-<link href="css/playlist.css" rel="stylesheet"/>
+<link href="css/collection.css" rel="stylesheet"/>
+<link href="css/button.css" rel="stylesheet">
 <div class="queue">
-<p id="content_title">Coming up</p>
-<ul class="playlist">
-  <li>
-    <ul class="playlist_tiles">
-      <li>
-        <div class="playlist_tile">
-          <span class="add_button"></span>
-          <a href="#">Title</a>
-          <a href="#">Artist</a>
-          <a href="#">Length</a>
-        </div>
-      </li>
-    </ul>
-  </li>
-  <li ng-repeat="song in api_queue_get_all.queue">
-    <hr class="playlist_hr">
-    <ul class="playlist_tiles">
-      <li>
-        <div class="playlist_tile highlight_on_hover" ng-controller="UserCtrl">
-          <a class="add_button">+</a>
-          <a>{{song.trackName}}</a>
-          <a href="#" ng-attr-id="{{song.artist.id}}" ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
-          <a>{{secondsToMinSec(song.trackLength)}}</a>
-        </div>
-      </li>
-    </ul>
-  </li>
-</ul>
+  <p id="content_title">Coming up</p>
+  <ul class="collection">
+    <li>
+      <ul class="collection_tiles">
+        <li>
+          <div class="collection_tile">
+            <span class="options_col"></span>
+            <a href="#">Title</a>
+            <a href="#">Artist</a>
+            <a href="#">Length</a>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li ng-repeat="song in api_queue_get_all.queue">
+      <hr class="collection_hr">
+      <ul class="collection_tiles">
+        <li>
+          <div class="collection_tile highlight_on_hover" ng-controller="UserCtrl">
+            <div class="dropdown options_col">
+              <div class="options_button" onclick="toggleDropdown()">...</div>
+              <div id="other_dropdown" class="dropdown_content">
+                <a href="#">Save</a>
+                <a href="#">Add to Queue</a>
+              </div>
+            </div>
+            <a>{{song.trackName}}</a>
+            <a href="#" ng-attr-id="{{song.artist.id}}" ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
+            <a>{{secondsToMinSec(song.trackLength)}}</a>
+          </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
 
-<p id="content_title">Recently played</p>
-<ul class="playlist">
-  <li ng-repeat="song in api_queue_get_all.recent">
-    <hr class="playlist_hr">
-    <ul class="playlist_tiles">
-      <li>
-        <div class="playlist_tile highlight_on_hover"  ng-controller="UserCtrl">
-          <a class="add_button">+</a>
-          <a>{{song.trackName}}</a>
-          <a href="#" ng-attr-id="{{song.artist.id}}" ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
-          <a>{{secondsToMinSec(song.trackLength)}}</a>
-        </div>
-      </li>
-    </ul>
-  </li>
-</ul>
+  <p id="content_title">Recently played</p>
+  <ul class="collection">
+    <li ng-repeat="song in api_queue_get_all.recent">
+      <hr class="collection_hr">
+      <ul class="collection_tiles">
+        <li>
+          <div class="collection_tile highlight_on_hover"  ng-controller="UserCtrl">
+            <div class="dropdown options_col">
+              <div class="options_button" onclick="toggleDropdown()">...</div>
+              <div id="other_dropdown" class="dropdown_content">
+                <a href="#">Save</a>
+                <a href="#">Add to Queue</a>
+              </div>
+            </div>
+            <a>{{song.trackName}}</a>
+            <a href="#" ng-attr-id="{{song.artist.id}}" ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
+            <a>{{secondsToMinSec(song.trackLength)}}</a>
+          </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
 </div>
+<script src="scripts/button.js"></script>
