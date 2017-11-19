@@ -1,10 +1,10 @@
 #main {
   position: absolute;
-  left: 8vw; top: 5vh;
+  left: 8vw; top: 5vh; right: auto;
   height: auto;
   padding-top: 2vh;
   padding-left: 2vw;
-  width: 88vw;
+  width: auto;
 	color: #979797;
 	background-color: #181818;
 }
@@ -29,6 +29,7 @@
 #content {
 	position: relative;
 	padding-bottom: 3vw;
+	padding-left: 1vw;
 	background-color: #181818;
 	height: auto;
 }
