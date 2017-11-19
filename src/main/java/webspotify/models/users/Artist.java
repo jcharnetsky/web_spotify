@@ -7,8 +7,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import webspotify.models.media.Album;
 
 import webspotify.models.media.Song;
 
@@ -20,6 +23,7 @@ import webspotify.models.media.Song;
 @DiscriminatorColumn(name = "userType", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue(value = "ARTIST")
 public class Artist extends User {
+
   @Column(name = "stageName")
   private String stageName;
   @Column(name = "about")
@@ -31,6 +35,10 @@ public class Artist extends User {
   @ManyToMany(mappedBy = "artists", fetch = FetchType.EAGER)
   private Set<Concert> concerts;
   @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+//  @Fetch(value = FetchMode.SUBSELECT)
+  private Set<Album> ownedAlbums;
+  @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+  @Fetch(value = FetchMode.SUBSELECT)
   private List<Song> ownedSongs;
 
   public Artist() {
@@ -81,4 +89,13 @@ public class Artist extends User {
   public void setOwnedSongs(List<Song> ownedSongs) {
     this.ownedSongs = ownedSongs;
   }
+
+  public Set<Album> getOwnedAlbums() {
+    return ownedAlbums;
+  }
+
+  public void setOwnedAlbums(Set<Album> ownedAlbums) {
+    this.ownedAlbums = ownedAlbums;
+  }
+
 }

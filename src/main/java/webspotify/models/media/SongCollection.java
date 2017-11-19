@@ -22,6 +22,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 
 import webspotify.interfaces.Viewable;
@@ -31,12 +32,13 @@ import webspotify.types.GenreType;
 /**
  * @author Cardinals
  */
-@Entity
-@Table(name = "songCollections")
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "collectionType", discriminatorType = DiscriminatorType.STRING)
-@DiscriminatorValue(value = "BASE")
-public class SongCollection implements Serializable, Viewable {
+//@Entity
+//@Table(name = "songCollections")
+//@Inheritance(strategy = InheritanceType.JOINED)
+//@DiscriminatorColumn(name = "collectionType", discriminatorType = DiscriminatorType.STRING)
+////@DiscriminatorValue(value = "BASE")
+@MappedSuperclass
+public abstract class SongCollection implements Serializable, Viewable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -60,7 +62,7 @@ public class SongCollection implements Serializable, Viewable {
           inverseJoinColumns = @JoinColumn(name = "songID", referencedColumnName = "id"))
   private Set<Song> songs;
 
-  public SongCollection() {
+  protected SongCollection() {
     songs = new HashSet();
   }
 

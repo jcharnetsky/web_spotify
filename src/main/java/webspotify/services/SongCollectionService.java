@@ -122,6 +122,7 @@ public class SongCollectionService {
     playlistToAdd.setOwner(user);
     try {
       songCollectionRepo.save(playlistToAdd);
+      user.getOwnedPlaylists().add(playlistToAdd);
       return ResponseUtilities.emptySuccess();
     } catch (Exception e) {
       System.out.println(e);
@@ -141,7 +142,8 @@ public class SongCollectionService {
     if (songCollectionRepo.exists(collectionId)) {
       SongCollection collection = songCollectionRepo.findOne(collectionId);
       if (collection.getOwner().equals(user)) {
-        songCollectionRepo.delete(collectionId);
+        collection.getOwner().getOwnedPlaylists().remove(collection);
+        songCollectionRepo.delete(collection);
         return ResponseUtilities.emptySuccess();
       } else {
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
@@ -189,7 +191,7 @@ public class SongCollectionService {
     if (songCollectionRepo.exists(collectionId)) {
       SongCollection collection = songCollectionRepo.findOne(collectionId);
       if (collection instanceof Playlist) {
-        boolean successful = user.getFollowedPlaylists().add(collection);
+        boolean successful = user.getFollowedPlaylists().add((Playlist)collection);
         if (successful) {
           userRepo.save(user);
           ((Playlist) collection).incrementFollowerCount();

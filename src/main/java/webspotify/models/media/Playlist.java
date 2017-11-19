@@ -20,9 +20,9 @@ import webspotify.models.users.User;
  */
 @Entity
 @Table(name = "playlists")
-@DiscriminatorColumn(name = "collectionType", discriminatorType = DiscriminatorType.STRING)
-@DiscriminatorValue(value = "PLAYLIST")
-public class Playlist extends SongCollection implements Serializable {
+//@DiscriminatorColumn(name = "collectionType", discriminatorType = DiscriminatorType.STRING)
+//@DiscriminatorValue(value = "PLAYLIST")
+public class Playlist extends SongCollection {
 
   @Column(name = "Description", nullable = false)
   private String description;

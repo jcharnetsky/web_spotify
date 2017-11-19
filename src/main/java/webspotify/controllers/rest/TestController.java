@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import webspotify.models.media.Album;
 import webspotify.models.media.Concert;
 import webspotify.models.media.Playlist;
 import webspotify.models.media.Song;
@@ -17,6 +18,7 @@ import webspotify.models.users.User;
 import webspotify.repo.ArtistRepository;
 import webspotify.repo.ConcertRepository;
 import webspotify.repo.PlaylistRepository;
+import webspotify.repo.SongCollectionRepository;
 import webspotify.repo.SongRepository;
 import webspotify.repo.UserRepository;
 import webspotify.types.GenreType;
@@ -37,7 +39,7 @@ public class TestController {
   @Autowired
   private SongRepository songRepo;
   @Autowired
-  private PlaylistRepository playlistRepo;
+  private SongCollectionRepository collectionRepo;
 
   @GetMapping("/")
   public String runTest() {
@@ -105,7 +107,14 @@ public class TestController {
     pl.getSongs().add(dummySong1);
     pl.setOwner(u);
     pl.incrementFollowerCount();
-    
+
+    Album al = new Album();
+    al.setTitle("Cool Playlist");
+    al.setBanned(false);
+    al.setPublic(true);
+    al.setGenre(GenreType.POP);
+    al.setOwner(a);
+
     String content = "";
     try {
       Path p = Paths.get("db/horse.mp3");
@@ -117,11 +126,14 @@ public class TestController {
 
     userRepo.save(u);
     artistRepo.save(a);
+    collectionRepo.save(al);
+    dummySong1.setAlbum(al);
+    dummySong2.setAlbum(al);
     songRepo.save(dummySong1);
     songRepo.save(dummySong2);
     concertRepo.save(c);
-    playlistRepo.save(pl);
-    
+    collectionRepo.save(pl);
+
     a.getFollowedPlaylists().add(pl);
     artistRepo.save(a);
 

@@ -46,17 +46,17 @@ public class User implements Viewable, Serializable {
   @Column(name = "salt", nullable = false)
   private String passwordSalt;
   @OneToMany(mappedBy = "owner", fetch=FetchType.EAGER)
-  private Set<SongCollection> ownedPlaylists;
+  private Set<Playlist> ownedPlaylists;
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(
           name = "usersFollowingPlaylists",
           joinColumns = @JoinColumn(name = "userID", referencedColumnName = "id"),
           inverseJoinColumns = @JoinColumn(name = "playlistID", referencedColumnName = "id"))
-  private Set<SongCollection> followedPlaylists;
+  private Set<Playlist> followedPlaylists;
 
   public User() {
-    this.ownedPlaylists = new HashSet<SongCollection>();
-    this.followedPlaylists = new HashSet<SongCollection>();
+    this.ownedPlaylists = new HashSet<Playlist>();
+    this.followedPlaylists = new HashSet<Playlist>();
   }
 
   public boolean createSecurePassword(final String plainPassword) {
@@ -180,19 +180,19 @@ public class User implements Viewable, Serializable {
     this.passwordSalt = passwordSalt;
   }
 
-  public Set<SongCollection> getOwnedPlaylists() {
+  public Set<Playlist> getOwnedPlaylists() {
     return ownedPlaylists;
   }
 
-  public void setOwnedPlaylists(Set<SongCollection> ownedPlaylists) {
+  public void setOwnedPlaylists(Set<Playlist> ownedPlaylists) {
     this.ownedPlaylists = ownedPlaylists;
   }
 
-  public Set<SongCollection> getFollowedPlaylists() {
+  public Set<Playlist> getFollowedPlaylists() {
     return followedPlaylists;
   }
 
-  public void setFollowedPlaylists(Set<SongCollection> followedPlaylists) {
+  public void setFollowedPlaylists(Set<Playlist> followedPlaylists) {
     this.followedPlaylists = followedPlaylists;
   }
 
