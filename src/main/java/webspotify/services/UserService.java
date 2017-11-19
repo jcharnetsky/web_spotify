@@ -56,4 +56,12 @@ public class UserService {
     return ResponseUtilities.emptySuccess();
   }
 
+  @Transactional
+  public User getUser(int id) {
+    if (!userRepository.exists(id)) {
+      return null;
+    }
+    return userRepository.findOne(id);
+  }
+
 }
