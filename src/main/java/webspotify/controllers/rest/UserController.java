@@ -59,10 +59,9 @@ public class UserController {
 
   @GetMapping("/get/{userId}")
   public Response getUser(@PathVariable final int userId, HttpSession session) {
-    User user = userService.getUser(userId);
-    if (user == null){
-      return ResponseUtilities.filledFailure(ConfigConstants.USER_NO_EXIST);
+    if (SessionUtilities.getUserFromSession(session) == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
-    return ResponseUtilities.filledSuccess(new UserResponse(user));
+    return userService.getUserProfileInformation(userId);
   }
 }

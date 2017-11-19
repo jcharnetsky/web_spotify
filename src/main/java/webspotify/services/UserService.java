@@ -11,6 +11,7 @@ import webspotify.models.media.SongQueue;
 import webspotify.models.users.User;
 import webspotify.posts.SignupRequest;
 import webspotify.repo.UserRepository;
+import webspotify.responses.UserInfoResponse;
 
 @Service("userService")
 public class UserService {
@@ -18,6 +19,21 @@ public class UserService {
   @Autowired
   UserRepository userRepository;
 
+    
+  @Transactional
+  public Response getUserProfileInformation(int userId) {
+   if(userRepository.exists(userId)) {
+     User user = userRepository.findOne(userId);
+     if(!user.isBanned() && user.isPublic()) {
+       return ResponseUtilities.filledSuccess(new UserInfoResponse(user));
+     } else {
+       return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
+     }
+   } else {
+     return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_FOUND);
+   }
+  }
+  
   @Transactional
   public ResponseTuple loginUser(String email, String password) {
     ResponseTuple responseTuple = new ResponseTuple();
@@ -54,14 +70,6 @@ public class UserService {
     user.setIsPublic(true);
     userRepository.saveAndFlush(user);
     return ResponseUtilities.emptySuccess();
-  }
-
-  @Transactional
-  public User getUser(int id) {
-    if (!userRepository.exists(id)) {
-      return null;
-    }
-    return userRepository.findOne(id);
   }
 
 }
