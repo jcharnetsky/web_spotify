@@ -11,18 +11,14 @@ import webspotify.config.ConfigConstants;
 import webspotify.models.media.Album;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
-import webspotify.models.media.Playlist;
 import webspotify.models.media.Song;
-import webspotify.models.media.SongCollection;
 import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 import webspotify.posts.AlbumCreateRequest;
-import webspotify.posts.PlaylistCreateRequest;
 import webspotify.repo.AlbumRepository;
 import webspotify.repo.SongRepository;
 import webspotify.repo.UserRepository;
 import webspotify.responses.AlbumInfoResponse;
-import webspotify.responses.PlaylistInfoResponse;
 import webspotify.responses.SongResponse;
 
 /**

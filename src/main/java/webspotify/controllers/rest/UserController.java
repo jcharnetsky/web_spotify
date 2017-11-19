@@ -1,4 +1,5 @@
 package webspotify.controllers.rest;
+
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,26 +17,26 @@ import webspotify.config.ConfigConstants;
  */
 @RestController
 @RequestMapping("/api/users")
-public class UserController { 
+public class UserController {
+
   @Autowired
   UserService userService;
-  
+
   @GetMapping("/login")
   public Response loginUser(@RequestParam String email, @RequestParam String password, HttpSession session) {
     if (SessionUtilities.getUserFromSession(session) != null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_ALREADY_LOGGED);
     }
     ResponseTuple responseTuple = userService.loginUser(email, password);
-    if(!(responseTuple.getResponse().isError())) {
+    if (!(responseTuple.getResponse().isError())) {
       session.setAttribute(ConfigConstants.USER_SESSION, responseTuple.getUser());
       session.setAttribute(ConfigConstants.QUEUE_SESSION, responseTuple.getSongQueue());
       return responseTuple.getResponse();
-    }
-    else {
+    } else {
       return responseTuple.getResponse();
     }
   }
-  
+
   @GetMapping("/logout")
   public Response logoutUser(HttpSession session) {
     if (SessionUtilities.getUserFromSession(session) == null) {
@@ -45,7 +46,7 @@ public class UserController {
     session.invalidate();
     return ResponseUtilities.emptySuccess();
   }
-  
+
   @PostMapping("/register")
   public Response postUser(@RequestBody SignupRequest newUser, HttpSession session) {
     if (SessionUtilities.getUserFromSession(session) != null) {

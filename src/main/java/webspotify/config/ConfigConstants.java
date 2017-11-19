@@ -5,6 +5,7 @@ package webspotify.config;
  * @author Cardinals
  */
 public class ConfigConstants {
+
   public static String USER_ALREADY_LOGGED = "User is already logged in.";
   public static String USER_NOT_LOGGED = "User is not logged in.";
   public static String QUEUE_SESSION = "Queue";

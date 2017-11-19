@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @Configuration
 @SpringBootApplication
 public class SvrInitialize {
+
   public static void main(String... arguments) {
     SpringApplication.run(SvrInitialize.class, arguments);
   }

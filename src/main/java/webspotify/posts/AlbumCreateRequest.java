@@ -7,26 +7,27 @@ import webspotify.types.GenreType;
  * @author Cardinals
  */
 public class AlbumCreateRequest {
-    private GenreType genre;
-    private String title;
 
-    public AlbumCreateRequest() {
-    }
+  private GenreType genre;
+  private String title;
 
-    public GenreType getGenre() {
-        return genre;
-    }
+  public AlbumCreateRequest() {
+  }
 
-    public void setGenre(GenreType genre) {
-        this.genre = genre;
-    }
+  public GenreType getGenre() {
+    return genre;
+  }
 
-    public String getTitle() {
-        return title;
-    }
+  public void setGenre(GenreType genre) {
+    this.genre = genre;
+  }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+  public String getTitle() {
+    return title;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
 }

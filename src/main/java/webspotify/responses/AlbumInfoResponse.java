@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import webspotify.models.media.Album;
 import webspotify.models.media.Song;
-import webspotify.models.media.SongCollection;
 import webspotify.models.users.Artist;
 import webspotify.types.GenreType;
 

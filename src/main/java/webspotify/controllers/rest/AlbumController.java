@@ -99,5 +99,5 @@ public class AlbumController {
     }
     return albumService.createAlbumCollection(user, request);
   }
-  
+
 }

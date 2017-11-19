@@ -9,7 +9,6 @@ import javax.persistence.*;
 import webspotify.interfaces.Viewable;
 import webspotify.models.media.Album;
 import webspotify.models.media.Playlist;
-import webspotify.models.media.SongCollection;
 
 /**
  * @author Cardinals

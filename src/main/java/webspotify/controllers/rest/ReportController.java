@@ -1,4 +1,5 @@
 package webspotify.controllers.rest;
+
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
 import webspotify.utilities.SessionUtilities;
@@ -16,6 +17,7 @@ import webspotify.services.ReportService;
 @RestController
 @RequestMapping("/api/reports")
 public class ReportController {
+
   @Autowired
   private ReportService reportService;
 

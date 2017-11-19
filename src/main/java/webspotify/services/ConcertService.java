@@ -1,4 +1,5 @@
 package webspotify.services;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;
@@ -16,11 +17,12 @@ import webspotify.responses.ConcertResponse;
 
 @Service("concertService")
 public class ConcertService {
-  @Autowired 
+
+  @Autowired
   ConcertRepository concertRepository;
   @Autowired
   UserRepository userRepository;
-  
+
   @Transactional
   public Response getConcerts() {
     List<ConcertResponse> responseList = new ArrayList<ConcertResponse>();
@@ -29,20 +31,19 @@ public class ConcertService {
     }
     return ResponseUtilities.filledSuccess(responseList);
   }
-  
+
   @Transactional
   public Response getConcert(final int concertId) {
     Concert concertToFind = concertRepository.findOne(concertId);
     if (concertToFind == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.CONCERT_NO_EXIST);
-    } 
-    else {
+    } else {
       List<Concert> contentBody = new ArrayList<Concert>();
       contentBody.add(concertToFind);
       return ResponseUtilities.filledSuccess(contentBody);
     }
   }
-  
+
   @Transactional
   public Response addArtistToConcert(ConcertArtistChangeRequest change) {
     Concert concert = concertRepository.findOne(change.getConcertID());
@@ -57,12 +58,11 @@ public class ConcertService {
       concert.getArtists().add(artist);
       concertRepository.saveAndFlush(concert);
       return ResponseUtilities.emptySuccess();
-    } 
-    else {
+    } else {
       return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_ADD);
     }
   }
-  
+
   @Transactional
   public Response removeArtistFromConcert(ConcertArtistChangeRequest change) {
     Concert concert = concertRepository.findOne(change.getConcertID());
@@ -77,22 +77,21 @@ public class ConcertService {
       concert.getArtists().remove(artist);
       concertRepository.saveAndFlush(concert);
       return ResponseUtilities.emptySuccess();
-    } 
-    else {
+    } else {
       return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_REM);
     }
   }
-  
+
   @Transactional
   public Response removeConcert(Concert concert) {
     Concert c = concertRepository.findOne(concert.getId());
-    if(c == null) {
+    if (c == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_REM);
     }
     concertRepository.delete(c);
     return ResponseUtilities.emptySuccess();
   }
-  
+
   @Transactional
   public Response postConcert(Concert concert) {
     concert.setId(null);
@@ -102,4 +101,3 @@ public class ConcertService {
     return ResponseUtilities.emptySuccess();
   }
 }
-

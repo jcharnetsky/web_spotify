@@ -10,6 +10,7 @@ public class SpotifyException extends Exception {
 
   /**
    * Convert the error message of this exception to a string in JSON.
+   *
    * @return The JSON string of the error message
    */
   public String toJSONString() {

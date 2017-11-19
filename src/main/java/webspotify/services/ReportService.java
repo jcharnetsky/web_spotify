@@ -1,4 +1,5 @@
 package webspotify.services;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;
@@ -13,27 +14,27 @@ import webspotify.repo.ReportRepository;
 
 @Service("reportService")
 public class ReportService {
-  @Autowired 
+
+  @Autowired
   ReportRepository reportRepository;
-  
-  @Transactional 
+
+  @Transactional
   public Response getReports() {
     return ResponseUtilities.filledSuccess(reportRepository.findAll());
   }
-  
+
   @Transactional
   public Response getReport(final int reportId) {
     Report report = reportRepository.findOne(reportId);
     if (report == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.REPORT_NO_EXIST);
-    } 
-    else {
+    } else {
       List<Report> contentBody = new ArrayList<Report>();
       contentBody.add(report);
       return ResponseUtilities.filledSuccess(contentBody);
     }
   }
-  
+
   @Transactional
   public Response postReport(User user, Report report) {
     report.setCreator(user);
@@ -46,4 +47,3 @@ public class ReportService {
     }
   }
 }
-

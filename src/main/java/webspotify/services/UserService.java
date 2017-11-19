@@ -1,4 +1,5 @@
 package webspotify.services;
+
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,10 @@ import webspotify.repo.UserRepository;
 
 @Service("userService")
 public class UserService {
-  @Autowired 
+
+  @Autowired
   UserRepository userRepository;
-  
+
   @Transactional
   public ResponseTuple loginUser(String email, String password) {
     ResponseTuple responseTuple = new ResponseTuple();
@@ -34,7 +36,7 @@ public class UserService {
     responseTuple.setSongQueue(new SongQueue());
     return responseTuple;
   }
-  
+
   @Transactional
   public Response postUser(SignupRequest newUser) {
     if (!userRepository.findByEmail(newUser.getEmail()).isEmpty()) {
@@ -55,4 +57,3 @@ public class UserService {
   }
 
 }
-

@@ -5,6 +5,7 @@ package webspotify.posts;
  * @author Cardinals
  */
 public class PlaylistChangeSongRequest {
+
   private Integer songID;
   private Integer playlistID;
 

@@ -11,6 +11,7 @@ public class SpotifyExceptionHandler {
   /**
    * Handle a thrown SpotifyException by returning a JSON object containing the
    * error message for the client to display.
+   *
    * @param e The exception to handle
    * @return A JSON Object containing the error data in the exception
    */

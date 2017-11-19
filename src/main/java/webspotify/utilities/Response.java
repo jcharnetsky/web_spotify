@@ -6,6 +6,7 @@ import java.io.Serializable;
  * @author Cardinals
  */
 public class Response implements Serializable {
+
   private String errorMessage;
   private boolean error;
   private Object content;
