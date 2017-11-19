@@ -5,12 +5,12 @@
   margin-bottom: 3vw;
 }
 .collection_title {
-	font-weight: 500;
-	color: #ffffff;
-	width: 30vw;
-	padding-left: 2vh;
-	padding-top: 2vh;
-	padding-bottom: 1vh;
+  font-weight: 500;
+  color: #ffffff;
+  width: 30vw;
+  padding-left: 2vh;
+  padding-top: 2vh;
+  padding-bottom: 1vh;
 }
 .collection_img {
   height: 30vh;
@@ -90,4 +90,24 @@
 .queue, .songs, .user, .collection {
   position: relative;
   width: auto;
+}
+
+.play_button_spacer {
+  display: inline;
+  width: 5%;
+  text-align: center !important;
+}
+.play_button {
+  display: none;
+}
+.add_button {
+  font-size: 180%;
+  width: 2%;
+  text-align: right;
+}
+.collection_tile:hover .play_button {
+  display: inline;
+}
+.collection_tile:hover .options_button {
+  display: inline;
 }
