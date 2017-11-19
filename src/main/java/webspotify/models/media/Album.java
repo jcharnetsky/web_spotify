@@ -12,7 +12,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "albums")
-@DiscriminatorColumn(name = "collectionType", discriminatorType = DiscriminatorType.STRING)
-@DiscriminatorValue(value = "ALBUM")
+//@DiscriminatorColumn(name = "collectionType", discriminatorType = DiscriminatorType.STRING)
+//@DiscriminatorValue(value = "ALBUM")
 public class Album extends SongCollection {
 }

@@ -1,10 +1,8 @@
 use cardinals;
 
 DROP TABLE IF EXISTS users_following_playlists;
-DROP TABLE IF EXISTS Albums;
 DROP TABLE IF EXISTS songs_in_collection;
 DROP TABLE IF EXISTS playlists;
-DROP TABLE IF EXISTS song_collections;
 DROP TABLE IF EXISTS song_audio;
 DROP TABLE IF EXISTS artist_aliases;
 DROP TABLE IF EXISTS artist_concerts;
@@ -18,6 +16,8 @@ DROP TABLE IF EXISTS SongListens;
 DROP TABLE IF EXISTS RevenuePerPlay;
 DROP TABLE IF EXISTS CostsPerPlay;
 DROP TABLE IF EXISTS Songs;
+DROP TABLE IF EXISTS albums;
+DROP TABLE IF EXISTS song_collections;
 DROP TABLE IF EXISTS PlayingAtConcerts;
 DROP TABLE IF EXISTS Concerts;
 DROP TABLE IF EXISTS ArtistAliases;
