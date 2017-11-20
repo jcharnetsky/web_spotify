@@ -24,7 +24,7 @@
   display: inline-block;
 }
 .collection {
-	padding-left: 3vw;
+  padding-left: 3vw;
 }
 .collection_tiles , .collection_column_headers {
   margin-bottom: 0;
@@ -46,7 +46,7 @@
   display: table-cell;
   max-width: 10vw;
   vertical-align: middle;
-  text-align: center;
+  text-align: left;
 }
 
 .collection_tile a:hover {
@@ -60,13 +60,13 @@
   text-align: right;
 }
 .highlight_on_hover:hover {
-	background-color: #333333;
+  background-color: #333333;
 }
 .collection_hr {
   width: 100%;
   border-color: #282828;
-	border-width: 0.3vh;
-	margin-bottom: 0vh;
+  border-width: 0.3vh;
+  margin-bottom: 0vh;
 }
 
 #collection_buttons {
