@@ -7,13 +7,13 @@
     </li>
   </ul>
   <ul class="sidebar_list">
-    <li><u>Your Library</u></li>
+    <li><strong>YOUR LIBRARY</strong></li>
     <li><a id="songs" href="#" ng-click="loadTemplateAndJSON('main', 'songs.html', 'api/home/new_releases')">Songs</a></li>
     <li><a href="#">Albums</a></li>
     <li><a href="#">Artists</a></li>
   </ul>
   <ul class="sidebar_list playlists" ng-app="sidebar_app">
-    <li><u>Playlists</u></li>
+    <li><strong>PLAYLISTS</strong></li>
     <li id="playlists" ng-repeat="list in api_playlists_">
       <a href="#" ng-controller="LoadCollectionCtrl" ng-click="loadCollection(list.id)">
         {{list.title}}
@@ -33,6 +33,6 @@
      resizermin="5">
 </div>
 <script>
-    scope = angular.element(document.getElementById('playlists')).scope();
-    scope.loadTemplateAndJSON('playlists', 'null', 'api/playlists/');
+  scope = angular.element(document.getElementById('playlists')).scope();
+  scope.loadTemplateAndJSON('playlists', 'null', 'api/playlists/');
 </script>
