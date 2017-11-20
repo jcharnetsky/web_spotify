@@ -10,7 +10,9 @@
   width: 50px;
   cursor: pointer;
 }
-
+.collection_tile:hover .options_button {
+  display: inline;
+}
 .options_button:hover, .options_button:focus {
   background-color: #181818;
 }

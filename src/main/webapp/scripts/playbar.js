@@ -21,6 +21,11 @@ angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $interv
     $scope.progressAtInterval();
 	}
 
+  $scope.toggleDropdown = function (num) {
+    document.getElementById("other_dropdown_" + num).classList.toggle("show");
+  }
+
+
   $scope.progressAtInterval = function() {
 		progressBar.max = audio.duration;
 		progressBar.value = audio.currentTime;

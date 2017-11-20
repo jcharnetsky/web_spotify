@@ -7,7 +7,6 @@ import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
 import webspotify.utilities.SessionUtilities;
 import webspotify.posts.SignupRequest;
-import webspotify.services.ResponseTuple;
 import webspotify.services.UserService;
 import webspotify.config.ConfigConstants;
 
@@ -27,13 +26,14 @@ public class UserController {
     if (SessionUtilities.getUserFromSession(session) != null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_ALREADY_LOGGED);
     }
-    ResponseTuple responseTuple = userService.loginUser(email, password);
-    if (!(responseTuple.getResponse().isError())) {
-      session.setAttribute(ConfigConstants.USER_SESSION, responseTuple.getUser());
-      session.setAttribute(ConfigConstants.QUEUE_SESSION, responseTuple.getSongQueue());
-      return responseTuple.getResponse();
-    } else {
-      return responseTuple.getResponse();
+    User user = userService.loginUser(email, password);
+    if(user == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.INVALID_CREDENTIALS);
+    }
+    else {
+      session.setAttribute(ConfigConstants.USER_SESSION, user);
+      session.setAttribute(ConfigConstants.QUEUE_SESSION, userService.getSongQueue());
+      return ResponseUtilities.emptySuccess();
     }
   }
 

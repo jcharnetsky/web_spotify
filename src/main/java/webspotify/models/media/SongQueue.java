@@ -8,19 +8,24 @@ import java.util.*;
 public class SongQueue implements Serializable {
 
   private Queue<Song> currentQueue;
-  private Stack<Song> recentlyPlayed;
   private Stack<Song> history;
+  private Stack<Song> recentlyPlayed;
   private RepeatType repeatType;
 
   public SongQueue() {
     currentQueue = new LinkedList<Song>();
-    recentlyPlayed = new Stack<Song>();
     history = new Stack<Song>();
+    recentlyPlayed = new Stack<Song>();
     repeatType = RepeatType.NONE;
   }
 
   public void enqueueSong(Song s) {
     currentQueue.add(s);
+  }
+
+  public void playNow(Song s) {
+    LinkedList<Song> currentLinkedList = (LinkedList) currentQueue;
+    currentLinkedList.add(0, s);
   }
 
   public void enqueueCollection(Collection<Song> collection) {
@@ -38,7 +43,7 @@ public class SongQueue implements Serializable {
 
   public List<Song> getHistory() {
     List<Song> songs = new ArrayList<Song>();
-    for (Song song : recentlyPlayed) {
+    for (Song song : history) {
       songs.add(song);
     }
     return songs;
@@ -58,48 +63,31 @@ public class SongQueue implements Serializable {
 
   public Song next() {
     Song toReturn = null;
-//    if (!currentQueue.isEmpty()) {
-//      switch (repeatType) {
-//        case NONE:
-//          toReturn = currentQueue.poll();
-//          recentlyPlayed.push(toReturn);
-//          break;
-//        case CURRENT:
-//          toReturn = currentQueue.peek();
-//          break;
-//        case LIBRARY:
-//          toReturn = currentQueue.poll();
-//          currentQueue.add(toReturn);
-//          break;
-//      }
-//      if (toReturn != null) {
-//        history.push(toReturn);
-//      }
-//    }
+    if (!currentQueue.isEmpty()) {
+      switch (repeatType) {
+        case NONE:
+          toReturn = currentQueue.poll();
+          break;
+        case CURRENT:
+          toReturn = currentQueue.peek();
+          break;
+        case LIBRARY:
+          toReturn = currentQueue.poll();
+          currentQueue.add(toReturn);
+          break;
+      }
+      if (toReturn != null) {
+        history.push(toReturn);
+        recentlyPlayed.push(toReturn);
+      }
+    }
     return toReturn;
   }
 
   public Song prev() {
-    Song toReturn = null;
-//    if (!currentQueue.isEmpty()) {
-//      switch (repeatType) {
-//        case NONE:
-//         
-//          break;
-//        case CURRENT:
-//          
-//          break;
-//        case LIBRARY:
-//          
-//          break;
-//      }
-//      if (toReturn != null) {
-//        int sizeOfQueue = currentQueue.size();
-//        int trueLocation = (sizeOfQueue - 1 - pointer) % sizeOfQueue;
-//        recentlyPlayed.push(currentQueue.get(trueLocation));
-//      }
-//    }
-    return toReturn;
+    Song previousSong = recentlyPlayed.pop();
+    playNow(previousSong);
+    return next();
   }
 
 }

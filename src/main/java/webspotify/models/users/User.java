@@ -9,6 +9,7 @@ import javax.persistence.*;
 import webspotify.interfaces.Viewable;
 import webspotify.models.media.Album;
 import webspotify.models.media.Playlist;
+import webspotify.models.media.Song;
 
 /**
  * @author Cardinals
@@ -59,10 +60,18 @@ public class User implements Viewable, Serializable {
           joinColumns = @JoinColumn(name = "userID", referencedColumnName = "id"),
           inverseJoinColumns = @JoinColumn(name = "albumID", referencedColumnName = "id"))
   private Set<Album> savedAlbums;
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(
+          name = "usersSavedSongs",
+          joinColumns = @JoinColumn(name = "userID", referencedColumnName = "id"),
+          inverseJoinColumns = @JoinColumn(name = "songID", referencedColumnName = "id"))
+  private Set<Song> savedSongs;
 
   public User() {
     this.ownedPlaylists = new HashSet<Playlist>();
     this.followedPlaylists = new HashSet<Playlist>();
+    this.savedAlbums = new HashSet<Album>();
+    this.savedSongs = new HashSet<Song>();
   }
 
   public boolean createSecurePassword(final String plainPassword) {
@@ -208,6 +217,14 @@ public class User implements Viewable, Serializable {
 
   public void setSavedAlbums(Set<Album> savedAlbums) {
     this.savedAlbums = savedAlbums;
+  }
+
+  public Set<Song> getSavedSongs() {
+    return savedSongs;
+  }
+
+  public void setSavedSongs(Set<Song> savedSongs) {
+    this.savedSongs = savedSongs;
   }
 
   @Override
