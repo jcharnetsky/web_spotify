@@ -1,61 +1,61 @@
 <link href="css/collection.css" rel="stylesheet"/>
 <link href="css/button.css" rel="stylesheet"/>
 <div class="collection" ng-controller="LoadCollectionCtrl">
-<div class="collection_header">
-  <img class="collection_img" alt="album_art" src="../images/rhiannon-giddens-tomorrow-is-my-turn.jpg">
-  <div class="collection_data">
-    <div id="content_title">{{collection.title}}</div>
-    <div>
-      Created by: {{ collection.ownerName }} /
-      {{ collection.songCount }} songs /
-      Duration: {{ secondsToMinSec(collection.songTrackLength) }} /
-      Genre: {{ collection.genre }}
-    </div>
-    <div> Followers: {{ collection.followerCount }} </div>
-    <div> {{ collection.description }}</div>
-    <div id="collection_buttons">
-      <a href="#" ng-controller="PlaybarCtrl">Play</a>
-      <a class="Follow" href="#">Follow</a>
-    </div>
-  </div>
-</div>
-<ul class="collection" ng-controller="PlaybarCtrl">
-  <li>
-    <ul class="collection_tiles">
-      <li>
-        <div class="collection_tile">
-	  <span class="play_button_spacer"></span>
-	  <span class="add_button"></span>
-          <a href="#">Title</a>
-          <a href="#">Artist</a>
-          <a href="#">Length</a>
-	  <span class="options_col"></span>
-        </div>
-      </li>
-    </ul>
-  </li>
-  <li ng-repeat="song in collection.songs">
-    <hr class="collection_hr">
-    <ul class="collection_tiles">
-      <li>
-        <div class="collection_tile highlight_on_hover" ng-controller="UserCtrl">
-	  <span class="play_button_spacer"><img class="play_button" src="../images/play.png" alt="Play"></span>
-	  <span class="add_button" ng-model="dynamic_button">+</span>
-          <a href="#" ng-attr-id="1" ng-dblclick="loadSong(1)">{{song.trackName}}</a>
-          <a href="#" ng-controller="UserCtrl"
-	    ng-attr-id="{{song.artist.id}}"
-	    ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
-          <span>{{secondsToMinSec(song.trackLength)}}</span>
-	  <div class="dropdown options_col">
-            <div class="options_button" onclick="toggleDropdown(1)">...</div>
-            <div id="other_dropdown_1" class="dropdown_content">
-	      <a href="#">Add to Queue</a>
-            </div>
-          </div>
-        </div>
-      </li>
-    </ul>
-  </li>
-</ul>
+	<div class="collection_header">
+		<img class="collection_img" alt="album_art" src="../images/rhiannon-giddens-tomorrow-is-my-turn.jpg">
+		<div class="collection_data">
+			<div id="content_title">{{collection.title}}</div>
+			<div>
+				Created by: {{ collection.ownerName}} /
+				{{ collection.songCount}} songs /
+				Duration: {{ secondsToMinSec(collection.songTrackLength)}} /
+				Genre: {{ collection.genre}}
+			</div>
+			<div> Followers: {{ collection.followerCount}} </div>
+			<div> {{ collection.description}}</div>
+			<div id="collection_buttons">
+				<a href="#" ng-controller="PlaybarCtrl">Play</a>
+				<a class="Follow" href="#">Follow</a>
+			</div>
+		</div>
+	</div>
+	<ul class="collection" ng-controller="PlaybarCtrl">
+		<li>
+			<ul class="collection_tiles">
+				<li>
+					<div class="collection_tile">
+						<span class="play_button_spacer"></span>
+						<span class="add_button"></span>
+						<a href="#">Title</a>
+						<a href="#">Artist</a>
+						<a href="#">Length</a>
+						<span class="options_col"></span>
+					</div>
+				</li>
+			</ul>
+		</li>
+		<li ng-repeat="song in collection.songs">
+			<hr class="collection_hr">
+			<ul class="collection_tiles">
+				<li>
+					<div class="collection_tile highlight_on_hover" ng-controller="UserCtrl">
+						<span class="play_button_spacer"><img class="play_button" src="../images/play.png" alt="Play"></span>
+						<span class="add_button" ng-model="dynamic_button">+</span>
+						<a href="#" ng-attr-id="1" ng-dblclick="loadSong(1)">{{song.trackName}}</a>
+						<a href="#" ng-controller="UserCtrl"
+							 ng-attr-id="{{song.artist.id}}"
+							 ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
+						<span>{{secondsToMinSec(song.trackLength)}}</span>
+						<div class="dropdown options_col">
+							<div class="options_button" onclick="toggleDropdown(1)">...</div>
+							<div id="other_dropdown_1" class="dropdown_content">
+								<a href="#">Add to Queue</a>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</li>
+	</ul>
 </div>
 <script src="scripts/button.js"></script>
