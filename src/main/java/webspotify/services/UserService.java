@@ -12,6 +12,7 @@ import webspotify.models.users.User;
 import webspotify.posts.SignupRequest;
 import webspotify.repo.UserRepository;
 import webspotify.responses.UserInfoResponse;
+import webspotify.utilities.ResponseTuple;
 
 @Service("userService")
 public class UserService {

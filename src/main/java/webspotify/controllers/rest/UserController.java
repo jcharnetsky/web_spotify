@@ -9,9 +9,9 @@ import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
 import webspotify.utilities.SessionUtilities;
 import webspotify.posts.SignupRequest;
-import webspotify.services.ResponseTuple;
 import webspotify.services.UserService;
 import webspotify.config.ConfigConstants;
+import webspotify.utilities.ResponseTuple;
 
 /**
  *
