@@ -19,21 +19,20 @@ public class UserService {
   @Autowired
   UserRepository userRepository;
 
-    
   @Transactional
   public Response getUserProfileInformation(int userId) {
-   if(userRepository.exists(userId)) {
-     User user = userRepository.findOne(userId);
-     if(!user.isBanned() && user.isPublic()) {
-       return ResponseUtilities.filledSuccess(new UserInfoResponse(user));
-     } else {
-       return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
-     }
-   } else {
-     return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_FOUND);
-   }
+    if (userRepository.exists(userId)) {
+      User user = userRepository.findOne(userId);
+      if (!user.isBanned() && user.isPublic()) {
+        return ResponseUtilities.filledSuccess(new UserInfoResponse(user));
+      } else {
+        return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
+      }
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_FOUND);
+    }
   }
-  
+
   @Transactional
   public User loginUser(String email, String password) {
     List<User> userList = userRepository.findByEmail(email);
@@ -43,15 +42,14 @@ public class UserService {
     User user = userList.get(0);
     if (!user.authenticateLogin(password)) {
       return null;
-    }
-    else {
+    } else {
       return user;
     }
   }
-  
+
   @Transactional
   public SongQueue getSongQueue() {
-      return new SongQueue();
+    return new SongQueue();
   }
 
   @Transactional
@@ -71,6 +69,30 @@ public class UserService {
     user.setIsPublic(true);
     userRepository.saveAndFlush(user);
     return ResponseUtilities.emptySuccess();
+  }
+
+  @Transactional
+  public Response followUser(User user, int userId) {
+    if (userRepository.exists(userId)) {
+      User userToFollow = userRepository.findOne(userId);
+      if (userToFollow.isPublic() && !userToFollow.isBanned()) {
+        return ResponseUtilities.filledFailure(ConfigConstants.NOT_IMPLEMENTED);
+      } else {
+        return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
+      }
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_FOUND);
+    }
+  }
+
+  @Transactional
+  public Response unfollowUser(User user, int userId) {
+    if (userRepository.exists(userId)) {
+      User userToFollow = userRepository.findOne(userId);
+      return ResponseUtilities.filledFailure(ConfigConstants.NOT_IMPLEMENTED);
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_FOUND);
+    }
   }
 
 }
