@@ -5,26 +5,26 @@
   width: 8vw;
   height: 92vh;
   padding-top: 2vw;
-	padding-left: 1vw;
-	color: #979797;
-	overflow: auto;
+  padding-left: 1vw;
+  color: #979797;
+  overflow: auto;
 }
 
 .sidebar_list {
-	padding-bottom: 1vh;
-	padding-left: 0vw;
+  padding-bottom: 1vh;
+  padding-left: 0vw;
 }
 
 .sidebar_list li{
-	font-size: 80%;
-	padding-bottom: 2vh;
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
+  font-size: 80%;
+  padding-bottom: 2vh;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 #sidebar-resizer {
-	background-color: transparent;
+  background-color: transparent;
   position: absolute;
   top: 0vh;
   left: 8vw;

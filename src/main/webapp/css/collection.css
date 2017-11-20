@@ -108,6 +108,3 @@
 .collection_tile:hover .play_button {
   display: inline;
 }
-.collection_tile:hover .options_button {
-  display: inline;
-}

@@ -1,5 +1,7 @@
 <link href="css/collection.css" rel="stylesheet"/>
 <link href="css/button.css" rel="stylesheet"/>
+<script src="scripts/button.js"></script>
+
 <ul class="songs" ng-controller="PlaybarCtrl">
   <li>
     <ul class="collection_tiles">
@@ -30,8 +32,8 @@
 	  <span ng-model="collection_album">album</span>
 	  <span ng-model="date_added">date</span>
 	  <div class="dropdown options_col">
-	    <div class="options_button" onclick="toggleDropdown()">...</div>
-	    <div id="other_dropdown" class="dropdown_content">
+	    <div class="options_button" ng-click="toggleDropdown(n)">...</div>
+	    <div ng-attr-id="other_dropdown_{{n}}" class="dropdown_content">
 	      <a href="#">Add to Queue</a>
 	    </div>
 	  </div>
@@ -40,4 +42,3 @@
     </ul>
   </li>
 </ul>
-<script src="scripts/button.js"></script>

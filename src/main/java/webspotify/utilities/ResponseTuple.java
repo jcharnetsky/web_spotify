@@ -1,6 +1,5 @@
-package webspotify.services;
+package webspotify.utilities;
 
-import webspotify.utilities.Response;
 import webspotify.models.media.SongQueue;
 import webspotify.models.users.User;
 
