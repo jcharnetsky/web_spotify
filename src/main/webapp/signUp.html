@@ -29,12 +29,13 @@
 							 placeholder="MM/DD/YYYY"/><br/><br/>
 				<input class="text_input_field" type="password" ng-model="password"
 							 placeholder="Password"/><br/><br/>
-				<input class="text_input_field" type="password" ng-model="password2"
+				<input class="text_input_field" type="password" ng-model="confirm_password"
 							 placeholder="Confirm password"/><br/><br/>
 				<input type="submit" ng-click="createAccount()" value="Create account"/><br/><br/>
 			</form>
 			<span>Already have an account? <a href="/">Log in</a></span>
 		</div>
+		<div id="error_dialog"></div>
 	</div>
 
 </body>
