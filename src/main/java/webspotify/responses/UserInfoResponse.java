@@ -1,5 +1,8 @@
 package webspotify.responses;
 
+import java.util.ArrayList;
+import java.util.List;
+import webspotify.models.media.Playlist;
 import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 
@@ -13,15 +16,20 @@ public class UserInfoResponse {
   private Boolean isPremium;
   private Boolean isArtist;
   private Boolean isAdmin;
-  private ArtistResponse artist;
+  private ArtistProfileResponse artist;
+  private List<PlaylistInfoResponse> ownedPlaylists;
 
   public UserInfoResponse(User user) {
     this.id = user.getId();
     this.name = user.getName();
     this.isPremium = user.getIsPremium();
     this.isArtist = user instanceof Artist;
-    if(user instanceof Artist){
-      this.artist = new ArtistResponse((Artist)user);
+    if (user instanceof Artist) {
+      this.artist = new ArtistProfileResponse((Artist) user);
+    }
+    ownedPlaylists = new ArrayList<PlaylistInfoResponse>();
+    for (Playlist playlist : user.getOwnedPlaylists()) {
+      ownedPlaylists.add(new PlaylistInfoResponse(playlist));
     }
     this.isAdmin = false;
   }
@@ -66,12 +74,20 @@ public class UserInfoResponse {
     this.isAdmin = isAdmin;
   }
 
-  public ArtistResponse getArtist() {
+  public ArtistProfileResponse getArtist() {
     return artist;
   }
 
-  public void setArtist(ArtistResponse artist) {
+  public void setArtist(ArtistProfileResponse artist) {
     this.artist = artist;
+  }
+
+  public List<PlaylistInfoResponse> getOwnedPlaylists() {
+    return ownedPlaylists;
+  }
+
+  public void setOwnedPlaylists(List<PlaylistInfoResponse> ownedPlaylists) {
+    this.ownedPlaylists = ownedPlaylists;
   }
 
 }
