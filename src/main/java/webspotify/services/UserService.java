@@ -12,7 +12,6 @@ import webspotify.models.users.User;
 import webspotify.posts.SignupRequest;
 import webspotify.repo.UserRepository;
 import webspotify.responses.UserInfoResponse;
-import webspotify.utilities.ResponseTuple;
 
 @Service("userService")
 public class UserService {
@@ -36,22 +35,23 @@ public class UserService {
   }
   
   @Transactional
-  public ResponseTuple loginUser(String email, String password) {
-    ResponseTuple responseTuple = new ResponseTuple();
+  public User loginUser(String email, String password) {
     List<User> userList = userRepository.findByEmail(email);
     if (userList.size() != 1) {
-      responseTuple.setResponse(ResponseUtilities.filledFailure(ConfigConstants.INVALID_CREDENTIALS));
-      return responseTuple;
+      return null;
     }
     User user = userList.get(0);
     if (!user.authenticateLogin(password)) {
-      responseTuple.setResponse(ResponseUtilities.filledFailure(ConfigConstants.INVALID_CREDENTIALS));
-      return responseTuple;
+      return null;
     }
-    responseTuple.setResponse(ResponseUtilities.emptySuccess());
-    responseTuple.setUser(user);
-    responseTuple.setSongQueue(new SongQueue());
-    return responseTuple;
+    else {
+      return user;
+    }
+  }
+  
+  @Transactional
+  public SongQueue getSongQueue() {
+      return new SongQueue();
   }
 
   @Transactional
