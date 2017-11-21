@@ -66,12 +66,22 @@ public class User implements Viewable, Serializable {
           joinColumns = @JoinColumn(name = "userID", referencedColumnName = "id"),
           inverseJoinColumns = @JoinColumn(name = "songID", referencedColumnName = "id"))
   private Set<Song> savedSongs;
+  @Column(name = "followerCount", nullable = false)
+  private Integer followerCount;
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "usersFollowingUsers",
+          joinColumns = @JoinColumn(name = "userID"),
+          inverseJoinColumns = @JoinColumn(name = "followingID")
+  )
+  private Set<User> following;
 
   public User() {
     this.ownedPlaylists = new HashSet<Playlist>();
     this.followedPlaylists = new HashSet<Playlist>();
     this.savedAlbums = new HashSet<Album>();
     this.savedSongs = new HashSet<Song>();
+    this.following = new HashSet<User>();
+    this.followerCount = 0;
   }
 
   public boolean createSecurePassword(final String plainPassword) {
@@ -104,6 +114,14 @@ public class User implements Viewable, Serializable {
       System.out.println("Error occurred on Password Auth.");
       return false;
     }
+  }
+  
+  public void incrementFollowerCount() {
+    this.followerCount++;
+  }
+  
+  public void decrementFollowerCount() {
+    this.followerCount--;
   }
 
   @Override
@@ -225,6 +243,22 @@ public class User implements Viewable, Serializable {
 
   public void setSavedSongs(Set<Song> savedSongs) {
     this.savedSongs = savedSongs;
+  }
+
+  public Integer getFollowerCount() {
+    return followerCount;
+  }
+
+  public void setFollowerCount(Integer followerCount) {
+    this.followerCount = followerCount;
+  }
+
+  public Set<User> getFollowing() {
+    return following;
+  }
+
+  public void setFollowing(Set<User> following) {
+    this.following = following;
   }
 
   @Override

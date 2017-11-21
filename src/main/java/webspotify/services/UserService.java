@@ -75,8 +75,16 @@ public class UserService {
   public Response followUser(User user, int userId) {
     if (userRepository.exists(userId)) {
       User userToFollow = userRepository.findOne(userId);
-      if (userToFollow.isPublic() && !userToFollow.isBanned()) {
-        return ResponseUtilities.filledFailure(ConfigConstants.NOT_IMPLEMENTED);
+      if ((userToFollow.isPublic() && !userToFollow.isBanned())&&userId!=user.getId()) {
+        boolean successful = user.getFollowing().add(userToFollow);
+        if (successful) {
+          userRepository.save(user);
+          userToFollow.incrementFollowerCount();
+          userRepository.save(userToFollow);
+          return ResponseUtilities.emptySuccess();
+        } else {
+          return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_ADD);
+        }
       } else {
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
       }
@@ -89,7 +97,15 @@ public class UserService {
   public Response unfollowUser(User user, int userId) {
     if (userRepository.exists(userId)) {
       User userToFollow = userRepository.findOne(userId);
-      return ResponseUtilities.filledFailure(ConfigConstants.NOT_IMPLEMENTED);
+      boolean successful = user.getFollowing().remove(userToFollow);
+      if (successful) {
+        userRepository.save(user);
+        userToFollow.decrementFollowerCount();
+        userRepository.save(userToFollow);
+        return ResponseUtilities.emptySuccess();
+      } else {
+        return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_REM);
+      }
     } else {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_FOUND);
     }
