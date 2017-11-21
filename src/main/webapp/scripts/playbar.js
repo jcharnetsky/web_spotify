@@ -4,10 +4,14 @@ angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $interv
   var progressBar = document.getElementById("songProgress");
 	$scope.play = false;
 
-	$scope.loadSong = function (id) {
-	  console.log("Loaded Song " + id);
-	}
-
+	$scope.loadSong = function (num) {
+   audio = document.getElementById("playAudio");
+   volumeBar = document.getElementById("songVolume");
+   audio.volume = volumeBar.value/100;
+   audioSource = "/audio/" + num + ".mp3";
+   audio.src = audioSource;
+   audio.load();
+ }
 	$scope.playSong = function () {
 		audio = document.getElementById("playAudio");
 		volumeBar = document.getElementById("songVolume");
