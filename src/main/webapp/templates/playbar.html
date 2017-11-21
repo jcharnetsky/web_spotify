@@ -1,6 +1,6 @@
 <link href="css/playbar.css" rel="stylesheet"/>
 <ul class="playbar" ng-app="web_spotify" ng-controller="PlaybarCtrl">
-  <audio id="playAudio" src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.mp4"></audio>
+  <audio id="playAudio" src="/audio/DeathBecomesFur.mp3" type = "audio/mpeg"></audio>
   <li>
     <a href="#">
       <img class="current_album_cover" src="../images/album_cover.png" alt="Album Cover">
@@ -26,26 +26,26 @@
   <li class="music_controls inline-block">
     <ul class="music_buttons">
       <li><a href="#">
-        <img class="shuffle" src="../images/shuffle.png" alt="Shuffle">
-      </a></li>
+										<img class="shuffle" src="../images/shuffle.png" alt="Shuffle">
+						</a></li>
       <li><a href="#">
-        <img class="previous" src="../images/prev.png" alt="Previous">
-      </a></li>
+										<img class="previous" src="../images/prev.png" alt="Previous">
+						</a></li>
       <li><a ng-click="playSong();" href="#">
-        <img class="play" id="playButton" src="../images/play.png" alt="Play">
-      </a></li>
+										<img class="play" id="playButton" src="../images/play.png" alt="Play">
+						</a></li>
       <li><a href="#">
-        <img class="next" src="../images/next.png" alt="Next">
-      </a></li>
+										<img class="next" src="../images/next.png" alt="Next">
+						</a></li>
       <li><a href="#">
-        <img class="repeat" src="../images/repeat.png" alt="Repeat">
-      </a></li>
+										<img class="repeat" src="../images/repeat.png" alt="Repeat">
+						</a></li>
     </ul>
   </li>
   <li class="other_controls">
     <ul>
       <li ng-controller="MainCtrl">
-        <a href="#" ng-click="loadTemplateAndJSON('main','queue.html','api/queue/get/all')">
+        <a href="#" ng-click="loadTemplateAndJSON('main', 'queue.html', 'api/queue/')">
           <img src="../images/queue.png" alt="Queue">
         </a>
         <img src="../images/volume.png" alt="Volume"/>

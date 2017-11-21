@@ -1,8 +1,5 @@
 package webspotify.controllers.rest;
 
-import webspotify.utilities.Response;
-import webspotify.utilities.ResponseUtilities;
-import webspotify.utilities.SessionUtilities;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +7,9 @@ import webspotify.config.ConfigConstants;
 import webspotify.models.administration.Report;
 import webspotify.models.users.User;
 import webspotify.services.ReportService;
+import webspotify.utilities.Response;
+import webspotify.utilities.ResponseUtilities;
+import webspotify.utilities.SessionUtilities;
 
 /**
  * @author Cardinals

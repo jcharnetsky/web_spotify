@@ -14,6 +14,7 @@ public class SongResponse {
   private GenreType genre;
   private Integer albumId;
   private String albumName;
+  private Boolean hasAudio;
 
   public SongResponse(Song build) {
     this.trackLength = build.getTrackLength();
@@ -22,6 +23,7 @@ public class SongResponse {
     this.genre = build.getGenre();
     this.albumId = build.getAlbum().getId();
     this.albumName = build.getAlbum().getTitle();
+    this.hasAudio = build.getHasAudio();
   }
 
   public String getTrackName() {
@@ -72,4 +74,11 @@ public class SongResponse {
     this.albumName = albumName;
   }
 
+  public Boolean getHasAudio() {
+    return hasAudio;
+  }
+
+  public void setHasAudio(Boolean hasAudio) {
+    this.hasAudio = hasAudio;
+  }
 }

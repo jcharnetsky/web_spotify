@@ -5,13 +5,13 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import webspotify.config.ConfigConstants;
-import webspotify.utilities.Response;
-import webspotify.utilities.ResponseUtilities;
 import webspotify.models.media.SongQueue;
 import webspotify.models.users.User;
 import webspotify.posts.SignupRequest;
 import webspotify.repo.UserRepository;
 import webspotify.responses.UserInfoResponse;
+import webspotify.utilities.Response;
+import webspotify.utilities.ResponseUtilities;
 
 @Service("userService")
 public class UserService {
@@ -19,21 +19,20 @@ public class UserService {
   @Autowired
   UserRepository userRepository;
 
-    
   @Transactional
   public Response getUserProfileInformation(int userId) {
-   if(userRepository.exists(userId)) {
-     User user = userRepository.findOne(userId);
-     if(!user.isBanned() && user.isPublic()) {
-       return ResponseUtilities.filledSuccess(new UserInfoResponse(user));
-     } else {
-       return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
-     }
-   } else {
-     return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_FOUND);
-   }
+    if (userRepository.exists(userId)) {
+      User user = userRepository.findOne(userId);
+      if (!user.isBanned() && user.isPublic()) {
+        return ResponseUtilities.filledSuccess(new UserInfoResponse(user));
+      } else {
+        return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
+      }
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_FOUND);
+    }
   }
-  
+
   @Transactional
   public User loginUser(String email, String password) {
     List<User> userList = userRepository.findByEmail(email);
@@ -43,15 +42,14 @@ public class UserService {
     User user = userList.get(0);
     if (!user.authenticateLogin(password)) {
       return null;
-    }
-    else {
+    } else {
       return user;
     }
   }
-  
+
   @Transactional
   public SongQueue getSongQueue() {
-      return new SongQueue();
+    return new SongQueue();
   }
 
   @Transactional
@@ -71,6 +69,46 @@ public class UserService {
     user.setIsPublic(true);
     userRepository.saveAndFlush(user);
     return ResponseUtilities.emptySuccess();
+  }
+
+  @Transactional
+  public Response followUser(User user, int userId) {
+    if (userRepository.exists(userId)) {
+      User userToFollow = userRepository.findOne(userId);
+      if ((userToFollow.isPublic() && !userToFollow.isBanned()) && userId != user.getId()) {
+        boolean successful = user.getFollowing().add(userToFollow);
+        if (successful) {
+          userRepository.save(user);
+          userToFollow.incrementFollowerCount();
+          userRepository.save(userToFollow);
+          return ResponseUtilities.emptySuccess();
+        } else {
+          return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_ADD);
+        }
+      } else {
+        return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
+      }
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_FOUND);
+    }
+  }
+
+  @Transactional
+  public Response unfollowUser(User user, int userId) {
+    if (userRepository.exists(userId)) {
+      User userToFollow = userRepository.findOne(userId);
+      boolean successful = user.getFollowing().remove(userToFollow);
+      if (successful) {
+        userRepository.save(user);
+        userToFollow.decrementFollowerCount();
+        userRepository.save(userToFollow);
+        return ResponseUtilities.emptySuccess();
+      } else {
+        return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_REM);
+      }
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_FOUND);
+    }
   }
 
 }

@@ -2,7 +2,7 @@ package webspotify.models.media;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
+import webspotify.interfaces.Viewable;
 import webspotify.models.users.Artist;
 import webspotify.types.GenreType;
 
@@ -11,7 +11,7 @@ import webspotify.types.GenreType;
  */
 @Entity
 @Table(name = "Songs")
-public class Song implements Serializable {
+public class Song implements Serializable, Viewable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,23 +32,23 @@ public class Song implements Serializable {
   private Integer totalListens;
   @Column(name = "MonthlyListens", nullable = false)
   private Integer montlyListens;
+  @Column(name = "hasAudio", nullable = false)
+  private Boolean hasAudio;
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "artistID", nullable = false)
   private Artist owner;
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "albumID", nullable = false)
   private Album album;
-  @Lob
-  @Column(name = "songAudio", length = 100000)
-  private byte[] audio;
 
   public Song() {
     super();
     this.totalListens = 0;
     this.montlyListens = 0;
+    this.hasAudio = false;
   }
 
-  public void incrementListens () {
+  public void incrementListens() {
     this.totalListens++;
     this.montlyListens++;
   }
@@ -109,14 +109,6 @@ public class Song implements Serializable {
     this.genre = genre;
   }
 
-  public byte[] getAudio() {
-    return audio;
-  }
-
-  public void setAudio(byte[] audio) {
-    this.audio = audio;
-  }
-
   public Album getAlbum() {
     return album;
   }
@@ -140,4 +132,63 @@ public class Song implements Serializable {
   public void setMontlyListens(Integer montlyListens) {
     this.montlyListens = montlyListens;
   }
+
+  public Boolean getHasAudio() {
+    return hasAudio;
+  }
+
+  public void setHasAudio(Boolean hasAudio) {
+    this.hasAudio = hasAudio;
+  }
+
+  @Override
+  public int hashCode() {
+    int hash = 7;
+    hash = 23 * hash + (this.id != null ? this.id.hashCode() : 0);
+    return hash;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    final Song other = (Song) obj;
+    if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+      return false;
+    }
+    return true;
+  }
+
+  @Override
+  public boolean isBanned() {
+    return this.getIsBanned();
+  }
+
+  @Override
+  public boolean isPublic() {
+    return this.getIsPublic();
+  }
+
+  @Override
+  public int ownedBy() {
+    return this.getOwner().getId();
+  }
+
+  @Override
+  public void setBanned(boolean value) {
+    this.setIsBanned(value);
+  }
+
+  @Override
+  public void setPublic(boolean value) {
+    this.setIsPublic(value);
+  }
+
 }

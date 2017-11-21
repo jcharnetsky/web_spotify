@@ -1,11 +1,10 @@
 package webspotify.responses;
 
+import java.util.ArrayList;
+import java.util.List;
 import webspotify.models.media.Song;
 import webspotify.models.media.SongQueue;
 import webspotify.types.RepeatType;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Cardinals

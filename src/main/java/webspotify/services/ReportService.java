@@ -6,11 +6,11 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import webspotify.config.ConfigConstants;
-import webspotify.utilities.Response;
-import webspotify.utilities.ResponseUtilities;
 import webspotify.models.administration.Report;
 import webspotify.models.users.User;
 import webspotify.repo.ReportRepository;
+import webspotify.utilities.Response;
+import webspotify.utilities.ResponseUtilities;
 
 @Service("reportService")
 public class ReportService {

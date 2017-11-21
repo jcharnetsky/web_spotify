@@ -1,9 +1,8 @@
 package webspotify.models.media;
 
-import webspotify.types.RepeatType;
-
 import java.io.Serializable;
 import java.util.*;
+import webspotify.types.RepeatType;
 
 public class SongQueue implements Serializable {
 

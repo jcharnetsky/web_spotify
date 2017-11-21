@@ -1,5 +1,4 @@
 <link href="css/sidebar.css" rel="stylesheet"/>
-
 <div id="sidebar">
   <ul class="sidebar_list">
     <li id="active">
@@ -21,7 +20,7 @@
     </li>
   </ul>
   <ul class="sidebar_list">
-    <li><a href="#"><u>New playlist</u></a></li>
+    <li><a href="#"><u>New Playlist</u></a></li>
   </ul>
 </div>
 <div id="sidebar-resizer"
@@ -33,6 +32,6 @@
      resizermin="5">
 </div>
 <script>
-  scope = angular.element(document.getElementById('playlists')).scope();
-  scope.loadTemplateAndJSON('playlists', 'null', 'api/playlists/');
+		scope = angular.element(document.getElementById('playlists')).scope();
+		scope.loadTemplateAndJSON('playlists', 'null', 'api/playlists/');
 </script>

@@ -1,8 +1,6 @@
 package webspotify.responses;
 
 import java.io.Serializable;
-import webspotify.models.media.Song;
-
 import webspotify.models.users.Artist;
 
 /**

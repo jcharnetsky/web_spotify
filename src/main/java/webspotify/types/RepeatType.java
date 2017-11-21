@@ -1,5 +1,5 @@
 package webspotify.types;
 
 public enum RepeatType {
-  NONE,LIBRARY,CURRENT
+  NONE, LIBRARY, CURRENT
 }
