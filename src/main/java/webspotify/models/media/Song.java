@@ -41,9 +41,6 @@ public class Song implements Serializable, Viewable {
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "albumID", nullable = false)
   private Album album;
-  @Lob
-  @Column(name = "songAudio", length = 100000)
-  private byte[] audio;
 
   public Song() {
     super();
@@ -111,14 +108,6 @@ public class Song implements Serializable, Viewable {
 
   public void setGenre(GenreType genre) {
     this.genre = genre;
-  }
-
-  public byte[] getAudio() {
-    return audio;
-  }
-
-  public void setAudio(byte[] audio) {
-    this.audio = audio;
   }
 
   public Album getAlbum() {

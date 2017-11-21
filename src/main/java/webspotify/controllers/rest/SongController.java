@@ -60,12 +60,4 @@ public class SongController {
     }
     return songService.getSong(songId);
   }
-
-  @GetMapping("/audio/{songId}.mp3")
-  public HttpEntity<byte[]> getSongAudio(@PathVariable final int songId, HttpSession session) throws IOException {
-    if (SessionUtilities.getUserFromSession(session) == null) {
-      return null;
-    }
-    return songService.getSongAudio(songId);
-  }
 }

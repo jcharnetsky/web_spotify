@@ -85,6 +85,7 @@ public class TestController {
     dummySong1.setOwner(a);
     dummySong1.setTitle("Song Title");
     dummySong1.setTrackLength(10);
+    dummySong1.setHasAudio(false);
 
     Song dummySong2 = new Song();
     dummySong2.setGenre(GenreType.ROCK);
@@ -93,7 +94,8 @@ public class TestController {
     dummySong2.setOwner(a);
     dummySong2.setTitle("Here come dat boi");
     dummySong2.setTrackLength(120);
-
+    dummySong2.setHasAudio(false);
+    
     Playlist pl = new Playlist();
     pl.setTitle("Cool Playlist");
     pl.setBanned(false);
@@ -111,15 +113,6 @@ public class TestController {
     al.setPublic(true);
     al.setGenre(GenreType.POP);
     al.setOwner(a);
-
-    String content = "";
-    try {
-      Path p = Paths.get("db/horse.mp3");
-      content = new String(Files.readAllBytes(p));
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    dummySong1.setAudio(content.getBytes());
 
     userRepo.save(u);
     artistRepo.save(a);

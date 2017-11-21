@@ -90,21 +90,4 @@ public class SongService {
       return ResponseUtilities.filledFailure(ConfigConstants.SONG_NO_EXIST);
     }
   }
-
-  @Transactional
-  public HttpEntity<byte[]> getSongAudio(final int songId) {
-    Song song = songRepository.findOne(songId);
-    if (song == null) {
-      return null;
-    }
-    byte[] songAudio = song.getAudio();
-    if (songAudio == null || songAudio.length == 0) {
-      return null;
-    }
-    MediaType type = MediaType.parseMediaType(ConfigConstants.AUDIO_TYPE);
-    HttpHeaders headers = new HttpHeaders();
-    headers.setContentType(type);
-    headers.setContentLength(songAudio.length);
-    return new HttpEntity<byte[]>(songAudio, headers);
-  }
 }
