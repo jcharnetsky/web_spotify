@@ -115,11 +115,11 @@ public class User implements Viewable, Serializable {
       return false;
     }
   }
-  
+
   public void incrementFollowerCount() {
     this.followerCount++;
   }
-  
+
   public void decrementFollowerCount() {
     this.followerCount--;
   }

@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import webspotify.config.ConfigConstants;
-import webspotify.utilities.Response;
-import webspotify.utilities.ResponseUtilities;
 import webspotify.models.media.Playlist;
 import webspotify.models.media.Song;
 import webspotify.models.users.User;
@@ -19,6 +17,8 @@ import webspotify.repo.SongRepository;
 import webspotify.repo.UserRepository;
 import webspotify.responses.PlaylistInfoResponse;
 import webspotify.responses.SongResponse;
+import webspotify.utilities.Response;
+import webspotify.utilities.ResponseUtilities;
 
 /**
  *

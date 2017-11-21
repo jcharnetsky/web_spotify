@@ -1,8 +1,7 @@
 package webspotify.responses;
 
-import webspotify.models.users.User;
-
 import java.util.Date;
+import webspotify.models.users.User;
 
 /**
  * @author Cardinals
@@ -16,7 +15,7 @@ public class UserResponse {
 
   public UserResponse(User user) {
     this.id = user.getId();
-    this.name  = user.getName();
+    this.name = user.getName();
     this.email = user.getEmail();
     this.birthday = user.getBirthdate();
   }

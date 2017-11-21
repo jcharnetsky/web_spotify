@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import webspotify.config.ConfigConstants;
 import webspotify.models.media.Album;
-import webspotify.utilities.Response;
-import webspotify.utilities.ResponseUtilities;
 import webspotify.models.media.Song;
 import webspotify.models.users.Artist;
 import webspotify.models.users.User;
@@ -20,6 +18,8 @@ import webspotify.repo.SongRepository;
 import webspotify.repo.UserRepository;
 import webspotify.responses.AlbumInfoResponse;
 import webspotify.responses.SongResponse;
+import webspotify.utilities.Response;
+import webspotify.utilities.ResponseUtilities;
 
 /**
  *

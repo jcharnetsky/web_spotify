@@ -1,10 +1,6 @@
 package webspotify.controllers.rest;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import webspotify.models.media.Album;
@@ -95,7 +91,7 @@ public class TestController {
     dummySong2.setTitle("Here come dat boi");
     dummySong2.setTrackLength(120);
     dummySong2.setHasAudio(false);
-    
+
     Playlist pl = new Playlist();
     pl.setTitle("Cool Playlist");
     pl.setBanned(false);

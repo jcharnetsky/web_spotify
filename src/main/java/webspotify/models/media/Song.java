@@ -3,7 +3,6 @@ package webspotify.models.media;
 import java.io.Serializable;
 import javax.persistence.*;
 import webspotify.interfaces.Viewable;
-
 import webspotify.models.users.Artist;
 import webspotify.types.GenreType;
 

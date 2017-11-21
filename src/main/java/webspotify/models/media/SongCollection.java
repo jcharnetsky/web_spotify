@@ -15,7 +15,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
-
 import webspotify.interfaces.Viewable;
 import webspotify.models.users.User;
 import webspotify.types.GenreType;

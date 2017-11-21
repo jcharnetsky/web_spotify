@@ -2,10 +2,8 @@ package webspotify.responses;
 
 import java.util.ArrayList;
 import java.util.List;
-import webspotify.config.ConfigConstants;
 import webspotify.models.media.Playlist;
 import webspotify.models.media.Song;
-import webspotify.models.media.SongCollection;
 import webspotify.models.users.Artist;
 import webspotify.types.GenreType;
 

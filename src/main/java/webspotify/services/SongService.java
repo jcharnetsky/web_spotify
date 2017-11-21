@@ -6,19 +6,16 @@ import java.util.List;
 import java.util.Set;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import webspotify.config.ConfigConstants;
 import webspotify.models.media.Album;
-import webspotify.utilities.Response;
-import webspotify.utilities.ResponseUtilities;
 import webspotify.models.media.Song;
 import webspotify.models.users.User;
 import webspotify.repo.SongRepository;
 import webspotify.repo.UserRepository;
 import webspotify.responses.SongResponse;
+import webspotify.utilities.Response;
+import webspotify.utilities.ResponseUtilities;
 
 @Service("songService")
 public class SongService {

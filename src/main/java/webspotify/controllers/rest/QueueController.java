@@ -1,22 +1,16 @@
 package webspotify.controllers.rest;
 
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import webspotify.config.ConfigConstants;
+import webspotify.models.media.SongQueue;
 import webspotify.services.QueueService;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
-import webspotify.models.media.Song;
-import webspotify.models.media.SongQueue;
-import webspotify.repo.SongRepository;
-import webspotify.responses.QueueResponse;
-
-import javax.servlet.http.HttpSession;
-import java.util.List;
-
-import webspotify.config.ConfigConstants;
 import webspotify.utilities.SessionUtilities;
 
 /**
@@ -28,21 +22,6 @@ public class QueueController {
 
   @Autowired
   private QueueService queueService;
-
-//  @GetMapping("/get/all")
-//  public Response getQueue(HttpSession session) {
-//    if (SessionUtilities.getUserFromSession(session) == null) {
-//      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
-//    }
-//    //Creates some infinite loop, not sure why.
-//    SongQueue dummy = new SongQueue(); // Dummy data
-//    List<Song> songs = songRepo.findAll();
-//    for (Song song : songs) {
-//      dummy.push(song);
-//    }
-//    dummy.pop();
-//    return ResponseUtilities.filledSuccess(new QueueResponse(dummy));
-//  }
 
   @GetMapping("/")
   public Response getQueueInformation(HttpSession session) {

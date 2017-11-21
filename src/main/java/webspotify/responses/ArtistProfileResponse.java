@@ -16,7 +16,7 @@ class ArtistProfileResponse implements Serializable {
   private Integer id;
   private String stageName;
   private String about;
-  
+
   private List<String> aliases;
   private List<AlbumInfoResponse> albums;
   private List<SongResponse> songs;
@@ -26,15 +26,15 @@ class ArtistProfileResponse implements Serializable {
     this.stageName = build.getStageName();
     this.about = build.getAbout();
     this.aliases = new ArrayList<String>();
-    for(String alias : build.getAliases()) {
+    for (String alias : build.getAliases()) {
       this.aliases.add(alias);
     }
     this.albums = new ArrayList<AlbumInfoResponse>();
-    for(Album album : build.getOwnedAlbums()) {
+    for (Album album : build.getOwnedAlbums()) {
       this.albums.add(new AlbumInfoResponse(album));
     }
     this.songs = new ArrayList<SongResponse>();
-    for(Song song : build.getOwnedSongs()) {
+    for (Song song : build.getOwnedSongs()) {
       this.songs.add(new SongResponse(song));
     }
   }
@@ -86,5 +86,5 @@ class ArtistProfileResponse implements Serializable {
   public void setSongs(List<SongResponse> songs) {
     this.songs = songs;
   }
-  
+
 }

@@ -3,9 +3,8 @@ package webspotify.responses;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import webspotify.models.users.Artist;
 import webspotify.models.media.Concert;
+import webspotify.models.users.Artist;
 
 /**
  * @author Cardinals

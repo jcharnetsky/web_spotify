@@ -8,14 +8,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import webspotify.utilities.Response;
-import webspotify.utilities.ResponseUtilities;
-import webspotify.utilities.SessionUtilities;
 import webspotify.config.ConfigConstants;
 import webspotify.models.users.User;
 import webspotify.posts.AlbumCreateRequest;
 import webspotify.services.AlbumService;
+import webspotify.utilities.Response;
+import webspotify.utilities.ResponseUtilities;
+import webspotify.utilities.SessionUtilities;
 
 /**
  *

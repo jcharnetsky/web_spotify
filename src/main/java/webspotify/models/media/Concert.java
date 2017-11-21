@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
-
 import webspotify.interfaces.Viewable;
 import webspotify.models.users.Artist;
 

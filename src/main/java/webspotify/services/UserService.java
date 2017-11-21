@@ -5,13 +5,13 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import webspotify.config.ConfigConstants;
-import webspotify.utilities.Response;
-import webspotify.utilities.ResponseUtilities;
 import webspotify.models.media.SongQueue;
 import webspotify.models.users.User;
 import webspotify.posts.SignupRequest;
 import webspotify.repo.UserRepository;
 import webspotify.responses.UserInfoResponse;
+import webspotify.utilities.Response;
+import webspotify.utilities.ResponseUtilities;
 
 @Service("userService")
 public class UserService {
@@ -75,7 +75,7 @@ public class UserService {
   public Response followUser(User user, int userId) {
     if (userRepository.exists(userId)) {
       User userToFollow = userRepository.findOne(userId);
-      if ((userToFollow.isPublic() && !userToFollow.isBanned())&&userId!=user.getId()) {
+      if ((userToFollow.isPublic() && !userToFollow.isBanned()) && userId != user.getId()) {
         boolean successful = user.getFollowing().add(userToFollow);
         if (successful) {
           userRepository.save(user);
