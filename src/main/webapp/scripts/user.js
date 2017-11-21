@@ -10,4 +10,13 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
 		$scope.toggleDropdown = function (num) {
 				document.getElementById("other_dropdown_" + num).classList.toggle("show");
 		};
+    
+    $scope.loadSong = function (num) {
+      audio = document.getElementById("playAudio");
+      volumeBar = document.getElementById("songVolume");
+      audio.volume = volumeBar.value/100;
+      audioSource = "/audio/" + num + ".mp3";
+      audio.src = audioSource;
+      audio.load();
+    }
 });
