@@ -3,12 +3,11 @@
   left: auto; bottom: 8vh; top: 5vh; right: 0vw;
   width: 8vw;
  	padding-left: 1vw;
-	color: #979797;
+		color: #979797;
  	background-color: #121212;
   height: 92vh;
  	overflow: auto;
 }
-
 #friendlist-resizer {
  	background-color: transparent;
   position: absolute;

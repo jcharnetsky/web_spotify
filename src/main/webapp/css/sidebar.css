@@ -9,12 +9,10 @@
   color: #979797;
   overflow: auto;
 }
-
 .sidebar_list {
   padding-bottom: 1vh;
   padding-left: 0vw;
 }
-
 .sidebar_list li{
   font-size: 80%;
   padding-bottom: 2vh;
@@ -22,7 +20,6 @@
   overflow: hidden;
   white-space: nowrap;
 }
-
 #sidebar-resizer {
   background-color: transparent;
   position: absolute;

@@ -48,12 +48,10 @@
   vertical-align: middle;
   text-align: left;
 }
-
 .collection_tile a:hover {
   text-decoration: underline;
   cursor: pointer;
 }
-
 .add_button {
   font-size: 180%;
   width: 10%;
@@ -68,11 +66,9 @@
   border-width: 0.3vh;
   margin-bottom: 0vh;
 }
-
 #collection_buttons {
   margin-top: 30px;
 }
-
 #collection_buttons a {
   color: white;
   border: 2px solid white;
@@ -81,17 +77,14 @@
   margin-left: 10px;
   margin-right: 10px;
 }
-
 #collection_buttons a:hover {
   color: gray;
   text-decoration: none;
 }
-
 .queue, .songs, .user, .collection {
   position: relative;
   width: auto;
 }
-
 .play_button_spacer {
   display: inline;
   width: 5%;
