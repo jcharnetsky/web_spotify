@@ -11,4 +11,21 @@ angular.module("web_spotify").controller("CollectionCtrl", function($compile, $s
     node = loadToDiv('modal_dialog', 'createPlaylist.html');
     $compile(node)(scope);
   }
+
+  $scope.createPlaylist = function() {
+    $http.get("/api/users/login", {
+      params:{
+        "title":$scope.new_title,
+        "description":$scope.new_description,
+        "genre": $scope.new_genre }}).
+    then(function(response) {
+      if (!response.data.error) {
+        window.location = location.origin + "/home.html"
+        return;
+      }
+      displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+    }).catch(function(err){
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  }
 });

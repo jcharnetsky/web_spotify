@@ -7,16 +7,16 @@
         <div class="center_align">
           <form novalidate class="center_align">
             <br>
-            <input type="text" ng-model="name" placeholder="Username or email address"/>
+            <input type="text" ng-model="new_title" required placeholder="New playlist title"/>
             <br/><br/>
-            <input type="password" ng-model="password" placeholder="Password"/>
+            <input type="text" ng-model="new_description" placeholder="Description"/>
             <br/>
           </form>
         </div>
       </div>
       <div class="modal-footer center_align" id="spotify_buttons">
           <a href="#" data-dismiss="modal">Close</a>
-          <a class="Follow" href="#">Create</a>
+          <a href="#" ng-click="createPlaylist()">Create</a>
       </div>
     </div>
   </div>
