@@ -7,10 +7,13 @@
         <div class="center_align">
           <form novalidate class="center_align">
             <br>
-            <input type="text" ng-model="new_title" required placeholder="New playlist title"/>
+            <input type="text" ng-model="new_title" placeholder="New playlist title"/>
             <br/><br/>
             <input type="text" ng-model="new_description" placeholder="Description"/>
-            <br/>
+            <br/><br>
+            <label>Pop<input type="radio" ng-model="new_genre" value="POP" checked/></label>
+            <label>Electronic<input type="radio" ng-model="new_genre" value="ELECTRONIC"/></label>
+            <label>Rap<input type="radio" ng-model="new_genre" value="RAP"/></label>
           </form>
         </div>
       </div>
