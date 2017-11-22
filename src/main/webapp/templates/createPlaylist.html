@@ -1,16 +1,22 @@
+<link href="css/modal.css" rel="stylesheet"/>
 <div class="modal fade" id="createPlaylistModal" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&amp;times;</button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
       <div class="modal-body">
-        <h3>Modal Body</h3>
+        <h3>Create a Playlist</h3>
+        <div class="center_align">
+          <form novalidate class="center_align">
+            <br>
+            <input type="text" ng-model="name" placeholder="Username or email address"/>
+            <br/><br/>
+            <input type="password" ng-model="password" placeholder="Password"/>
+            <br/>
+          </form>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+      <div class="modal-footer center_align" id="spotify_buttons">
+          <a href="#" data-dismiss="modal">Close</a>
+          <a class="Follow" href="#">Create</a>
       </div>
     </div>
   </div>
