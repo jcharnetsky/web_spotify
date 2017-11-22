@@ -76,6 +76,7 @@ a:hover, a:active, #current {
 .underline_on_hover:hover {
 		text-decoration: underline;
 }
+
 ::-webkit-scrollbar{
 		width: 12px;
 }

@@ -13,16 +13,16 @@
     <li><a href="#">Albums</a></li>
     <li><a href="#">Artists</a></li>
   </ul>
-  <ul class="sidebar_list playlists" ng-app="sidebar_app">
+  <ul class="sidebar_list playlists">
     <li><strong>PLAYLISTS</strong></li>
     <li id="playlists" ng-repeat="list in api_playlists_">
-      <a href="#" ng-controller="LoadCollectionCtrl" ng-click="loadCollection(list.id)">
+      <a href="#" ng-controller="CollectionCtrl" ng-click="loadCollection(list.id)">
         {{list.title}}
       </a>
     </li>
   </ul>
-  <ul class="sidebar_list">
-    <li><a href="#"><u>New Playlist</u></a></li>
+  <ul class="sidebar_list" ng-controller="CollectionCtrl">
+    <li><a href="#" ng-click="openPlaylistDialog()"><u>New Playlist</u></a></li>
   </ul>
 </div>
 <div id="sidebar-resizer"
