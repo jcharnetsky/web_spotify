@@ -1,5 +1,5 @@
 <link href="css/modal.css" rel="stylesheet"/>
-<div class="modal fade" id="createPlaylistModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="createPlaylistModal" tabindex="-1" role="dialog" ng-controller="CollectionCtrl">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
@@ -11,9 +11,9 @@
             <br/><br/>
             <input type="text" ng-model="new_description" placeholder="Description"/>
             <br/><br>
-            <label>Pop<input type="radio" ng-model="new_genre" value="POP" checked/></label>
-            <label>Electronic<input type="radio" ng-model="new_genre" value="ELECTRONIC"/></label>
-            <label>Rap<input type="radio" ng-model="new_genre" value="RAP"/></label>
+            <label ng-repeat="genre in genres.genres">
+              {{genre}}<input type="radio" ng-model="new_genre" value="{{genre}}"/>
+            </label>
           </form>
         </div>
       </div>

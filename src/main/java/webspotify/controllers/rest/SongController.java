@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import webspotify.config.ConfigConstants;
 import webspotify.models.users.User;
+import webspotify.responses.GenresResponse;
 import webspotify.services.SongService;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
@@ -53,5 +54,10 @@ public class SongController {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
     return songService.getSong(songId);
+  }
+
+  @GetMapping("/genres")
+  public Response getGenres() {
+    return ResponseUtilities.filledSuccess(new GenresResponse());
   }
 }
