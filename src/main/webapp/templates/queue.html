@@ -1,9 +1,9 @@
 <link href="css/collection.css" rel="stylesheet"/>
 <link href="css/button.css" rel="stylesheet">
-<div class="queue" ng-controller="PlaybarCtrl">
+<div class="queue">
   <p id="content_title">Coming up</p>
   <ul class="collection">
-    <li>
+    <li ng-show="queue.queue.length">
       <ul class="collection_tiles">
         <li>
           <div class="collection_tile">
@@ -17,7 +17,7 @@
         </li>
       </ul>
     </li>
-    <li ng-repeat="song in api_queue_get_all.queue">
+    <li ng-repeat="song in queue.queue">
       <hr class="collection_hr">
       <ul class="collection_tiles">
         <li>
@@ -30,12 +30,12 @@
                ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
             <a>{{secondsToMinSec(song.trackLength)}}</a>
             <div class="dropdown options_col">
-                <div class="options_button" ng-click="toggleDropdown(1)">...</div>
-                <div ng-attr-id="other_dropdown_1" class="dropdown_content" ng-controller="CollectionCtrl">
-                  <a href="#" ng-repeat="playlist in playlists" ng-click="addSongToPlaylist(song.id, playlist.id)">
-                    Add to {{playlist.title}}
-                  </a>
-                </div>
+              <div class="options_button" ng-click="toggleDropdown(1)">...</div>
+              <div ng-attr-id="other_dropdown_1" class="dropdown_content" ng-controller="CollectionCtrl">
+                <a href="#" ng-repeat="playlist in playlists" ng-click="addSongToPlaylist(song.id, playlist.id)">
+                  Add to {{playlist.title}}
+                </a>
+              </div>
             </div>
           </div>
         </li>

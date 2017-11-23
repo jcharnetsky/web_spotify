@@ -1,14 +1,39 @@
-angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $interval){
+angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $http, $compile, $parse, $interval){
+
+  $scope.loadQueue = function() {
+    $http.get(location.origin + "/api/queue/").then(function(response) {
+      handleJSONResponse(response, "main", "queue.html", "queue", $compile, $parse, $scope);
+    }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  }
+
+  $scope.addSongToQueue = function(id) {
+    data = JSON.stringify({"songId": id});
+    $http.post("/api/queue/add/song/"+id, data, {headers: {"Content-Type":"application/json"}}).
+      then(function(response) {
+        if (!response.data.error) {
+          displayErrorPopup("Song added to queue", $scope, $parse, $compile);
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function(err){
+        displayErrorPopup(err, $scope, $parse, $compile);
+      });
+  }
+
+  $scope.removeSongFromQueue = function(id) {
+  }
+
   var audio;
   var volumeBar = document.getElementById("songVolume");
   var progressBar = document.getElementById("songProgress");
 	$scope.play = false;
 
-	$scope.loadSong = function (id) {
+	$scope.loadSong = function(id) {
 	  console.log("Loaded Song " + id);
 	}
 
-	$scope.playSong = function () {
+	$scope.playSong = function() {
 		audio = document.getElementById("playAudio");
 		volumeBar = document.getElementById("songVolume");
     audio.volume = volumeBar.value/100;

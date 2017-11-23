@@ -2,10 +2,7 @@ package webspotify.controllers.rest;
 
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import webspotify.config.ConfigConstants;
 import webspotify.models.media.SongQueue;
 import webspotify.services.QueueService;
@@ -32,7 +29,7 @@ public class QueueController {
     return queueService.retrieveEntireQueue(queue);
   }
 
-  @GetMapping("/add/song/{songId}")
+  @PostMapping("/add/song/{songId}")
   public Response addSongToQueue(@PathVariable final int songId, HttpSession session) {
     if (SessionUtilities.getUserFromSession(session) == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
@@ -40,6 +37,11 @@ public class QueueController {
     SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
     return queueService.addSongToQueue(queue, songId);
   }
+
+  //@PostMapping("/rem/song/{songId}")
+  //public Response removeSongFromQueue(@PathVariable final int songId, HttpSession session){
+  //  return
+  //}
 
   @GetMapping("/add/playlist/{playlistId}")
   public Response addPlaylistToQueue(@PathVariable final int playlistId, HttpSession session) {

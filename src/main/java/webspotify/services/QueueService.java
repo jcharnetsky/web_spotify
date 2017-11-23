@@ -44,6 +44,15 @@ public class QueueService {
   }
 
   @Transactional
+  public Response removeSongFromQueue(SongQueue queue, int songId){
+    if (queue.removeSong(songId)){
+      return ResponseUtilities.emptySuccess();
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.SONG_NO_EXIST);
+    }
+  }
+
+  @Transactional
   public Response addPlaylistToQueue(SongQueue queue, int playlistId) {
     if (playlistRepository.exists(playlistId)) {
       Playlist playlistToAdd = playlistRepository.findOne(playlistId);
