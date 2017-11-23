@@ -16,6 +16,7 @@ public class PlaylistInfoResponse {
   private Integer id;
   private String title;
   private String description;
+  private String imageLink;
   private GenreType genre;
   private String ownerName;
   private Integer ownerId;
@@ -29,6 +30,7 @@ public class PlaylistInfoResponse {
     this.title = playlist.getTitle();
     this.genre = playlist.getGenre();
     this.description = playlist.getDescription();
+    this.imageLink = "../images/collections/logo.png";
     this.followerCount = playlist.getFollowerCount();
 
     if (playlist.getOwner() instanceof Artist) {
@@ -100,6 +102,14 @@ public class PlaylistInfoResponse {
 
   public void setSongTrackLength(Integer songTrackLength) {
     this.songTrackLength = songTrackLength;
+  }
+
+  public String getImageLink() {
+    return imageLink;
+  }
+
+  public void setImageLink(String imageLink) {
+    this.imageLink = imageLink;
   }
 
   public GenreType getGenre() {

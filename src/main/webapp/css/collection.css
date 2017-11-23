@@ -18,6 +18,7 @@
   display: inline-block;
   position: relative;
   border: 1px solid white;
+  border-radius: 50%;
 }
 .collection_data {
   margin-left: 10vw;
