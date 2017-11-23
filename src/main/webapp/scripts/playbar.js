@@ -14,6 +14,7 @@ angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $http, 
       then(function(response) {
         if (!response.data.error) {
           displayErrorPopup("Song added to queue", $scope, $parse, $compile);
+          return;
         }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
       }).catch(function(err){
@@ -32,6 +33,7 @@ angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $http, 
             }
           }
           displayErrorPopup("Song removed from queue", $scope, $parse, $compile);
+          return;
         }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
       }).catch(function(err){
