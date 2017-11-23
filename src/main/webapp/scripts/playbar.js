@@ -22,6 +22,21 @@ angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $http, 
   }
 
   $scope.removeSongFromQueue = function(id) {
+    data = JSON.stringify({"songId": id});
+    $http.post("/api/queue/rem/song/"+id, data, {headers: {"Content-Type":"application/json"}}).
+      then(function(response) {
+        if (!response.data.error) {
+          for(var i = 0; i < $scope.queue.queue.length; i++){
+            if($scope.queue.queue[i].id === id){
+              $scope.queue.queue.splice(i,1);
+            }
+          }
+          displayErrorPopup("Song removed from queue", $scope, $parse, $compile);
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function(err){
+        displayErrorPopup(err, $scope, $parse, $compile);
+      });
   }
 
   var audio;
@@ -46,10 +61,7 @@ angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $http, 
     $scope.progressAtInterval();
 	}
 
-  $scope.toggleDropdown = function (num) {
-    document.getElementById("other_dropdown_" + num).classList.toggle("show");
-  }
-
+  $scope.toggleDropdown = toggleDropdown;
 
   $scope.progressAtInterval = function() {
 		progressBar.max = audio.duration;

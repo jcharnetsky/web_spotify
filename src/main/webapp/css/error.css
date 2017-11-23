@@ -17,5 +17,6 @@
   z-index: 1051;
 }
 #error_message {
+  z-index: 1051;
   color: white;
 }
