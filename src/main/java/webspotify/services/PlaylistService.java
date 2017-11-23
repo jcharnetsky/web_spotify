@@ -1,9 +1,7 @@
 package webspotify.services;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -137,12 +135,20 @@ public class PlaylistService {
     }
     try {
       Playlist toEdit = playlistRepo.findOne(playlistId);
+      user.getOwnedPlaylists().remove(toEdit);
       if (toEdit.getOwner().getId() != user.getId()){
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
       }
-      toEdit.setDescription(request.getDescription());
-      toEdit.setTitle(request.getTitle());
-      toEdit.setGenre(request.getGenre());
+      if(request.getDescription() != null) {
+        toEdit.setDescription(request.getDescription());
+      }
+      if(request.getTitle() != null) {
+        toEdit.setTitle(request.getTitle());
+      }
+      if(request.getGenre() != null) {
+        toEdit.setGenre(request.getGenre());
+      }
+      user.getOwnedPlaylists().add(toEdit);
       playlistRepo.save(toEdit);
       return ResponseUtilities.emptySuccess();
     } catch (Exception e) {

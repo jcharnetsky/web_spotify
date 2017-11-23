@@ -1,4 +1,4 @@
-angular.module("web_spotify").controller("CollectionCtrl", function($compile, $scope, $http, $parse, collections){
+angular.module("web_spotify").controller("CollectionCtrl", function($compile, $rootScope, $scope, $http, $parse, collections){
   $scope.loadCollection = function(id) {
     $http.get(location.origin + "/api/playlists/" + id + "/get/info").then(function(response) {
       handleJSONResponse(response, "main", "collection.html", "collection", $compile, $parse, $scope);
@@ -16,7 +16,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function($compile, $s
     $http.get(location.origin + controllerPath).then(function(response) {
       handleJSONResponse(response, "playlists", "null", "playlists", $compile, $parse, $scope);
       collections.setPlaylists(angular.copy($scope.playlists));
-      $scope.playlists = collections.getPlaylists();
+      $rootScope.playlists = collections.getPlaylists();
     }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });
@@ -56,6 +56,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function($compile, $s
       then(function(response) {
         if (!response.data.error) {
           collections.addPlaylist(response.data.content);
+          $rootScope.playlists = collections.getPlaylists();
           $("#createPlaylistModal").modal("hide");
           return;
         }
@@ -67,16 +68,26 @@ angular.module("web_spotify").controller("CollectionCtrl", function($compile, $s
 
   $scope.editPlaylist = function(id) {
     data = JSON.stringify({
-      "title":$scope.new_title,
-      "description":$scope.new_description,
-      "genre": $scope.new_genre
+      "title":$scope.edit_title,
+      "description":$scope.edit_description,
+      "genre": $scope.edit_genre
     })
     $http.post("/api/playlists/"+id+"/edit", data, {headers: {"Content-Type":"application/json"}}).
       then(function(response) {
         if (!response.data.error) {
-          $scope.collection.title = $scope.new_title;
-          $scope.collection.description = $scope.new_description;
-          $scope.collection.genre = $scope.new_genre;
+          if($scope.edit_title) {
+            if($scope.edit_title.length > 0){
+              $scope.collection.title = $scope.edit_title;
+            }
+          }
+          if($scope.edit_description) {
+            if($scope.edit_description.length > 0){
+              $scope.collection.description = $scope.edit_description;
+            }
+          }
+          if($scope.edit_genre){ $scope.collection.genre = $scope.edit_genre; }
+          collections.editPlaylist(id, $scope.edit_title, $scope.edit_description, $scope.edit_genre);
+          $rootScope.playlists = collections.getPlaylists();
           $("#editPlaylistModal").modal("hide");
           return;
         }
@@ -93,6 +104,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function($compile, $s
         if (!response.data.error) {
           collections.removePlaylist(id);
           displayErrorPopup("Playlist was successfully deleted", $scope, $parse, $compile);
+          $rootScope.playlists = collections.getPlaylists();
           $scope.loadBrowse();
           return;
         }
@@ -142,10 +154,23 @@ angular.module("web_spotify").controller("CollectionCtrl", function($compile, $s
   getPlaylists = function() { return playlists; }
   addPlaylist = function(newList) { playlists.push(newList); }
   setPlaylists = function(newLists) { playlists = newLists; }
+
+  editPlaylist = function(id, title, description, genre) {
+    for(var i = 0; i < playlists.length; i++){
+      if(playlists[i].id === id){
+        if(title) { if(title.length > 0){ playlists[i].title = angular.copy(title); }}
+        if(description) { if(description.length > 0) { playlists[i].description = angular.copy(description); }}
+        if(genre) { playlists[i].genre = angular.copy(genre); }
+        return;
+      }
+    }
+  }
+
   removePlaylist = function(id){
     for(var i = 0; i < playlists.length; i++){
       if(playlists[i].id === id){
         playlists.splice(i, 1);
+        return;
       }
     }
    }
@@ -154,6 +179,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function($compile, $s
     getPlaylists : getPlaylists,
     addPlaylist : addPlaylist,
     setPlaylists : setPlaylists,
+    editPlaylist : editPlaylist,
     removePlaylist : removePlaylist
   }
 });
