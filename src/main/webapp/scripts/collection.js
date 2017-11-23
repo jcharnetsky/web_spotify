@@ -73,6 +73,10 @@ angular.module("web_spotify").controller("CollectionCtrl", function($compile, $s
       });
   }
 
+  $scope.addSongToPlaylist = function(songId, playlistId) {
+
+  }
+
 }).service('collections', function() {
   var playlists;
   var albums;

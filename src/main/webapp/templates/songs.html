@@ -32,8 +32,11 @@
           <span ng-model="date_added">date</span>
           <div class="dropdown options_col">
             <div class="options_button" ng-click="toggleDropdown(n)">...</div>
-            <div ng-attr-id="other_dropdown_{{n}}" class="dropdown_content">
+            <div ng-attr-id="other_dropdown_{{n}}" class="dropdown_content" ng-controller="CollectionCtrl">
               <a href="#">Add to Queue</a>
+              <a href="#" ng-repeat="playlist in playlists"><!-- ng-click="addSongToPlaylist(song.id, playlist.id">-->
+                Add to {{playlist.title}}
+              </a>
             </div>
           </div>
         </div>

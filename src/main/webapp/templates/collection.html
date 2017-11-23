@@ -51,7 +51,9 @@
 							<div class="options_button" onclick="toggleDropdown(1)">...</div>
 							<div id="other_dropdown_1" class="dropdown_content" ng-controller="CollectionCtrl">
 								<a href="#">Add to Queue</a>
-                <a href="#" ng-repeat="playlist in playlists" ng-show="playlist.id != collection.id">
+                <a href="#" ng-repeat="playlist in playlists"
+                    ng-show="playlist.id != collection.id"
+                    ng-click="addSongToPlaylist(song.id, playlist.id)">
                   Add to {{playlist.title}}
                 </a>
 							</div>

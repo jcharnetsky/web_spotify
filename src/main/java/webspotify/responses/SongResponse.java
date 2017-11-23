@@ -8,6 +8,7 @@ import webspotify.types.GenreType;
  */
 public class SongResponse {
 
+  private Integer id;
   private String trackName;
   private Integer trackLength;
   private ArtistResponse artist;
@@ -17,6 +18,7 @@ public class SongResponse {
   private Boolean hasAudio;
 
   public SongResponse(Song build) {
+    this.id = build.getId();
     this.trackLength = build.getTrackLength();
     this.trackName = build.getTitle();
     this.artist = new ArtistResponse(build.getOwner());
@@ -24,6 +26,14 @@ public class SongResponse {
     this.albumId = build.getAlbum().getId();
     this.albumName = build.getAlbum().getTitle();
     this.hasAudio = build.getHasAudio();
+  }
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
   }
 
   public String getTrackName() {
