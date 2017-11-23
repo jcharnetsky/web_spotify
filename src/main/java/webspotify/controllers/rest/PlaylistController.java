@@ -72,6 +72,16 @@ public class PlaylistController {
     return playlistService.deletePlaylist(user, playlistId);
   }
 
+  @PostMapping("/{playlistId}/edit")
+  public Response editCollection(@PathVariable final int playlistId,
+                                 @RequestBody PlaylistCreateRequest request, HttpSession session) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
+      return ResponseUtilities.filledFailure("User not logged in");
+    }
+    return playlistService.editPlaylist(user, playlistId, request);
+  }
+
   @GetMapping("/{playlistId}/follow")
   public Response savePlaylistToUser(@PathVariable final int playlistId, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
@@ -97,7 +107,7 @@ public class PlaylistController {
     if (user == null) {
       return ResponseUtilities.filledFailure("User not logged in");
     }
-    return playlistService.createPlaylistCollection(user, request);
+    return playlistService.createPlaylist(user, request);
   }
 
 }

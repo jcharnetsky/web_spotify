@@ -71,7 +71,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function($compile, $s
       "description":$scope.new_description,
       "genre": $scope.new_genre
     })
-    $http.post("/api/playlists/edit/"+id, data, {headers: {"Content-Type":"application/json"}}).
+    $http.post("/api/playlists/"+id+"/edit", data, {headers: {"Content-Type":"application/json"}}).
       then(function(response) {
         if (!response.data.error) {
           $scope.collection.title = $scope.new_title;

@@ -111,7 +111,7 @@ public class PlaylistService {
   }
 
   @Transactional
-  public Response createPlaylistCollection(User user, PlaylistCreateRequest request) {
+  public Response createPlaylist(User user, PlaylistCreateRequest request) {
     Playlist playlistToAdd = new Playlist();
     playlistToAdd.setBanned(false);
     playlistToAdd.setPublic(true);
@@ -127,6 +127,27 @@ public class PlaylistService {
     } catch (Exception e) {
       System.out.println(e);
       return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_CREATE);
+    }
+  }
+
+  @Transactional
+  public Response editPlaylist(User user, int playlistId, PlaylistCreateRequest request) {
+    if(!playlistRepo.exists(playlistId)){
+      return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
+    }
+    try {
+      Playlist toEdit = playlistRepo.findOne(playlistId);
+      if (toEdit.getOwner().getId() != user.getId()){
+        return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
+      }
+      toEdit.setDescription(request.getDescription());
+      toEdit.setTitle(request.getTitle());
+      toEdit.setGenre(request.getGenre());
+      playlistRepo.save(toEdit);
+      return ResponseUtilities.emptySuccess();
+    } catch (Exception e) {
+      System.out.println(e);
+      return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_EDIT);
     }
   }
 

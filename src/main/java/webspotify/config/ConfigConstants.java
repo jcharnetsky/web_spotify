@@ -15,6 +15,7 @@ public class ConfigConstants {
   public static String CONCERT_NO_EXIST = "Concert does not exist.";
   public static String ARTIST_NO_EXIST = "Artist does not exist.";
   public static String COULD_NOT_ADD = "Content could not be added.";
+  public static String COULD_NOT_EDIT = "Content could not be edited";
   public static String COULD_NOT_REM = "Content could not be removed.";
   public static String COULD_NOT_DEL = "Content could not be deleted.";
   public static String REPORT_NO_EXIST = "Report does not exist.";
