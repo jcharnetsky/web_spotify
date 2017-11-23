@@ -17,18 +17,24 @@ public class UserInfoResponse {
   private String name;
   private String email;
   private Date birthday;
+  private String imageLink;
   private Boolean isPremium;
   private Boolean isArtist;
   private Boolean isAdmin;
+  private Integer followerCount;
+  private List<BasicUserInfoResponse> followers;
   private ArtistProfileResponse artist;
   private List<PlaylistInfoResponse> ownedPlaylists;
 
   public UserInfoResponse(User user) {
     this.id = user.getId();
     this.name = user.getName();
+    this.email = user.getEmail();
+    this.birthday = user.getBirthdate();
+    this.imageLink = user.getImage();
     this.isPremium = user.getIsPremium();
-    this.isArtist = user instanceof Artist;
     if (user instanceof Artist) {
+      this.isArtist = true;
       this.artist = new ArtistProfileResponse((Artist) user);
     }
     ownedPlaylists = new ArrayList<PlaylistInfoResponse>();
@@ -36,6 +42,7 @@ public class UserInfoResponse {
       ownedPlaylists.add(new PlaylistInfoResponse(playlist));
     }
     this.isAdmin = false;
+    this.followerCount = user.getFollowerCount();
   }
 
   public Integer getId() {
@@ -116,6 +123,14 @@ public class UserInfoResponse {
 
   public ArtistProfileResponse getArtist() {
     return artist;
+  }
+
+  public Integer getFollowerCount() {
+    return followerCount;
+  }
+
+  public void setFollowerCount(Integer followerCount) {
+    this.followerCount = followerCount;
   }
 
   public void setArtist(ArtistProfileResponse artist) {

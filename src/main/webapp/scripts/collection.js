@@ -79,6 +79,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function($compile, $s
       then(function(response) {
         if (!response.data.error) {
           displayErrorPopup("Song successfully added to playlist", $scope, $parse, $compile);
+          return;
         }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
       }).catch(function(err){
@@ -97,6 +98,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function($compile, $s
             }
           }
           displayErrorPopup("Song successfully removed from playlist", $scope, $parse, $compile);
+          return;
         }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
       }).catch(function(err){

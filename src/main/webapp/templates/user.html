@@ -1,15 +1,17 @@
 <link rel="stylesheet" href="css/collection.css">
-<div class="user">
+<div class="user" ng-controller="UserCtrl">
   <div class="collection_header">
     <img class="collection_img" alt="album_art" src="../images/himanshu.png">
     <div class="collection_data">
       <div id="content_title">{{visitingUser.name}}</div>
       <div>Email: {{visitingUser.email}}</div>
       <div>Birthday: {{visitingUser.birthday}}</div>
-      <div>Follower count: </div>
+      <div>Follower count: {{visitingUser.followerCount}}</div>
       <div>Listeners: / Monthly Listeners: </div>
       <div id="collection_buttons">
-        <a ng-show="visitingUser.id != user.id" class="Follow" href="#">Follow</a>
+        <a ng-show="visitingUser.id != user.id"
+           ng-click="followUser(visitingUser.id)"
+           class="Follow" href="#">Follow</a>
       </div>
     </div>
   </div>

@@ -22,7 +22,7 @@ public class UserInfoController {
   private UserInfoService userInfoService;
 
   @GetMapping("/get/userInfo")
-  public Response getUserName(HttpSession session) {
+  public Response getUserInfo(HttpSession session) {
     User u = SessionUtilities.getUserFromSession(session);
     if (u == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
