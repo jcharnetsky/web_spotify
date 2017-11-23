@@ -25,6 +25,14 @@ angular.module("web_spotify").controller("CollectionCtrl", function($compile, $s
   }
 
   $scope.createPlaylist = function() {
+    if(!$scope.new_title) {
+      displayErrorPopup("You must enter a playlist title", $scope, $parse, $compile);
+      return;
+    }
+    if(!$scope.new_genre) {
+      displayErrorPopup("You must select a Genre", $scope, $parse, $compile);
+      return;
+    }
     data = JSON.stringify({
       "title":$scope.new_title,
       "description":$scope.new_description,

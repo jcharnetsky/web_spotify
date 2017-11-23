@@ -1,7 +1,5 @@
 angular.module('signup_module', []).controller('SignupCtrl', function ($http, $scope, $parse, $compile) {
   $scope.createAccount = function () {
-		console.log($scope.password);
-		console.log($scope.confirm_password);
 		if($scope.password !== $scope.confirm_password) {
 			displayErrorPopup("Passwords do not match.", $scope, $parse, $compile);
 			return;

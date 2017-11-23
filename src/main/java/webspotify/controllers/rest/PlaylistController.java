@@ -92,6 +92,7 @@ public class PlaylistController {
 
   @PostMapping("/create")
   public Response createPlaylist(@RequestBody PlaylistCreateRequest request, HttpSession session) {
+    System.out.println(request.getGenre());
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
       return ResponseUtilities.filledFailure("User not logged in");
