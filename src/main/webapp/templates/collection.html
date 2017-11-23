@@ -16,7 +16,7 @@
 			<div id="spotify_buttons" ng-controller="CollectionCtrl">
 				<a href="#" ng-controller="PlaybarCtrl">Play</a>
 				<a href="#" ng-show="user.id != collection.ownerId">Follow</a>
-        <a href="#" ng-show="user.id == collection.ownerId">Edit</a>
+        <a href="#" ng-show="user.id == collection.ownerId" ng-click="openEditPlaylistDialog()">Edit</a>
         <a href="#" ng-show="user.id == collection.ownerId" ng-click="deletePlaylist(collection.id)">Delete</a>
 			</div>
 		</div>

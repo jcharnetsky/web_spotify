@@ -22,13 +22,21 @@ angular.module("web_spotify").controller("CollectionCtrl", function($compile, $s
     });
   }
 
-  $scope.openPlaylistDialog = function() {
+  $scope.openCreatePlaylistDialog = function() {
     $http.get(location.origin + "/api/songs/genres").then(function(response) {
       handleJSONResponse(response, "modal_dialog", "createPlaylist.html", "genres", $compile, $parse, $scope);
     }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
+
+  $scope.openEditPlaylistDialog = function() {
+      $http.get(location.origin + "/api/songs/genres").then(function(response) {
+        handleJSONResponse(response, "modal_dialog", "editPlaylist.html", "genres", $compile, $parse, $scope);
+      }).catch(function (err) {
+        displayErrorPopup(err, $scope, $parse, $compile);
+      });
+    }
 
   $scope.createPlaylist = function() {
     if(!$scope.new_title) {
@@ -56,6 +64,27 @@ angular.module("web_spotify").controller("CollectionCtrl", function($compile, $s
         displayErrorPopup(err, $scope, $parse, $compile);
       });
   }
+
+  $scope.editPlaylist = function(id) {
+    data = JSON.stringify({
+      "title":$scope.new_title,
+      "description":$scope.new_description,
+      "genre": $scope.new_genre
+    })
+    $http.post("/api/playlists/edit/"+id, data, {headers: {"Content-Type":"application/json"}}).
+      then(function(response) {
+        if (!response.data.error) {
+          $scope.collection.title = $scope.new_title;
+          $scope.collection.description = $scope.new_description;
+          $scope.collection.genre = $scope.new_genre;
+          $("#editPlaylistModal").modal("hide");
+          return;
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function(err){
+        displayErrorPopup(err, $scope, $parse, $compile);
+      });
+    }
 
   $scope.deletePlaylist = function(id) {
     data = JSON.stringify({"playlistId" : id});
