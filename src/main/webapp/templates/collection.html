@@ -31,6 +31,7 @@
 						<a href="#">Title</a>
 						<a href="#">Artist</a>
 						<a href="#">Length</a>
+            <a href="#">Album</a>
 						<span class="options_col"></span>
 					</div>
 				</li>
@@ -48,6 +49,7 @@
 							ng-attr-id="{{song.artist.id}}"
 							ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
 						<span>{{secondsToMinSec(song.trackLength)}}</span>
+            <a href="#" ng-click="loadCollection(song.albumId)" ng-controller="CollectionCtrl">{{song.albumName}}</a>
 						<div class="dropdown options_col">
 							<div class="options_button" ng-click="toggleDropdown(song.id)">...</div>
 							<div ng-attr-id="other_dropdown_{{song.id}}" class="dropdown_content">

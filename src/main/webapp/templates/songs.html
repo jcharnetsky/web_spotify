@@ -26,8 +26,8 @@
           <span class="add_button" ng-model="dynamic_button">+</span>
           <a href="#" ng-dblclick="loadSong(song.id)">{{song.trackName}}</a>
           <a href="#" ng-controller="UserCtrl" ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
-          <span ng-model="collection_duration">{{secondsToMinSec(song.trackLength)}}</span>
-          <span ng-model="collection_album">{{song.albumName}}</span>
+          <span>{{secondsToMinSec(song.trackLength)}}</span>
+          <a href="#" ng-click="loadCollection(song.albumId)" ng-controller="CollectionCtrl">{{song.albumName}}</a>
           <div class="dropdown options_col">
             <div class="options_button" ng-click="toggleDropdown(song.id)">...</div>
             <div ng-attr-id="other_dropdown_{{song.id}}" class="dropdown_content" ng-controller="CollectionCtrl">
