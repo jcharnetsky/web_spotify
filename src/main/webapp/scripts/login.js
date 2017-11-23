@@ -2,8 +2,8 @@ angular.module('login_module', []).controller('LoginCtrl', function ($http, $sco
   $scope.logIn = function () {
     $http.get("/api/users/login", {
       params:{
-      "email":$scope.name,
-       "password":$scope.password}}).
+        "email":$scope.name,
+        "password":$scope.password}}).
     then(function(response) {
       if (!response.data.error) {
         window.location = location.origin + "/home.html"

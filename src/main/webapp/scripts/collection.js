@@ -25,18 +25,19 @@ angular.module("web_spotify").controller("CollectionCtrl", function($compile, $s
   }
 
   $scope.createPlaylist = function() {
-    $http.get("/api/playlists/create", {
-      params:{
-        "title":$scope.new_title,
-        "description":$scope.new_description,
-        "genre": $scope.new_genre }}).
-    then(function(response) {
-      if (!response.data.error) {
-
-      }
-      displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
-    }).catch(function(err){
-      displayErrorPopup(err, $scope, $parse, $compile);
-    });
+    data = JSON.stringify({
+      "title":$scope.new_title,
+      "description":$scope.new_description,
+      "genre": $scope.new_genre
+    })
+    $http.post("/api/playlists/create", data, {headers: {'Content-Type':'application/json'}}).
+      then(function(response) {
+        if (!response.data.error) {
+          $scope.getPlaylists();
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function(err){
+        displayErrorPopup(err, $scope, $parse, $compile);
+      });
   }
 });
