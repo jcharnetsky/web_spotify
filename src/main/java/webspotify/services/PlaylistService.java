@@ -123,7 +123,7 @@ public class PlaylistService {
     try {
       playlistRepo.save(playlistToAdd);
       user.getOwnedPlaylists().add(playlistToAdd);
-      return ResponseUtilities.emptySuccess();
+      return ResponseUtilities.filledSuccess(new PlaylistInfoResponse(playlistToAdd));
     } catch (Exception e) {
       System.out.println(e);
       return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_CREATE);

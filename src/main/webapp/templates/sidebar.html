@@ -1,7 +1,7 @@
 <link href="css/sidebar.css" rel="stylesheet"/>
-<div id="sidebar">
+<div id="sidebar" ng-controller="MainCtrl">
   <ul class="sidebar_list">
-    <li id="active">
+    <li>
       <a href="#" ng-click="loadTemplateAndJSON('main', 'navigateContent.html', 'null')">Browse</a>
     </li>
   </ul>
@@ -15,7 +15,7 @@
   </ul>
   <ul class="sidebar_list playlists" ng-controller="CollectionCtrl">
     <li><strong>PLAYLISTS</strong></li>
-    <li id="playlists" ng-repeat="list in _api_playlists_" >
+    <li id="playlists" ng-repeat="list in playlists" >
       <a href="#" ng-click="loadCollection(list.id)" >
         {{list.title}}
       </a>
@@ -34,8 +34,6 @@
      resizermin="5">
 </div>
 <script>
-		scope = angular.element($('.playlists')).scope();
-		scope.compile($('.playlists'));
-		scope = angular.element($('.playlists')).scope();
-		scope.getPlaylists();
+  angular.element($('.playlists')).scope().compile($('.playlists'));
+  angular.element($('.playlists')).scope().getPlaylists();
 </script>

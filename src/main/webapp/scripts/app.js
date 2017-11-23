@@ -1,5 +1,4 @@
 angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function($compile, $scope, $location, $http, $parse){
-
   $scope.loadTemplateAndJSON = function (div, URL, controllerPath) {
     if(!(controllerPath === 'null')){
       $http.get(location.origin + "/" + controllerPath).then(function(response) {

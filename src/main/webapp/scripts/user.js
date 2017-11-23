@@ -7,6 +7,7 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   };
+
   $scope.toggleDropdown = function (num) {
     document.getElementById("other_dropdown_" + num).classList.toggle("show");
   };

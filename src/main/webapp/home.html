@@ -16,13 +16,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 </head>
 <body ng-controller="MainCtrl">
-	<div ng-include="'templates/searchbar.html'"></div>
-	<div ng-include="'templates/sidebar.html'"></div>
+	<ng-include src="'templates/searchbar.html'"></ng-include>
+	<ng-include src="'templates/sidebar.html'"></ng-include>
 	<div id="main" ng-view>
-		<div ng-include="'templates/navigateContent.html'"></div>
+		<ng-include src="'templates/navigateContent.html'"></ng-include>
 	</div>
-	<div ng-include="'templates/friend.html'"></div>
-	<div ng-include="'templates/playbar.html'"></div>
+	<ng-include src="'templates/friend.html'"></ng-include>
+	<ng-include src="'templates/playbar.html'"></ng-include>
 	<div id="error_dialog"></div>
   <div id="modal_dialog"></div>
 </body>
