@@ -42,7 +42,7 @@
 .content_header li {
 		display: inline-block;
 }
-#content_title {
+.content_title {
 		font-size: 110%;
 		font-weight: 600;
 		color: #ffffff;
