@@ -22,6 +22,10 @@ public class SongQueue implements Serializable {
     currentQueue.add(s);
   }
 
+  public boolean removeSong(Song s) {
+    return currentQueue.remove(s);
+  }
+
   public void playNow(Song s) {
     LinkedList<Song> currentLinkedList = (LinkedList) currentQueue;
     currentLinkedList.add(0, s);

@@ -38,10 +38,14 @@ public class QueueController {
     return queueService.addSongToQueue(queue, songId);
   }
 
-  //@PostMapping("/rem/song/{songId}")
-  //public Response removeSongFromQueue(@PathVariable final int songId, HttpSession session){
-  //  return
-  //}
+  @PostMapping("/rem/song/{songId}")
+  public Response removeSongFromQueue(@PathVariable final int songId, HttpSession session){
+    if (SessionUtilities.getUserFromSession(session) == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    }
+    SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
+    return queueService.removeSongFromQueue(queue, songId);
+  }
 
   @GetMapping("/add/playlist/{playlistId}")
   public Response addPlaylistToQueue(@PathVariable final int playlistId, HttpSession session) {

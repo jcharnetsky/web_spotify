@@ -10,6 +10,7 @@ public class ConfigConstants {
   public static String USER_ALREADY_LOGGED = "User is already logged in.";
   public static String USER_NOT_LOGGED = "User is not logged in.";
   public static String QUEUE_SESSION = "Queue";
+  public static String NOT_IN_QUEUE = "The song is not in the queue.";
   public static String USER_SESSION = "User";
   public static String CONCERT_NO_EXIST = "Concert does not exist.";
   public static String ARTIST_NO_EXIST = "Artist does not exist.";
