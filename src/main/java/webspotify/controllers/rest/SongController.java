@@ -48,7 +48,7 @@ public class SongController {
     return songService.remSavedSong(user, songId);
   }
 
-  @GetMapping("/songNo/{songId}")
+  @GetMapping("/get/{songId}")
   public Response getSong(@PathVariable final int songId, HttpSession session) {
     if (SessionUtilities.getUserFromSession(session) == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
