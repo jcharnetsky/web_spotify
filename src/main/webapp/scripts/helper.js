@@ -1,14 +1,15 @@
 // Clears out div, then loads in the template HTML at URL into div
 function loadToDiv(div, URL) {
   node = document.getElementById(div);
-  if(node == null) return;
+  if(node == null)
+    return;
   while(node.firstChild){
     node.removeChild(node.firstChild);
   }
   if(!(URL === 'null')){
-     var tag = document.createElement('div');
-     tag.setAttribute("ng-include", "'templates/" + URL + "'");
-     node.appendChild(tag);
+    var tag = document.createElement('div');
+    tag.setAttribute("ng-include", "'templates/" + URL + "'");
+    node.appendChild(tag);
   }
   return node;
 }

@@ -1,27 +1,28 @@
 <link href="css/sidebar.css" rel="stylesheet"/>
-
-<div id="sidebar">
+<div id="sidebar" ng-controller="MainCtrl">
   <ul class="sidebar_list">
-    <li id="active">
+    <li>
       <a href="#" ng-click="loadTemplateAndJSON('main', 'navigateContent.html', 'null')">Browse</a>
     </li>
   </ul>
   <ul class="sidebar_list">
     <li><strong>YOUR LIBRARY</strong></li>
-    <li><a id="songs" href="#" ng-click="loadTemplateAndJSON('main', 'songs.html', 'api/home/new_releases')">Songs</a></li>
+    <li>
+      <a id="songs" href="#" ng-click="loadTemplateAndJSON('main', 'songs.html', 'api/home/new_releases')">Songs</a>
+    </li>
     <li><a href="#">Albums</a></li>
     <li><a href="#">Artists</a></li>
   </ul>
-  <ul class="sidebar_list playlists" ng-app="sidebar_app">
+  <ul class="sidebar_list playlists" ng-controller="CollectionCtrl">
     <li><strong>PLAYLISTS</strong></li>
-    <li id="playlists" ng-repeat="list in api_playlists_">
-      <a href="#" ng-controller="LoadCollectionCtrl" ng-click="loadCollection(list.id)">
+    <li id="playlists" ng-repeat="list in playlists" >
+      <a href="#" ng-click="loadCollection(list.id)" >
         {{list.title}}
       </a>
     </li>
   </ul>
-  <ul class="sidebar_list">
-    <li><a href="#"><u>New playlist</u></a></li>
+  <ul class="sidebar_list" ng-controller="CollectionCtrl">
+    <li><a href="#" ng-click="openPlaylistDialog()"><u>New Playlist</u></a></li>
   </ul>
 </div>
 <div id="sidebar-resizer"
@@ -33,6 +34,6 @@
      resizermin="5">
 </div>
 <script>
-  scope = angular.element(document.getElementById('playlists')).scope();
-  scope.loadTemplateAndJSON('playlists', 'null', 'api/playlists/');
+  angular.element($('.playlists')).scope().compile($('.playlists'));
+  angular.element($('.playlists')).scope().getPlaylists();
 </script>

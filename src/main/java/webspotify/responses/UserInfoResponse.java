@@ -6,6 +6,8 @@ import webspotify.models.media.Playlist;
 import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 
+import java.util.Date;
+
 /**
  * @author Cardinals
  */
@@ -13,6 +15,8 @@ public class UserInfoResponse {
 
   private Integer id;
   private String name;
+  private String email;
+  private Date birthday;
   private Boolean isPremium;
   private Boolean isArtist;
   private Boolean isAdmin;
@@ -50,8 +54,44 @@ public class UserInfoResponse {
     this.name = name;
   }
 
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public Date getBirthday() {
+    return birthday;
+  }
+
+  public void setBirthday(Date birthday) {
+    this.birthday = birthday;
+  }
+
   public Boolean getIsPremium() {
     return isPremium;
+  }
+
+  public Boolean getPremium() {
+    return isPremium;
+  }
+
+  public void setPremium(Boolean premium) {
+    isPremium = premium;
+  }
+
+  public void setArtist(Boolean artist) {
+    isArtist = artist;
+  }
+
+  public Boolean getAdmin() {
+    return isAdmin;
+  }
+
+  public void setAdmin(Boolean admin) {
+    isAdmin = admin;
   }
 
   public void setIsPremium(Boolean isPremium) {

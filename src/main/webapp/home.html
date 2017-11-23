@@ -9,25 +9,27 @@
   <link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
   <script src="http://getbootstrap.com/dist/js/bootstrap.js"></script>
+
   <link href="css/home.css" rel="stylesheet"/>
   <link href="css/style.css" rel="stylesheet"/>
 
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-  <script src="scripts/helper.js"></script>
-  <script src="scripts/app.js"></script>
-  <script src="scripts/resizer.js"></script>
-  <script src="scripts/playbar.js"></script>
-  <script src="scripts/collection.js"></script>
-  <script src="scripts/user.js"></script>
 </head>
 <body ng-controller="MainCtrl">
-<div ng-include="'templates/searchbar.html'"></div>
-<div ng-include="'templates/sidebar.html'"></div>
-<div id="main" ng-view>
-  <div ng-include="'templates/navigateContent.html'"></div>
-</div>
-<div ng-include="'templates/friend.html'"></div>
-<div ng-include="'templates/playbar.html'"></div>
-<div id="error_dialog"></div>
+	<ng-include src="'templates/searchbar.html'"></ng-include>
+	<ng-include src="'templates/sidebar.html'"></ng-include>
+	<div id="main" ng-view>
+		<ng-include src="'templates/navigateContent.html'"></ng-include>
+	</div>
+	<ng-include src="'templates/friend.html'"></ng-include>
+	<ng-include src="'templates/playbar.html'"></ng-include>
+	<div id="error_dialog"></div>
+  <div id="modal_dialog"></div>
 </body>
+<script src="scripts/helper.js"></script>
+<script src="scripts/app.js"></script>
+<script src="scripts/resizer.js"></script>
+<script src="scripts/playbar.js"></script>
+<script src="scripts/collection.js"></script>
+<script src="scripts/user.js"></script>
 </html>

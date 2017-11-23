@@ -1,0 +1,16 @@
+.modal-content {
+  background-color: #181818;
+  border: 1px solid #979797;
+}
+
+.modal-body form input {
+  width: 80%;
+}
+
+.modal-body form label {
+  margin-right: 30px;
+}
+
+.modal-dialog {
+  top: 25%;
+}

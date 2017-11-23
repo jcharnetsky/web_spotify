@@ -13,7 +13,6 @@ public class PlaylistCreateRequest {
   private String title;
 
   public PlaylistCreateRequest() {
-
   }
 
   public String getDescription() {

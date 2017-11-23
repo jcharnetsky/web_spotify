@@ -16,17 +16,14 @@
 .options_button:hover, .options_button:focus {
   background-color: #181818;
 }
-
 .dropdown {
   display: table-cell;
   text-align: center;
 }
-
 .options_col {
   width: 50px;
   vertical-align: middle;
 }
-
 .dropdown_content {
   display: none;
   position: absolute;
@@ -36,7 +33,6 @@
   width: auto;
   z-index: 1;
 }
-
 .dropdown_content a {
   color: #979797;
   background-color: #181818;
@@ -48,13 +44,11 @@
   min-width: 150px;
   border: 1px solid white;
 }
-
 .dropdown_content a:hover {
   text-decoration: none;
   background-color: #979797;
   color: #181818;
 }
-
 .show {
   display:block;
- }
+}

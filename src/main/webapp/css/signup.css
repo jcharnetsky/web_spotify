@@ -7,14 +7,14 @@
   background-color: #282828;
 }
 input {
-	border-width: 1px;
-	border-radius: 3px;
-	color: #ffffff;
-	background-color: #282828;
-	width: 100%;
+		border-width: 1px;
+		border-radius: 3px;
+		color: #ffffff;
+		background-color: #282828;
+		width: 100%;
 }
 .logo {
-	width: 10vw;
+		width: 10vw;
   height: 10vw;
   display: block;
   margin: auto;

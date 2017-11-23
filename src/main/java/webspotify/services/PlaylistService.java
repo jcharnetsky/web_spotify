@@ -123,7 +123,7 @@ public class PlaylistService {
     try {
       playlistRepo.save(playlistToAdd);
       user.getOwnedPlaylists().add(playlistToAdd);
-      return ResponseUtilities.emptySuccess();
+      return ResponseUtilities.filledSuccess(new PlaylistInfoResponse(playlistToAdd));
     } catch (Exception e) {
       System.out.println(e);
       return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_CREATE);
@@ -135,7 +135,7 @@ public class PlaylistService {
     if (playlistRepo.exists(playlistId)) {
       Playlist playlist = playlistRepo.findOne(playlistId);
       if (playlist.getOwner().equals(user)) {
-        playlist.getOwner().getOwnedPlaylists().remove(playlist);
+        user.getOwnedPlaylists().remove(playlist);
         playlistRepo.delete(playlist);
         return ResponseUtilities.emptySuccess();
       } else {

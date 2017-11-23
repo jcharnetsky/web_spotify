@@ -63,7 +63,7 @@ public class PlaylistController {
     return playlistService.removeSongFromPlaylist(user, playlistId, songId);
   }
 
-  @GetMapping("/{playlistId}/delete")
+  @PostMapping("/{playlistId}/delete")
   public Response deleteCollection(@PathVariable final int playlistId, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
@@ -92,6 +92,7 @@ public class PlaylistController {
 
   @PostMapping("/create")
   public Response createPlaylist(@RequestBody PlaylistCreateRequest request, HttpSession session) {
+    System.out.println(request.getGenre());
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
       return ResponseUtilities.filledFailure("User not logged in");
