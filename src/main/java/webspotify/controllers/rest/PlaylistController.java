@@ -45,7 +45,7 @@ public class PlaylistController {
     return playlistService.getInfoAboutPlaylist(user, playlistId);
   }
 
-  @GetMapping("/{playlistId}/add/song/{songId}")
+  @PostMapping("/{playlistId}/add/song/{songId}")
   public Response addSongToPlaylist(@PathVariable final int playlistId, @PathVariable final int songId, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
@@ -54,7 +54,7 @@ public class PlaylistController {
     return playlistService.addSongToPlaylist(user, playlistId, songId);
   }
 
-  @GetMapping("/{playlistId}/rem/song/{songId}")
+  @PostMapping("/{playlistId}/rem/song/{songId}")
   public Response remSongFromPlaylist(@PathVariable final int playlistId, @PathVariable final int songId, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {

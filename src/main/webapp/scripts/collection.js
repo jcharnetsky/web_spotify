@@ -74,7 +74,34 @@ angular.module("web_spotify").controller("CollectionCtrl", function($compile, $s
   }
 
   $scope.addSongToPlaylist = function(songId, playlistId) {
+    data = JSON.stringify({"playlistId": playlistId, "songId": songId});
+    $http.post("/api/playlists/"+playlistId+"/add/song/"+songId, data, {headers: {"Content-Type":"application/json"}}).
+      then(function(response) {
+        if (!response.data.error) {
+          displayErrorPopup("Song successfully added to playlist", $scope, $parse, $compile);
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function(err){
+        displayErrorPopup(err, $scope, $parse, $compile);
+      });
+  }
 
+  $scope.removeSongFromPlaylist = function(songId, playlistId) {
+    data = JSON.stringify({"playlistId": playlistId, "songId": songId});
+    $http.post("/api/playlists/"+playlistId+"/rem/song/"+songId, data, {headers: {"Content-Type":"application/json"}}).
+      then(function(response) {
+        if (!response.data.error) {
+          for(var i = 0; i < $scope.collection.songs.length; i++){
+            if($scope.collection.songs[i].id === songId){
+              $scope.collection.songs.splice(i,1);
+            }
+          }
+          displayErrorPopup("Song successfully removed from playlist", $scope, $parse, $compile);
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function(err){
+        displayErrorPopup(err, $scope, $parse, $compile);
+      });
   }
 
 }).service('collections', function() {
