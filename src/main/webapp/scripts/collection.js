@@ -7,6 +7,10 @@ angular.module("web_spotify").controller("CollectionCtrl", function($compile, $s
     });
   }
 
+  $scope.loadBrowse = function() {
+    $compile(loadToDiv("main", "navigateContent.html"))($scope);
+  }
+
   $scope.getPlaylists = function() {
     controllerPath = "/api/playlists/";
     $http.get(location.origin + controllerPath).then(function(response) {
@@ -60,6 +64,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function($compile, $s
         if (!response.data.error) {
           collections.removePlaylist(id);
           displayErrorPopup("Playlist was successfully deleted", $scope, $parse, $compile);
+          $scope.loadBrowse();
           return;
         }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
