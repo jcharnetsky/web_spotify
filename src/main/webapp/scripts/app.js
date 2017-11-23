@@ -23,6 +23,10 @@ angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function($c
     });
   }
 
+  $scope.compile = function(domNode){
+    $compile(domNode)($scope);
+  }
+
   $scope.loadUserInfo = function() {
     $http.get(location.origin + "/api/users/info/get/userInfo").then(function(response) {
         if(!response.data.error){

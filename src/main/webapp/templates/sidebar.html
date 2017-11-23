@@ -13,10 +13,10 @@
     <li><a href="#">Albums</a></li>
     <li><a href="#">Artists</a></li>
   </ul>
-  <ul class="sidebar_list playlists">
+  <ul class="sidebar_list playlists" ng-controller="CollectionCtrl">
     <li><strong>PLAYLISTS</strong></li>
-    <li id="playlists" ng-repeat="list in api_playlists_">
-      <a href="#" ng-controller="CollectionCtrl" ng-click="loadCollection(list.id)">
+    <li id="playlists" ng-repeat="list in _api_playlists_" >
+      <a href="#" ng-click="loadCollection(list.id)" >
         {{list.title}}
       </a>
     </li>
@@ -34,6 +34,8 @@
      resizermin="5">
 </div>
 <script>
-		scope = angular.element(document.getElementById('playlists')).scope();
-		scope.loadTemplateAndJSON('playlists', 'null', 'api/playlists/');
+		scope = angular.element($('.playlists')).scope();
+		scope.compile($('.playlists'));
+		scope = angular.element($('.playlists')).scope();
+		scope.getPlaylists();
 </script>
