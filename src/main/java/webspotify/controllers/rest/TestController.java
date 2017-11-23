@@ -1,7 +1,19 @@
 package webspotify.controllers.rest;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Scanner;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.web.bind.annotation.*;
 import webspotify.models.media.Album;
 import webspotify.models.media.Concert;
@@ -9,6 +21,7 @@ import webspotify.models.media.Playlist;
 import webspotify.models.media.Song;
 import webspotify.models.users.Artist;
 import webspotify.models.users.User;
+import webspotify.repo.AlbumRepository;
 import webspotify.repo.ArtistRepository;
 import webspotify.repo.ConcertRepository;
 import webspotify.repo.SongCollectionRepository;
@@ -33,6 +46,85 @@ public class TestController {
   private SongRepository songRepo;
   @Autowired
   private SongCollectionRepository collectionRepo;
+  @Autowired
+  private AlbumRepository albumRepo;
+  @Autowired
+  private ResourceLoader resourceLoader;
+
+  @GetMapping("/loadData")
+  public String loadData() throws IOException, ParseException {
+    Resource resource = resourceLoader.getResource("url:http://localhost:8080/scripts/result.json");
+    InputStream inputStream = resource.getInputStream();
+    String jsonTxt = new Scanner(inputStream).useDelimiter("\\A").next();
+
+    JSONObject obj = new JSONObject(jsonTxt);
+    //First get artists
+    JSONArray artists = obj.getJSONArray("artists");
+    JSONArray albums = obj.getJSONArray("albums");
+    JSONArray songs = obj.getJSONArray("songs");
+
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+
+    for (int i = 0; i < artists.length(); i++) {
+      Artist artist = new Artist();
+      JSONObject artistJson = artists.getJSONObject(i);
+
+      artist.setId(artistJson.getInt("id"));
+      artist.setAbout("");
+      artist.setAddress(artistJson.getString("address"));
+      artist.setBanned(false);
+      artist.setPublic(true);
+      artist.setBirthdate(dateFormat.parse(artistJson.getString("birthday")));
+      artist.setIsPremium(true);
+      artist.setName(artistJson.getString("name"));
+      artist.setStageName(artist.getName());
+      artist.setEmail(artist.getName() + "@yahoo.com");
+      artist.setPassword("");
+      artist.setPasswordSalt("");
+      List<String> aliases = new ArrayList<String>();
+      JSONArray aliasesInJson = artistJson.getJSONArray("aliases");
+      for (int j = 0; j < aliasesInJson.length(); j++) {
+        aliases.add(aliasesInJson.getString(j));
+      }
+      artist.setAliases(aliases);
+      artist.setImage("");
+      userRepo.save(artist);
+    }
+
+    for (int i = 0; i < albums.length(); i++) {
+      JSONObject albumObject = albums.getJSONObject(i);
+      Album album = new Album();
+      album.setBanned(false);
+      album.setPublic(true);
+      album.setGenre(GenreType.POP);
+      album.setTitle(albumObject.getString("title"));
+      Artist artist = artistRepo.findOne(albumObject.getInt("artistId"));
+      album.setOwner(artist);
+      collectionRepo.save(album);
+    }
+
+    for (int i = 0; i < songs.length(); i++) {
+      JSONObject songObject = songs.getJSONObject(i);
+      Song song = new Song();
+      
+      Album album = albumRepo.findOne(songObject.getInt("albumId"));
+      Artist artist = artistRepo.findOne(songObject.getInt("artistId"));
+
+      song.setAlbum(album);
+      song.setOwner(artist);
+      song.setBanned(false);
+      song.setPublic(true);
+      song.setGenre(GenreType.POP);
+      song.setHasAudio(false);
+      song.setTitle(songObject.getString("title"));
+      song.setAlbum(album);
+      song.setTrackLength(songObject.getInt("length"));
+      
+      songRepo.save(song);
+    }
+
+    return jsonTxt;
+  }
 
   @GetMapping("/")
   public String runTest() {
