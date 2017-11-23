@@ -81,7 +81,7 @@ def pollSongInformation(artistToken, albumToken, artistId, albumId, tags, starti
 			songResponse["albumId"] = albumId
 			songResponse["title"] = songJson["title"]
 			songResponse["genre"] = tags
-			songResponse["length"] = songJson["length"]
+			songResponse["length"] = songJson["length"]/1000
 
 			songsToReturn.append(songResponse)
 			startingId += 1
@@ -92,9 +92,9 @@ def pollSongInformation(artistToken, albumToken, artistId, albumId, tags, starti
 def main (filename):
 	artistTokens = loadJson(filename)
 
-	artistId = generateStartingId()
-	albumId  = generateStartingId()
-	songId   = generateStartingId()
+	artistId = 357
+	albumId  = 942
+	songId   = 4
 
 	artists = []
 	albums  = []
