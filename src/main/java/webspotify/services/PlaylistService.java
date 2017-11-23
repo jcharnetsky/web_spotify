@@ -135,7 +135,7 @@ public class PlaylistService {
     if (playlistRepo.exists(playlistId)) {
       Playlist playlist = playlistRepo.findOne(playlistId);
       if (playlist.getOwner().equals(user)) {
-        playlist.getOwner().getOwnedPlaylists().remove(playlist);
+        user.getOwnedPlaylists().remove(playlist);
         playlistRepo.delete(playlist);
         return ResponseUtilities.emptySuccess();
       } else {

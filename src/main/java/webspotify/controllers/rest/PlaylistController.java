@@ -63,7 +63,7 @@ public class PlaylistController {
     return playlistService.removeSongFromPlaylist(user, playlistId, songId);
   }
 
-  @GetMapping("/{playlistId}/delete")
+  @PostMapping("/{playlistId}/delete")
   public Response deleteCollection(@PathVariable final int playlistId, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {

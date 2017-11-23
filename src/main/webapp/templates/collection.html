@@ -1,6 +1,6 @@
 <link href="css/collection.css" rel="stylesheet"/>
 <link href="css/button.css" rel="stylesheet"/>
-<div class="collection" ng-controller="CollectionCtrl">
+<div class="collection">
 	<div class="collection_header">
 		<img class="collection_img" alt="album_art" src="../images/rhiannon-giddens-tomorrow-is-my-turn.jpg">
 		<div class="collection_data">
@@ -13,9 +13,10 @@
 			</div>
 			<div> Followers: {{collection.followerCount}} </div>
 			<div> {{collection.description}}</div>
-			<div id="spotify_buttons">
+			<div id="spotify_buttons" ng-controller="CollectionCtrl">
 				<a href="#" ng-controller="PlaybarCtrl">Play</a>
-				<a class="Follow" href="#">Follow</a>
+				<a href="#" ng-show="user.id != collection.ownerId">Follow</a>
+        <a href="#" ng-show="user.id == collection.ownerId" ng-click="deletePlaylist(collection.id)">Delete</a>
 			</div>
 		</div>
 	</div>

@@ -1,5 +1,5 @@
 angular.module("web_spotify").controller("CollectionCtrl", function($compile, $scope, $http, $parse, collections){
-  $scope.loadCollection = function (id) {
+  $scope.loadCollection = function(id) {
     $http.get(location.origin + "/api/playlists/" + id + "/get/info").then(function(response) {
       handleJSONResponse(response, "main", "collection.html", "collection", $compile, $parse, $scope);
     }).catch(function (err) {
@@ -7,7 +7,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function($compile, $s
     });
   }
 
-  $scope.getPlaylists = function () {
+  $scope.getPlaylists = function() {
     controllerPath = "/api/playlists/";
     $http.get(location.origin + controllerPath).then(function(response) {
       handleJSONResponse(response, "playlists", "null", "playlists", $compile, $parse, $scope);
@@ -52,6 +52,22 @@ angular.module("web_spotify").controller("CollectionCtrl", function($compile, $s
         displayErrorPopup(err, $scope, $parse, $compile);
       });
   }
+
+  $scope.deletePlaylist = function(id) {
+    data = JSON.stringify({"playlistId" : id});
+    $http.post("/api/playlists/"+id+"/delete", data, {headers: {"Content-Type":"application/json"}}).
+      then(function(response) {
+        if (!response.data.error) {
+          collections.removePlaylist(id);
+          displayErrorPopup("Playlist was successfully deleted", $scope, $parse, $compile);
+          return;
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function(err){
+        displayErrorPopup(err, $scope, $parse, $compile);
+      });
+  }
+
 }).service('collections', function() {
   var playlists;
   var albums;
@@ -59,10 +75,18 @@ angular.module("web_spotify").controller("CollectionCtrl", function($compile, $s
   getPlaylists = function() { return playlists; }
   addPlaylist = function(newList) { playlists.push(newList); }
   setPlaylists = function(newLists) { playlists = newLists; }
+  removePlaylist = function(id){
+    for(var i = 0; i < playlists.length; i++){
+      if(playlists[i].id === id){
+        playlists.splice(i, 1);
+      }
+    }
+   }
 
   return {
     getPlaylists : getPlaylists,
     addPlaylist : addPlaylist,
-    setPlaylists : setPlaylists
+    setPlaylists : setPlaylists,
+    removePlaylist : removePlaylist
   }
 });
