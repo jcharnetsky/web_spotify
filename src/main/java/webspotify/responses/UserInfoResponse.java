@@ -121,6 +121,22 @@ public class UserInfoResponse {
     this.isAdmin = isAdmin;
   }
 
+  public String getImageLink() {
+    return imageLink;
+  }
+
+  public void setImageLink(String imageLink) {
+    this.imageLink = imageLink;
+  }
+
+  public List<BasicUserInfoResponse> getFollowers() {
+    return followers;
+  }
+
+  public void setFollowers(List<BasicUserInfoResponse> followers) {
+    this.followers = followers;
+  }
+
   public ArtistProfileResponse getArtist() {
     return artist;
   }

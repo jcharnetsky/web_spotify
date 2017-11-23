@@ -81,6 +81,7 @@ public class User implements Viewable, Serializable {
     this.savedAlbums = new HashSet<Album>();
     this.savedSongs = new HashSet<Song>();
     this.following = new HashSet<User>();
+    this.image = "";
     this.followerCount = 0;
   }
 
@@ -166,6 +167,9 @@ public class User implements Viewable, Serializable {
   }
 
   public String getImage() {
+    if(image.equals("")){
+      return "../images/users/logo.png";
+    }
     return image;
   }
 
