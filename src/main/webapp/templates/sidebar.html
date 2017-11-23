@@ -15,7 +15,7 @@
   </ul>
   <ul class="sidebar_list playlists" ng-controller="CollectionCtrl">
     <li><strong>PLAYLISTS</strong></li>
-    <li id="playlists" ng-repeat="list in $root.playlists" >
+    <li id="playlists" ng-repeat="list in playlists" >
       <a href="#" ng-click="loadCollection(list.id)">{{list.title}}</a>
     </li>
   </ul>

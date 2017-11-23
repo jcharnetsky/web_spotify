@@ -1,4 +1,4 @@
-angular.module("web_spotify").controller("CollectionCtrl", function($compile, $rootScope, $scope, $http, $parse, collections){
+angular.module("web_spotify").controller("CollectionCtrl", function($compile, $scope, $http, $parse, collections){
   $scope.loadCollection = function(id) {
     $http.get(location.origin + "/api/playlists/" + id + "/get/info").then(function(response) {
       handleJSONResponse(response, "main", "collection.html", "collection", $compile, $parse, $scope);
@@ -16,7 +16,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function($compile, $r
     $http.get(location.origin + controllerPath).then(function(response) {
       handleJSONResponse(response, "playlists", "null", "playlists", $compile, $parse, $scope);
       collections.setPlaylists(angular.copy($scope.playlists));
-      $rootScope.playlists = collections.getPlaylists();
+      $scope.playlists = collections.getPlaylists();
     }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });
@@ -56,7 +56,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function($compile, $r
       then(function(response) {
         if (!response.data.error) {
           collections.addPlaylist(response.data.content);
-          $rootScope.playlists = collections.getPlaylists();
+          $scope.playlists = collections.getPlaylists();
           $("#createPlaylistModal").modal("hide");
           return;
         }
@@ -87,7 +87,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function($compile, $r
           }
           if($scope.edit_genre){ $scope.collection.genre = $scope.edit_genre; }
           collections.editPlaylist(id, $scope.edit_title, $scope.edit_description, $scope.edit_genre);
-          $rootScope.playlists = collections.getPlaylists();
+          $scope.playlists = collections.getPlaylists();
           $("#editPlaylistModal").modal("hide");
           return;
         }
@@ -104,7 +104,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function($compile, $r
         if (!response.data.error) {
           collections.removePlaylist(id);
           displayErrorPopup("Playlist was successfully deleted", $scope, $parse, $compile);
-          $rootScope.playlists = collections.getPlaylists();
+          $scope.playlists = collections.getPlaylists();
           $scope.loadBrowse();
           return;
         }
