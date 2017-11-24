@@ -18,23 +18,27 @@
       </li>
     </ul>
   </li>
-  <li ng-repeat="n in [1, 2, 3, 4, 5, 6, 7]">
+  <li ng-repeat="song in songs">
     <ul class="collection_tiles">
       <li>
-        <hr class="collection_hr">
         <div class="collection_tile highlight_on_hover">
           <span class="play_button_spacer"><img class="play_button" src="../images/play.png" alt="Play"></span>
-          <span class="add_button" ng-model="dynamic_button">+</span>
-          <a href="#" ng-attr-id="n" ng-dblclick="loadSong(n)">collection</a>
-          <a href="#" ng-controller="UserCtrl" ng-click="loadUser(1)">artist</a>
-          <span ng-model="collection_duration">0:00</span>
-          <span ng-model="collection_album">album</span>
-          <span ng-model="date_added">date</span>
+          <a href="#" ng-controller="CollectionCtrl" ng-attr-id="n" ng-click="deleteSong(song.id)" class="add_button underline_on_hover" ng-model="dynamic_button">-</a>
+          <a href="#" ng-attr-id="1" ng-dblclick="loadSong(1)" class="underline_on_hover">{{song.trackName}}</a>
+          <a href="#" ng-controller="UserCtrl"
+             ng-attr-id="{{song.artist.id}}"
+             ng-click="loadUser(song.artist.id)"
+             class="underline_on_hover">{{song.artist.stageName}}</a>
+          <span>{{secondsToMinSec(song.trackLength)}}</span>
+          <a href="#" ng-attr-id="1" class="underline_on_hover">{{song.albumName}}</a>
+          <span href="#" ng-attr-id="1">date</span>
           <div class="dropdown options_col">
-            <div class="options_button" ng-click="toggleDropdown(n)">...</div>
-            <div ng-attr-id="other_dropdown_{{n}}" class="dropdown_content" ng-controller="CollectionCtrl">
-              <a href="#">Add to Queue</a>
-              <a href="#" ng-repeat="playlist in playlists"><!-- ng-click="addSongToPlaylist(song.id, playlist.id">-->
+            <div class="options_button" ng-click="toggleDropdown(song.id)">...</div>
+            <div ng-attr-id="other_dropdown_{{song.id}}" class="dropdown_content">
+              <a href="#" ng-click="addSongToQueue(song.id)">Add to Queue</a>
+              <a href="#" ng-repeat="playlist in playlists"
+                 ng-show="playlist.id != collection.id"
+                 ng-click="addSongToPlaylist(song.id, playlist.id)">
                 Add to {{playlist.title}}
               </a>
             </div>

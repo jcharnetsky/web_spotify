@@ -24,9 +24,10 @@
           <div class="collection_tile highlight_on_hover">
             <span class="play_button_spacer"><img class="play_button" src="../images/play.png" alt="Play"></span>
             <span class="add_button" ng-model="dynamic_button">+</span>
-            <a href="#" ng-dblclick="loadSong(song.id)">{{song.trackName}}</a>
+            <a href="#" ng-dblclick="loadSong(song.id)" class="underline_on_hover">{{song.trackName}}</a>
             <a href="#"ng-controller="UserCtrl"
-               ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
+               ng-click="loadUser(song.artist.id)"
+               class="underline_on_hover">{{song.artist.stageName}}</a>
             <a>{{secondsToMinSec(song.trackLength)}}</a>
             <div class="dropdown options_col">
               <div class="options_button" ng-click="toggleDropdown($index)">...</div>
@@ -57,10 +58,12 @@
                 <a href="#">Add to Queue</a>
               </div>
             </div>
-            <a href="#" ng-dblclick="loadSong(song.id)">{{song.trackName}}</a>
+            <a href="#" ng-dblclick="loadSong(song.id)"
+              class="underline_on_hover">{{song.trackName}}</a>
             <a href="#"ng-controller="UserCtrl"
-               ng-attr-id="{{song.artist.id}}"
-               ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
+              ng-attr-id="{{song.artist.id}}"
+              ng-click="loadUser(song.artist.id)"
+              class="underline_on_hover">{{song.artist.stageName}}</a>
             <a>{{secondsToMinSec(song.trackLength)}}</a>
           </div>
         </li>
