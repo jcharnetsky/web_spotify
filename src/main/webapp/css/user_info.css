@@ -1,0 +1,55 @@
+.user_header {
+  display: inline-block;
+  height: 20vh;
+  margin-top: 2vw;
+  margin-left: 2vw;
+  margin-bottom: 3vw;
+}
+.user_info {
+  margin-left: 1vw;
+  margin-top: 0;
+  display: inline-block;
+}
+.user_img_full {
+  height: 20vh;
+  width: auto;
+  display: inline-block;
+  position: relative;
+  border: 1px solid white;
+}
+div.hiddenFileInputContainter {
+  position: relative;
+  display: inline-block;
+  height: 20vh;
+  width: auto;
+  overflow: hidden;
+  vertical-align: middle;
+  cursor: pointer;
+}
+input[type='file'].hidden {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  font-size: 50px;
+  cursor: pointer;
+  opacity: 0;
+  -moz-opacity: 0;
+  filter: Alpha(Opacity=0);
+}
+.username {
+  font-size: 300%;
+  color: #FFFFFF;
+  font-weight: 700;
+}
+.email {
+  font-size: 200%;
+  color: #FFFFFF;
+  font-weight: 700;
+}
+.delete_button {
+  font-weight: 800 !important;
+  color: #c42121 !important;
+}
