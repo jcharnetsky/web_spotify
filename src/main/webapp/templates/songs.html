@@ -22,9 +22,9 @@
     <ul class="collection_tiles">
       <li>
         <div class="collection_tile highlight_on_hover">
-          <span class="play_button_spacer"><img class="play_button" src="../images/play.png" alt="Play"></span>
-          <a href="#" ng-controller="CollectionCtrl" ng-attr-id="n" ng-click="deleteSong(song.id)" class="add_button underline_on_hover" ng-model="dynamic_button">-</a>
-          <a href="#" ng-attr-id="1" ng-dblclick="loadSong(1)" class="underline_on_hover">{{song.trackName}}</a>
+          <a href="#" ng-click="loadSong(song.id)" class="play_button_spacer"><img class="play_button" src="../images/play.png" alt="Play"></a>
+          <a href="#" ng-controller="CollectionCtrl" ng-attr-id="song" ng-click="deleteSong(song.id)" class="add_button underline_on_hover" ng-model="dynamic_button">-</a>
+          <a href="#" ng-attr-id="1" ng-dblclick="loadSong(song.id)" class="underline_on_hover">{{song.trackName}}</a>
           <a href="#" ng-controller="UserCtrl"
              ng-attr-id="{{song.artist.id}}"
              ng-click="loadUser(song.artist.id)"
