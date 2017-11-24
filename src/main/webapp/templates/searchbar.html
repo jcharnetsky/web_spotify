@@ -14,7 +14,8 @@
     </li>
     <li id="top_options" ng-controller="MainCtrl">
       <a href="#" ng-click="logout()">Log out </a>&#8226
-      <a href="#" id="username">{{user.name}}</a>
+      <img class="user_img" alt="user_image" ng-src="{{user.image}}">
+      <a href="#" id="username" ng-click="loadTemplateAndJSON('main', 'user_info.html', 'api/users/info/get/userInfo')">{{user.name}}</a>
       <a ng-show="user.premium">&#8226 Premium</a>
       <a ng-show="user.artist">&#8226 Artist</a>
       <a ng-show="user.admin">&#8226 Administrator</a>
