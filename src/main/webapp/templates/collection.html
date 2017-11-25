@@ -56,15 +56,15 @@
 								<a href="#" ng-click="addSongToQueue(song.id)">Add to Queue</a>
                 <a href="#" ng-click="removeSongFromPlaylist(song.id, collection.id)">Remove from Playlist</a>
                 <a href="#" ng-repeat="playlist in playlists"
-                    ng-show="playlist.id != collection.id"
-                    ng-click="addSongToPlaylist(song.id, playlist.id)">
+                   ng-show="playlist.id != collection.id"
+                   ng-click="addSongToPlaylist(song.id, playlist.id)">
                   Add to {{playlist.title}}
                 </a>
-							</div>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</li>
-	</ul>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
 </div>

@@ -63,7 +63,7 @@ public class UserService {
     user.setEmail(newUser.getEmail());
     user.setName(newUser.getName());
     user.createSecurePassword(newUser.getPassword());
-    user.setImage("");
+    user.setHasImage(false);
     user.setIsBanned(false);
     user.setIsPremium(false);
     user.setIsPublic(true);

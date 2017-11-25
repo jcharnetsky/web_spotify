@@ -1,20 +1,15 @@
 .options_button {
   display: none;
-  background-color: #181818;
   color: #979797;
   font-size: 16px;
+  font-weight: 800;
   line-height: 10px;
-  border: 1px solid white;
-  border-radius: 20px;
   padding: 2px 12px 8px 12px;
   width: 50px;
   cursor: pointer;
 }
 .collection_tile:hover .options_button {
   display: inline;
-}
-.options_button:hover, .options_button:focus {
-  background-color: #181818;
 }
 .dropdown {
   display: table-cell;
@@ -27,22 +22,21 @@
 .dropdown_content {
   display: none;
   position: absolute;
-  background-color: #181818;
   margin-left: inherit;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   width: auto;
   z-index: 1;
 }
 .dropdown_content a {
+  font-size: 16px;
   color: #979797;
-  background-color: #181818;
+  background-color: #282828;
   text-align: left;
   padding-left: 5px;
   margin-left: inherit;
   padding-right: 20px;
   display: block;
   min-width: 150px;
-  border: 1px solid white;
 }
 .dropdown_content a:hover {
   text-decoration: none;

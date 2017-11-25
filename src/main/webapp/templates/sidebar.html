@@ -5,17 +5,17 @@
       <a href="#" ng-click="loadTemplateAndJSON('main', 'navigateContent.html', 'null')">Browse</a>
     </li>
   </ul>
-  <ul class="sidebar_list">
+  <ul class="sidebar_list" ng-controller="CollectionCtrl">
     <li><strong>YOUR LIBRARY</strong></li>
     <li>
-      <a id="songs" href="#" ng-click="loadTemplateAndJSON('main', 'songs.html', 'api/songs/saved')">Songs</a>
+      <a id="songs" href="#" ng-click="getSongs()">Songs</a>
     </li>
     <li><a href="#">Albums</a></li>
     <li><a href="#">Artists</a></li>
   </ul>
   <ul class="sidebar_list playlists" ng-controller="CollectionCtrl">
     <li><strong>PLAYLISTS</strong></li>
-    <li id="playlists" ng-repeat="list in playlists" >
+    <li id="playlists" ng-repeat="list in playlists">
       <a href="#" ng-click="loadCollection(list.id)">{{list.title}}</a>
     </li>
   </ul>

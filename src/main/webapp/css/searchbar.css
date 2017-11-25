@@ -58,3 +58,8 @@
   height: 5vh;
 		padding-left: 1vw;
 }
+.user_img {
+  width: 2vw;
+  height: auto;
+  display: inline;
+}

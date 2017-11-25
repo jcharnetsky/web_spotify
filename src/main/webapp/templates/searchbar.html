@@ -1,4 +1,5 @@
 <link href="css/searchbar.css" rel="stylesheet"/>
+<link href="css/button.css" rel="stylesheet">
 <div class="top">
   <ul class="top_list">
     <li>
@@ -13,11 +14,19 @@
       </ul>
     </li>
     <li id="top_options" ng-controller="MainCtrl">
-      <a href="#" ng-click="logout()">Log out </a>&#8226
-      <a href="#" id="username">{{user.name}}</a>
-      <a ng-show="user.premium">&#8226 Premium</a>
-      <a ng-show="user.artist">&#8226 Artist</a>
-      <a ng-show="user.admin">&#8226 Administrator</a>
+      <img class="user_img" alt="user-image" ng-src="{{user.image}}">
+      <a href="#" id="username" ng-click="loadTemplateAndJSON('main', 'user_info.html', 'api/users/info/get/userInfo')">{{user.name}}</a>
+      <span class="options_col">
+        <span class="options_button vertical_chevron" onclick="toggleDropdown(-1)" style="display:inline-block">v</span>
+        <span id="other_dropdown_-1" class="dropdown_content" style="right: 0;">
+          <a href="#">Private Session</a>
+          <a href="#">Upgrade Your Account</a>
+          <a href="#" ng-click="logout()">Logout</a>
+        </span>
+      </span>
+      <a ng-show="user.premium">Premium</a>
+      <a ng-show="user.artist">Artist</a>
+      <a ng-show="user.admin">Administrator</a>
     </li>
   </ul>
   <script>
