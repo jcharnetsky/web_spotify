@@ -29,7 +29,7 @@
             <a href="#"ng-controller="UserCtrl"
                ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
             <span>{{secondsToMinSec(song.trackLength)}}</span>
-            <a href="#" ng-click="loadCollection(song.albumId)" ng-controller="CollectionCtrl">{{song.albumName}}</a>
+            <a href="#" ng-click="loadAlbum(song.albumId)" ng-controller="CollectionCtrl">{{song.albumName}}</a>
             <div class="dropdown options_col">
               <div class="options_button" ng-click="toggleDropdown($index)">...</div>
               <div ng-attr-id="other_dropdown_{{$index}}" class="dropdown_content">
@@ -65,7 +65,7 @@
                ng-attr-id="{{song.artist.id}}"
                ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
             <span>{{secondsToMinSec(song.trackLength)}}</span>
-            <a href="#" ng-click="loadCollection(song.albumId)" ng-controller="CollectionCtrl">{{song.albumName}}</a>
+            <a href="#" ng-click="loadAlbum(song.albumId)" ng-controller="CollectionCtrl">{{song.albumName}}</a>
           </div>
         </li>
       </ul>

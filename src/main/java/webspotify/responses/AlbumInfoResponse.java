@@ -15,6 +15,7 @@ public class AlbumInfoResponse {
 
   private Integer id;
   private String title;
+  private String imageLink;
   private GenreType genre;
   private String ownerName;
   private Integer ownerId;
@@ -79,6 +80,14 @@ public class AlbumInfoResponse {
 
   public void setSongCount(Integer songCount) {
     this.songCount = songCount;
+  }
+
+  public String getImageLink() {
+    return imageLink;
+  }
+
+  public void setImageLink(String imageLink) {
+    this.imageLink = imageLink;
   }
 
   public Integer getSongTrackLength() {

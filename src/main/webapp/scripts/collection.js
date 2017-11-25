@@ -1,6 +1,13 @@
 angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $scope, $http, $parse, collections) {
-  $scope.loadCollection = function (id) {
+  $scope.loadPlaylist = function (id) {
     $http.get(location.origin + "/api/playlists/" + id + "/get/info").then(function (response) {
+      handleJSONResponse(response, "main", "collection.html", "collection", $compile, $parse, $scope);
+    }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  }
+  $scope.loadAlbum = function (id) {
+    $http.get(location.origin + "/api/albums/" + id + "/get/info").then(function (response) {
       handleJSONResponse(response, "main", "collection.html", "collection", $compile, $parse, $scope);
     }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
@@ -67,75 +74,75 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
       "genre": $scope.edit_genre
     })
     $http.post("/api/playlists/" + id + "/edit", data, {headers: {"Content-Type": "application/json"}}).
-            then(function (response) {
-              if (!response.data.error) {
-                if ($scope.edit_title) {
-                  if ($scope.edit_title.length > 0) {
-                    $scope.collection.title = $scope.edit_title;
-                  }
-                }
-                if ($scope.edit_description) {
-                  if ($scope.edit_description.length > 0) {
-                    $scope.collection.description = $scope.edit_description;
-                  }
-                }
-                if ($scope.edit_genre) {
-                  $scope.collection.genre = $scope.edit_genre;
-                }
-                collections.editPlaylist(id, $scope.edit_title, $scope.edit_description, $scope.edit_genre);
-                $scope.playlists = collections.getPlaylists();
-                $("#editPlaylistModal").modal("hide");
-                return;
-              }
-              displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
-            }).catch(function (err) {
+      then(function (response) {
+        if (!response.data.error) {
+          if ($scope.edit_title) {
+            if ($scope.edit_title.length > 0) {
+              $scope.collection.title = $scope.edit_title;
+            }
+          }
+          if ($scope.edit_description) {
+            if ($scope.edit_description.length > 0) {
+              $scope.collection.description = $scope.edit_description;
+            }
+          }
+          if ($scope.edit_genre) {
+            $scope.collection.genre = $scope.edit_genre;
+          }
+          collections.editPlaylist(id, $scope.edit_title, $scope.edit_description, $scope.edit_genre);
+          $scope.playlists = collections.getPlaylists();
+          $("#editPlaylistModal").modal("hide");
+          return;
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
   $scope.deletePlaylist = function (id) {
     data = JSON.stringify({"playlistId": id});
     $http.post("/api/playlists/" + id + "/delete", data, {headers: {"Content-Type": "application/json"}}).
-            then(function (response) {
-              if (!response.data.error) {
-                collections.removePlaylist(id);
-                displayErrorPopup("Playlist was successfully deleted", $scope, $parse, $compile);
-                $scope.playlists = collections.getPlaylists();
-                $scope.loadBrowse();
-                return;
-              }
-              displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
-            }).catch(function (err) {
+      then(function (response) {
+        if (!response.data.error) {
+          collections.removePlaylist(id);
+          displayErrorPopup("Playlist was successfully deleted", $scope, $parse, $compile);
+          $scope.playlists = collections.getPlaylists();
+          $scope.loadBrowse();
+          return;
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
   $scope.addSongToPlaylist = function (songId, playlistId) {
     data = JSON.stringify({"playlistId": playlistId, "songId": songId});
     $http.post("/api/playlists/" + playlistId + "/add/song/" + songId, data, {headers: {"Content-Type": "application/json"}}).
-            then(function (response) {
-              if (!response.data.error) {
-                displayErrorPopup("Song successfully added to playlist", $scope, $parse, $compile);
-                return;
-              }
-              displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
-            }).catch(function (err) {
+      then(function (response) {
+        if (!response.data.error) {
+          displayErrorPopup("Song successfully added to playlist", $scope, $parse, $compile);
+          return;
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
   $scope.removeSongFromPlaylist = function (songId, playlistId) {
     data = JSON.stringify({"playlistId": playlistId, "songId": songId});
     $http.post("/api/playlists/" + playlistId + "/rem/song/" + songId, data, {headers: {"Content-Type": "application/json"}}).
-            then(function (response) {
-              if (!response.data.error) {
-                for (var i = 0; i < $scope.collection.songs.length; i++) {
-                  if ($scope.collection.songs[i].id === songId) {
-                    $scope.collection.songs.splice(i, 1);
-                  }
-                }
-                displayErrorPopup("Song successfully removed from playlist", $scope, $parse, $compile);
-                return;
-              }
-              displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
-            }).catch(function (err) {
+      then(function (response) {
+        if (!response.data.error) {
+          for (var i = 0; i < $scope.collection.songs.length; i++) {
+            if ($scope.collection.songs[i].id === songId) {
+              $scope.collection.songs.splice(i, 1);
+            }
+          }
+          displayErrorPopup("Song successfully removed from playlist", $scope, $parse, $compile);
+          return;
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
@@ -145,34 +152,33 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
       handleJSONResponse(response, "main", "songs.html", "collection", $compile, $parse, $scope);
       collections.setSongs(angular.copy(response.data.content));
       $scope.songs = collections.getSongs();
-      console.log(collections.getSongs());
     }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
   $scope.saveSong = function (songId) {
     $http.get(location.origin + "/api/songs/saved/add/" + songId).
-            then(function (response) {
-              if (!response.data.error) {
-                displayErrorPopup("Song successfully saved", $scope, $parse, $compile);
-                return;
-              }
-              displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
-            }).catch(function (err) {
+      then(function (response) {
+        if (!response.data.error) {
+          displayErrorPopup("Song successfully saved", $scope, $parse, $compile);
+          return;
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
   $scope.deleteSong = function (songId) {
     $http.get(location.origin + "/api/songs/saved/rem/" + songId).
-            then(function (response) {
-              if (!response.data.error) {
-                displayErrorPopup("Song successfully deleted", $scope, $parse, $compile);
-                getSongs();
-                return;
-              }
-              displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
-            }).catch(function (err) {
-      displayErrorPopup(err, $scope, $parse, $compile);
+      then(function (response) {
+        if (!response.data.error) {
+          displayErrorPopup("Song successfully deleted", $scope, $parse, $compile);
+          getSongs();
+          return;
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function (err) {
+     displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
 }).service('collections', function () {
