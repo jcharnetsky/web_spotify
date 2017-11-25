@@ -38,13 +38,6 @@
 		margin-right: 0vw;
 		margin-left: 0vw;
 }
-.prev_history {
-		height: 5vh;
-		line-height: 200px;
-}
-.next_history {
-		height: 5vh;
-}
 .account {
   display: inline-block;
   height: 5vh;

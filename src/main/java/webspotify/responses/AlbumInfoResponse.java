@@ -27,6 +27,7 @@ public class AlbumInfoResponse {
     this.id = album.getId();
     this.title = album.getTitle();
     this.genre = album.getGenre();
+    this.imageLink = "";
     if (album.getOwner() instanceof Artist) {
       this.ownerName = ((Artist) album.getOwner()).getStageName();
     } else {
