@@ -24,6 +24,7 @@ public class PlaylistInfoResponse {
   private Integer songTrackLength;
   private Integer followerCount;
   private List<SongResponse> songs;
+  private boolean isFollowing;
 
   public PlaylistInfoResponse(Playlist playlist) {
     this.id = playlist.getId();
@@ -134,5 +135,13 @@ public class PlaylistInfoResponse {
 
   public void setFollowerCount(Integer followerCount) {
     this.followerCount = followerCount;
+  }
+
+  public boolean isFollowing() {
+    return isFollowing;
+  }
+
+  public void setFollowing(boolean following) {
+    isFollowing = following;
   }
 }

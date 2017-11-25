@@ -22,6 +22,7 @@ public class AlbumInfoResponse {
   private Integer songCount;
   private Integer songTrackLength;
   private List<SongResponse> songs;
+  private boolean isSaved;
 
   public AlbumInfoResponse(Album album) {
     this.id = album.getId();
@@ -115,4 +116,11 @@ public class AlbumInfoResponse {
     this.songs = songs;
   }
 
+  public boolean isSaved() {
+    return isSaved;
+  }
+
+  public void setSaved(boolean saved) {
+    isSaved = saved;
+  }
 }

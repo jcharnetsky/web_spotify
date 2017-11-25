@@ -16,6 +16,7 @@ public class SongResponse {
   private Integer albumId;
   private String albumName;
   private Boolean hasAudio;
+  private boolean isSaved;
 
   public SongResponse(Song build) {
     this.id = build.getId();
@@ -90,5 +91,13 @@ public class SongResponse {
 
   public void setHasAudio(Boolean hasAudio) {
     this.hasAudio = hasAudio;
+  }
+
+  public boolean isSaved() {
+    return isSaved;
+  }
+
+  public void setSaved(boolean saved) {
+    isSaved = saved;
   }
 }
