@@ -25,7 +25,7 @@ public class UserInfoResponse {
   private List<BasicUserInfoResponse> followers;
   private ArtistProfileResponse artist;
   private List<PlaylistInfoResponse> ownedPlaylists;
-  private boolean isFollowing;
+  private boolean isFollowed;
 
   public UserInfoResponse(User user) {
     this.id = user.getId();
@@ -162,11 +162,11 @@ public class UserInfoResponse {
     this.ownedPlaylists = ownedPlaylists;
   }
 
-  public boolean isFollowing() {
-    return isFollowing;
+  public boolean isFollowed() {
+    return isFollowed;
   }
 
-  public void setFollowing(boolean following) {
-    isFollowing = following;
+  public void setFollowed(boolean followed) {
+    isFollowed = followed;
   }
 }

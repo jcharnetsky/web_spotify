@@ -58,10 +58,11 @@ public class UserController {
 
   @GetMapping("/get/{userId}")
   public Response getUser(@PathVariable final int userId, HttpSession session) {
-    if (SessionUtilities.getUserFromSession(session) == null) {
+    User currentUser = SessionUtilities.getUserFromSession(session);
+    if (currentUser == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
-    return userService.getUserProfileInformation(userId);
+    return userService.getUserProfileInformation(currentUser, userId);
   }
 
   @GetMapping("/follow/{userId}")

@@ -8,5 +8,11 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
     });
   };
 
+  $scope.followUser = function(id) {
+  }
+
+  $scope.unfollowUser = function(id) {
+  }
+
   $scope.toggleDropdown = toggleDropdown;
 });

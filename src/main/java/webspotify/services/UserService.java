@@ -20,11 +20,13 @@ public class UserService {
   UserRepository userRepository;
 
   @Transactional
-  public Response getUserProfileInformation(int userId) {
+  public Response getUserProfileInformation(User currentUser, int userId) {
     if (userRepository.exists(userId)) {
       User user = userRepository.findOne(userId);
       if (!user.isBanned() && user.isPublic()) {
-        return ResponseUtilities.filledSuccess(new UserInfoResponse(user));
+        UserInfoResponse userInfo = new UserInfoResponse(user);
+        userInfo.setFollowed(currentUser.getFollowing().contains(user));
+        return ResponseUtilities.filledSuccess(userInfo);
       } else {
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
       }
