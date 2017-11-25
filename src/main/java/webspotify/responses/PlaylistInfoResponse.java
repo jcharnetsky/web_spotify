@@ -30,7 +30,7 @@ public class PlaylistInfoResponse {
     this.title = playlist.getTitle();
     this.genre = playlist.getGenre();
     this.description = playlist.getDescription();
-    this.imageLink = "../images/collections/logo.png";
+    this.imageLink = playlist.getImage();
     this.followerCount = playlist.getFollowerCount();
 
     if (playlist.getOwner() instanceof Artist) {

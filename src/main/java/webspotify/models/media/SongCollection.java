@@ -133,6 +133,8 @@ public abstract class SongCollection implements Serializable, Viewable {
     this.owner = owner;
   }
 
+  public String getImage(){ return "../images/logo.png"; };
+
   @Override
   public int hashCode() {
     int hash = 5;
