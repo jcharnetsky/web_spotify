@@ -1,9 +1,7 @@
 package webspotify.services;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,6 +57,13 @@ public class AlbumService {
       if (album.isPublic()) {
         AlbumInfoResponse response = new AlbumInfoResponse(album);
         response.setFollowed(false);
+        Set<Integer> ids = new HashSet<Integer>();
+        for (Song song : user.getSavedSongs()){
+          ids.add(song.getId());
+        }
+        for(SongResponse songResponse: response.getSongs()){
+          songResponse.setSaved(ids.contains(songResponse.getId()));
+        }
         return ResponseUtilities.filledSuccess(response);
       } else {
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
