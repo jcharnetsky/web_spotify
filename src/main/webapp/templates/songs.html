@@ -34,7 +34,6 @@
             <div ng-attr-id="other_dropdown_{{song.id}}" class="dropdown_content" ng-controller="CollectionCtrl">
               <a href="#">Add to Queue</a>
               <a href="#" ng-repeat="playlist in playlists" ng-click="addSongToPlaylist(song.id, playlist.id">
-
                 Add to {{playlist.title}}
               </a>
             </div>

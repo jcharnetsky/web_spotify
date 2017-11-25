@@ -60,7 +60,7 @@ public class SongService {
         boolean successful = user.getSavedSongs().add(songToAdd);
         if (successful) {
           userRepository.save(user);
-          return ResponseUtilities.emptySuccess();
+          return ResponseUtilities.filledSuccess(songToAdd);
         } else {
           return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_ADD);
         }

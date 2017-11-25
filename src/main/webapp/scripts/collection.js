@@ -21,7 +21,6 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
     $http.get(location.origin + controllerPath).then(function (response) {
       handleJSONResponse(response, "playlists", "null", "playlists", $compile, $parse, $scope);
       collections.setPlaylists(angular.copy($scope.playlists));
-      $scope.playlists = collections.getPlaylists();
     }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });
@@ -147,11 +146,9 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
     });
   }
   $scope.getSongs = function () {
-    controllerPath = "/api/songs/saved";
-    $http.get(location.origin + controllerPath).then(function (response) {
+    $http.get(location.origin + "/api/songs/saved").then(function (response) {
       handleJSONResponse(response, "main", "songs.html", "collection", $compile, $parse, $scope);
-      collections.setSongs(angular.copy(response.data.content));
-      $scope.songs = collections.getSongs();
+      collections.setSavedSongs(angular.copy(response.data.content));
     }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });
@@ -168,12 +165,13 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
-  $scope.deleteSong = function (songId) {
+  $scope.unsaveSong = function (songId) {
     $http.get(location.origin + "/api/songs/saved/rem/" + songId).
       then(function (response) {
         if (!response.data.error) {
-          displayErrorPopup("Song successfully deleted", $scope, $parse, $compile);
-          getSongs();
+          displayErrorPopup("Song successfully unsaved", $scope, $parse, $compile);
+          collections.unsaveSong(songId);
+          $scope.songs = collections.getSavedSongs();
           return;
         }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
@@ -189,7 +187,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
   getPlaylists = function () {
     return playlists;
   }
-  getSongs = function () {
+  getSavedSongs = function () {
     return songs;
   }
   addPlaylist = function (newList) {
@@ -198,8 +196,16 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
   setPlaylists = function (newLists) {
     playlists = newLists;
   }
-  setSongs = function (newSongs) {
+  setSavedSongs = function (newSongs) {
     songs = newSongs;
+  }
+  unsaveSong = function(id) {
+    for (var i = 0; i < songs.length; i++) {
+      if (songs[i].id === id) {
+        songs.splice(i, 1);
+        return;
+      }
+    }
   }
   editPlaylist = function (id, title, description, genre) {
     for (var i = 0; i < playlists.length; i++) {
@@ -231,10 +237,11 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
   }
   return {
     getPlaylists: getPlaylists,
-    getSongs: getSongs,
+    getSavedSongs: getSavedSongs,
     addPlaylist: addPlaylist,
     setPlaylists: setPlaylists,
-    setSongs: setSongs,
+    setSavedSongs: setSavedSongs,
+    unsaveSong: unsaveSong,
     editPlaylist: editPlaylist,
     removePlaylist: removePlaylist
   }
