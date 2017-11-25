@@ -147,7 +147,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
   }
   $scope.getSongs = function () {
     $http.get(location.origin + "/api/songs/saved").then(function (response) {
-      handleJSONResponse(response, "main", "songs.html", "collection", $compile, $parse, $scope);
+      handleJSONResponse(response, "main", "songs.html", "songs", $compile, $parse, $scope);
       collections.setSavedSongs(angular.copy(response.data.content));
     }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);

@@ -41,7 +41,15 @@ public class AlbumService {
       Artist artist = (Artist) user;
       for (Album album : artist.getOwnedAlbums()) {
         if (album.getId() == albumId) {
-          return ResponseUtilities.filledSuccess(new AlbumInfoResponse(album));
+          AlbumInfoResponse response = new AlbumInfoResponse(album);
+          Set<Integer> ids = new HashSet<Integer>();
+          for (Song song : user.getSavedSongs()){
+            ids.add(song.getId());
+          }
+          for(SongResponse songResponse: response.getSongs()){
+            songResponse.setSaved(ids.contains(songResponse.getId()));
+          }
+          return ResponseUtilities.filledSuccess(response);
         }
       }
     }
@@ -49,6 +57,13 @@ public class AlbumService {
       if(album.getId() == albumId) {
         AlbumInfoResponse response = new AlbumInfoResponse(album);
         response.setFollowed(true);
+        Set<Integer> ids = new HashSet<Integer>();
+        for (Song song : user.getSavedSongs()){
+          ids.add(song.getId());
+        }
+        for(SongResponse songResponse: response.getSongs()){
+          songResponse.setSaved(ids.contains(songResponse.getId()));
+        }
         return ResponseUtilities.filledSuccess(response);
       }
     }

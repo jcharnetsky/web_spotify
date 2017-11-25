@@ -9,10 +9,10 @@
       <div>Follower count: {{visitingUser.followerCount}}</div>
       <div>Listeners: / Monthly Listeners: </div>
       <div id="spotify_buttons">
-        <a ng-show="!visitingUser.isFollowed && visitingUser.id != user.id"
+        <a ng-show="!visitingUser.followed && visitingUser.id != user.id"
            ng-click="followUser(visitingUser.id)"
            class="Follow" href="#">Follow</a>
-        <a ng-show="visitingUser.isFollowed"
+        <a ng-show="visitingUser.followed"
            ng-click="unfollowUser(visitingUser.id) && visitingUser.id != user.id"
            class="Follow" href="#">Unfollow</a>
       </div>
