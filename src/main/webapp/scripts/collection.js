@@ -26,14 +26,14 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
     });
   }
   $scope.getAlbums = function () {
-      controllerPath = "/api/albums/";
-      $http.get(location.origin + controllerPath).then(function (response) {
-        handleJSONResponse(response, "albums", "null", "albums", $compile, $parse, $scope);
-        collections.setAlbums(angular.copy($scope.albums));
-      }).catch(function (err) {
-        displayErrorPopup(err, $scope, $parse, $compile);
-      });
-    }
+    controllerPath = "/api/albums/";
+    $http.get(location.origin + controllerPath).then(function (response) {
+      handleJSONResponse(response, "albums", "null", "albums", $compile, $parse, $scope);
+      collections.setAlbums(angular.copy($scope.albums));
+    }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  }
   $scope.openCreatePlaylistDialog = function () {
     $http.get(location.origin + "/api/songs/genres").then(function (response) {
       handleJSONResponse(response, "modal_dialog", "createPlaylist.html", "genres", $compile, $parse, $scope);
@@ -63,15 +63,15 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
       "genre": $scope.new_genre
     })
     $http.post("/api/playlists/create", data, {headers: {"Content-Type": "application/json"}}).
-            then(function (response) {
-              if (!response.data.error) {
-                collections.addPlaylist(response.data.content);
-                $scope.playlists = collections.getPlaylists();
-                $("#createPlaylistModal").modal("hide");
-                return;
-              }
-              displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
-            }).catch(function (err) {
+      then(function (response) {
+        if (!response.data.error) {
+          collections.addPlaylist(response.data.content);
+          $scope.playlists = collections.getPlaylists();
+          $("#createPlaylistModal").modal("hide");
+          return;
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
@@ -156,7 +156,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
   }
   $scope.getSongs = function () {
     $http.get(location.origin + "/api/songs/saved").then(function (response) {
-      handleJSONResponse(response, "main", "songs.html", "collection", $compile, $parse, $scope);
+      handleJSONResponse(response, "main", "songs.html", "collection.songs", $compile, $parse, $scope);
     }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });
@@ -165,9 +165,22 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
     $http.get(location.origin + "/api/songs/saved/add/" + songId).
       then(function (response) {
         if (!response.data.error) {
-          for (var i=0;i<$scope.collection.songs;i++){
-            if($scope.collection.songs[i].id == songId){
-              $scope.collection.songs[i].saved = true;
+          if($scope.collection.songs){
+            song = getArrayElementWithId($scope.collection.songs, songId)
+            if(song != null){
+              song.saved = true;
+            }
+          }
+          if($scope.queue.queue){
+            song = getArrayElementWithId($scope.queue.queue, songId);
+            if(song != null){
+              song.saved = true;
+            }
+          }
+          if($scope.queue.history){
+            song = getArrayElementWithId($scope.queue.history, songId);
+            if(song != null){
+              song.saved = true;
             }
           }
           displayErrorPopup("Song successfully saved", $scope, $parse, $compile);
@@ -182,9 +195,22 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
     $http.get(location.origin + "/api/songs/saved/rem/" + songId).
       then(function (response) {
         if (!response.data.error) {
-          for (var i=0;i<$scope.collection.songs;i++){
-            if($scope.collection.songs[i].id == songId){
-              $scope.collection.songs[i].saved = true;
+          if($scope.collection.songs){
+            song = getArrayElementWithId($scope.collection.songs, songId)
+            if(song != null){
+              song.saved = false;
+            }
+          }
+          if($scope.queue.queue){
+            song = getArrayElementWithId($scope.queue.queue, songId);
+            if(song != null){
+              song.saved = false;
+            }
+          }
+          if($scope.queue.history){
+            song = getArrayElementWithId($scope.queue.history, songId);
+            if(song != null){
+              song.saved = false;
             }
           }
           displayErrorPopup("Song successfully unsaved", $scope, $parse, $compile);
@@ -215,24 +241,21 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
     return albums;
   }
   editPlaylist = function (id, title, description, genre) {
-    for (var i = 0; i < playlists.length; i++) {
-      if (playlists[i].id === id) {
-        if (title) {
-          if (title.length > 0) {
-            playlists[i].title = angular.copy(title);
-          }
-        }
-        if (description) {
-          if (description.length > 0) {
-            playlists[i].description = angular.copy(description);
-          }
-        }
-        if (genre) {
-          playlists[i].genre = angular.copy(genre);
-        }
-        return;
+    playlist = getArrayElementWithId(playlists, id);
+    if (title) {
+      if (title.length > 0) {
+        playlist.title = angular.copy(title);
       }
     }
+    if (description) {
+      if (description.length > 0) {
+        playlist.description = angular.copy(description);
+      }
+    }
+    if (genre) {
+      playlist.genre = angular.copy(genre);
+    }
+    return;
   }
   removePlaylist = function (id) {
     for (var i = 0; i < playlists.length; i++) {
