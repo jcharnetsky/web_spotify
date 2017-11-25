@@ -31,6 +31,15 @@ function displayErrorPopup(error, scope, parse, compile) {
   compile(node)(scope);
 }
 
+function getArrayElementWithId(array, id){
+  for (var i=0;i<array.length;i++){
+    if(array[i].id == id){
+      return array[i];
+    }
+  }
+  return null;
+}
+
 function padZero(time){
   if(time < 10){
     return "0" + time;

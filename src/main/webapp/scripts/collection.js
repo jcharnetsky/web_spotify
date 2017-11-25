@@ -25,6 +25,15 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
+  $scope.getAlbums = function () {
+      controllerPath = "/api/albums/";
+      $http.get(location.origin + controllerPath).then(function (response) {
+        handleJSONResponse(response, "albums", "null", "albums", $compile, $parse, $scope);
+        collections.setAlbums(angular.copy($scope.albums));
+      }).catch(function (err) {
+        displayErrorPopup(err, $scope, $parse, $compile);
+      });
+    }
   $scope.openCreatePlaylistDialog = function () {
     $http.get(location.origin + "/api/songs/genres").then(function (response) {
       handleJSONResponse(response, "modal_dialog", "createPlaylist.html", "genres", $compile, $parse, $scope);
@@ -147,8 +156,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
   }
   $scope.getSongs = function () {
     $http.get(location.origin + "/api/songs/saved").then(function (response) {
-      handleJSONResponse(response, "main", "songs.html", "songs", $compile, $parse, $scope);
-      collections.setSavedSongs(angular.copy(response.data.content));
+      handleJSONResponse(response, "main", "songs.html", "collection", $compile, $parse, $scope);
     }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });
@@ -157,6 +165,11 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
     $http.get(location.origin + "/api/songs/saved/add/" + songId).
       then(function (response) {
         if (!response.data.error) {
+          for (var i=0;i<$scope.collection.songs;i++){
+            if($scope.collection.songs[i].id == songId){
+              $scope.collection.songs[i].saved = true;
+            }
+          }
           displayErrorPopup("Song successfully saved", $scope, $parse, $compile);
           return;
         }
@@ -169,9 +182,12 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
     $http.get(location.origin + "/api/songs/saved/rem/" + songId).
       then(function (response) {
         if (!response.data.error) {
+          for (var i=0;i<$scope.collection.songs;i++){
+            if($scope.collection.songs[i].id == songId){
+              $scope.collection.songs[i].saved = true;
+            }
+          }
           displayErrorPopup("Song successfully unsaved", $scope, $parse, $compile);
-          collections.unsaveSong(songId);
-          $scope.songs = collections.getSavedSongs();
           return;
         }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
@@ -182,13 +198,12 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
 }).service('collections', function () {
   var playlists;
   var albums;
-  var songs;
 
   getPlaylists = function () {
     return playlists;
   }
-  getSavedSongs = function () {
-    return songs;
+  getAlbums = function () {
+    return albums;
   }
   addPlaylist = function (newList) {
     playlists.push(newList);
@@ -196,16 +211,8 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
   setPlaylists = function (newLists) {
     playlists = newLists;
   }
-  setSavedSongs = function (newSongs) {
-    songs = newSongs;
-  }
-  unsaveSong = function(id) {
-    for (var i = 0; i < songs.length; i++) {
-      if (songs[i].id === id) {
-        songs.splice(i, 1);
-        return;
-      }
-    }
+  getAlbums = function () {
+    return albums;
   }
   editPlaylist = function (id, title, description, genre) {
     for (var i = 0; i < playlists.length; i++) {
@@ -237,11 +244,10 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
   }
   return {
     getPlaylists: getPlaylists,
-    getSavedSongs: getSavedSongs,
-    addPlaylist: addPlaylist,
+    getAlbums: getAlbums,
     setPlaylists: setPlaylists,
-    setSavedSongs: setSavedSongs,
-    unsaveSong: unsaveSong,
+    setAlbums: setAlbums,
+    addPlaylist: addPlaylist,
     editPlaylist: editPlaylist,
     removePlaylist: removePlaylist
   }
