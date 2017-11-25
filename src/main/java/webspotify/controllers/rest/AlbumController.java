@@ -33,7 +33,7 @@ public class AlbumController {
     if (user == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
-    return albumService.getAllRelevantPlaylists(user);
+    return albumService.getAllRelevantAlbums(user);
   }
 
   @GetMapping("/{albumId}/get/info")

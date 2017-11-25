@@ -27,7 +27,7 @@ public class SongController {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
     User user = SessionUtilities.getUserFromSession(session);
-    return songService.getAllRelevantSongs(user);
+    return songService.getAllSavedSongs(user);
   }
 
   @GetMapping("/saved/add/{songId}")

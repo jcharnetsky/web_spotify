@@ -44,11 +44,6 @@ public class PlaylistController {
     if (user == null) {
       return ResponseUtilities.filledFailure("User not logged in.");
     }
-    for (Playlist list: user.getOwnedPlaylists()){
-      if(list.getId() == playlistId) {
-        return ResponseUtilities.filledSuccess(new PlaylistInfoResponse(list));
-      }
-    }
     return playlistService.getInfoAboutPlaylist(user, playlistId);
   }
 

@@ -38,29 +38,28 @@ public class AlbumService {
   SongRepository songRepo;
 
   @Transactional
-  public Response getSongsInAlbum(User user, final int albumId) {
-    if (albumRepo.exists(albumId)) {
-      Album album = albumRepo.findOne(albumId);
-      if (album.isPublic() || (!album.isPublic() && album.getOwner().equals(user))) {
-        List<SongResponse> songsToReturn = new ArrayList<SongResponse>();
-        for (Song song : album.getSongs()) {
-          songsToReturn.add(new SongResponse(song));
-        }
-        return ResponseUtilities.filledSuccess(songsToReturn);
-      } else {
-        return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
-      }
-    } else {
-      return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
-    }
-  }
-
-  @Transactional
   public Response getInfoAboutAlbum(User user, final int albumId) {
+    if (user instanceof Artist) {
+      Artist artist = (Artist) user;
+      for (Album album : artist.getOwnedAlbums()) {
+        if (album.getId() == albumId) {
+          return ResponseUtilities.filledSuccess(new AlbumInfoResponse(album));
+        }
+      }
+    }
+    for (Album album: user.getSavedAlbums()){
+      if(album.getId() == albumId) {
+        AlbumInfoResponse response = new AlbumInfoResponse(album);
+        response.setFollowed(true);
+        return ResponseUtilities.filledSuccess(response);
+      }
+    }
     if (albumRepo.exists(albumId)) {
       Album album = albumRepo.findOne(albumId);
-      if (album.isPublic() || (!album.isPublic() && album.getOwner().equals(user))) {
-        return ResponseUtilities.filledSuccess(new AlbumInfoResponse(album));
+      if (album.isPublic()) {
+        AlbumInfoResponse response = new AlbumInfoResponse(album);
+        response.setFollowed(false);
+        return ResponseUtilities.filledSuccess(response);
       } else {
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
       }
@@ -183,7 +182,7 @@ public class AlbumService {
   }
 
   @Transactional
-  public Response getAllRelevantPlaylists(User user) {
+  public Response getAllRelevantAlbums(User user) {
     Set<Album> setOfRelevantAlbums = new HashSet<Album>();
     List<AlbumInfoResponse> dataToReturn = new ArrayList<AlbumInfoResponse>();
     setOfRelevantAlbums.addAll(user.getSavedAlbums());

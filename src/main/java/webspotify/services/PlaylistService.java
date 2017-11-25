@@ -54,10 +54,24 @@ public class PlaylistService {
 
   @Transactional
   public Response getInfoAboutPlaylist(User user, final int playlistId) {
+    for (Playlist playlist: user.getOwnedPlaylists()){
+      if(playlist.getId() == playlistId) {
+        return ResponseUtilities.filledSuccess(new PlaylistInfoResponse(playlist));
+      }
+    }
+    for (Playlist playlist: user.getFollowedPlaylists()){
+      if(playlist.getId() == playlistId) {
+        PlaylistInfoResponse response = new PlaylistInfoResponse(playlist);
+        response.setFollowed(true);
+        return ResponseUtilities.filledSuccess(response);
+      }
+    }
     if (playlistRepo.exists(playlistId)) {
       Playlist playlist = playlistRepo.findOne(playlistId);
-      if (playlist.isPublic() || (!playlist.isPublic() && playlist.getOwner().equals(user))) {
-        return ResponseUtilities.filledSuccess(new PlaylistInfoResponse(playlist));
+      if (playlist.isPublic()) {
+        PlaylistInfoResponse response = new PlaylistInfoResponse(playlist);
+        response.setFollowed(false);
+        return ResponseUtilities.filledSuccess(response);
       } else {
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
       }
