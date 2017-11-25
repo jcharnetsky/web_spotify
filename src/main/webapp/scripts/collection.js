@@ -171,13 +171,11 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
               song.saved = true;
             }
           }
-          if($scope.queue.queue){
+          if($scope.queue){
             song = getArrayElementWithId($scope.queue.queue, songId);
             if(song != null){
               song.saved = true;
             }
-          }
-          if($scope.queue.history){
             song = getArrayElementWithId($scope.queue.history, songId);
             if(song != null){
               song.saved = true;
@@ -201,13 +199,11 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
               song.saved = false;
             }
           }
-          if($scope.queue.queue){
+          if($scope.queue){
             song = getArrayElementWithId($scope.queue.queue, songId);
             if(song != null){
               song.saved = false;
             }
-          }
-          if($scope.queue.history){
             song = getArrayElementWithId($scope.queue.history, songId);
             if(song != null){
               song.saved = false;
@@ -234,11 +230,11 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
   addPlaylist = function (newList) {
     playlists.push(newList);
   }
+  setAlbums = function (newAlbums) {
+    albums = newAlbums;
+  }
   setPlaylists = function (newLists) {
     playlists = newLists;
-  }
-  getAlbums = function () {
-    return albums;
   }
   editPlaylist = function (id, title, description, genre) {
     playlist = getArrayElementWithId(playlists, id);
