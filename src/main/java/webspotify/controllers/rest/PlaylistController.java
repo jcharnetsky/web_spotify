@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import webspotify.config.ConfigConstants;
+import webspotify.models.media.Playlist;
 import webspotify.models.users.User;
 import webspotify.posts.PlaylistCreateRequest;
+import webspotify.responses.PlaylistInfoResponse;
 import webspotify.services.PlaylistService;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
@@ -41,6 +43,11 @@ public class PlaylistController {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
       return ResponseUtilities.filledFailure("User not logged in.");
+    }
+    for (Playlist list: user.getOwnedPlaylists()){
+      if(list.getId() == playlistId) {
+        return ResponseUtilities.filledSuccess(new PlaylistInfoResponse(list));
+      }
     }
     return playlistService.getInfoAboutPlaylist(user, playlistId);
   }

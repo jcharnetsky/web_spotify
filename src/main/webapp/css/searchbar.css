@@ -1,27 +1,27 @@
 .top, .top_list {
-		position: fixed;
-		display: inline-block;
-		left: 0vw; right: 0vw;
-		color: #979797;
-		background-color: #121212;
+  position: fixed;
+  display: inline-block;
+  left: 0vw; right: 0vw;
+  color: #979797;
+  background-color: #121212;
   height: 5vh;
   padding-left: 0vw;
-		margin-bottom: 0vh;
-		z-index: 2;
+  margin-bottom: 0vh;
+  z-index: 2;
 }
 .top_list li {
-		line-height: 3vh;
-		text-align: center;
-		display: inline-block;
-		vertical-align: middle;
-		margin-bottom: 0vh;
+  line-height: 3vh;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 0vh;
 }
 .search {
-		display: inline;
+  display: inline;
   height: 4vh;
   padding-left: 1vw;
-		padding-right: 5vw;
-		margin-top: 0.5vh;
+  padding-right: 5vw;
+  margin-top: 0.5vh;
 }
 #top_options {
   position: absolute;
@@ -29,30 +29,33 @@
   right: 20px;
 }
 .nav_history {
-		display: inline-block;
-		height: 5vh;
-		padding-left: 0vw;
+  display: inline-block;
+  height: 5vh;
+  padding-left: 0vw;
 }
 .nav_history li {
-		height: 5vh;
-		margin-right: 0vw;
-		margin-left: 0vw;
+  height: 5vh;
+  margin-right: 0vw;
+  margin-left: 0vw;
 }
 .account {
   display: inline-block;
   height: 5vh;
-		padding-right: 2vw;
-		padding-top: 0.5vh;
-		padding-bottom: 0.5vh;
-		margin-left: 0vw;
+  padding-right: 2vw;
+  padding-top: 0.5vh;
+  padding-bottom: 0.5vh;
+  margin-left: 0vw;
   padding-right: 0vw;
 }
 .account li {
   height: 5vh;
-		padding-left: 1vw;
+	padding-left: 1vw;
 }
 .user_img {
   width: 2vw;
   height: auto;
   display: inline;
+}
+.options_button {
+  display:inline-block;
 }
