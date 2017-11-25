@@ -34,8 +34,8 @@ public class User implements Viewable, Serializable {
   @Column(name = "birthdate", nullable = false)
   @Temporal(TemporalType.DATE)
   private Date birthdate;
-  @Column(name = "image", nullable = false)
-  private String image;
+  @Column(name = "hasImage", nullable = false)
+  private Boolean hasImage;
   @Column(name = "isbanned", nullable = false)
   private Boolean isBanned;
   @Column(name = "ispublic", nullable = false)
@@ -81,7 +81,7 @@ public class User implements Viewable, Serializable {
     this.savedAlbums = new HashSet<Album>();
     this.savedSongs = new HashSet<Song>();
     this.following = new HashSet<User>();
-    this.image = "";
+    this.hasImage = false;
     this.followerCount = 0;
   }
 
@@ -165,16 +165,21 @@ public class User implements Viewable, Serializable {
   public void setBirthdate(Date birthdate) {
     this.birthdate = birthdate;
   }
-
+  
   public String getImage() {
-    if(image.equals("")){
+    if(this.hasImage) {
+      return "../images/users/" + this.getId() + ".jpg";
+    } else {
       return "../images/users/logo.png";
     }
-    return image;
   }
 
-  public void setImage(String image) {
-    this.image = image;
+  public Boolean getHasImage() {
+    return hasImage;
+  }
+
+  public void setHasImage(Boolean hasImage) {
+    this.hasImage = hasImage;
   }
 
   public Boolean getIsBanned() {

@@ -87,7 +87,7 @@ public class TestController {
         aliases.add(aliasesInJson.getString(j));
       }
       artist.setAliases(aliases);
-      artist.setImage("");
+      artist.setHasImage(false);
       userRepo.save(artist);
     }
 
@@ -137,7 +137,7 @@ public class TestController {
     u.setBanned(false);
     u.setBirthdate(new Date());
     u.setEmail("user@yahoo.com");
-    u.setImage("");
+    u.setHasImage(false);
     u.setName("TestName");
     u.setPublic(true);
     u.createSecurePassword("password");
@@ -148,7 +148,7 @@ public class TestController {
     a.setBanned(false);
     a.setBirthdate(new Date());
     a.setEmail("artist@yahoo.com");
-    a.setImage("");
+    a.setHasImage(false);
     a.setName("TestName");
     a.setPublic(true);
     a.setIsPremium(true);
