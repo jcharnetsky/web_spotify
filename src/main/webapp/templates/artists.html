@@ -3,7 +3,9 @@
 <div class="content_title">Followed Artists</div>
 <div class="followed_artists">
   <div class="info_block" ng-repeat="artist in artists">
-    <img ng-src="{{artist.imageLink}}" alt="Image">
+    <img ng-src="{{artist.imageLink}}" alt="Image"
+         ng-controller="UserCtrl"
+         ng-click="loadUser(artist.id)">
     <p>{{artist.stageName}}</p>
     <p>Followed</p>
   </div>
