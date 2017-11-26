@@ -4,8 +4,6 @@
   <ul class="top_list">
     <li>
       <ul class="nav_history">
-        <!--<li><a href="#"><p class="horizontal_chevron prev_history"><</p></a></li>
-        <li><a href="#" class="next_history"><p class="horizontal_chevron">></p></a></li>-->
         <li>
           <form class="search">
             <input class="search" type="text" placeholder="Search"><br>
@@ -14,10 +12,10 @@
       </ul>
     </li>
     <li id="top_options" ng-controller="MainCtrl">
-      <img class="user_img" alt="user-image" ng-src="{{user.image}}">
+      <img class="user_img" alt="user-image" ng-src="{{user.imageLink}}">
       <a href="#" id="username" ng-click="loadTemplateAndJSON('main', 'user_info.html', 'api/users/info/get/userInfo')">{{user.name}}</a>
       <span class="options_col">
-        <span class="options_button vertical_chevron" onclick="toggleDropdown(-1)" style="display:inline-block">v</span>
+        <span class="options_button" onclick="toggleDropdown(-1)" style="display: inline;">&#x25BC;</span>
         <span id="other_dropdown_-1" class="dropdown_content" style="right: 0;">
           <a href="#">Private Session</a>
           <a href="#">Upgrade Your Account</a>

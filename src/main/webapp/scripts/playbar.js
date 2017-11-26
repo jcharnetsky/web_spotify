@@ -1,4 +1,4 @@
-angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $http, $compile, $parse, $interval){
+angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $http, $compile, $parse, $interval, $filter){
 
   $scope.loadQueue = function() {
     $http.get(location.origin + "/api/queue/").then(function(response) {
@@ -69,8 +69,8 @@ angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $http, 
 		progressBar.max = audio.duration;
 		progressBar.value = audio.currentTime;
 
-		document.getElementById("playSongTimeUp").innerHTML = secondsToMinSec(progressBar.value);
-		document.getElementById("playSongTimeDown").innerHTML = secondsToMinSec(progressBar.max - progressBar.value);
+		document.getElementById("playSongTimeUp").innerHTML = $filter('secondsToMss')(progressBar.value);
+		document.getElementById("playSongTimeDown").innerHTML = $filter('secondsToMss')(progressBar.max - progressBar.value);
 		if (Math.floor(progressBar.value) >= Math.floor(progressBar.max)) {
 			$scope.play = false;
 			$scope.doPause();

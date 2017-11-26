@@ -1,14 +1,17 @@
 package webspotify.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import webspotify.config.ConfigConstants;
 import webspotify.models.media.SongQueue;
+import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 import webspotify.posts.SignupRequest;
 import webspotify.repo.UserRepository;
+import webspotify.responses.ArtistResponse;
 import webspotify.responses.UserInfoResponse;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
@@ -20,11 +23,13 @@ public class UserService {
   UserRepository userRepository;
 
   @Transactional
-  public Response getUserProfileInformation(int userId) {
+  public Response getUserProfileInformation(User currentUser, int userId) {
     if (userRepository.exists(userId)) {
       User user = userRepository.findOne(userId);
       if (!user.isBanned() && user.isPublic()) {
-        return ResponseUtilities.filledSuccess(new UserInfoResponse(user));
+        UserInfoResponse userInfo = new UserInfoResponse(user);
+        userInfo.setFollowed(currentUser.getFollowing().contains(user));
+        return ResponseUtilities.filledSuccess(userInfo);
       } else {
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
       }
@@ -109,6 +114,17 @@ public class UserService {
     } else {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_FOUND);
     }
+  }
+
+  @Transactional
+  public Response getFollowedArtists(User user){
+    List<ArtistResponse> toReturn = new ArrayList<ArtistResponse>();
+    for (User following: user.getFollowing()){
+      if(following instanceof Artist){
+        toReturn.add(new ArtistResponse((Artist) following));
+      }
+    }
+    return ResponseUtilities.filledSuccess(toReturn);
   }
 
 }

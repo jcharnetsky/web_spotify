@@ -3,19 +3,22 @@
   <div class="collection_header">
     <img class="collection_img" alt="album_art" ng-src="{{visitingUser.imageLink}}">
     <div class="collection_data">
-      <div id="content_title">{{visitingUser.name}}</div>
+      <div class="content_title">{{visitingUser.name}}</div>
       <div>Email: {{visitingUser.email}}</div>
       <div>Birthday: {{visitingUser.birthday}}</div>
       <div>Follower count: {{visitingUser.followerCount}}</div>
       <div>Listeners: / Monthly Listeners: </div>
       <div id="spotify_buttons">
-        <a ng-show="visitingUser.id != user.id"
+        <a ng-show="!visitingUser.followed && visitingUser.id != user.id"
            ng-click="followUser(visitingUser.id)"
            class="Follow" href="#">Follow</a>
+        <a ng-show="visitingUser.followed"
+           ng-click="unfollowUser(visitingUser.id) && visitingUser.id != user.id"
+           class="Follow" href="#">Unfollow</a>
       </div>
     </div>
   </div>
-  <ul class="content_header"><li><p id="content_title">Albums</p></li></ul>
+  <ul class="content_header"><li><p class="content_title">Albums</p></li></ul>
   <hr>
   <ul class="list_tiles">
     <li ng-repeat="item in api_home_overview.focus">
@@ -28,7 +31,7 @@
       </div>
     </li>
   </ul>
-  <ul class="content_header"><li><p id="content_title">Playlists</p></li></ul>
+  <ul class="content_header"><li><p class="content_title">Playlists</p></li></ul>
   <hr>
   <ul class="list_tiles">
     <li ng-repeat="item in api_home_overview.focus">
@@ -41,7 +44,7 @@
       </div>
     </li>
   </ul>
-  <ul class="content_header"><li><p id="content_title">Followers</p></li></ul>
+  <ul class="content_header"><li><p class="content_title">Followers</p></li></ul>
   <hr>
   <ul class="list_tiles">
     <li ng-repeat="item in api_home_overview.focus">

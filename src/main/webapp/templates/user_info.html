@@ -1,22 +1,30 @@
 <link rel="stylesheet" href="../css/user_info.css" type="text/css">
 <div>
-  <div class="user_header">
+  <div id="info_user_header">
     <div class="hiddenFileInputContainter">
-      <img class="user_img_full" src="../images/rhiannon-giddens-tomorrow-is-my-turn.jpg">
+      <img id="info_user_img" alt="user_img" ng-src="{{user.imageLink}}">
       <input type="file" name="fileUp" class="hidden" accept="image/*">
     </div>
-    <div class="user_info">
+    <div id="info_user">
       <div>
-        <span class="username">{{api_users_info_get_userInfo.name}}</span>
+        <span id="info_username">{{user.name}}</span>
         <a href="#">edit</a>
       </div>
       <div>
-        <span class="email">{{api_users_info_get_userInfo.email}}</span>
+        <span id="info_email">{{user.email}}</span>
         <a href="#">edit</a>
+      </div>
+      <div>
+        <a href="#">Change Password</a>
       </div>
     </div>
+    <div id="info_about" ng-show="user.artist">
+      <span id="info_about_header">About</span>
+      <a href="#">edit</a>
+      <span id="info_about_text">This is a users "about" information, change this to user.about when we have implemented it.</span>
+    </div>
     <div id="spotify_buttons">
-      <a href="#" class="delete_button">Delete Account</a>
+      <a href="#" id="info_delete_button">Delete Account</a>
     </div>
   </div>
 </div>

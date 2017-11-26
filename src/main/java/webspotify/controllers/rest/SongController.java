@@ -23,32 +23,32 @@ public class SongController {
 
   @GetMapping("/saved")
   public Response getSongs(HttpSession session) {
-    if (SessionUtilities.getUserFromSession(session) == null) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
-    User user = SessionUtilities.getUserFromSession(session);
-    return songService.getAllRelevantSongs(user);
+    return songService.getAllSavedSongs(user);
   }
 
   @GetMapping("/saved/add/{songId}")
   public Response addSavedSong(@PathVariable final int songId, HttpSession session) {
-    if (SessionUtilities.getUserFromSession(session) == null) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
-    User user = SessionUtilities.getUserFromSession(session);
     return songService.addSavedSong(user, songId);
   }
 
   @GetMapping("/saved/rem/{songId}")
   public Response remSavedSong(@PathVariable final int songId, HttpSession session) {
-    if (SessionUtilities.getUserFromSession(session) == null) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
-    User user = SessionUtilities.getUserFromSession(session);
     return songService.remSavedSong(user, songId);
   }
 
-  @GetMapping("/songNo/{songId}")
+  @GetMapping("/get/{songId}")
   public Response getSong(@PathVariable final int songId, HttpSession session) {
     if (SessionUtilities.getUserFromSession(session) == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);

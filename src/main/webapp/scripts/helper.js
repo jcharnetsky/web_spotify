@@ -31,13 +31,11 @@ function displayErrorPopup(error, scope, parse, compile) {
   compile(node)(scope);
 }
 
-function padZero(time){
-  if(time < 10){
-    return "0" + time;
+function getArrayElementWithId(array, id){
+  for (var i=0;i<array.length;i++){
+    if(array[i].id == id){
+      return array[i];
+    }
   }
-  return time;
-}
-
-function secondsToMinSec(time){
-  return Math.floor(time/60) + ":" + padZero((Math.floor(time%60)));
+  return null;
 }

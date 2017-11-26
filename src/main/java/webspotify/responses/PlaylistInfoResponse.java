@@ -1,10 +1,14 @@
 package webspotify.responses;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import webspotify.models.media.Playlist;
 import webspotify.models.media.Song;
 import webspotify.models.users.Artist;
+import webspotify.models.users.User;
 import webspotify.types.GenreType;
 
 /**
@@ -24,13 +28,15 @@ public class PlaylistInfoResponse {
   private Integer songTrackLength;
   private Integer followerCount;
   private List<SongResponse> songs;
+  private boolean isFollowed;
+  private boolean isPlaylist;
 
   public PlaylistInfoResponse(Playlist playlist) {
     this.id = playlist.getId();
     this.title = playlist.getTitle();
     this.genre = playlist.getGenre();
     this.description = playlist.getDescription();
-    this.imageLink = "../images/collections/logo.png";
+    this.imageLink = playlist.getImage();
     this.followerCount = playlist.getFollowerCount();
 
     if (playlist.getOwner() instanceof Artist) {
@@ -45,6 +51,40 @@ public class PlaylistInfoResponse {
     for (Song song : playlist.getSongs()) {
       this.songs.add(new SongResponse(song));
       this.songTrackLength += song.getTrackLength();
+    }
+    this.isPlaylist = true;
+  }
+
+  public PlaylistInfoResponse(User currentUser, Playlist playlist) {
+    this.id = playlist.getId();
+    this.title = playlist.getTitle();
+    this.genre = playlist.getGenre();
+    this.description = playlist.getDescription();
+    this.imageLink = playlist.getImage();
+    this.followerCount = playlist.getFollowerCount();
+
+    if (playlist.getOwner() instanceof Artist) {
+      this.ownerName = ((Artist) playlist.getOwner()).getStageName();
+    } else {
+      this.ownerName = playlist.getOwner().getName();
+    }
+    this.ownerId = playlist.getOwner().getId();
+    this.songCount = playlist.getSongs().size();
+    this.songs = new ArrayList<SongResponse>();
+    this.songTrackLength = 0;
+    for (Song song : playlist.getSongs()) {
+      this.songs.add(new SongResponse(song));
+      this.songTrackLength += song.getTrackLength();
+    }
+    this.isPlaylist = true;
+
+    setFollowed(currentUser.getFollowedPlaylists().contains(playlist));
+    Set<Integer> ids = new HashSet<Integer>();
+    for (Song song : currentUser.getSavedSongs()){
+      ids.add(song.getId());
+    }
+    for(SongResponse songResponse: getSongs()) {
+      songResponse.setSaved(ids.contains(songResponse.getId()));
     }
   }
 
@@ -134,5 +174,21 @@ public class PlaylistInfoResponse {
 
   public void setFollowerCount(Integer followerCount) {
     this.followerCount = followerCount;
+  }
+
+  public boolean isFollowed() {
+    return isFollowed;
+  }
+
+  public void setFollowed(boolean followed) {
+    isFollowed = followed;
+  }
+
+  public boolean isPlaylist() {
+    return isPlaylist;
+  }
+
+  public void setPlaylist(boolean playlist) {
+    isPlaylist = playlist;
   }
 }

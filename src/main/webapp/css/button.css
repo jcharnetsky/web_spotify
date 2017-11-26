@@ -36,7 +36,7 @@
   margin-left: inherit;
   padding-right: 20px;
   display: block;
-  min-width: 150px;
+  min-width: 250px;
 }
 .dropdown_content a:hover {
   text-decoration: none;

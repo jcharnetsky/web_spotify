@@ -8,6 +8,7 @@ import webspotify.models.media.Album;
 import webspotify.models.media.Playlist;
 import webspotify.models.media.Song;
 import webspotify.models.media.SongQueue;
+import webspotify.models.users.User;
 import webspotify.repo.AlbumRepository;
 import webspotify.repo.PlaylistRepository;
 import webspotify.repo.SongRepository;
@@ -16,6 +17,9 @@ import webspotify.responses.SongResponse;
 import webspotify.types.RepeatType;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Service("queueService")
 public class QueueService {
@@ -28,8 +32,8 @@ public class QueueService {
   AlbumRepository albumRepository;
 
   @Transactional
-  public Response retrieveEntireQueue(SongQueue queue) {
-    return ResponseUtilities.filledSuccess(new QueueResponse(queue));
+  public Response retrieveEntireQueue(User user, SongQueue queue) {
+    return ResponseUtilities.filledSuccess(new QueueResponse(user, queue));
   }
 
   @Transactional

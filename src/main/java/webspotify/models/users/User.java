@@ -297,8 +297,7 @@ public class User implements Viewable, Serializable {
 
   @Override
   public int hashCode() {
-    int hash = 7;
-    return hash;
+    return 7;
   }
 
   @Override

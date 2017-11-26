@@ -39,15 +39,12 @@ public class SongService {
   }
 
   @Transactional
-  public Response getAllRelevantSongs(User user) {
-    Set<Song> relevantSongs = new HashSet<Song>();
-    relevantSongs.addAll(user.getSavedSongs());
-    for (Album album : user.getSavedAlbums()) {
-      relevantSongs.addAll(album.getSongs());
-    }
+  public Response getAllSavedSongs(User user) {
     List<SongResponse> songsToReturn = new ArrayList<SongResponse>();
-    for (Song song : relevantSongs) {
-      songsToReturn.add(new SongResponse(song));
+    for (Song song : user.getSavedSongs()) {
+      SongResponse response = new SongResponse(song);
+      response.setSaved(true);
+      songsToReturn.add(response);
     }
     return ResponseUtilities.filledSuccess(songsToReturn);
   }

@@ -11,11 +11,13 @@ public class ArtistResponse implements Serializable {
   private Integer id;
   private String stageName;
   private String about;
+  private String imageLink;
 
   public ArtistResponse(Artist build) {
     this.id = build.getId();
     this.stageName = build.getStageName();
     this.about = build.getAbout();
+    this.imageLink = build.getImage();
   }
 
   public Integer getId() {
@@ -40,5 +42,13 @@ public class ArtistResponse implements Serializable {
 
   public void setAbout(String about) {
     this.about = about;
+  }
+
+  public String getImageLink() {
+    return imageLink;
+  }
+
+  public void setImageLink(String imageLink) {
+    this.imageLink = imageLink;
   }
 }

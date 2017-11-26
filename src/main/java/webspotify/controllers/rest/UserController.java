@@ -58,28 +58,38 @@ public class UserController {
 
   @GetMapping("/get/{userId}")
   public Response getUser(@PathVariable final int userId, HttpSession session) {
-    if (SessionUtilities.getUserFromSession(session) == null) {
+    User currentUser = SessionUtilities.getUserFromSession(session);
+    if (currentUser == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
-    return userService.getUserProfileInformation(userId);
+    return userService.getUserProfileInformation(currentUser, userId);
   }
 
-  @GetMapping("/follow/{userId}")
+  @PostMapping("/follow/{userId}")
   public Response followUser(@PathVariable final int userId, HttpSession session) {
-    if (SessionUtilities.getUserFromSession(session) == null) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
-    User user = SessionUtilities.getUserFromSession(session);
     return userService.followUser(user, userId);
   }
 
-  @GetMapping("/unfollow/{userId}")
+  @PostMapping("/unfollow/{userId}")
   public Response unfollowUser(@PathVariable final int userId, HttpSession session) {
-    if (SessionUtilities.getUserFromSession(session) == null) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
-    User user = SessionUtilities.getUserFromSession(session);
     return userService.unfollowUser(user, userId);
+  }
+
+  @GetMapping("/get/followedArtists")
+  public Response getFollowedArtists(HttpSession session){
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    }
+    return userService.getFollowedArtists(user);
   }
 
 }

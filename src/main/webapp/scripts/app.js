@@ -28,15 +28,17 @@ angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function($c
 
   $scope.loadUserInfo = function() {
     $http.get(location.origin + "/api/users/info/get/userInfo").then(function(response) {
-        if(!response.data.error){
-          $parse("user").assign($scope, response.data.content);
-        } else {
-          displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
-        }
-      }).catch(function (err) {
-        displayErrorPopup(err, $scope, $parse, $compile);
-      });
+      if(!response.data.error){
+        $parse("user").assign($scope, response.data.content);
+      } else {
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }
+    }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
   }
-
-  $scope.secondsToMinSec = secondsToMinSec;
+}).filter('secondsToMss', function($filter) {
+    return function(seconds) {
+        return $filter('date')(new Date(0, 0, 0).setSeconds(seconds), 'm:ss');
+    };
 });

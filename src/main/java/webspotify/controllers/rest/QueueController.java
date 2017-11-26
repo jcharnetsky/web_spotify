@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import webspotify.config.ConfigConstants;
 import webspotify.models.media.SongQueue;
+import webspotify.models.users.User;
 import webspotify.services.QueueService;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
@@ -22,11 +23,12 @@ public class QueueController {
 
   @GetMapping("/")
   public Response getQueueInformation(HttpSession session) {
-    if (SessionUtilities.getUserFromSession(session) == null) {
+    User currentUser = SessionUtilities.getUserFromSession(session);
+    if (currentUser == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
     SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
-    return queueService.retrieveEntireQueue(queue);
+    return queueService.retrieveEntireQueue(currentUser, queue);
   }
 
   @PostMapping("/add/song/{songId}")

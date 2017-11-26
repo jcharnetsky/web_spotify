@@ -25,7 +25,7 @@
   display: inline-block;
 }
 .collection {
-  padding-left: 3vw;
+  padding-left: 2vw;
 }
 .collection_tiles , .collection_column_headers {
   margin-bottom: 0;
@@ -53,11 +53,6 @@
   /*text-decoration: underline;*/
   cursor: pointer;
 }
-.add_button {
-  font-size: 180%;
-  width: 10%;
-  text-align: right;
-}
 .highlight_on_hover:hover {
   background-color: #333333;
 }
@@ -82,7 +77,6 @@
 .add_button {
   font-size: 180%;
   width: 2%;
-  text-align: right;
 }
 .add_button:hover {
   text-decoration: none;
