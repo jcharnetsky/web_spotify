@@ -1,7 +1,6 @@
 angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope, $http, $parse) {
   $scope.loadUser = function (id) {
-    controllerPath = "api/users/get/" + id;
-    $http.get(location.origin + "/" + controllerPath).then(function (response) {
+    $http.get(location.origin + "/api/users/get/" + id).then(function (response) {
       handleJSONResponse(response, "main", "user.html", "visitingUser", $compile, $parse, $scope);
     }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
@@ -9,6 +8,18 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
   };
 
   $scope.followUser = function(id) {
+    data = JSON.stringify({"userId": id});
+    $http.post("/api/users/follow/" + id, data, {headers: {"Content-Type": "application/json"}}).
+      then(function (response) {
+        if (!response.data.error) {
+          $scope.visitingUser.followed = true;
+          displayErrorPopup("Successfully followed user", $scope, $parse, $compile);
+          return;
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
   }
 
   $scope.unfollowUser = function(id) {
