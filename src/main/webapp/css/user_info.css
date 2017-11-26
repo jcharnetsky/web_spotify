@@ -1,17 +1,17 @@
-.user_header {
+#info_user_header {
   display: inline-block;
   height: 20vh;
   margin-top: 2vw;
   margin-left: 2vw;
   margin-bottom: 3vw;
 }
-.user_info {
+#info_user {
   margin-left: 1vw;
   margin-top: 0;
   display: inline-block;
   vertical-align: top;
 }
-.user_img_full {
+#info_user_img {
   height: 20vh;
   width: auto;
   display: inline-block;
@@ -40,17 +40,33 @@ input[type='file'].hidden {
   -moz-opacity: 0;
   filter: Alpha(Opacity=0);
 }
-.username {
+#info_username {
   font-size: 300%;
   color: #FFFFFF;
   font-weight: 700;
 }
-.email {
+#info_email {
   font-size: 200%;
   color: #FFFFFF;
   font-weight: 700;
 }
-.delete_button {
+#info_about {
+  display: inline-block;
+  width: 30vw;
+  padding-left: 10vw;
+}
+#info_about_header {
+  display: inline-block;
+  font-size: 300%;
+  color: #FFFFFF;
+  font-weight: 700;
+}
+#info_about_text {
+  display: inline-block;
+  font-size: 120%;
+  width: 30vw;
+}
+#info_delete_button {
   font-weight: 800 !important;
   color: #c42121 !important;
 }
