@@ -23,6 +23,18 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
   }
 
   $scope.unfollowUser = function(id) {
+    data = JSON.stringify({"userId": id});
+    $http.post("/api/users/unfollow/" + id, data, {headers: {"Content-Type": "application/json"}}).
+      then(function (response) {
+        if (!response.data.error) {
+          $scope.visitingUser.followed = false;
+          displayErrorPopup("Successfully unfollowed user", $scope, $parse, $compile);
+          return;
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
   }
 
   $scope.toggleDropdown = toggleDropdown;
