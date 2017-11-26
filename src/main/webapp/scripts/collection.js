@@ -48,6 +48,15 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
+
+  $scope.followCollection = function (id) {
+    data = {};
+
+  }
+
+  $scope.unfollowCollection = function (id) {
+  }
+
   $scope.createPlaylist = function () {
     if (!$scope.new_title) {
       displayErrorPopup("You must enter a playlist title", $scope, $parse, $compile);

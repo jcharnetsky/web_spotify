@@ -29,6 +29,7 @@ public class PlaylistInfoResponse {
   private Integer followerCount;
   private List<SongResponse> songs;
   private boolean isFollowed;
+  private boolean isPlaylist;
 
   public PlaylistInfoResponse(Playlist playlist) {
     this.id = playlist.getId();
@@ -51,6 +52,7 @@ public class PlaylistInfoResponse {
       this.songs.add(new SongResponse(song));
       this.songTrackLength += song.getTrackLength();
     }
+    this.isPlaylist = true;
   }
 
   public PlaylistInfoResponse(User currentUser, Playlist playlist) {
@@ -74,6 +76,7 @@ public class PlaylistInfoResponse {
       this.songs.add(new SongResponse(song));
       this.songTrackLength += song.getTrackLength();
     }
+    this.isPlaylist = true;
 
     setFollowed(currentUser.getFollowedPlaylists().contains(playlist));
     Set<Integer> ids = new HashSet<Integer>();
@@ -179,5 +182,13 @@ public class PlaylistInfoResponse {
 
   public void setFollowed(boolean followed) {
     isFollowed = followed;
+  }
+
+  public boolean isPlaylist() {
+    return isPlaylist;
+  }
+
+  public void setPlaylist(boolean playlist) {
+    isPlaylist = playlist;
   }
 }

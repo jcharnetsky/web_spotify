@@ -27,6 +27,7 @@ public class AlbumInfoResponse {
   private Integer songTrackLength;
   private List<SongResponse> songs;
   private boolean isFollowed;
+  private boolean isAlbum;
 
   public AlbumInfoResponse(Album album) {
     this.id = album.getId();
@@ -46,6 +47,7 @@ public class AlbumInfoResponse {
       this.songs.add(new SongResponse(song));
       this.songTrackLength += song.getTrackLength();
     }
+    this.isAlbum = true;
   }
 
   public AlbumInfoResponse(User currentUser, Album album) {
@@ -66,6 +68,7 @@ public class AlbumInfoResponse {
       this.songs.add(new SongResponse(song));
       this.songTrackLength += song.getTrackLength();
     }
+    this.isAlbum = true;
 
     setFollowed(currentUser.getSavedAlbums().contains(album));
     Set<Integer> ids = new HashSet<Integer>();
@@ -155,5 +158,13 @@ public class AlbumInfoResponse {
 
   public void setFollowed(boolean followed) {
     isFollowed = followed;
+  }
+
+  public boolean isAlbum() {
+    return isAlbum;
+  }
+
+  public void setAlbum(boolean album) {
+    isAlbum = album;
   }
 }

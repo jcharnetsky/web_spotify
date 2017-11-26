@@ -15,8 +15,10 @@
 			<div> {{collection.description}}</div>
 			<div id="spotify_buttons" ng-controller="CollectionCtrl">
 				<a href="#" ng-controller="PlaybarCtrl">Play</a>
-				<a href="#" ng-show="user.id != collection.ownerId && !collection.followed">Follow</a>
-        <a href="#" ng-show="user.id != collection.ownerId && collection.followed">Unfollow</a>
+				<a href="#" ng-show="user.id != collection.ownerId && !collection.followed"
+                    ng-click="followCollection(collection.id)">Follow</a>
+        <a href="#" ng-show="user.id != collection.ownerId && collection.followed"
+                    ng-click="unfollowCollection(collection.id)">Unfollow</a>
         <a href="#" ng-show="user.id == collection.ownerId" ng-click="openEditPlaylistDialog()">Edit</a>
         <a href="#" ng-show="user.id == collection.ownerId" ng-click="deletePlaylist(collection.id)">Delete</a>
 			</div>
