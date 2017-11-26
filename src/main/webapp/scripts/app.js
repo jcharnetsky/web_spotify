@@ -37,6 +37,8 @@ angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function($c
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
-
-  $scope.secondsToMinSec = secondsToMinSec;
+}).filter('secondsToMss', function($filter) {
+    return function(seconds) {
+        return $filter('date')(new Date(0, 0, 0).setSeconds(seconds), 'm:ss');
+    };
 });

@@ -65,7 +65,7 @@ public class UserController {
     return userService.getUserProfileInformation(currentUser, userId);
   }
 
-  @GetMapping("/follow/{userId}")
+  @PostMapping("/follow/{userId}")
   public Response followUser(@PathVariable final int userId, HttpSession session) {
     if (SessionUtilities.getUserFromSession(session) == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
@@ -74,7 +74,7 @@ public class UserController {
     return userService.followUser(user, userId);
   }
 
-  @GetMapping("/unfollow/{userId}")
+  @PostMapping("/unfollow/{userId}")
   public Response unfollowUser(@PathVariable final int userId, HttpSession session) {
     if (SessionUtilities.getUserFromSession(session) == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);

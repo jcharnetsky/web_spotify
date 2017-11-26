@@ -39,14 +39,3 @@ function getArrayElementWithId(array, id){
   }
   return null;
 }
-
-function padZero(time){
-  if(time < 10){
-    return "0" + time;
-  }
-  return time;
-}
-
-function secondsToMinSec(time){
-  return Math.floor(time/60) + ":" + padZero((Math.floor(time%60)));
-}

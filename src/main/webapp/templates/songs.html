@@ -3,7 +3,10 @@
 <script src="scripts/button.js"></script>
 <ul class="songs" ng-controller="PlaybarCtrl">
   <li>
-    <ul class="collection_tiles">
+    <div class="content_title">Saved Songs</div>
+  </li>
+  <li>
+    <ul class="collection_tiles" ng-show="collection.songs.length">
       <li>
         <div class="collection_tile">
           <span class="play_button_spacer"></span>
@@ -27,7 +30,7 @@
           <a href="#" ng-show="song.saved" ng-click="unsaveSong(song.id)" class="add_button">-</a>
           <a href="#" ng-dblclick="loadSong(song.id)">{{song.trackName}}</a>
           <a href="#" ng-controller="UserCtrl" ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
-          <span>{{secondsToMinSec(song.trackLength)}}</span>
+          <span>{{song.trackLength | secondsToMss}}</span>
           <a href="#" ng-click="loadAlbum(song.albumId)" ng-controller="CollectionCtrl">{{song.albumName}}</a>
           <div class="dropdown options_col">
             <div class="options_button" ng-click="toggleDropdown(song.id)">...</div>
