@@ -17,8 +17,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
     $compile(loadToDiv("main", "navigateContent.html"))($scope);
   }
   $scope.getPlaylists = function () {
-    controllerPath = "/api/playlists/";
-    $http.get(location.origin + controllerPath).then(function (response) {
+    $http.get(location.origin + "/api/playlists/").then(function (response) {
       handleJSONResponse(response, "playlists", "null", "playlists", $compile, $parse, $scope);
       collections.setPlaylists(angular.copy($scope.playlists));
     }).catch(function (err) {
@@ -26,8 +25,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
     });
   }
   $scope.getAlbums = function () {
-    controllerPath = "/api/albums/";
-    $http.get(location.origin + controllerPath).then(function (response) {
+    $http.get(location.origin + "/api/albums/").then(function (response) {
       handleJSONResponse(response, "main", "albums.html", "albums", $compile, $parse, $scope);
       collections.setAlbums(angular.copy($scope.albums));
     }).catch(function (err) {
@@ -201,7 +199,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
-  $scope.getSongs = function () {
+  $scope.getSavedSongs = function () {
     $http.get(location.origin + "/api/songs/saved").then(function (response) {
       handleJSONResponse(response, "main", "songs.html", "collection.songs", $compile, $parse, $scope);
     }).catch(function (err) {

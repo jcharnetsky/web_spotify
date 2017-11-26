@@ -7,6 +7,14 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
     });
   };
 
+  $scope.getFollowedArtists = function () {
+    $http.get(location.origin + "/api/users/get/followedArtists").then(function (response) {
+      handleJSONResponse(response, "main", "artists.html", "artists", $compile, $parse, $scope);
+    }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  }
+
   $scope.followUser = function(id) {
     data = JSON.stringify({"userId": id});
     $http.post("/api/users/follow/" + id, data, {headers: {"Content-Type": "application/json"}}).
