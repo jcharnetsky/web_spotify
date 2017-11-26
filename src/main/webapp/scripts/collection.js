@@ -70,11 +70,29 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
       }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });
-
-
   }
 
   $scope.unfollowCollection = function (id) {
+    let controllerPath;
+    let data;
+    if($scope.collection.album){
+      controllerPath = "/api/albums/"+id+"/unsave";
+      data = JSON.stringify({"albumId":id});
+    } else if ($scope.collection.playlist) {
+      controllerPath = "/api/playlists/"+id+"/unfollow";
+      data = JSON.stringify({"playlistId":id});
+    }
+    $http.post(controllerPath, data, {headers: {"Content-Type": "application/json"}}).
+      then(function (response) {
+        if (!response.data.error) {
+          $scope.collection.followed = false;
+          displayErrorPopup("Successfully unfollowed collection", $scope, $parse, $compile);
+          return;
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
   }
 
   $scope.createPlaylist = function () {
