@@ -18,10 +18,11 @@
         <span class="options_button" onclick="toggleDropdown(-1)" style="display: inline;">&#x25BC;</span>
         <span id="other_dropdown_-1" class="dropdown_content" style="right: 0;">
           <a href="#">Private Session</a>
-          <a href="#">Upgrade Your Account</a>
+          <a href="#" ng-show="user.basic">Upgrade Your Account</a>
           <a href="#" ng-click="logout()">Logout</a>
         </span>
       </span>
+      <a ng-show="!user.premium">Basic</a>
       <a ng-show="user.premium">Premium</a>
       <a ng-show="user.artist">Artist</a>
       <a ng-show="user.admin">Administrator</a>
