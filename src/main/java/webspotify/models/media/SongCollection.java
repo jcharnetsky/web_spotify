@@ -1,5 +1,4 @@
 package webspotify.models.media;
-
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,7 +23,6 @@ import webspotify.types.GenreType;
  */
 @MappedSuperclass
 public abstract class SongCollection implements Serializable, Viewable {
-
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
@@ -46,102 +44,81 @@ public abstract class SongCollection implements Serializable, Viewable {
           joinColumns = @JoinColumn(name = "collectionID", referencedColumnName = "id"),
           inverseJoinColumns = @JoinColumn(name = "songID", referencedColumnName = "id"))
   private Set<Song> songs;
-
   protected SongCollection() {
     songs = new HashSet();
   }
-
   @Override
   public Integer getId() {
     return id;
   }
-
   public void setId(Integer id) {
     this.id = id;
   }
-
   public String getTitle() {
     return title;
   }
-
   public void setTitle(String title) {
     this.title = title;
   }
-
   public GenreType getGenre() {
     return genre;
   }
-
   public void setGenre(GenreType genre) {
     this.genre = genre;
   }
-
   public Boolean getIsBanned() {
     return isBanned;
   }
-
   public void setIsBanned(Boolean isBanned) {
     this.isBanned = isBanned;
   }
-
   public Boolean getIsPublic() {
     return isPublic;
   }
-
   public void setIsPublic(Boolean isPublic) {
     this.isPublic = isPublic;
   }
-
   @Override
   public boolean isBanned() {
     return this.isBanned;
   }
-
   @Override
   public boolean isPublic() {
     return this.isPublic;
   }
-
   @Override
   public int ownedBy() {
     return -1;
   }
-
   @Override
   public void setBanned(boolean value) {
     this.setIsBanned(value);
   }
-
   @Override
   public void setPublic(boolean value) {
     this.setIsPublic(value);
   }
-
   public Set<Song> getSongs() {
     return songs;
   }
-
   public void setSongs(Set<Song> songs) {
     this.songs = songs;
   }
-
   public User getOwner() {
     return owner;
   }
-
   public void setOwner(User owner) {
     this.owner = owner;
   }
-
-  public String getImage(){ return "../images/logo.png"; };
-
+  public String getImage() {
+    return "../images/logo.png";
+  }
   @Override
   public int hashCode() {
     int hash = 5;
     hash = 53 * hash + (this.id != null ? this.id.hashCode() : 0);
     return hash;
   }
-
   @Override
   public boolean equals(Object obj) {
     if (this == obj) {
@@ -159,5 +136,4 @@ public abstract class SongCollection implements Serializable, Viewable {
     }
     return true;
   }
-
 }
