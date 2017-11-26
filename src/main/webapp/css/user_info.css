@@ -9,6 +9,7 @@
   margin-left: 1vw;
   margin-top: 0;
   display: inline-block;
+  vertical-align: top;
 }
 .user_img_full {
   height: 20vh;
