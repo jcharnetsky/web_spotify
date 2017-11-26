@@ -84,7 +84,7 @@ public class PlaylistController {
     return playlistService.editPlaylist(user, playlistId, request);
   }
 
-  @GetMapping("/{playlistId}/follow")
+  @PostMapping("/{playlistId}/follow")
   public Response savePlaylistToUser(@PathVariable final int playlistId, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
@@ -93,7 +93,7 @@ public class PlaylistController {
     return playlistService.followPlaylist(user, playlistId);
   }
 
-  @GetMapping("/{playlistId}/unfollow")
+  @PostMapping("/{playlistId}/unfollow")
   public Response unsaveCollectionToUser(@PathVariable final int playlistId, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {

@@ -72,7 +72,7 @@ public class AlbumController {
     return albumService.deleteAlbum(user, albumId);
   }
 
-  @GetMapping("/{albumId}/save")
+  @PostMapping("/{albumId}/save")
   public Response saveAlbumToUser(@PathVariable final int albumId, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
@@ -81,7 +81,7 @@ public class AlbumController {
     return albumService.saveAlbum(user, albumId);
   }
 
-  @GetMapping("/{albumId}/unsave")
+  @PostMapping("/{albumId}/unsave")
   public Response unsaveCollectionToUser(@PathVariable final int albumId, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {

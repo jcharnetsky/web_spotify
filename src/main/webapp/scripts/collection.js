@@ -50,7 +50,27 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
   }
 
   $scope.followCollection = function (id) {
-    data = {};
+    let controllerPath;
+    let data;
+    if($scope.collection.album){
+      controllerPath = "/api/albums/"+id+"/save";
+      data = JSON.stringify({"albumId":id});
+    } else if ($scope.collection.playlist) {
+      controllerPath = "/api/playlists/"+id+"/follow";
+      data = JSON.stringify({"playlistId":id});
+    }
+    $http.post(controllerPath, data, {headers: {"Content-Type": "application/json"}}).
+      then(function (response) {
+        if (!response.data.error) {
+          $scope.collection.followed = true;
+          displayErrorPopup("Successfully followed collection", $scope, $parse, $compile);
+          return;
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+
 
   }
 
