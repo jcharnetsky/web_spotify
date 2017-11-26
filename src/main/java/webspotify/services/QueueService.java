@@ -33,18 +33,7 @@ public class QueueService {
 
   @Transactional
   public Response retrieveEntireQueue(User user, SongQueue queue) {
-    QueueResponse response = new QueueResponse(queue);
-    Set<Integer> ids = new HashSet<Integer>();
-    for (Song song : user.getSavedSongs()){
-      ids.add(song.getId());
-    }
-    for(SongResponse songResponse: response.getQueue()){
-      songResponse.setSaved(ids.contains(songResponse.getId()));
-    }
-    for(SongResponse songResponse: response.getHistory()){
-      songResponse.setSaved(ids.contains(songResponse.getId()));
-    }
-    return ResponseUtilities.filledSuccess(response);
+    return ResponseUtilities.filledSuccess(new QueueResponse(user, queue));
   }
 
   @Transactional

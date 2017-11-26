@@ -56,44 +56,18 @@ public class PlaylistService {
   public Response getInfoAboutPlaylist(User user, final int playlistId) {
     for (Playlist playlist: user.getOwnedPlaylists()){
       if(playlist.getId() == playlistId) {
-        PlaylistInfoResponse response = new PlaylistInfoResponse(playlist);
-        Set<Integer> ids = new HashSet<Integer>();
-        for (Song song : user.getSavedSongs()){
-          ids.add(song.getId());
-        }
-        for(SongResponse songResponse: response.getSongs()){
-          songResponse.setSaved(ids.contains(songResponse.getId()));
-        }
-        return ResponseUtilities.filledSuccess(response);
+        return ResponseUtilities.filledSuccess(new PlaylistInfoResponse(user, playlist));
       }
     }
     for (Playlist playlist: user.getFollowedPlaylists()){
       if(playlist.getId() == playlistId) {
-        PlaylistInfoResponse response = new PlaylistInfoResponse(playlist);
-        response.setFollowed(true);
-        Set<Integer> ids = new HashSet<Integer>();
-        for (Song song : user.getSavedSongs()){
-          ids.add(song.getId());
-        }
-        for(SongResponse songResponse: response.getSongs()){
-          songResponse.setSaved(ids.contains(songResponse.getId()));
-        }
-        return ResponseUtilities.filledSuccess(response);
+        return ResponseUtilities.filledSuccess(new PlaylistInfoResponse(user, playlist));
       }
     }
     if (playlistRepo.exists(playlistId)) {
       Playlist playlist = playlistRepo.findOne(playlistId);
       if (playlist.isPublic()) {
-        PlaylistInfoResponse response = new PlaylistInfoResponse(playlist);
-        response.setFollowed(false);
-        Set<Integer> ids = new HashSet<Integer>();
-        for (Song song : user.getSavedSongs()){
-          ids.add(song.getId());
-        }
-        for(SongResponse songResponse: response.getSongs()){
-          songResponse.setSaved(ids.contains(songResponse.getId()));
-        }
-        return ResponseUtilities.filledSuccess(response);
+        return ResponseUtilities.filledSuccess(new PlaylistInfoResponse(user, playlist));
       } else {
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
       }

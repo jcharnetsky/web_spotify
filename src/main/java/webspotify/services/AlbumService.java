@@ -41,45 +41,19 @@ public class AlbumService {
       Artist artist = (Artist) user;
       for (Album album : artist.getOwnedAlbums()) {
         if (album.getId() == albumId) {
-          AlbumInfoResponse response = new AlbumInfoResponse(album);
-          Set<Integer> ids = new HashSet<Integer>();
-          for (Song song : user.getSavedSongs()){
-            ids.add(song.getId());
-          }
-          for(SongResponse songResponse: response.getSongs()){
-            songResponse.setSaved(ids.contains(songResponse.getId()));
-          }
-          return ResponseUtilities.filledSuccess(response);
+          return ResponseUtilities.filledSuccess(new AlbumInfoResponse(user, album));
         }
       }
     }
     for (Album album: user.getSavedAlbums()){
       if(album.getId() == albumId) {
-        AlbumInfoResponse response = new AlbumInfoResponse(album);
-        response.setFollowed(true);
-        Set<Integer> ids = new HashSet<Integer>();
-        for (Song song : user.getSavedSongs()){
-          ids.add(song.getId());
-        }
-        for(SongResponse songResponse: response.getSongs()){
-          songResponse.setSaved(ids.contains(songResponse.getId()));
-        }
-        return ResponseUtilities.filledSuccess(response);
+        return ResponseUtilities.filledSuccess(new AlbumInfoResponse(user, album));
       }
     }
     if (albumRepo.exists(albumId)) {
       Album album = albumRepo.findOne(albumId);
       if (album.isPublic()) {
-        AlbumInfoResponse response = new AlbumInfoResponse(album);
-        response.setFollowed(false);
-        Set<Integer> ids = new HashSet<Integer>();
-        for (Song song : user.getSavedSongs()){
-          ids.add(song.getId());
-        }
-        for(SongResponse songResponse: response.getSongs()){
-          songResponse.setSaved(ids.contains(songResponse.getId()));
-        }
-        return ResponseUtilities.filledSuccess(response);
+        return ResponseUtilities.filledSuccess(new AlbumInfoResponse(user, album));
       } else {
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
       }

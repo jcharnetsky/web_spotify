@@ -1,10 +1,14 @@
 package webspotify.responses;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import webspotify.models.media.Album;
 import webspotify.models.media.Song;
 import webspotify.models.users.Artist;
+import webspotify.models.users.User;
 import webspotify.types.GenreType;
 
 /**
@@ -41,6 +45,35 @@ public class AlbumInfoResponse {
     for (Song song : album.getSongs()) {
       this.songs.add(new SongResponse(song));
       this.songTrackLength += song.getTrackLength();
+    }
+  }
+
+  public AlbumInfoResponse(User currentUser, Album album) {
+    this.id = album.getId();
+    this.title = album.getTitle();
+    this.genre = album.getGenre();
+    this.imageLink = album.getImage();
+    if (album.getOwner() instanceof Artist) {
+      this.ownerName = ((Artist) album.getOwner()).getStageName();
+    } else {
+      this.ownerName = album.getOwner().getName();
+    }
+    this.ownerId = album.getOwner().getId();
+    this.songCount = album.getSongs().size();
+    this.songs = new ArrayList<SongResponse>();
+    this.songTrackLength = 0;
+    for (Song song : album.getSongs()) {
+      this.songs.add(new SongResponse(song));
+      this.songTrackLength += song.getTrackLength();
+    }
+
+    setFollowed(currentUser.getSavedAlbums().contains(album));
+    Set<Integer> ids = new HashSet<Integer>();
+    for (Song song : currentUser.getSavedSongs()){
+      ids.add(song.getId());
+    }
+    for(SongResponse songResponse: getSongs()) {
+      songResponse.setSaved(ids.contains(songResponse.getId()));
     }
   }
 
