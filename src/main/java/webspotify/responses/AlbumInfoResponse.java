@@ -40,10 +40,10 @@ public class AlbumInfoResponse {
       this.ownerName = album.getOwner().getName();
     }
     this.ownerId = album.getOwner().getId();
-    this.songCount = album.getSongs().size();
+    this.songCount = album.getSongsInAlbum().size();
     this.songs = new ArrayList<SongResponse>();
     this.songTrackLength = 0;
-    for (Song song : album.getSongs()) {
+    for (Song song : album.getSongsInAlbum()) {
       this.songs.add(new SongResponse(song));
       this.songTrackLength += song.getTrackLength();
     }
