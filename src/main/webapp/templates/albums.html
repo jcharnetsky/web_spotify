@@ -4,7 +4,7 @@
 <div class="followed_albums">
   <div class="info_block" ng-repeat="album in albums">
     <img ng-src="{{album.imageLink}}" alt="Image">
-    <p ng-model="album.title"></p>
+    <p>{{album.title}}</p>
     <p ng-show="album.followed">Followed</p>
     <p ng-show="!album.followed">Owned</p>
   </div>

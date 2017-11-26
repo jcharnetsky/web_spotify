@@ -184,7 +184,7 @@ public class AlbumService {
       setOfRelevantAlbums.addAll(((Artist) user).getOwnedAlbums());
     }
     for (Album album : setOfRelevantAlbums) {
-      dataToReturn.add(new AlbumInfoResponse(album));
+      dataToReturn.add(new AlbumInfoResponse(user, album));
     }
     return ResponseUtilities.filledSuccess(dataToReturn);
   }

@@ -1,0 +1,21 @@
+.followed_artists, .followed_albums {
+  margin-top: 2vw;
+  display: block;
+}
+
+.info_block {
+  width: 20vw;
+  height: 20vw;
+  text-align: center;
+  display: inline-block;
+}
+
+.info_block img {
+  width: 15vw;
+  height: 15vw;
+}
+
+.info_block p {
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
