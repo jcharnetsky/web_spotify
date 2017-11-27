@@ -75,6 +75,12 @@ public class UserService {
     userRepository.saveAndFlush(user);
     return ResponseUtilities.emptySuccess();
   }
+  
+  @Transactional
+  public Response deleteUser(User user) {
+    userRepository.delete(user);
+    return ResponseUtilities.emptySuccess();
+  }
 
   @Transactional
   public Response followUser(User user, int userId) {

@@ -57,6 +57,20 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
+  
+  $scope.deleteAccount = function() {
+    $http.post("/api/users/delete", null, {headers: {"Content-Type": "application/json"}}).
+    then(function(response) {
+      if(!response.data.error) {
+        displayErrorPopup("Successfully deleted account.", $scope, $parse, $compile);
+        window.location = location.origin;
+        return;
+      }
+      displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+    }).catch(function (err) {
+    displayErrorPopup(err, $scope, $parse, $compile);
+  });
+  }
 
   $scope.toggleDropdown = toggleDropdown;
 });
