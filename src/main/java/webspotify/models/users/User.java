@@ -277,7 +277,7 @@ public class User implements Viewable, Serializable {
 
   @Override
   public boolean isPublic() {
-    return this.getIsPremium();
+    return this.getIsPublic();
   }
 
   @Override

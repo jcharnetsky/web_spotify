@@ -22,7 +22,7 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
         if (!response.data.error) {
           $scope.visitingUser.followed = true;
           displayErrorPopup("Successfully followed user", $scope, $parse, $compile);
-          return;
+          return; 
         }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
       }).catch(function (err) {
@@ -37,6 +37,19 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
         if (!response.data.error) {
           $scope.visitingUser.followed = false;
           displayErrorPopup("Successfully unfollowed user", $scope, $parse, $compile);
+          return;
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  }
+  
+  $scope.toggleIsPublic = function() {
+    $http.post("/api/users/info/set/public", null, {headers: {"Content-Type": "application/json"}}).
+      then(function(response) {
+        if(!response.data.error) {
+          displayErrorPopup("Successfully toggled public/private status.", $scope, $parse, $compile);
           return;
         }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);

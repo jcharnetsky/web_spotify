@@ -48,4 +48,11 @@ public class UserInfoService {
     userRepository.saveAndFlush(user);
     return ResponseUtilities.emptySuccess();
   }
+  
+  @Transactional
+  public Response togglePublic(User user) {
+    Boolean toggled = !(user.getIsPublic());
+    user.setIsPublic(toggled);
+    return ResponseUtilities.emptySuccess();
+  }
 }
