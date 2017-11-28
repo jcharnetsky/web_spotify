@@ -3,6 +3,7 @@ package webspotify.controllers.rest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -67,12 +68,21 @@ public class UserInfoController {
     return userInfoService.setEmail(u, email);
   }
 
-  @GetMapping("/set/premium")
+  @PostMapping("/set/premium")
   public Response setUserPremium(@RequestParam Boolean premium, HttpSession session) {
     User u = SessionUtilities.getUserFromSession(session);
     if (u == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
     return userInfoService.setPremium(u, premium);
+  }
+  
+  @PostMapping("/set/public")
+  public Response setIsPublic(HttpSession session) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if(user == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    }
+    return userInfoService.togglePublic(user);
   }
 }
