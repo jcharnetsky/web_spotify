@@ -53,6 +53,7 @@ public class UserInfoService {
   public Response togglePublic(User user) {
     Boolean toggled = !(user.getIsPublic());
     user.setIsPublic(toggled);
+    userRepository.saveAndFlush(user);
     return ResponseUtilities.emptySuccess();
   }
 }

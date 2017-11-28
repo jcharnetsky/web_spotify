@@ -48,6 +48,20 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
   $scope.toggleIsPublic = function() {
     $http.post("/api/users/info/set/public", null, {headers: {"Content-Type": "application/json"}}).
       then(function(response) {
+        var elem = document.getElementById("toggleOn");
+        if (elem.innerHTML=="Enable Private Session") {
+          elem.innerHTML = "Disable Private Session";
+        }
+        else {
+          elem.innerHTML = "Enable Private Session";
+        }
+        var elem = document.getElementById("toggleOff");
+        if (elem.innerHTML=="Enable Private Session") {
+          elem.innerHTML = "Disable Private Session";
+        }
+        else {
+          elem.innerHTML = "Enable Private Session";
+        }
         if(!response.data.error) {
           displayErrorPopup("Successfully toggled public/private status.", $scope, $parse, $compile);
           return;

@@ -19,6 +19,7 @@ public class UserInfoResponse {
   private Date birthday;
   private String imageLink;
   private Boolean isPremium;
+  private Boolean isPublic;
   private Boolean isArtist;
   private Boolean isAdmin;
   private Boolean isAdvertiser;
@@ -35,6 +36,7 @@ public class UserInfoResponse {
     this.birthday = user.getBirthdate();
     this.imageLink = user.getImage();
     this.isPremium = user.getIsPremium();
+    this.isPublic = user.getIsPublic();
     if (user instanceof Artist) {
       this.isArtist = true;
       this.artist = new ArtistProfileResponse((Artist) user);
@@ -105,6 +107,14 @@ public class UserInfoResponse {
 
   public void setIsPremium(Boolean isPremium) {
     this.isPremium = isPremium;
+  }
+  
+  public Boolean getIsPublic() {
+    return isPublic;
+  }
+  
+  public void setIsPublic(Boolean isPublic) {
+    this.isPublic = isPublic;
   }
 
   public Boolean getIsArtist() {
