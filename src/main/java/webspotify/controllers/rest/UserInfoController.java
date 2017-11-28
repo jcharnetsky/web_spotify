@@ -68,7 +68,7 @@ public class UserInfoController {
     return userInfoService.setEmail(u, email);
   }
 
-  @GetMapping("/set/premium")
+  @PostMapping("/set/premium")
   public Response setUserPremium(@RequestParam Boolean premium, HttpSession session) {
     User u = SessionUtilities.getUserFromSession(session);
     if (u == null) {

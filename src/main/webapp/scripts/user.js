@@ -72,6 +72,30 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
     });
   }
   
+  $scope.setPremium = function(status) {
+    $http.post("/api/users/info/set/premium", null, {
+      params:{
+        "premium": status}}).
+      then(function(response) {
+        if(!response.data.error) {
+          if(status) {
+            document.getElementById("downgrading").style.visibility = 'hidden';
+            document.getElementById("upgrading").style.visibility = 'visible';
+            displayErrorPopup("Successfully downgraded account.", $scope, $parse, $compile);
+          }
+          else {
+            document.getElementById("upgrading").style.visibility = 'hidden';
+            document.getElementById("downgrading").style.visibility = 'visible';
+            displayErrorPopup("Successfully upgraded account.", $scope, $parse, $compile);
+          }
+          return;
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  }
+  
   $scope.deleteAccount = function() {
     $http.post("/api/users/delete", null, {headers: {"Content-Type": "application/json"}}).
     then(function(response) {

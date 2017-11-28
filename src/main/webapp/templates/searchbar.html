@@ -22,6 +22,8 @@
         <span id="other_dropdown_-1" class="dropdown_content" style="right: 0;">
           <a href="#" ng-show="user.ispublic" id="togglePublicOn" ng-controller="UserCtrl" ng-click="toggleIsPublic()">Enable Private Session</a>
           <a href="#" ng-show="!user.ispublic" id="togglePublicOff" ng-controller="UserCtrl" ng-click="toggleIsPublic()">Disable Private Session</a>
+          <a href="#" ng-show="!user.premium" id = "upgrading" ng-controller="UserCtrl" ng-click="setPremium(true)">Upgrade Your Account</a>
+          <a href="#" ng-show="user.premium" id = "downgrading" ng-controller="UserCtrl" ng-click="setPremium(false)">Downgrade Your Account</a>
           <a href="#" ng-click="logout()">Logout</a>
         </span>
       </span>
