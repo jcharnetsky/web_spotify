@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import webspotify.config.ConfigConstants;
+import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 import webspotify.responses.GenresResponse;
 import webspotify.services.SongService;
@@ -59,5 +60,16 @@ public class SongController {
   @GetMapping("/genres")
   public Response getGenres() {
     return ResponseUtilities.filledSuccess(new GenresResponse());
+  }
+
+  @GetMapping("/manage/{songId}")
+  public Response getManageSongInfo(@PathVariable final int songId, HttpSession session) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    } else if (!(user instanceof Artist)){
+      return ResponseUtilities.filledFailure(ConfigConstants.NOT_AN_ARTIST);
+    }
+    return ResponseUtilities.emptySuccess();
   }
 }
