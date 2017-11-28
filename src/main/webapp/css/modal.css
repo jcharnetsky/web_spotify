@@ -11,6 +11,16 @@
   margin-right: 30px;
 }
 
+.modal-body table, .modal-body th, .modal-body tr, .modal-body td {
+  border: 1px solid white;
+}
+
+.modal-body td {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
 .modal-dialog {
   top: 25%;
 }
+

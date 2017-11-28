@@ -70,6 +70,6 @@ public class SongController {
     } else if (!(user instanceof Artist)){
       return ResponseUtilities.filledFailure(ConfigConstants.NOT_AN_ARTIST);
     }
-    return ResponseUtilities.emptySuccess();
+    return songService.getManageSongInfo((Artist) user, songId);
   }
 }

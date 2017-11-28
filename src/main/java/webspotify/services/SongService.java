@@ -10,9 +10,11 @@ import org.springframework.stereotype.Service;
 import webspotify.config.ConfigConstants;
 import webspotify.models.media.Album;
 import webspotify.models.media.Song;
+import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 import webspotify.repo.SongRepository;
 import webspotify.repo.UserRepository;
+import webspotify.responses.ManageSongInfoResponse;
 import webspotify.responses.SongResponse;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
@@ -79,6 +81,20 @@ public class SongService {
         return ResponseUtilities.emptySuccess();
       } else {
         return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_REM);
+      }
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.SONG_NO_EXIST);
+    }
+  }
+
+  @Transactional
+  public Response getManageSongInfo(Artist artist, int songId){
+    if (songRepository.exists(songId)) {
+      Song song = songRepository.findOne(songId);
+      if(artist.getOwnedSongs().contains(song)){
+        return ResponseUtilities.filledSuccess(new ManageSongInfoResponse(song));
+      } else {
+        return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
       }
     } else {
       return ResponseUtilities.filledFailure(ConfigConstants.SONG_NO_EXIST);
