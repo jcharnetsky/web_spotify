@@ -1,5 +1,6 @@
 package webspotify.models.media;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -133,7 +134,13 @@ public abstract class SongCollection implements Serializable, Viewable {
     this.owner = owner;
   }
 
-  public String getImage(){ return "../images/logo.png"; }
+  public String getImage(){
+    if((new File("../images/" + this.getId() + ".jpg")).exists()){
+      return "../images/" + this.getId() + ".jpg";
+    } else {
+      return "../images/logo.png";
+    }
+  }
 
   @Override
   public int hashCode() {
