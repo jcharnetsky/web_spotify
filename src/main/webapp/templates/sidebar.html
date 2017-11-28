@@ -12,7 +12,7 @@
     <li><a href="#" ng-click="getFollowedArtists()" ng-controller="UserCtrl">Artists</a></li>
   </ul>
   <ul class="sidebar_list playlists" ng-controller="CollectionCtrl">
-    <li><strong>PLAYLISTS</strong></li>
+    <li ng-show="playlists.length"><strong>PLAYLISTS</strong></li>
     <li id="playlists" ng-repeat="list in playlists">
       <a href="#" ng-click="loadPlaylist(list.id)">{{list.title}}</a>
     </li>

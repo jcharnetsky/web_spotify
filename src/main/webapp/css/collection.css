@@ -26,6 +26,7 @@
 }
 .collection {
   padding-left: 2vw;
+  padding-right: 2vw;
 }
 .collection_tiles , .collection_column_headers {
   margin-bottom: 0;
