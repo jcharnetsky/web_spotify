@@ -14,6 +14,7 @@ public class ConfigConstants {
   public static String USER_SESSION = "User";
   public static String CONCERT_NO_EXIST = "Concert does not exist.";
   public static String ARTIST_NO_EXIST = "Artist does not exist.";
+  public static String NOT_AN_ARTIST = "Only artists can access this.";
   public static String COULD_NOT_ADD = "Content could not be added.";
   public static String COULD_NOT_EDIT = "Content could not be edited";
   public static String COULD_NOT_REM = "Content could not be removed.";
@@ -27,8 +28,5 @@ public class ConfigConstants {
   public static String COULD_NOT_CHANGE = "Content could not be changed.";
   public static String INVALID_CREDENTIALS = "Email/Password combination is invalid.";
   public static String EMAIL_EXIST = "Desired Email already exists.";
-  public static String IS_ALBUM = "This is an album.";
-  public static Integer ALBUM_FOLLOWERS = 0;
-  public static String NOT_IMPLEMENTED = "This feature is not currently implemented.";
   public static String USER_NOT_FOUND = "The user does not exist.";
 }

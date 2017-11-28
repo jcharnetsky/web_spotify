@@ -46,8 +46,12 @@ angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $http, 
   var progressBar = document.getElementById("songProgress");
 	$scope.play = false;
 
-	$scope.loadSong = function(id) {
-	  console.log("Loaded Song " + id);
+	$scope.loadSong = function(hasAudio, id) {
+	  if(hasAudio){
+
+	  } else {
+	    return;
+	  }
 	}
 
 	$scope.playSong = function() {

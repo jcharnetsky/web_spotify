@@ -26,6 +26,7 @@
 }
 .collection {
   padding-left: 2vw;
+  padding-right: 2vw;
 }
 .collection_tiles , .collection_column_headers {
   margin-bottom: 0;
@@ -43,14 +44,13 @@
   width: 100%;
   table-layout: fixed;    /* For cells of equal size */
 }
-.collection_tile span, .collection_tile a {
+.collection_tile > span, .collection_tile > a {
   display: table-cell;
   max-width: 10vw;
   vertical-align: middle;
   text-align: left;
 }
-.collection_tile a:hover {
-  /*text-decoration: underline;*/
+.play_button:hover {
   cursor: pointer;
 }
 .highlight_on_hover:hover {
@@ -72,7 +72,7 @@
   text-align: center !important;
 }
 .play_button {
-  display: none;
+  display:  none;
 }
 .add_button {
   font-size: 180%;

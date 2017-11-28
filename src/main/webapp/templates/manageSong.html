@@ -1,0 +1,32 @@
+<link href="css/modal.css" rel="stylesheet"/>
+<div class="modal fade" id="manageSongModal" tabindex="-1" role="dialog" ng-controller="ManageCtrl">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3>{{manage.title}}</h3>
+        <div class="center_align">
+          <br/>
+          <table>
+            <tr>
+              <th>Current month listens</th>
+              <th>All time listens</th>
+              <th>Current month royalties</th>
+              <th>All time royalties</th>
+            </tr>
+            <tr>
+              <td>{{manage.monthListens}}</td>
+              <td>{{manage.allListens}}</td>
+              <td>${{manage.monthRoyalties}}</td>
+              <td>${{manage.allRoyalties}}</td>
+            </tr>
+          </table>
+          <div id="spotify_buttons">
+            <a href="#" data-dismiss="modal">Close</a>
+            <a href="#" ng-click="requestRemoval(manage.id)">Request Removal</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>$('#manageSongModal').modal();</script>

@@ -13,7 +13,6 @@ import webspotify.utilities.ResponseUtilities;
 import webspotify.utilities.SessionUtilities;
 
 /**
- *
  * @author Cardinals
  */
 @RestController

@@ -16,7 +16,6 @@ import org.hibernate.annotations.FetchMode;
 @Table(name = "albums")
 public class Album extends SongCollection {
   @OneToMany(mappedBy = "album", fetch = FetchType.EAGER)
-  @Fetch(value = FetchMode.SUBSELECT)
   private List<Song> songsInAlbum;
 
   public List<Song> getSongsInAlbum() {

@@ -25,12 +25,17 @@
       <li>
         <hr class="collection_hr">
         <div class="collection_tile highlight_on_hover" ng-controller="PlaybarCtrl">
-          <span class="play_button_spacer"><img class="play_button" src="../images/play.png" alt="Play"></span>
+          <span class="play_button_spacer">
+              <img class="play_button"
+                   src="../images/play.png"
+                   ng-class="{'invisible': !song.hasAudio}"
+                   ng-click="loadSong(song.hasAudio, song.id)" alt="Play">
+          </span>
           <a href="#" ng-show="!song.saved" ng-click="saveSong(song.id)" class="add_button">+</a>
           <a href="#" ng-show="song.saved" ng-click="unsaveSong(song.id)" class="add_button">-</a>
-          <a href="#" ng-dblclick="loadSong(song.id)">{{song.trackName}}</a>
+          <a>{{song.trackName}}</a>
           <a href="#" ng-controller="UserCtrl" ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
-          <span>{{song.trackLength | secondsToMss}}</span>
+          <a>{{song.trackLength | secondsToMss}}</a>
           <a href="#" ng-click="loadAlbum(song.albumId)" ng-controller="CollectionCtrl">{{song.albumName}}</a>
           <div class="dropdown options_col">
             <div class="options_button" ng-click="toggleDropdown(song.id)">...</div>
