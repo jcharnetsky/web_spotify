@@ -16,12 +16,12 @@
     </li>
     <li ng-repeat="song in user.artist.songs">
       <hr class="collection_hr">
-      <ul class="collection_tiles">
+      <ul class="collection_tiles" ng-controller="ManageCtrl">
         <li>
           <div class="collection_tile highlight_on_hover">
-            <a href="#" ng-dblclick="loadSong(song.id)">{{song.trackName}}</a>
+            <a>{{song.trackName}}</a>
             <a href="#" ng-click="loadAlbum(song.albumId)" ng-controller="CollectionCtrl">{{song.albumName}}</a>
-            <a href="#">View Information</a>
+            <a href="#" ng-click="showSongInfo(song.id)">View Information</a>
           </div>
         </li>
       </ul>
