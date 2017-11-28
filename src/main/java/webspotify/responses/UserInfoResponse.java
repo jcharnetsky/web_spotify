@@ -21,6 +21,7 @@ public class UserInfoResponse {
   private Boolean isPremium;
   private Boolean isArtist;
   private Boolean isAdmin;
+  private Boolean isAdvertiser;
   private Integer followerCount;
   private List<BasicUserInfoResponse> followers;
   private ArtistProfileResponse artist;
@@ -168,5 +169,13 @@ public class UserInfoResponse {
 
   public void setFollowed(boolean followed) {
     isFollowed = followed;
+  }
+
+  public Boolean getAdvertiser() {
+    return isAdvertiser;
+  }
+
+  public void setAdvertiser(Boolean advertiser) {
+    isAdvertiser = advertiser;
   }
 }

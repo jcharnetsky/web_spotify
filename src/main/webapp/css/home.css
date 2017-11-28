@@ -83,124 +83,124 @@
   padding-left: 0.4vw;
 }
 .three_tile {
-		display: inline-block;
-		vertical-align: top;
-		width: 25.5vw;
+  display: inline-block;
+  vertical-align: top;
+  width: 25.5vw;
 }
 .three_tile_img {
-		position: relative;
-		width: 25.5vw;
+  position: relative;
+  width: 25.5vw;
 }
 .list_tiles {
-		position: relative;
+  position: relative;
 }
 .list_tiles li {
-		display: inline;
-		position: relative;
-		height: 19vw;
-		padding-right: 0.5vw;
-		padding-left: 0.5vw;
+  display: inline;
+  position: relative;
+  height: 19vw;
+  padding-right: 0.5vw;
+  padding-left: 0.5vw;
 }
 #location {
-		position: relative;
-		padding-left: 0.5vw;
-		width: 80vw;
-		height: 6vh;
-		font-size: 200%;
-		font-weight: 600;
-		color: #ffffff;
-		margin-bottom: 2vh;
+  position: relative;
+  padding-left: 0.5vw;
+  width: 80vw;
+  height: 6vh;
+  font-size: 200%;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 2vh;
 }
 .chart_tiles {
-		margin-bottom: 8vh;
+  margin-bottom: 8vh;
 }
 .chart_tiles li {
-		display: inline;
-		position: relative;
-		padding-right: 0.4vw;
-		padding-left: 0.4vw;
+  display: inline;
+  position: relative;
+  padding-right: 0.4vw;
+  padding-left: 0.4vw;
 }
 .chart_tile {
-		display: inline-block;
-		vertical-align: top;
-		width: 19vw;
+  display: inline-block;
+  vertical-align: top;
+  width: 19vw;
 }
 .chart_tile_img {
-		position: relative;
-		width: 19vw;
+  position: relative;
+  width: 19vw;
 }
 .two_tiles li {
-		display: inline;
-		position: relative;
-		padding-left: 0.4vw;
-		padding-right: 0.4vw;
+  display: inline;
+  position: relative;
+  padding-left: 0.4vw;
+  padding-right: 0.4vw;
 }
 .two_tile {
-		display: inline-block;
-		width: 39vw;
+  display: inline-block;
+  width: 39vw;
 }
 .two_tile_img {
-		width: 39vw;
+  width: 39vw;
 }
 .release_tiles {
-		position: relative;
-		padding-left: 0vw;
+  position: relative;
+  padding-left: 0vw;
 }
 .release_tiles li {
-		display: inline;
-		position: relative;
-		height: 5vw;
+  display: inline;
+  position: relative;
+  height: 5vw;
 }
 .release_tile {
-		display: inline;
-		height: 5vw;
-		width: 38vw;
-		padding-right: 0.5vw;
-		padding-left: 0.5vw;
+  display: inline;
+  height: 5vw;
+  width: 38vw;
+  padding-right: 0.5vw;
+  padding-left: 0.5vw;
 }
 .release_tile li {
-		display: inline;
+  display: inline;
 }
 .release_img {
-		position: relative;
-		vertical-align: top;
-		width: 5vw;
+  position: relative;
+  vertical-align: top;
+  width: 5vw;
 }
 .release_info {
-		position: relative;
-		display: inline-block;
-		width: 33vw;
-		height: 5vw;
-		padding-left: 0vw;
+  position: relative;
+  display: inline-block;
+  width: 33vw;
+  height: 5vw;
+  padding-left: 0vw;
 }
 .release_info li {
-		padding-left: 0vw;
-		padding-right: 0vw;
+  padding-left: 0vw;
+  padding-right: 0vw;
 }
 .release_info:hover {
-		background-color: #333333;
+  background-color: #333333;
 }
 .release_title {
-		text-align: left;
-		padding-left: 0.5vw;
-		margin-top: 0.5vh;
-		margin-bottom: 0vh;
-		font-size: 75%;
-		color: #ffffff;
+  text-align: left;
+  padding-left: 0.5vw;
+  margin-top: 0.5vh;
+  margin-bottom: 0vh;
+  font-size: 75%;
+  color: #ffffff;
 }
 .release_text {
-		text-align: left;
-		padding-left: 0.5vw;
-		margin-top: 0.5vh;
-		font-size: 65%;
+  text-align: left;
+  padding-left: 0.5vw;
+  margin-top: 0.5vh;
+  font-size: 65%;
 }
 .nav_tiles {
-		height: 5vh;
-		float: right;
-		padding-right: 0.5vw;
+  height: 5vh;
+  float: right;
+  padding-right: 0.5vw;
 }
 .next_tiles {
-		height: 5vh;
+  height: 5vh;
 }
 .tile_img:hover, .two_tile_img:hover, .three_tile_img:hover, .concert_img:hover, .release_img:hover {
   -webkit-box-shadow: 1px 1px 5px white;
