@@ -12,8 +12,11 @@
       </ul>
     </li>
     <li id="top_options" ng-controller="MainCtrl">
+      <a ng-show="user.artist" href="#" ng-click="loadTemplateAndJSON('main', 'manageSongs.html', 'null')">
+        Manage songs &middot;</a>
       <img class="user_img" alt="user-image" ng-src="{{user.imageLink}}">
-      <a href="#" id="username" ng-click="loadTemplateAndJSON('main', 'user_info.html', 'api/users/info/get/userInfo')">{{user.name}}</a>
+      <a href="#" id="username" ng-click="loadTemplateAndJSON('main', 'user_info.html', 'api/users/info/get/userInfo')">
+        {{user.name}}</a>
       <span class="options_col">
         <span class="options_button" onclick="toggleDropdown(-1)" style="display: inline;">&#x25BC;</span>
         <span id="other_dropdown_-1" class="dropdown_content" style="right: 0;">

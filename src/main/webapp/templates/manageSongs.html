@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="css/collection.css">
+<div class="manage_songs">
+  <div class="content_title">Manage Songs</div>
+  <ul class="collection">
+    <li>
+      <ul class="collection_tiles">
+        <li>
+          <div class="collection_tile">
+            <a href="#">Title</a>
+            <a href="#">Album</a>
+            <a href="#">Information</a>
+            <span class="options_col"></span>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li ng-repeat="song in user.artist.songs">
+      <hr class="collection_hr">
+      <ul class="collection_tiles">
+        <li>
+          <div class="collection_tile highlight_on_hover">
+            <a href="#" ng-dblclick="loadSong(song.id)">{{song.trackName}}</a>
+            <a href="#" ng-click="loadAlbum(song.albumId)" ng-controller="CollectionCtrl">{{song.albumName}}</a>
+            <a href="#">View Information</a>
+          </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
