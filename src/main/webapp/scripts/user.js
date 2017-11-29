@@ -45,24 +45,21 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
     });
   }
   
+  $scope.openEditUsernameDialog = function () {
+    $http.get(location.origin + "/api/songs/genres").then(function (response) {
+      handleJSONResponse(response, "modal_dialog", "editPlaylist.html", "genres", $compile, $parse, $scope);
+    }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  }
+ 
+  $scope.editUsername
+  
   $scope.toggleIsPublic = function() {
     $http.post("/api/users/info/set/public", null, {headers: {"Content-Type": "application/json"}}).
       then(function(response) {
-        var elem = document.getElementById("togglePublicOn");
-        if (elem.innerHTML=="Enable Private Session") {
-          elem.innerHTML = "Disable Private Session";
-        }
-        else {
-          elem.innerHTML = "Enable Private Session";
-        }
-        var elem = document.getElementById("togglePublicOff");
-        if (elem.innerHTML=="Enable Private Session") {
-          elem.innerHTML = "Disable Private Session";
-        }
-        else {
-          elem.innerHTML = "Enable Private Session";
-        }
         if(!response.data.error) {
+          $scope.user.public = !scope.user.public
           displayErrorPopup("Successfully toggled public/private status.", $scope, $parse, $compile);
           return;
         }
@@ -78,16 +75,8 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
         "premium": status}}).
       then(function(response) {
         if(!response.data.error) {
-          if(status) {
-            document.getElementById("downgrading").style.visibility = 'hidden';
-            document.getElementById("upgrading").style.visibility = 'visible';
-            displayErrorPopup("Successfully downgraded account.", $scope, $parse, $compile);
-          }
-          else {
-            document.getElementById("upgrading").style.visibility = 'hidden';
-            document.getElementById("downgrading").style.visibility = 'visible';
-            displayErrorPopup("Successfully upgraded account.", $scope, $parse, $compile);
-          }
+          $scope.user.premium = !scope.user.premium
+          displayErrorPopup("Successfully upgraded/downgraded premium status.")
           return;
         }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
