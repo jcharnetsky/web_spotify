@@ -2,16 +2,16 @@
 <link href="css/button.css" rel="stylesheet"/>
 <div class="collection">
 	<div class="collection_header">
-		<img class="collection_img" alt="album_art" ng-src="{{collection.imageLink}}">
+		<img class="collection_img" alt="Art" ng-src="{{collection.imageLink}}">
 		<div class="collection_data">
 			<div class="content_title">{{collection.title}}</div>
 			<div>
 				Created by: {{collection.ownerName}} /
 				{{collection.songCount}} songs /
-				Duration: {{secondsToMinSec(collection.songTrackLength)}} /
+				Duration: {{collection.songTrackLength | secondsToMss}} /
 				Genre: {{collection.genre}}
 			</div>
-			<div> Followers: {{collection.followerCount}} </div>
+			<div ng-show="collection.followerCount"> Followers: {{collection.followerCount}} </div>
 			<div> {{collection.description}}</div>
 			<div id="spotify_buttons" ng-controller="CollectionCtrl">
 				<a href="#" ng-controller="PlaybarCtrl">Play</a>
@@ -21,6 +21,12 @@
                     ng-click="unfollowCollection(collection.id)">Unfollow</a>
         <a href="#" ng-show="user.id == collection.ownerId" ng-click="openEditPlaylistDialog()">Edit</a>
         <a href="#" ng-show="user.id == collection.ownerId" ng-click="deletePlaylist(collection.id)">Delete</a>
+				<a href="#" ng-show="collection.album"
+					 ng-click="openReport('Album', collection.title, collection.id)">
+					Report</a>
+				<a href="#" ng-show="collection.playlist"
+					 ng-click="openReport('Playlist', collection.title, collection.id)">
+					Report</a>
 			</div>
 		</div>
 	</div>
@@ -69,6 +75,7 @@
                    ng-click="addSongToPlaylist(song.id, playlist.id)">
                   Add to {{playlist.title}}
                 </a>
+								<a href="#" ng-click="openReport('Song', song.trackName, song.id)">Report</a>
               </div>
             </div>
           </div>

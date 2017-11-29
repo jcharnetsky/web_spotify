@@ -5,7 +5,8 @@
   <div class="info_block" ng-repeat="artist in artists">
     <img ng-src="{{artist.imageLink}}" alt="Image"
          ng-controller="UserCtrl"
-         ng-click="loadUser(artist.id)">
+         ng-click="loadUser(artist.id)"
+         style="border: 1px solid white;">
     <p>{{artist.stageName}}</p>
     <p>Followed</p>
   </div>

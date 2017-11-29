@@ -136,7 +136,6 @@ public abstract class SongCollection implements Serializable, Viewable {
 
   public String getImage(){
     File imageFile = new File("src/main/webapp/images/collections/" + this.getId() + ".jpg");
-    System.out.println(imageFile.getAbsolutePath());
     if(imageFile.exists()){
       return "../images/collections/" + this.getId() + ".jpg";
     } else {

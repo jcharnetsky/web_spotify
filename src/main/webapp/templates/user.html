@@ -1,7 +1,8 @@
 <link rel="stylesheet" href="css/collection.css">
-<div class="user" ng-controller="UserCtrl">
+<div class="user">
   <div class="collection_header">
-    <img class="collection_img" alt="album_art" ng-src="{{visitingUser.imageLink}}">
+    <img class="collection_img" alt="album_art" ng-src="{{visitingUser.imageLink}}"
+     style="width: 15vw; height: 15vw;">
     <div class="collection_data">
       <div class="content_title">{{visitingUser.name}}</div>
       <div>Email: {{visitingUser.email}}</div>
@@ -12,49 +13,67 @@
         <a ng-show="!visitingUser.followed && visitingUser.id != user.id"
            ng-click="followUser(visitingUser.id)"
            class="Follow" href="#">Follow</a>
-        <a ng-show="visitingUser.followed"
-           ng-click="unfollowUser(visitingUser.id) && visitingUser.id != user.id"
+        <a ng-show="visitingUser.followed && visitingUser.id != user.id"
+           ng-click="unfollowUser(visitingUser.id)"
            class="Follow" href="#">Unfollow</a>
+        <a href="#" ng-show="!visitingUser.artist"
+           ng-click="openReport('User', visitingUser.name, visitingUser.id)">
+          Report</a>
+        <a href="#" ng-show="visitingUser.artist"
+           ng-click="openReport('Artist', visitingUser.name, visitingUser.id)">
+          Report</a>
       </div>
     </div>
+
   </div>
-  <ul class="content_header"><li><p class="content_title">Albums</p></li></ul>
-  <hr>
-  <ul class="list_tiles">
-    <li ng-repeat="item in api_home_overview.focus">
-      <div class="tile">
-        <a href="#">
-          <img class="tile_img" ng-src={{item.img}} alt="Suggestion"/>
-        </a>
-        <p class="tile_text">{{item.head}}</p>
-        <p class="tile_desc left_align">{{item.desc}}</p>
-      </div>
-    </li>
-  </ul>
-  <ul class="content_header"><li><p class="content_title">Playlists</p></li></ul>
-  <hr>
-  <ul class="list_tiles">
-    <li ng-repeat="item in api_home_overview.focus">
-      <div class="tile">
-        <a href="#">
-          <img class="tile_img" ng-src={{item.img}} alt="Suggestion"/>
-        </a>
-        <p class="tile_text">{{item.head}}</p>
-        <p class="tile_desc left_align">{{item.desc}}</p>
-      </div>
-    </li>
-  </ul>
-  <ul class="content_header"><li><p class="content_title">Followers</p></li></ul>
-  <hr>
-  <ul class="list_tiles">
-    <li ng-repeat="item in api_home_overview.focus">
-      <div class="tile">
-        <a href="#">
-          <img class="tile_img" ng-src={{item.img}} style="border-radius: 50%" alt="Suggestion"/>
-        </a>
-        <p class="tile_text" style="text-align: center">{{item.head}}</p>
-        <p class="tile_desc">{{item.desc}}</p>
-      </div>
-    </li>
-  </ul>
+  <div ng-show="visitingUser.artist && visitingUser.artist.albums.length">
+    <ul class="content_header">
+      <li><p class="content_title">Albums</p></li>
+    </ul>
+    <hr>
+    <ul class="list_tiles">
+      <li ng-repeat="album in visitingUser.artist.albums">
+        <div class="tile">
+          <a href="#">
+            <img class="tile_img" ng-src={{album.imageLink}} alt="Suggestion"/>
+          </a>
+          <p class="tile_text center_align">{{album.title}}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div ng-show="visitingUser.ownedPlaylists.length">
+    <ul class="content_header">
+      <li><p class="content_title">Playlists</p></li>
+    </ul>
+    <hr>
+    <ul class="list_tiles">
+      <li ng-repeat="ownedPlaylist in visitingUser.ownedPlaylists">
+        <div class="tile">
+          <a href="#">
+            <img class="tile_img" ng-src={{ownedPlaylist.imageLink}} alt="Suggestion"/>
+          </a>
+          <p class="tile_text center_align">{{ownedPlaylist.title}}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div ng-show="visitingUser.followers.length">
+    <ul class="content_header">
+      <li><p class="content_title">Follows</p></li>
+    </ul>
+    <hr>
+    <ul class="list_tiles">
+      <li ng-repeat="followee in visitingUser.followers">
+        <div class="tile">
+          <a href="#">
+            <img class="tile_img" ng-src={{followee.imageLink}}
+                 ng-click="loadUser(followee.id)"
+                 style="border-radius: 50%" alt="Suggestion"/>
+          </a>
+          <p class="tile_text center_align" style="text-align: center">{{followee.name}}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>

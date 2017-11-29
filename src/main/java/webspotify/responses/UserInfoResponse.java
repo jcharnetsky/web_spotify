@@ -41,6 +41,10 @@ public class UserInfoResponse {
       this.isArtist = true;
       this.artist = new ArtistProfileResponse((Artist) user);
     }
+    this.followers = new ArrayList<BasicUserInfoResponse>();
+    for (User follower: user.getFollowing()){
+      this.followers.add(new BasicUserInfoResponse(follower));
+    }
     ownedPlaylists = new ArrayList<PlaylistInfoResponse>();
     for (Playlist playlist : user.getOwnedPlaylists()) {
       ownedPlaylists.add(new PlaylistInfoResponse(playlist));
