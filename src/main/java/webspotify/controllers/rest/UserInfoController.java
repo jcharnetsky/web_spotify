@@ -32,7 +32,7 @@ public class UserInfoController {
     return ResponseUtilities.filledSuccess(response);
   }
 
-  @GetMapping("/set/name")
+  @PostMapping("/set/name")
   public Response setUserName(@RequestParam String name, HttpSession session) {
     User u = SessionUtilities.getUserFromSession(session);
     if (u == null) {
@@ -41,7 +41,7 @@ public class UserInfoController {
     return userInfoService.setName(u, name);
   }
 
-  @GetMapping("/set/password")
+  @PostMapping("/set/password")
   public Response setUserPassword(@RequestParam String password, HttpSession session) {
     User u = SessionUtilities.getUserFromSession(session);
     if (u == null) {
@@ -59,7 +59,7 @@ public class UserInfoController {
     return ResponseUtilities.filledSuccess(u.getEmail());
   }
 
-  @GetMapping("/set/email")
+  @PostMapping("/set/email")
   public Response setEmail(@RequestParam String email, HttpSession session) {
     User u = SessionUtilities.getUserFromSession(session);
     if (u == null) {
