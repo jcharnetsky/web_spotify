@@ -42,12 +42,12 @@ public class UserInfoController {
   }
 
   @PostMapping("/set/password")
-  public Response setUserPassword(@RequestParam String password, HttpSession session) {
-    User u = SessionUtilities.getUserFromSession(session);
-    if (u == null) {
+  public Response setUserPassword(@RequestParam String oldPassword, @RequestParam String newPassword, @RequestParam String confirmPassword, HttpSession session) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
-    return userInfoService.setPassword(u, password);
+    return userInfoService.setPassword(user, oldPassword, newPassword, confirmPassword);
   }
 
   @GetMapping("/get/email")
