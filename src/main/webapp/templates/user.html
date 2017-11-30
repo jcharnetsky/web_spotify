@@ -35,7 +35,8 @@
       <li ng-repeat="album in visitingUser.artist.albums">
         <div class="tile">
           <a href="#">
-            <img class="tile_img" ng-src={{album.imageLink}} alt="Suggestion"/>
+            <img class="tile_img" ng-click="loadAlbum(album.id)"
+                 ng-src={{album.imageLink}}/>
           </a>
           <p class="tile_text center_align">{{album.title}}</p>
         </div>
@@ -51,7 +52,8 @@
       <li ng-repeat="ownedPlaylist in visitingUser.ownedPlaylists">
         <div class="tile">
           <a href="#">
-            <img class="tile_img" ng-src={{ownedPlaylist.imageLink}} alt="Suggestion"/>
+            <img class="tile_img" ng-click="loadPlaylist(ownedPlaylist.id)"
+                 ng-src={{album.imageLink}}/>
           </a>
           <p class="tile_text center_align">{{ownedPlaylist.title}}</p>
         </div>
