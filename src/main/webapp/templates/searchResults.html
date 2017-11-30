@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="css/collection.css">
 <link rel="stylesheet" href="css/blocks.css">
 <div id="searchResults">
-  <h3>Search Results</h3>
+  <h2>Search Results</h2>
   <div ng-show="results.songs.length">
     <div class="content_title">Songs</div>
     <hr>
@@ -25,7 +25,7 @@
         <hr class="collection_hr">
         <ul class="collection_tiles">
           <li>
-            <div class="collection_tile highlight_on_hover" ng-controller="PlaybarCtrl">
+            <div class="collection_tile highlight_on_hover">
 						<span class="play_button_spacer">
               <img class="play_button"
                    src="../images/play.png"
@@ -37,14 +37,13 @@
               <a>{{song.trackName}}</a>
               <a href="#" ng-controller="UserCtrl"
                  ng-attr-id="{{song.artist.id}}"
-                 ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
+                 ng-click="loadUser(song.artist.id)">{{song.artist.name}}</a>
               <span>{{song.trackLength | secondsToMss}}</span>
               <a href="#" ng-click="loadAlbum(song.albumId)" ng-controller="CollectionCtrl">{{song.albumName}}</a>
               <div class="dropdown options_col">
                 <div class="options_button" ng-click="toggleDropdown(song.id)">...</div>
-                <div ng-attr-id="other_dropdown_{{song.id}}" class="dropdown_content">
+                <div ng-attr-id="other_dropdown_{{song.id}}" class="dropdown_content" ng-controller="CollectionCtrl">
                   <a href="#" ng-click="addSongToQueue(song.id)">Add to Queue</a>
-                  <a href="#" ng-click="removeSongFromPlaylist(song.id, collection.id)">Remove from Playlist</a>
                   <a href="#" ng-repeat="playlist in playlists"
                      ng-show="playlist.id != collection.id"
                      ng-click="addSongToPlaylist(song.id, playlist.id)">
@@ -60,15 +59,19 @@
     </ul>
   </div>
   <div ng-show="results.users.length">
+    <div class="content_title">Users</div>
+    <hr>
     <div class="info_block" ng-repeat="user in results.users">
       <img ng-src="{{user.imageLink}}" alt="Image"
            ng-controller="UserCtrl"
            ng-click="loadUser(user.id)"
            style="border: 1px solid white;">
-      <p>{{artist.name}}</p>
+      <p>{{user.name}}</p>
     </div>
   </div>
   <div ng-show="results.albums.length">
+    <div class="content_title">Albums</div>
+    <hr>
     <div class="info_block" ng-repeat="album in results.albums">
       <img ng-src="{{album.imageLink}}" alt="Image"
            ng-controller="CollectionCtrl"
@@ -78,6 +81,8 @@
     </div>
   </div>
   <div ng-show="results.playlists.length">
+    <div class="content_title">Playlists</div>
+    <hr>
     <div class="info_block" ng-repeat="playlist in results.playlists">
       <img ng-src="{{playlist.imageLink}}" alt="Image"
            ng-controller="CollectionCtrl"

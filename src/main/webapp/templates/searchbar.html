@@ -2,8 +2,8 @@
 <link href="css/button.css" rel="stylesheet">
 <div class="top">
   <ul class="top_list">
-    <li ng-controller="MainCtrl">
-      <form class="search">
+    <li>
+      <form class="search" ng-controller="CollectionCtrl">
         <input type="text" ng-model="search_term" placeholder="Search">
         <input type="submit" value="Search" ng-click="searchQuery(search_term)">
       </form>
@@ -34,7 +34,7 @@
     </li>
   </ul>
   <script>
-    app = angular.element(document.getElementById('top_options')).scope();
+    app = angular.element($('#top_options')).scope();
     app.loadUserInfo();
   </script>
 </div>

@@ -42,7 +42,7 @@ public class SearchService {
 
   @Transactional
   public Response search(User user, String searchKey) {
-
+    User currentUser = userRepository.findOne(user.getId());
     Set<BasicSongResponse> songsToReturn = new HashSet();
     List<Song> songs = songRepository.findTop50ByTitleContaining(searchKey);
     Set<String> titles = new HashSet<String>();
@@ -51,7 +51,7 @@ public class SearchService {
         if (!titles.contains(song.getTitle()) && song.isPublic() && !song.isBanned()) {
           titles.add(song.getTitle());
           BasicSongResponse songResponse = new BasicSongResponse(song);
-          songResponse.setSaved(user.getSavedSongs().contains(song));
+          songResponse.setSaved(currentUser.getSavedSongs().contains(song));
           songsToReturn.add(songResponse);
         }
       }
