@@ -15,6 +15,7 @@
   padding: 20px 20px 20px 20px;
   text-align: center;
   z-index: 1051;
+  pointer-events:none;
 }
 #error_message {
   z-index: 1051;

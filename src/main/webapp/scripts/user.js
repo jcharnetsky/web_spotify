@@ -32,7 +32,7 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
   }
 
   $scope.unfollowUser = function(id) {
-    data = JSON.stringify({"userId": id});
+    data = JSON.stringify({"userId": id});-
     $http.post("/api/users/unfollow/" + id, data, {headers: {"Content-Type": "application/json"}}).
       then(function (response) {
         if (!response.data.error) {
@@ -47,25 +47,34 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
     });
   }
   
-  $scope.toggleIsPublic = function() {
-    $http.post("/api/users/info/set/public", null, {headers: {"Content-Type": "application/json"}}).
+  $scope.openEditUsernameDialog = function () {
+    $compile(loadToDiv("modal_dialog", "editUsername.html"))($scope);
+  }
+  
+  $scope.openEditEmailDialog = function () {
+    $compile(loadToDiv("modal_dialog", "editEmail.html"))($scope);
+  }
+  
+  $scope.openEditPasswordDialog = function () {
+    $compile(loadToDiv("modal_dialog", "editPassword.html"))($scope);
+  }
+  
+  $scope.openUpgradePremiumDialog = function () {
+    $compile(loadToDiv("modal_dialog", "premiumUpgrade.html"))($scope);
+  }
+  
+  $scope.openDowngradePremiumDialog = function() {
+    $compile(loadToDiv("modal_dialog", "premiumDowngrade.html"))($scope);
+  }
+  
+  $scope.downgradePremiumStatus = function() {
+    $http.post("/api/users/info/set/premium", null, {
+      params:{
+        "premium": status}}).
       then(function(response) {
-        var elem = document.getElementById("togglePublicOn");
-        if (elem.innerHTML=="Enable Private Session") {
-          elem.innerHTML = "Disable Private Session";
-        }
-        else {
-          elem.innerHTML = "Enable Private Session";
-        }
-        var elem = document.getElementById("togglePublicOff");
-        if (elem.innerHTML=="Enable Private Session") {
-          elem.innerHTML = "Disable Private Session";
-        }
-        else {
-          elem.innerHTML = "Enable Private Session";
-        }
         if(!response.data.error) {
-          displayErrorPopup("Successfully toggled public/private status.", $scope, $parse, $compile);
+          $scope.user.premium = !scope.user.premium
+          displayErrorPopup("Successfully upgraded/downgraded premium status.")
           return;
         }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
@@ -74,22 +83,87 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
     });
   }
   
-  $scope.setPremium = function(status) {
-    $http.post("/api/users/info/set/premium", null, {
+  $scope.editUsername = function () {
+    if($scope.edit_username == undefined || $scope.edit_username == "") {
+      displayErrorPopup("Username field cannot be left blank.", $scope, $parse, $compile);
+      return;
+    }
+    $http.post("/api/users/info/set/name", null, {
       params:{
-        "premium": status}}).
+        "name": $scope.edit_username}}).
+      then(function(response) {
+        if (!response.data.error) {
+          displayErrorPopup("Username changed successfully.", $scope, $parse, $compile);
+          $scope.user.name = $scope.edit_username;
+          $("#editUsernameModal").modal("hide");
+          return;
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function (err) {
+        displayErrorPopup(err, $scope, $parse, $compile);
+      });
+  }
+  
+  $scope.editEmail = function () {
+    if($scope.edit_email == undefined || $scope.edit_email == "") {
+      displayErrorPopup("Email field cannot be left blank.", $scope, $parse, $compile);
+      return;
+    }
+    $http.post("/api/users/info/set/email", null, {
+      params:{
+        "email": $scope.edit_email}}).
+      then(function(response) {
+        if (!response.data.error) {
+          displayErrorPopup("Email changed successfully.", $scope, $parse, $compile);
+          $scope.user.email = $scope.edit_email;
+          $("#editEmailModal").modal("hide");
+          return;
+        }
+      displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function (err) {
+        displayErrorPopup(err, $scope, $parse, $compile);
+      });
+  }
+  
+  $scope.editPassword = function () {
+    var oldPass = $scope.old_password;
+    var newPass = $scope.new_password;
+    var confPass = $scope.confirm_password;
+    if(oldPass == undefined || oldPass == "") {
+      displayErrorPopup("Old password field cannot be left blank.", $scope, $parse, $compile);
+      return;
+    }
+    if(newPass == undefined || newPass == "") {
+      displayErrorPopup("New password field cannot be left blank.", $scope, $parse, $compile);
+      return;
+    }
+    if(confPass == undefined || confPass == "") {
+      displayErrorPopup("Confirm password field cannot be left blank.", $scope, $parse, $compile);
+      return;
+    }
+    $http.post("/api/users/info/set/password", null, {
+      params:{
+        "oldPassword": oldPass,
+        "newPassword": newPass,
+        "confirmPassword": $scope.confirm_password}}).
+      then(function(response) {
+        if (!response.data.error) {
+          displayErrorPopup("Password changed successfully.", $scope, $parse, $compile);
+          $("#editPasswordModal").modal("hide");
+          return;
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function (err) {
+        displayErrorPopup(err, $scope, $parse, $compile);
+      });
+  }
+  
+  $scope.toggleIsPublic = function() {
+    $http.post("/api/users/info/set/public", null, {headers: {"Content-Type": "application/json"}}).
       then(function(response) {
         if(!response.data.error) {
-          if(status) {
-            document.getElementById("downgrading").style.visibility = 'hidden';
-            document.getElementById("upgrading").style.visibility = 'visible';
-            displayErrorPopup("Successfully downgraded account.", $scope, $parse, $compile);
-          }
-          else {
-            document.getElementById("upgrading").style.visibility = 'hidden';
-            document.getElementById("downgrading").style.visibility = 'visible';
-            displayErrorPopup("Successfully upgraded account.", $scope, $parse, $compile);
-          }
+          $scope.user.public = !scope.user.public
+          displayErrorPopup("Successfully toggled public/private status.", $scope, $parse, $compile);
           return;
         }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);

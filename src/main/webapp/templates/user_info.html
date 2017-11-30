@@ -1,21 +1,23 @@
 <link rel="stylesheet" href="../css/user_info.css" type="text/css">
+<link href="css/style.css" rel="stylesheet"/>
+<link href="css/button.css" rel="stylesheet"/>
 <div>
   <div id="info_user_header">
     <div class="hiddenFileInputContainter">
       <img id="info_user_img" alt="user_img" ng-src="{{user.imageLink}}">
       <input type="file" name="fileUp" class="hidden" accept="image/*">
     </div>
-    <div id="info_user">
+    <div id="info_user" ng-controller= "UserCtrl">
       <div>
         <span id="info_username">{{user.name}}</span>
-        <a href="#">edit</a>
+        <a href="#" ng-click="openEditUsernameDialog()">edit</a>
       </div>
       <div>
         <span id="info_email">{{user.email}}</span>
-        <a href="#">edit</a>
+        <a href="#" ng-click = "openEditEmailDialog()">edit</a>
       </div>
       <div>
-        <a href="#">Change Password</a>
+        <a href="#" ng-click = "openEditPasswordDialog()">Change Password</a>
       </div>
     </div>
     <div id="info_about" ng-show="user.artist">

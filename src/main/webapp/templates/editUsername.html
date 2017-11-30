@@ -1,0 +1,20 @@
+<link href="css/modal.css" rel="stylesheet"/>
+<div class="modal fade" id="editUsernameModal" tabindex="-1" role="dialog" ng-controller="UserCtrl">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3>Edit Username</h3>
+        <div class="center_align">
+          <form novalidate class="center_align">
+            <input type="text" ng-model="edit_username" placeholder="{{user.name}}"/>
+          </form>
+          <div id="spotify_buttons">
+            <a href="#" data-dismiss="modal">Close</a>
+            <a href="#" ng-click="editUsername()">Edit</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>$('#editUsernameModal').modal();</script>

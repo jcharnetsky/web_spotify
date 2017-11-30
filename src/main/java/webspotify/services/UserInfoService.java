@@ -25,20 +25,31 @@ public class UserInfoService {
   }
 
   @Transactional
-  public Response setPassword(User user, String password) {
-    user.createSecurePassword(password);
+  public Response setPassword(User user, String oldPassword, String newPassword, String confirmPassword) {
+    if(!user.authenticateLogin(oldPassword)) {
+      return ResponseUtilities.filledFailure(ConfigConstants.INVALID_PASSWORD);
+    }
+    if(!(newPassword.equals(confirmPassword))) {
+      return ResponseUtilities.filledFailure(ConfigConstants.PASSWORDS_NO_MATCH);
+    }
+    user.createSecurePassword(newPassword);
     userRepository.saveAndFlush(user);
     return ResponseUtilities.emptySuccess();
   }
 
   @Transactional
   public Response setEmail(User user, String email) {
+    String[] split = email.split("@");
+    if(split.length != 2) {
+      return ResponseUtilities.filledFailure(ConfigConstants.INVALID_EMAIL);
+    }
     List<User> eUser = userRepository.findByEmail(email);
     if (eUser.isEmpty()) {
       user.setEmail(email);
       userRepository.saveAndFlush(user);
       return ResponseUtilities.emptySuccess();
-    } else {
+    } 
+    else {
       return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_CHANGE);
     }
   }

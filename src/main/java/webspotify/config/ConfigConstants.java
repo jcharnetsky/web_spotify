@@ -29,4 +29,7 @@ public class ConfigConstants {
   public static String INVALID_CREDENTIALS = "Email/Password combination is invalid.";
   public static String EMAIL_EXIST = "Desired Email already exists.";
   public static String USER_NOT_FOUND = "The user does not exist.";
+  public static String PASSWORDS_NO_MATCH = "The passwords did not match.";
+  public static String INVALID_PASSWORD = "Old password was incorrect.";
+  public static String INVALID_EMAIL = "Email is invalid.";
 }
