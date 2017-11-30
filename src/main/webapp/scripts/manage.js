@@ -7,7 +7,16 @@ angular.module('web_spotify').controller('ManageCtrl', function($scope, $http, $
     });
   }
   $scope.banContent = function (type, id){
-    return;
+    $http.post("/api/reports/ban/"+type+"/"+id, {headers: {"Content-Type": "application/json"}}).
+      then(function (response) {
+        if (!response.data.error) {
+          displayErrorPopup("Successfully banned content", $scope, $parse, $compile);
+          return;
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
   }
   $scope.openReport = function (id) {
     $http.get(location.origin + "/api/reports/reportNo/" + id).then(function (response) {

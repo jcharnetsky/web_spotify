@@ -8,7 +8,7 @@
           <div class="collection_tile">
             <a href="#">Title</a>
             <a href="#">Album</a>
-            <a href="#">Information</a>
+            <a href="#">Genre</a>
           </div>
         </li>
       </ul>
@@ -18,9 +18,9 @@
       <ul class="collection_tiles">
         <li>
           <div class="collection_tile highlight_on_hover">
-            <a>{{song.trackName}}</a>
+            <a href="#" ng-click="showSongInfo(song.id)">{{song.trackName}}</a>
             <a href="#" ng-click="loadAlbum(song.albumId)" ng-controller="CollectionCtrl">{{song.albumName}}</a>
-            <a href="#" ng-click="showSongInfo(song.id)">View Information</a>
+            <a>{{song.genre | toLowercase}}</a>
           </div>
         </li>
       </ul>

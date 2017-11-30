@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import webspotify.config.ConfigConstants;
+import webspotify.models.media.Song;
 import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 import webspotify.responses.GenresResponse;
@@ -69,6 +70,15 @@ public class SongController {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     } else if (!(user instanceof Artist)){
       return ResponseUtilities.filledFailure(ConfigConstants.NOT_AN_ARTIST);
+    }
+    boolean ownsSongs = false;
+    for (Song song:((Artist) user).getOwnedSongs()){
+      if(song.getId() == songId){
+        ownsSongs = true;
+      }
+    }
+    if(!ownsSongs){
+      return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
     }
     return songService.getManageSongInfo((Artist) user, songId);
   }
