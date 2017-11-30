@@ -41,4 +41,8 @@ angular.module('web_spotify').controller('ManageCtrl', function($scope, $http, $
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
-});
+}).filter('toLowercase', function($filter) {
+    return function(word) {
+      return word.charAt(0) + word.slice(1).toLowerCase();
+    };
+});;

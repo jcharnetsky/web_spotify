@@ -3,17 +3,14 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
-        <h3>
-          Report against {{manage.entityType}}
-          with ID {{manage.entityId}}
-          from user {{manage.creatorName}}
-        </h3>
+        <h3>{{manage.subject}}</h3>
+        <p>{{manage.description}}</p>
         <div class="center_align">
-          <p><strong>{{manage.subject}}</strong></p>
-          <p>{{manage.description}}</p>
           <div id="spotify_buttons">
             <a href="#" data-dismiss="modal">Close</a>
-            <a href="#" ng-click="requestRemoval(manage.entityType, manage.entityID)">Ban</a>
+            <a href="#" ng-click="requestRemoval(manage.entityType, manage.entityID)">
+              Ban {{manage.entityType | toLowercase}} ({{manage.entityId}})
+            </a>
           </div>
         </div>
       </div>

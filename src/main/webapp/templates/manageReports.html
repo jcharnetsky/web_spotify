@@ -10,7 +10,6 @@
             <a href="#">Subject</a>
             <a href="#">Type</a>
             <a href="#">View</a>
-            <span class="options_col"></span>
           </div>
         </li>
       </ul>
@@ -23,7 +22,7 @@
             <a>{{report.reportId}}</a>
             <a>{{report.subject}}</a>
             <a>{{report.entityType}}</a>
-            <a href="#" ng-click="">View Report</a>
+            <a href="#" ng-click="openReport(report.reportId)">View Report</a>
           </div>
         </li>
       </ul>
