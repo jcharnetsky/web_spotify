@@ -6,9 +6,15 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import webspotify.config.ConfigConstants;
+import webspotify.interfaces.Viewable;
 import webspotify.models.administration.Report;
+import webspotify.models.media.Album;
+import webspotify.models.media.Playlist;
+import webspotify.models.media.Song;
 import webspotify.models.users.User;
-import webspotify.repo.ReportRepository;
+import webspotify.repo.*;
+import webspotify.responses.ReportResponse;
+import webspotify.types.SpotifyObjectEnum;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
 
@@ -17,10 +23,23 @@ public class ReportService {
 
   @Autowired
   ReportRepository reportRepository;
+  @Autowired
+  SongRepository songRepository;
+  @Autowired
+  PlaylistRepository playlistRepository;
+  @Autowired
+  AlbumRepository albumRepository;
+  @Autowired
+  UserRepository userRepository;
 
   @Transactional
   public Response getReports() {
-    return ResponseUtilities.filledSuccess(reportRepository.findAll());
+    List<Report> reports = reportRepository.findAll();
+    List<ReportResponse> responses = new ArrayList<ReportResponse>();
+    for (Report report: reports){
+      responses.add(new ReportResponse(report));
+    }
+    return ResponseUtilities.filledSuccess(responses);
   }
 
   @Transactional
@@ -29,9 +48,7 @@ public class ReportService {
     if (report == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.REPORT_NO_EXIST);
     } else {
-      List<Report> contentBody = new ArrayList<Report>();
-      contentBody.add(report);
-      return ResponseUtilities.filledSuccess(contentBody);
+      return ResponseUtilities.filledSuccess(new ReportResponse(report));
     }
   }
 
@@ -45,5 +62,32 @@ public class ReportService {
     } else {
       return ResponseUtilities.emptySuccess();
     }
+  }
+
+  @Transactional
+  public Response banContent(SpotifyObjectEnum contentType, int contentId) {
+    Viewable toBan;
+    if(contentType == SpotifyObjectEnum.SONG){
+      toBan = songRepository.findOne(contentId);
+    } else if (contentType == SpotifyObjectEnum.ALBUM) {
+      toBan = albumRepository.findOne(contentId);
+    } else if (contentType == SpotifyObjectEnum.PLAYLIST) {
+      toBan = playlistRepository.findOne(contentId);
+    } else if (contentType == SpotifyObjectEnum.USER) {
+      toBan = userRepository.findOne(contentId);
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.UNKNOWN_TYPE);
+    }
+    toBan.setBanned(true);
+    if(contentType == SpotifyObjectEnum.SONG){
+      songRepository.save((Song) toBan);
+    } else if (contentType == SpotifyObjectEnum.ALBUM) {
+      albumRepository.save((Album) toBan);
+    } else if (contentType == SpotifyObjectEnum.PLAYLIST) {
+      playlistRepository.save((Playlist) toBan);
+    } else if (contentType == SpotifyObjectEnum.USER) {
+      userRepository.save((User) toBan);
+    }
+    return ResponseUtilities.emptySuccess();
   }
 }

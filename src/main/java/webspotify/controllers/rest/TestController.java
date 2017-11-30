@@ -18,6 +18,7 @@ import webspotify.models.media.Album;
 import webspotify.models.media.Concert;
 import webspotify.models.media.Playlist;
 import webspotify.models.media.Song;
+import webspotify.models.users.Administrator;
 import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 import webspotify.repo.AlbumRepository;
@@ -49,6 +50,23 @@ public class TestController {
   private AlbumRepository albumRepo;
   @Autowired
   private ResourceLoader resourceLoader;
+
+  @GetMapping("/makeAdmin")
+  public String makeAdmin() {
+    Administrator admin = new Administrator();
+    admin.setAddress("123 Admin Street");
+    admin.setBanned(false);
+    admin.setPublic(true);
+    admin.setBirthdate(new Date());
+    admin.setIsPremium(true);
+    admin.setName("Billy bob");
+    admin.setEmail(admin.getName() + "@yahoo.com");
+    admin.createSecurePassword("password");
+    admin.setHasImage(false);
+    admin.setDeleted(false);
+    userRepo.save(admin);
+    return "Made admin";
+  }
 
   @GetMapping("/loadData")
   public String loadData() throws IOException, ParseException {

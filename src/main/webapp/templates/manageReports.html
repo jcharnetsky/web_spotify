@@ -6,21 +6,21 @@
       <ul class="collection_tiles">
         <li>
           <div class="collection_tile">
-            <a href="#">Title</a>
-            <a href="#">Album</a>
-            <a href="#">Genre</a>
+            <a href="#">Report #</a>
+            <a href="#">Subject</a>
+            <a href="#">Type</a>
           </div>
         </li>
       </ul>
     </li>
-    <li ng-repeat="song in user.artist.songs">
+    <li ng-repeat="report in api_reports_all">
       <hr class="collection_hr">
       <ul class="collection_tiles">
         <li>
           <div class="collection_tile highlight_on_hover">
-            <a href="#" ng-click="showSongInfo(song.id)">{{song.trackName}}</a>
-            <a href="#" ng-click="loadAlbum(song.albumId)" ng-controller="CollectionCtrl">{{song.albumName}}</a>
-            <a>{{song.genre | toLowercase}}</a>
+            <a>{{report.reportId}}</a>
+            <a href="#" ng-click="openReport(report.reportId)">{{report.subject}}</a>
+            <a>{{report.entityType}}</a>
           </div>
         </li>
       </ul>

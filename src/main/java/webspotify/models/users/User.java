@@ -48,6 +48,8 @@ public class User implements Viewable, Serializable {
   private String password;
   @Column(name = "salt", nullable = false)
   private String passwordSalt;
+  @Column(name = "isdeleted", nullable = false)
+  private Boolean isDeleted;
   @OneToMany(mappedBy = "owner")
   private Set<Playlist> ownedPlaylists;
   @ManyToMany
@@ -303,6 +305,14 @@ public class User implements Viewable, Serializable {
   @Override
   public void setPublic(boolean value) {
     this.setIsPublic(value);
+  }
+
+  public Boolean getDeleted() {
+    return isDeleted;
+  }
+
+  public void setDeleted(Boolean deleted) {
+    isDeleted = deleted;
   }
 
   @Override

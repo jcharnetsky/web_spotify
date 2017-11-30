@@ -1,0 +1,20 @@
+<link href="css/modal.css" rel="stylesheet"/>
+<div class="modal fade" id="manageReportModal" tabindex="-1" role="dialog" ng-controller="ManageCtrl">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3>{{manage.subject}}</h3>
+        <p>{{manage.description}}</p>
+        <div class="center_align">
+          <div id="spotify_buttons">
+            <a href="#" data-dismiss="modal">Close</a>
+            <a href="#" ng-click="banContent(manage.entityType, manage.entityID)">
+              Ban {{manage.entityType | toLowercase}} ({{manage.entityId}})
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>$('#manageReportModal').modal();</script>

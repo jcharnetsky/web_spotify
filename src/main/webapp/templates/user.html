@@ -8,7 +8,8 @@
       <div>Email: {{visitingUser.email}}</div>
       <div>Birthday: {{visitingUser.birthday}}</div>
       <div>Follower count: {{visitingUser.followerCount}}</div>
-      <div>Listeners: / Monthly Listeners: </div>
+      <div ng-show="visitingUser.artist">Listeners: / Monthly Listeners: </div>
+      <div ng-show="visitingUser.artist">{{visitingUser.artist.about}}</div>
       <div id="spotify_buttons">
         <a ng-show="!visitingUser.followed && visitingUser.id != user.id"
            ng-click="followUser(visitingUser.id)"
@@ -17,7 +18,7 @@
            ng-click="unfollowUser(visitingUser.id)"
            class="Follow" href="#">Unfollow</a>
         <a href="#"
-           ng-click="openReport('User', visitingUser.name, visitingUser.id)">
+           ng-click="openCreateReport('User', visitingUser.name, visitingUser.id)">
           Report</a>
       </div>
     </div>

@@ -3,6 +3,7 @@ package webspotify.responses;
 import java.util.ArrayList;
 import java.util.List;
 import webspotify.models.media.Playlist;
+import webspotify.models.users.Administrator;
 import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 
@@ -43,6 +44,7 @@ public class UserInfoResponse {
       this.isArtist = true;
       this.artist = new ArtistProfileResponse((Artist) user);
     }
+    this.isAdmin = user instanceof Administrator;
     this.followers = new ArrayList<BasicUserInfoResponse>();
     for (User follower: user.getFollowing()){
       this.followers.add(new BasicUserInfoResponse(follower));
@@ -51,7 +53,6 @@ public class UserInfoResponse {
     for (Playlist playlist : user.getOwnedPlaylists()) {
       ownedPlaylists.add(new PlaylistInfoResponse(playlist));
     }
-    this.isAdmin = false;
     this.followerCount = user.getFollowerCount();
   }
 

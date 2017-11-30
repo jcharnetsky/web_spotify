@@ -37,33 +37,6 @@ angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function($c
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
-
-  $scope.openReport = function(type, name, id) {
-    let response = {"data": {"content": {}}};
-    response.data.content.type = type;
-    response.data.content.entityName = name;
-    response.data.content.entityId = id;
-    handleJSONResponse(response, "modal_dialog", "report.html", "report", $compile, $parse, $scope);
-  }
-
-  $scope.createReport = function() {
-    data = JSON.stringify({
-      "subject": $scope.report_subject,
-      "description": $scope.report_description,
-      "entityType": $scope.report.type.toUpperCase(),
-      "entityId": $scope.report.entityId
-    })
-    $http.post("/api/reports/create", data, {headers: {"Content-Type": "application/json"}}).
-      then(function (response) {
-        if (!response.data.error) {
-          displayErrorPopup("Successfully made report", $scope, $parse, $compile);
-          return;
-        }
-        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
-      }).catch(function (err) {
-      displayErrorPopup(err, $scope, $parse, $compile);
-    });
-  }
 }).filter('secondsToMss', function($filter) {
     return function(seconds) {
       if(seconds < 600){
@@ -73,5 +46,9 @@ angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function($c
       } else {
         return $filter('date')(new Date(0, 0, 0).setSeconds(seconds), 'h:mm:ss');
       }
+    };
+}).filter('toLowercase', function($filter) {
+    return function(word) {
+      return word.charAt(0) + word.slice(1).toLowerCase();
     };
 });
