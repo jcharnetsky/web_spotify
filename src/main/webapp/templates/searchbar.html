@@ -30,7 +30,7 @@
         </span>
       </span>
       <a ng-show="!user.premium">Basic</a>
-      <a ng-show="user.premium">Premium</a>
+      <a ng-show="user.premium && !user.admin">Premium</a>
       <a ng-show="user.artist">Artist</a>
       <a ng-show="user.admin">Administrator</a>
       <a ng-show="user.advertiser">Advertiser</a>

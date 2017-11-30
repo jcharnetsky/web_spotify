@@ -32,4 +32,5 @@ public class ConfigConstants {
   public static String PASSWORDS_NO_MATCH = "The passwords did not match.";
   public static String INVALID_PASSWORD = "Old password was incorrect.";
   public static String INVALID_EMAIL = "Email is invalid.";
+  public static String UNKNOWN_TYPE = "The object type is either invalid or unknown.";
 }

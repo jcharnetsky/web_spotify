@@ -5,8 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import webspotify.config.ConfigConstants;
 import webspotify.models.administration.Report;
+import webspotify.models.users.Administrator;
 import webspotify.models.users.User;
 import webspotify.services.ReportService;
+import webspotify.types.SpotifyObjectEnum;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
 import webspotify.utilities.SessionUtilities;
@@ -23,16 +25,22 @@ public class ReportController {
 
   @GetMapping("/all")
   public Response getReports(HttpSession session) {
-    if (SessionUtilities.getUserFromSession(session) == null) {
+    User u = SessionUtilities.getUserFromSession(session);
+    if (u == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    } else if (!(u instanceof Administrator)){
+      return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
     }
     return reportService.getReports();
   }
 
   @GetMapping("/reportNo/{reportId}")
   public Response getReport(@PathVariable final int reportId, HttpSession session) {
-    if (SessionUtilities.getUserFromSession(session) == null) {
+    User u = SessionUtilities.getUserFromSession(session);
+    if (u == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    } else if (!(u instanceof Administrator)){
+      return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
     }
     return reportService.getReport(reportId);
   }
@@ -44,5 +52,18 @@ public class ReportController {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
     return reportService.postReport(u, report);
+  }
+
+  @PostMapping("/ban/{contentType}/{contentId}")
+  public Response banViewable(@PathVariable final SpotifyObjectEnum contentType,
+                              @PathVariable final int contentId,
+                              HttpSession session) {
+    User u = SessionUtilities.getUserFromSession(session);
+    if (u == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    } else if (!(u instanceof Administrator)){
+      return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
+    }
+    return reportService.banContent(contentType, contentId);
   }
 }

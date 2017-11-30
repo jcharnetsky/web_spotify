@@ -6,7 +6,7 @@ angular.module('web_spotify').controller('ManageCtrl', function($scope, $http, $
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
-  $scope.requestRemoval = function (type, id){
+  $scope.banContent = function (type, id){
     return;
   }
   $scope.openReport = function (id) {
