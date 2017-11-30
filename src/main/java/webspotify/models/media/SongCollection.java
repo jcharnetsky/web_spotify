@@ -41,7 +41,7 @@ public abstract class SongCollection implements Serializable, Viewable {
   @ManyToOne
   @JoinColumn(name = "ownerID", nullable = false)
   private User owner;
-  @ManyToMany(fetch = FetchType.EAGER)
+  @ManyToMany
   @JoinTable(
           name = "songsInCollection",
           joinColumns = @JoinColumn(name = "collectionID", referencedColumnName = "id"),

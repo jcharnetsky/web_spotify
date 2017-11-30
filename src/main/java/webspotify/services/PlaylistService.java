@@ -54,20 +54,11 @@ public class PlaylistService {
 
   @Transactional
   public Response getInfoAboutPlaylist(User user, final int playlistId) {
-    for (Playlist playlist: user.getOwnedPlaylists()){
-      if(playlist.getId() == playlistId) {
-        return ResponseUtilities.filledSuccess(new PlaylistInfoResponse(user, playlist));
-      }
-    }
-    for (Playlist playlist: user.getFollowedPlaylists()){
-      if(playlist.getId() == playlistId) {
-        return ResponseUtilities.filledSuccess(new PlaylistInfoResponse(user, playlist));
-      }
-    }
     if (playlistRepo.exists(playlistId)) {
+      User userToCheck = userRepo.findOne(user.getId());
       Playlist playlist = playlistRepo.findOne(playlistId);
       if (playlist.isPublic()) {
-        return ResponseUtilities.filledSuccess(new PlaylistInfoResponse(user, playlist));
+        return ResponseUtilities.filledSuccess(new PlaylistInfoResponse(userToCheck, playlist));
       } else {
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
       }
@@ -191,7 +182,6 @@ public class PlaylistService {
       User userToChange = userRepo.findOne(user.getId());
       boolean successful = userToChange.getFollowedPlaylists().remove(playlist);
       if (successful) {
-        user.getFollowedPlaylists().remove(playlist);
         userRepo.save(userToChange);
         playlist.decrementFollowerCount();
         playlistRepo.save(playlist);
@@ -212,7 +202,6 @@ public class PlaylistService {
       if (playlist.isPublic()) {
         boolean successful = userToChange.getFollowedPlaylists().add(playlist);
         if (successful) {
-          user.getFollowedPlaylists().add(playlist);
           userRepo.save(userToChange);
           playlist.incrementFollowerCount();
           playlistRepo.save(playlist);
@@ -230,10 +219,11 @@ public class PlaylistService {
 
   @Transactional
   public Response getAllRelevantPlaylists(User user) {
+    User userToCheck = userRepo.findOne(user.getId());
     Set<Playlist> setOfRelevantPlaylists = new HashSet<Playlist>();
     List<PlaylistInfoResponse> dataToReturn = new ArrayList<PlaylistInfoResponse>();
-    setOfRelevantPlaylists.addAll(user.getFollowedPlaylists());
-    setOfRelevantPlaylists.addAll(user.getOwnedPlaylists());
+    setOfRelevantPlaylists.addAll(userToCheck.getFollowedPlaylists());
+    setOfRelevantPlaylists.addAll(userToCheck.getOwnedPlaylists());
     for (Playlist collection : setOfRelevantPlaylists) {
       dataToReturn.add(new PlaylistInfoResponse(collection));
     }

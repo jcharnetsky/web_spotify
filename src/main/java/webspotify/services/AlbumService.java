@@ -37,23 +37,11 @@ public class AlbumService {
 
   @Transactional
   public Response getInfoAboutAlbum(User user, final int albumId) {
-    if (user instanceof Artist) {
-      Artist artist = (Artist) user;
-      for (Album album : artist.getOwnedAlbums()) {
-        if (album.getId() == albumId) {
-          return ResponseUtilities.filledSuccess(new AlbumInfoResponse(user, album));
-        }
-      }
-    }
-    for (Album album : user.getSavedAlbums()) {
-      if (album.getId() == albumId) {
-        return ResponseUtilities.filledSuccess(new AlbumInfoResponse(user, album));
-      }
-    }
     if (albumRepo.exists(albumId)) {
+      User userToCheck = userRepo.findOne(user.getId());
       Album album = albumRepo.findOne(albumId);
       if (album.isPublic()) {
-        return ResponseUtilities.filledSuccess(new AlbumInfoResponse(user, album));
+        return ResponseUtilities.filledSuccess(new AlbumInfoResponse(userToCheck, album));
       } else {
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
       }
@@ -151,7 +139,6 @@ public class AlbumService {
       User userToChange = userRepo.findOne(user.getId());
       boolean successful = userToChange.getSavedAlbums().remove(album);
       if (successful) {
-        user.getSavedAlbums().remove(album);
         userRepo.save(userToChange);
         return ResponseUtilities.emptySuccess();
       } else {
@@ -169,7 +156,6 @@ public class AlbumService {
       User userToChange = userRepo.findOne(user.getId());
       boolean successful = userToChange.getSavedAlbums().add(album);
       if (successful) {
-        user.getSavedAlbums().add(album);
         userRepo.save(userToChange);
         return ResponseUtilities.emptySuccess();
       } else {
@@ -182,14 +168,15 @@ public class AlbumService {
 
   @Transactional
   public Response getAllRelevantAlbums(User user) {
+    User userToCheck = userRepo.findOne(user.getId());
     Set<Album> setOfRelevantAlbums = new HashSet<Album>();
     List<AlbumInfoResponse> dataToReturn = new ArrayList<AlbumInfoResponse>();
-    setOfRelevantAlbums.addAll(user.getSavedAlbums());
-    if (user instanceof Artist) {
-      setOfRelevantAlbums.addAll(((Artist) user).getOwnedAlbums());
+    setOfRelevantAlbums.addAll(userToCheck.getSavedAlbums());
+    if (userToCheck instanceof Artist) {
+      setOfRelevantAlbums.addAll(((Artist) userToCheck).getOwnedAlbums());
     }
     for (Album album : setOfRelevantAlbums) {
-      dataToReturn.add(new AlbumInfoResponse(user, album));
+      dataToReturn.add(new AlbumInfoResponse(userToCheck, album));
     }
     return ResponseUtilities.filledSuccess(dataToReturn);
   }

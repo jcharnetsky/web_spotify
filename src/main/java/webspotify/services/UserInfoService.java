@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import webspotify.config.ConfigConstants;
 import webspotify.models.users.User;
 import webspotify.repo.UserRepository;
+import webspotify.responses.UserInfoResponse;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
 
@@ -55,5 +56,11 @@ public class UserInfoService {
     user.setIsPublic(toggled);
     userRepository.saveAndFlush(user);
     return ResponseUtilities.emptySuccess();
+  }
+  
+  @Transactional
+  public Response getUserInfo (User user) {
+    User userToCheck = userRepository.findOne(user.getId());
+    return ResponseUtilities.filledSuccess(new UserInfoResponse(userToCheck));
   }
 }

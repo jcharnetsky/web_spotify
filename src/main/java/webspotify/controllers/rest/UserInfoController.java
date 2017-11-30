@@ -28,8 +28,7 @@ public class UserInfoController {
     if (u == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
-    UserInfoResponse response = new UserInfoResponse(u);
-    return ResponseUtilities.filledSuccess(response);
+    return userInfoService.getUserInfo(u);
   }
 
   @GetMapping("/set/name")

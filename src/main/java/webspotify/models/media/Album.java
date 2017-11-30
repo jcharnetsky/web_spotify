@@ -15,7 +15,7 @@ import org.hibernate.annotations.FetchMode;
 @Entity
 @Table(name = "albums")
 public class Album extends SongCollection {
-  @OneToMany(mappedBy = "album", fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "album")
   private List<Song> songsInAlbum;
 
   public List<Song> getSongsInAlbum() {

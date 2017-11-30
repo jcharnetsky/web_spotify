@@ -42,8 +42,9 @@ public class SongService {
 
   @Transactional
   public Response getAllSavedSongs(User user) {
+    User userToCheck = userRepository.findOne(user.getId());
     List<SongResponse> songsToReturn = new ArrayList<SongResponse>();
-    for (Song song : user.getSavedSongs()) {
+    for (Song song : userToCheck.getSavedSongs()) {
       SongResponse response = new SongResponse(song);
       response.setSaved(true);
       songsToReturn.add(response);
@@ -59,7 +60,6 @@ public class SongService {
         User userToChange = userRepository.findOne(user.getId());
         boolean successful = userToChange.getSavedSongs().add(songToAdd);
         if (successful) {
-          userToChange.getSavedSongs().add(songToAdd);
           userRepository.save(userToChange);
           return ResponseUtilities.emptySuccess();
         } else {
@@ -80,7 +80,6 @@ public class SongService {
       User userToChange = userRepository.findOne(user.getId());
       boolean successful = userToChange.getSavedSongs().remove(songToRem);
       if (successful) {
-        user.getSavedSongs().remove(songToRem);
         userRepository.save(userToChange);
         return ResponseUtilities.emptySuccess();
       } else {

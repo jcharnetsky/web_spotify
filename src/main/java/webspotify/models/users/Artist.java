@@ -30,12 +30,12 @@ public class Artist extends User {
   @LazyCollection(LazyCollectionOption.FALSE)
   @CollectionTable(name = "artistAliases")
   private List<String> aliases;
-  @ManyToMany(mappedBy = "artists", fetch = FetchType.EAGER)
+  @ManyToMany(mappedBy = "artists")
   private Set<Concert> concerts;
-  @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "owner")
 //  @Fetch(value = FetchMode.SUBSELECT)
   private Set<Album> ownedAlbums;
-  @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "owner")
   @Fetch(value = FetchMode.SUBSELECT)
   private List<Song> ownedSongs;
 

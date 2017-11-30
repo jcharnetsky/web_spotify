@@ -34,10 +34,10 @@ public class Song implements Serializable, Viewable {
   private Integer montlyListens;
   @Column(name = "hasAudio", nullable = false)
   private Boolean hasAudio;
-  @ManyToOne(fetch = FetchType.EAGER)
+  @ManyToOne
   @JoinColumn(name = "artistID", nullable = false)
   private Artist owner;
-  @ManyToOne(fetch = FetchType.EAGER)
+  @ManyToOne
   @JoinColumn(name = "albumID", nullable = false)
   private Album album;
 

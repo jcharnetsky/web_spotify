@@ -23,12 +23,13 @@ public class UserService {
   UserRepository userRepository;
 
   @Transactional
-  public Response getUserProfileInformation(User currentUser, int userId) {
+  public Response getUserProfileInformation(User user, int userId) {
     if (userRepository.exists(userId)) {
-      User user = userRepository.findOne(userId);
-      if (!user.isBanned() && user.isPublic()) {
-        UserInfoResponse userInfo = new UserInfoResponse(user);
-        userInfo.setFollowed(currentUser.getFollowing().contains(user));
+      User currentUser = userRepository.findOne(user.getId());
+      User userToFind = userRepository.findOne(userId);
+      if (!userToFind.isBanned() && userToFind.isPublic()) {
+        UserInfoResponse userInfo = new UserInfoResponse(userToFind);
+        userInfo.setFollowed(currentUser.getFollowing().contains(userToFind));
         return ResponseUtilities.filledSuccess(userInfo);
       } else {
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
@@ -90,7 +91,6 @@ public class UserService {
       if ((userToFollow.isPublic() && !userToFollow.isBanned()) && userId != user.getId()) {
         boolean successful = userToChange.getFollowing().add(userToFollow);
         if (successful) {
-          user.getFollowing().add(userToFollow);
           userRepository.save(userToChange);
           userToFollow.incrementFollowerCount();
           userRepository.save(userToFollow);
@@ -113,7 +113,6 @@ public class UserService {
       User userToFollow = userRepository.findOne(userId);
       boolean successful = userToChange.getFollowing().remove(userToFollow);
       if (successful) {
-        user.getFollowing().remove(userToFollow);
         userRepository.save(userToChange);
         userToFollow.decrementFollowerCount();
         userRepository.save(userToFollow);
@@ -128,8 +127,9 @@ public class UserService {
 
   @Transactional
   public Response getFollowedArtists(User user){
+    User userToCheck = userRepository.findOne(user.getId());
     List<ArtistResponse> toReturn = new ArrayList<ArtistResponse>();
-    for (User following: user.getFollowing()){
+    for (User following: userToCheck.getFollowing()){
       if(following instanceof Artist){
         toReturn.add(new ArtistResponse((Artist) following));
       }

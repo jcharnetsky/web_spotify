@@ -46,21 +46,21 @@ public class User implements Viewable, Serializable {
   private String password;
   @Column(name = "salt", nullable = false)
   private String passwordSalt;
-  @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "owner")
   private Set<Playlist> ownedPlaylists;
-  @ManyToMany(fetch = FetchType.EAGER)
+  @ManyToMany
   @JoinTable(
           name = "usersFollowingPlaylists",
           joinColumns = @JoinColumn(name = "userID", referencedColumnName = "id"),
           inverseJoinColumns = @JoinColumn(name = "playlistID", referencedColumnName = "id"))
   private Set<Playlist> followedPlaylists;
-  @ManyToMany(fetch = FetchType.EAGER)
+  @ManyToMany
   @JoinTable(
           name = "usersSavedAlbums",
           joinColumns = @JoinColumn(name = "userID", referencedColumnName = "id"),
           inverseJoinColumns = @JoinColumn(name = "albumID", referencedColumnName = "id"))
   private Set<Album> savedAlbums;
-  @ManyToMany(fetch = FetchType.EAGER)
+  @ManyToMany
   @JoinTable(
           name = "usersSavedSongs",
           joinColumns = @JoinColumn(name = "userID", referencedColumnName = "id"),
@@ -68,7 +68,7 @@ public class User implements Viewable, Serializable {
   private Set<Song> savedSongs;
   @Column(name = "followerCount", nullable = false)
   private Integer followerCount;
-  @ManyToMany(fetch = FetchType.EAGER)
+  @ManyToMany
   @JoinTable(name = "usersFollowingUsers",
           joinColumns = @JoinColumn(name = "userID"),
           inverseJoinColumns = @JoinColumn(name = "followingID")
