@@ -78,7 +78,10 @@ public class ReportService {
   }
 
   @Transactional
-  public Response banContent(SpotifyObjectEnum contentType, int contentId) {
+  public Response banContent(SpotifyObjectEnum contentType, int contentId, int reportId) {
+    if(!reportRepository.exists(reportId)){
+      return ResponseUtilities.filledFailure(ConfigConstants.REPORT_NO_EXIST);
+    }
     Viewable toBan;
     if(contentType == SpotifyObjectEnum.SONG){
       toBan = songRepository.findOne(contentId);
@@ -101,6 +104,9 @@ public class ReportService {
     } else if (contentType == SpotifyObjectEnum.USER) {
       userRepository.save((User) toBan);
     }
+    Report report = reportRepository.findOne(reportId);
+    report.setCompleted(true);
+    reportRepository.save(report);
     return ResponseUtilities.emptySuccess();
   }
 }

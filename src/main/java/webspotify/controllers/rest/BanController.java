@@ -23,8 +23,9 @@ public class BanController {
   @Autowired
   private ReportService reportService;
 
-  @PostMapping("/banContent/{contentType}/{contentId}")
-  public Response banViewable(@PathVariable final SpotifyObjectEnum contentType,
+  @PostMapping("/banContent/{reportId}/{contentType}/{contentId}")
+  public Response banViewable(@PathVariable final int reportId,
+                              @PathVariable final SpotifyObjectEnum contentType,
                               @PathVariable final int contentId,
                               HttpSession session) {
     User u = SessionUtilities.getUserFromSession(session);
@@ -33,6 +34,6 @@ public class BanController {
     } else if (!(u instanceof Administrator)){
       return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
     }
-    return reportService.banContent(contentType, contentId);
+    return reportService.banContent(contentType, contentId, reportId);
   }
 }

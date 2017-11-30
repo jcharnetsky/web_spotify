@@ -8,7 +8,7 @@
         <div class="center_align">
           <div id="spotify_buttons">
             <a href="#" data-dismiss="modal">Close</a>
-            <a href="#" ng-click="banContent(manage.entityType, manage.entityID)">
+            <a href="#" ng-click="banContent(manage.reportId, manage.entityType, manage.entityID)">
               Ban {{manage.entityType | toLowercase}} ({{manage.entityId}})
             </a>
             <a href="#" ng-click="ignoreReport(manage.reportId)"></a>
