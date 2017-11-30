@@ -13,6 +13,7 @@ angular.module('web_spotify').controller('ManageCtrl', function($scope, $http, $
           displayErrorPopup("Successfully banned content", $scope, $parse, $compile);
           return;
         }
+        $("#manageReportModal").modal("hide");
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
       }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
@@ -25,6 +26,7 @@ angular.module('web_spotify').controller('ManageCtrl', function($scope, $http, $
           displayErrorPopup("Report ignored", $scope, $parse, $compile);
           return;
         }
+        $("#manageReportModal").modal("hide");
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
       }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
