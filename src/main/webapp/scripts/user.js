@@ -68,6 +68,50 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
   }
   
   $scope.upgradePremiumStatus = function(status) {
+    if($scope.cardholder_name == undefined || $scope.cardholder_name == "") {
+      displayErrorPopup("Cardholder name field cannot be left blank.", $scope, $parse, $compile);
+      return;
+    }
+    if($scope.card_number == undefined || $scope.card_number == "") {
+      displayErrorPopup("Card number field cannot be left blank.", $scope, $parse, $compile);
+      return;
+    }
+    if($scope.card_cvn == undefined || $scope.card_cvn == "") {
+      displayErrorPopup("Card cvn field cannot be left blank.", $scope, $parse, $compile);
+      return;
+    }
+    if($scope.card_zip == undefined || $scope.card_zip == "") {
+      displayErrorPopup("Card zip field cannot be left blank.", $scope, $parse, $compile);
+      return;
+    }
+    var month = document.getElementById("expire_month");
+    var monthValue = month.options[month.selectedIndex].value;
+    if(monthValue == '') {
+      displayErrorPopup("Card month field cannot be left as default.", $scope, $parse, $compile);
+      return;
+    }
+    var year = document.getElementById("expire_year");
+    var yearValue = year.options[year.selectedIndex].value;
+    if(yearValue == '') {
+      displayErrorPopup("Card year field cannot be left as default.", $scope, $parse, $compile);
+      return;
+    }
+    var expiration = String(monthValue) + "/" + String(yearValue);
+    data = JSON.stringify({
+      "ccn": $scope.card_number,
+      "cvn": $scope.card_cvn,
+      "cardholderName": $scope.cardholder_name,
+      "zipCode": $scope.card_zip,
+      "expDate": expiration
+    });
+    $http.post("/api/creditcards/post", data, {headers: {"Content-Type": "application/json"}}).
+      then(function(response) {
+        if(response.data.error) {
+          displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+        }
+      }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
     $http.post("/api/users/info/set/premium", null, {
       params:{
         "premium": status}}).

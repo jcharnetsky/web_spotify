@@ -106,7 +106,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
       "title": $scope.new_title,
       "description": $scope.new_description,
       "genre": $scope.new_genre
-    })
+    });
     $http.post("/api/playlists/create", data, {headers: {"Content-Type": "application/json"}}).
       then(function (response) {
         if (!response.data.error) {

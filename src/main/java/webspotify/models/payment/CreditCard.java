@@ -1,19 +1,40 @@
 package webspotify.models.payment;
 
 import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
+import javax.persistence.ManyToOne;
+
 import webspotify.models.users.User;
 
 /**
  * @author Cardinals
  */
+@Entity
+@Table(name = "creditcards")
 public class CreditCard implements Serializable {
-  
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "ID", nullable = false)
   private Integer id;
+  @ManyToOne
+  @JoinColumn(name = "userID", nullable = false)
   private User owner;
+  @Column(name = "ccn", nullable = false)
   private String ccn;
+  @Column(name = "cvn", nullable = false)
   private Integer cvn;
+  @Column(name = "cardholdername", nullable = false)
   private String cardholderName;
+  @Column(name = "zipcode", nullable = false)
   private Integer zipCode;
+  @Column(name = "expdate", nullable = false)
   private String expDate;
 
   public CreditCard() {
