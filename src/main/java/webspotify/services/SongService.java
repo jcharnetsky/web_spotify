@@ -93,8 +93,9 @@ public class SongService {
   @Transactional
   public Response getManageSongInfo(Artist artist, int songId) {
     if (songRepository.exists(songId)) {
+      Artist artistToCheck = (Artist) userRepository.findOne(artist.getId());
       Song song = songRepository.findOne(songId);
-      if (artist.getOwnedSongs().contains(song)) {
+      if (artistToCheck.getOwnedSongs().contains(song)) {
         return ResponseUtilities.filledSuccess(new ManageSongInfoResponse(song));
       } else {
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
