@@ -39,7 +39,7 @@ angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function($c
   }
 
   $scope.openReport = function(type, name, id) {
-    let response = {};
+    let response = {"data": {"content": {}}};
     response.data.content.type = type;
     response.data.content.entityName = name;
     response.data.content.entityId = id;
@@ -47,13 +47,20 @@ angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function($c
   }
 
   $scope.createReport = function() {
-    $http.get(location.origin + "/api/users/info/get/userInfo").then(function(response) {
-      if(!response.data.error){
-        $parse("user").assign($scope, response.data.content);
-      } else {
+    data = JSON.stringify({
+      "subject": $scope.report_subject,
+      "description": $scope.report_description,
+      "entityType": $scope.report.type.toUpperCase(),
+      "entityId": $scope.report.entityId
+    })
+    $http.post("/api/reports/create", data, {headers: {"Content-Type": "application/json"}}).
+      then(function (response) {
+        if (!response.data.error) {
+          displayErrorPopup("Successfully made report", $scope, $parse, $compile);
+          return;
+        }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
-      }
-    }).catch(function (err) {
+      }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
