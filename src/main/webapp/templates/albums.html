@@ -5,7 +5,8 @@
   <div class="info_block" ng-repeat="album in albums">
     <img ng-src="{{album.imageLink}}" alt="Image"
          ng-controller="CollectionCtrl"
-         ng-click="loadAlbum(album.id)">
+         ng-click="loadAlbum(album.id)"
+         style="border-radius: 0px;">
     <p>{{album.title}}</p>
     <p ng-show="album.followed">Followed</p>
     <p ng-show="!album.followed">Owned</p>

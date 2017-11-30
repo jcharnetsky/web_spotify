@@ -1,0 +1,24 @@
+<link href="css/modal.css" rel="stylesheet"/>
+<div class="modal fade" id="ReportModal" tabindex="-1" role="dialog" ng-controller="MainCtrl">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3>Report {{report.type}} : {{report.entityName}}</h3>
+        <div class="center_align">
+          <form novalidate class="center_align">
+            <br>
+            <input type="text" ng-model="report_subject" placeholder="Subject"/>
+            <br/><br/>
+            <input type="text" ng-model="report_description" placeholder="Description"/>
+            <br/><br>
+          </form>
+          <div id="spotify_buttons">
+            <a href="#" data-dismiss="modal">Close</a>
+            <a href="#" ng-click="createReport(report.entityId)">Submit</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>$('#ReportModal').modal();</script>

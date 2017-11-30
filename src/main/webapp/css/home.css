@@ -94,6 +94,7 @@
 }
 .list_tiles {
   position: relative;
+  margin: 10px;
 }
 .list_tiles li {
   display: inline;

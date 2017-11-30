@@ -37,8 +37,34 @@ angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function($c
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
+
+  $scope.openReport = function(type, name, id) {
+    let response {};
+    response.data.content.type = type;
+    response.data.content.entityName = name;
+    response.data.content.entityId = id;
+    handleJSONResponse(response, "modal_dialog", "report.html", "report", $compile, $parse, $scope);
+  }
+
+  $scope.createReport = function() {
+    $http.get(location.origin + "/api/users/info/get/userInfo").then(function(response) {
+      if(!response.data.error){
+        $parse("user").assign($scope, response.data.content);
+      } else {
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }
+    }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  }
 }).filter('secondsToMss', function($filter) {
     return function(seconds) {
+      if(seconds < 600){
         return $filter('date')(new Date(0, 0, 0).setSeconds(seconds), 'm:ss');
+      } else if (seconds < 3600) {
+        return $filter('date')(new Date(0, 0, 0).setSeconds(seconds), 'mm:ss');
+      } else {
+        return $filter('date')(new Date(0, 0, 0).setSeconds(seconds), 'h:mm:ss');
+      }
     };
 });

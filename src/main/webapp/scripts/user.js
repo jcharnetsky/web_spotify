@@ -21,6 +21,7 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
       then(function (response) {
         if (!response.data.error) {
           $scope.visitingUser.followed = true;
+          $scope.visitingUser.followerCount = $scope.visitingUser.followerCount + 1;
           displayErrorPopup("Successfully followed user", $scope, $parse, $compile);
           return; 
         }
@@ -36,6 +37,7 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
       then(function (response) {
         if (!response.data.error) {
           $scope.visitingUser.followed = false;
+          $scope.visitingUser.followerCount = $scope.visitingUser.followerCount - 1;
           displayErrorPopup("Successfully unfollowed user", $scope, $parse, $compile);
           return;
         }

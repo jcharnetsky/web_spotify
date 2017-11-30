@@ -20,6 +20,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
     $http.get(location.origin + "/api/playlists/").then(function (response) {
       handleJSONResponse(response, "playlists", "null", "playlists", $compile, $parse, $scope);
       collections.setPlaylists(angular.copy($scope.playlists));
+      $scope.playlists = collections.getPlaylists();
     }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });
@@ -27,7 +28,6 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
   $scope.getAlbums = function () {
     $http.get(location.origin + "/api/albums/").then(function (response) {
       handleJSONResponse(response, "main", "albums.html", "albums", $compile, $parse, $scope);
-      collections.setAlbums(angular.copy($scope.albums));
     }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });
@@ -264,19 +264,12 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
   }
 }).service('collections', function () {
   var playlists;
-  var albums;
 
   getPlaylists = function () {
     return playlists;
   }
-  getAlbums = function () {
-    return albums;
-  }
   addPlaylist = function (newList) {
     playlists.push(newList);
-  }
-  setAlbums = function (newAlbums) {
-    albums = newAlbums;
   }
   setPlaylists = function (newLists) {
     playlists = newLists;
@@ -308,9 +301,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
   }
   return {
     getPlaylists: getPlaylists,
-    getAlbums: getAlbums,
     setPlaylists: setPlaylists,
-    setAlbums: setAlbums,
     addPlaylist: addPlaylist,
     editPlaylist: editPlaylist,
     removePlaylist: removePlaylist
