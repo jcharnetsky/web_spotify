@@ -12,7 +12,7 @@
       </ul>
     </li>
     <li id="top_options" ng-controller="MainCtrl">
-      <a ng-show="user.artist" href="#" ng-click="loadTemplateAndJSON('main', 'manageSongs.html', 'null')">
+      <a ng-show="user.artist || user.admin" href="#" ng-click="loadTemplateAndJSON('main', 'manageSongs.html', 'null')">
         Manage songs &middot;</a>
       <a ng-show="user.admin" href="#" ng-click="loadTemplateAndJSON('main', 'manageReports.html', 'api/reports/all')">
         Manage reports &middot;</a>

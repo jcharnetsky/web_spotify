@@ -51,7 +51,6 @@ public class UserInfoResponse {
     for (Playlist playlist : user.getOwnedPlaylists()) {
       ownedPlaylists.add(new PlaylistInfoResponse(playlist));
     }
-    this.isAdmin = false;
     this.followerCount = user.getFollowerCount();
   }
 

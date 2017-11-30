@@ -9,6 +9,7 @@ import webspotify.config.ConfigConstants;
 import webspotify.models.administration.Report;
 import webspotify.models.users.User;
 import webspotify.repo.ReportRepository;
+import webspotify.responses.ReportResponse;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
 
@@ -20,7 +21,12 @@ public class ReportService {
 
   @Transactional
   public Response getReports() {
-    return ResponseUtilities.filledSuccess(reportRepository.findAll());
+    List<Report> reports = reportRepository.findAll();
+    List<ReportResponse> responses = new ArrayList<ReportResponse>();
+    for (Report report: reports){
+      responses.add(new ReportResponse(report));
+    }
+    return ResponseUtilities.filledSuccess(responses);
   }
 
   @Transactional
@@ -29,9 +35,7 @@ public class ReportService {
     if (report == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.REPORT_NO_EXIST);
     } else {
-      List<Report> contentBody = new ArrayList<Report>();
-      contentBody.add(report);
-      return ResponseUtilities.filledSuccess(contentBody);
+      return ResponseUtilities.filledSuccess(new ReportResponse(report));
     }
   }
 
