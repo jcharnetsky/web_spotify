@@ -7,10 +7,22 @@ angular.module('web_spotify').controller('ManageCtrl', function($scope, $http, $
     });
   }
   $scope.banContent = function (type, id){
-    $http.post("/api/reports/ban/"+type+"/"+id, {headers: {"Content-Type": "application/json"}}).
+    $http.post("/api/ban/banContent/"+type+"/"+id, {headers: {"Content-Type": "application/json"}}).
       then(function (response) {
         if (!response.data.error) {
           displayErrorPopup("Successfully banned content", $scope, $parse, $compile);
+          return;
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  }
+  $scope.ignoreReport = function (reportId){
+    $http.post("/api/reports/ban/"+type+"/"+id, {headers: {"Content-Type": "application/json"}}).
+      then(function (response) {
+        if (!response.data.error) {
+          displayErrorPopup("Report ignored", $scope, $parse, $compile);
           return;
         }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);

@@ -54,16 +54,14 @@ public class ReportController {
     return reportService.postReport(u, report);
   }
 
-  @PostMapping("/ban/{contentType}/{contentId}")
-  public Response banViewable(@PathVariable final SpotifyObjectEnum contentType,
-                              @PathVariable final int contentId,
-                              HttpSession session) {
+  @PostMapping("/ignore/{reportId}")
+  public Response ignoreReport(@PathVariable final int reportId, HttpSession session) {
     User u = SessionUtilities.getUserFromSession(session);
     if (u == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     } else if (!(u instanceof Administrator)){
       return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
     }
-    return reportService.banContent(contentType, contentId);
+    return reportService.getReport(reportId);
   }
 }

@@ -1,5 +1,5 @@
 <link href="css/modal.css" rel="stylesheet"/>
-<div class="modal fade" id="manageReportModal" tabindex="-1" role="dialog" ng-controller="ManageCtrl">
+<div class="modal fade" id="manageReportModal" tabindex="-1" role="dialog" ng-controller="BanCtrl">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
@@ -11,6 +11,7 @@
             <a href="#" ng-click="banContent(manage.entityType, manage.entityID)">
               Ban {{manage.entityType | toLowercase}} ({{manage.entityId}})
             </a>
+            <a href="#" ng-click="ignoreReport(manage.reportId)"></a>
           </div>
         </div>
       </div>
