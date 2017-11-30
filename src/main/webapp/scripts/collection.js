@@ -28,6 +28,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
   $scope.getAlbums = function () {
     $http.get(location.origin + "/api/albums/").then(function (response) {
       handleJSONResponse(response, "main", "albums.html", "albums", $compile, $parse, $scope);
+      collections.setAlbums(angular.copy($scope.albums));
     }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });
