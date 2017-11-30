@@ -47,4 +47,8 @@ angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function($c
         return $filter('date')(new Date(0, 0, 0).setSeconds(seconds), 'h:mm:ss');
       }
     };
+}).filter('toLowercase', function($filter) {
+    return function(word) {
+      return word.charAt(0) + word.slice(1).toLowerCase();
+    };
 });
