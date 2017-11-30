@@ -67,14 +67,32 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
     $compile(loadToDiv("modal_dialog", "premiumDowngrade.html"))($scope);
   }
   
-  $scope.downgradePremiumStatus = function() {
+  $scope.upgradePremiumStatus = function(status) {
     $http.post("/api/users/info/set/premium", null, {
       params:{
         "premium": status}}).
       then(function(response) {
         if(!response.data.error) {
           $scope.user.premium = !scope.user.premium
-          displayErrorPopup("Successfully upgraded/downgraded premium status.")
+          displayErrorPopup("Successfully upgraded premium status.", $scope, $parse, $compile)
+          $("#upgradePremiumModal").modal("hide");
+          return;
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  }
+  
+  $scope.downgradePremiumStatus = function(status) {
+    $http.post("/api/users/info/set/premium", null, {
+      params:{
+        "premium": status}}).
+      then(function(response) {
+        if(!response.data.error) {
+          $scope.user.premium = !scope.user.premium
+          displayErrorPopup("Successfully downgraded premium status.", $scope, $parse, $compile)
+          $("#downgradePremiumModal").modal("hide");
           return;
         }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
