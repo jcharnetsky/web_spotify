@@ -66,16 +66,17 @@ public class UserInfoService {
 
   @Transactional
   public Response setPremium(User user, Boolean premiumStatus) {
-    user.setIsPremium(premiumStatus);
-    userRepository.saveAndFlush(user);
+    User toToggle = userRepository.findOne(user.getId());
+    toToggle.setIsPremium(premiumStatus);
+    userRepository.save(toToggle);
     return ResponseUtilities.emptySuccess();
   }
   
   @Transactional
   public Response togglePublic(User user) {
-    Boolean toggled = !(user.getIsPublic());
-    user.setIsPublic(toggled);
-    userRepository.saveAndFlush(user);
+    User toToggle = userRepository.findOne(user.getId());
+    toToggle.setIsPublic(!toToggle.getIsPublic());
+    userRepository.save(toToggle);
     return ResponseUtilities.emptySuccess();
   }
   
