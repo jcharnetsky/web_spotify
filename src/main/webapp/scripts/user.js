@@ -56,7 +56,31 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
   $scope.openEditPasswordDialog = function () {
     $compile(loadToDiv("modal_dialog", "editPassword.html"))($scope);
   }
- 
+  
+  $scope.openUpgradePremiumDialog = function () {
+    $compile(loadToDiv("modal_dialog", "premiumUpgrade.html"))($scope);
+  }
+  
+  $scope.openDowngradePremiumDialog = function() {
+    $compile(loadToDiv("modal_dialog", "premiumDowngrade.html"))($scope);
+  }
+  
+  $scope.downgradePremiumStatus = function() {
+    $http.post("/api/users/info/set/premium", null, {
+      params:{
+        "premium": status}}).
+      then(function(response) {
+        if(!response.data.error) {
+          $scope.user.premium = !scope.user.premium
+          displayErrorPopup("Successfully upgraded/downgraded premium status.")
+          return;
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  }
+  
   $scope.editUsername = function () {
     if($scope.edit_username == undefined || $scope.edit_username == "") {
       displayErrorPopup("Username field cannot be left blank.", $scope, $parse, $compile);
@@ -138,22 +162,6 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
         if(!response.data.error) {
           $scope.user.public = !scope.user.public
           displayErrorPopup("Successfully toggled public/private status.", $scope, $parse, $compile);
-          return;
-        }
-        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
-      }).catch(function (err) {
-      displayErrorPopup(err, $scope, $parse, $compile);
-    });
-  }
-  
-  $scope.setPremium = function(status) {
-    $http.post("/api/users/info/set/premium", null, {
-      params:{
-        "premium": status}}).
-      then(function(response) {
-        if(!response.data.error) {
-          $scope.user.premium = !scope.user.premium
-          displayErrorPopup("Successfully upgraded/downgraded premium status.")
           return;
         }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
