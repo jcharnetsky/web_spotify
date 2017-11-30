@@ -180,7 +180,7 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
     $http.post("/api/users/info/set/public", null, {headers: {"Content-Type": "application/json"}}).
       then(function(response) {
         if(!response.data.error) {
-          $scope.user.public = !scope.user.public
+          $scope.user.public = !scope.user.public;
           displayErrorPopup("Successfully toggled public/private status.", $scope, $parse, $compile);
           return;
         }
