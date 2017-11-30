@@ -6,7 +6,7 @@ package webspotify.posts;
  */
 public class CreditCardCreateRequest {
   
-  private String ccn;
+  private long ccn;
   private Integer cvn;
   private String cardholderName;
   private Integer zipCode;
@@ -15,11 +15,11 @@ public class CreditCardCreateRequest {
   public CreditCardCreateRequest() {
   }
 
-  public String getCCN() {
+  public long getCCN() {
     return ccn;
   }
   
-  public void setCCN(String ccn) {
+  public void setCCN(long ccn) {
     this.ccn = ccn;
   }
   

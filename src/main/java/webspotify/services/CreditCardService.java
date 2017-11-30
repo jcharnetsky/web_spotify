@@ -30,11 +30,6 @@ public class CreditCardService {
     newCreditCard.setExpDate(creditCard.getExpDate());
     newCreditCard.setZipCode(creditCard.getZipCode());
     newCreditCard.setOwner(owner);
-    System.out.println("newCreditCard name: " + newCreditCard.getCardholderName());
-    System.out.println("newCreditCard ccn: " + newCreditCard.getCCN());
-    System.out.println("newCreditCard cvn: " + newCreditCard.getCVN());
-    System.out.println("newCreditCard exp: " + newCreditCard.getExpDate());
-    System.out.println("newCreditCard zipcode: " + newCreditCard.getZipCode());
     ccRepository.saveAndFlush(newCreditCard);
     return ResponseUtilities.emptySuccess();
   }

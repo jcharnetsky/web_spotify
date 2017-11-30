@@ -27,7 +27,7 @@ public class CreditCard implements Serializable {
   @JoinColumn(name = "userID", nullable = false)
   private User owner;
   @Column(name = "ccn", nullable = false)
-  private String ccn;
+  private long ccn;
   @Column(name = "cvn", nullable = false)
   private Integer cvn;
   @Column(name = "cardholdername", nullable = false)
@@ -56,11 +56,11 @@ public class CreditCard implements Serializable {
     this.owner = owner;
   }
   
-  public String getCCN() {
+  public long getCCN() {
     return ccn;
   }
   
-  public void setCCN(String ccn) {
+  public void setCCN(long ccn) {
     this.ccn = ccn;
   }
   

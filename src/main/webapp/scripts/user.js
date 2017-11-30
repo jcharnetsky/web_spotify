@@ -72,16 +72,16 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
       displayErrorPopup("Cardholder name field cannot be left blank.", $scope, $parse, $compile);
       return;
     }
-    if($scope.card_number == undefined || $scope.card_number == "") {
-      displayErrorPopup("Card number field cannot be left blank.", $scope, $parse, $compile);
+    if($scope.card_number == undefined || $scope.card_number == "" || isNaN($scope.card_number) || String($scope.card_number).length >= 20) {
+      displayErrorPopup("Invalid credit card number.", $scope, $parse, $compile);
       return;
     }
-    if($scope.card_cvn == undefined || $scope.card_cvn == "") {
-      displayErrorPopup("Card cvn field cannot be left blank.", $scope, $parse, $compile);
+    if($scope.card_cvn == undefined || $scope.card_cvn == "" || isNaN($scope.card_cvn) || String($scope.card_cvn).length >= 5) {
+      displayErrorPopup("Invalid CVN", $scope, $parse, $compile);
       return;
     }
-    if($scope.card_zip == undefined || $scope.card_zip == "") {
-      displayErrorPopup("Card zip field cannot be left blank.", $scope, $parse, $compile);
+    if($scope.card_zip == undefined || $scope.card_zip == "" || isNaN($scope.card_zip) || String($scope.card_zip.length) >= 6) {
+      displayErrorPopup("Invalid zip code.", $scope, $parse, $compile);
       return;
     }
     var month = document.getElementById("expire_month");
