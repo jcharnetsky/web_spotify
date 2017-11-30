@@ -20,13 +20,13 @@ public class SearchController {
   @Autowired
   private SearchService searchService;
 
-  @GetMapping("/")
-  public Response performSearch(@RequestParam String q, HttpSession session) {
+  @GetMapping("/{query}")
+  public Response performSearch(@PathVariable String query, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     } else {
-      return searchService.search(user, q);
+      return searchService.search(user, query);
     }
   }
 

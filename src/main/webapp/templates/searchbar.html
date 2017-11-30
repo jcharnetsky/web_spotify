@@ -2,14 +2,11 @@
 <link href="css/button.css" rel="stylesheet">
 <div class="top">
   <ul class="top_list">
-    <li>
-      <ul class="nav_history">
-        <li>
-          <form class="search">
-            <input class="search" type="text" placeholder="Search"><br>
-          </form>
-        </li>
-      </ul>
+    <li ng-controller="MainCtrl">
+      <form class="search">
+        <input type="text" ng-model="search_term" placeholder="Search">
+        <input type="submit" value="Search" ng-click="searchQuery(search_term)">
+      </form>
     </li>
     <li id="top_options" ng-controller="MainCtrl">
       <a ng-show="user.artist || user.admin" href="#" ng-click="loadTemplateAndJSON('main', 'manageSongs.html', 'null')">

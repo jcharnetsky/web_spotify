@@ -10,7 +10,13 @@ angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function($c
       $compile(loadToDiv(div, URL))($scope);
     }
   }
-
+  $scope.searchQuery = function(query) {
+    $http.get("/api/search/"+query).then(function (response) {
+        handleJSONResponse(response, "null", "searchResults.html", "results", $compile, $parse, $scope);
+      }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  }
   $scope.logout = function(){
     $http.get(location.origin + "/api/users/logout").then(function(response){
       if (response.data.error) {
@@ -21,11 +27,9 @@ angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function($c
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
-
   $scope.compile = function(domNode){
     $compile(domNode)($scope);
   }
-
   $scope.loadUserInfo = function() {
     $http.get(location.origin + "/api/users/info/get/userInfo").then(function(response) {
       if(!response.data.error){
