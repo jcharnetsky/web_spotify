@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="css/collection.css">
+<div id="manage_songs" ng-controller="ManageCtrl">
+  <div class="content_title">Manage Songs</div>
+  <ul class="collection">
+    <li>
+      <ul class="collection_tiles">
+        <li>
+          <div class="collection_tile">
+            <a href="#">Report #</a>
+            <a href="#">Subject</a>
+            <a href="#">Type</a>
+            <a href="#">View</a>
+            <span class="options_col"></span>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li ng-repeat="report in api_reports_all">
+      <hr class="collection_hr">
+      <ul class="collection_tiles">
+        <li>
+          <div class="collection_tile highlight_on_hover">
+            <a>{{report.reportId}}</a>
+            <a>{{report.subject}}</a>
+            <a>{{report.entityType}}</a>
+            <a href="#" ng-click="">View Report</a>
+          </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

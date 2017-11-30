@@ -14,6 +14,8 @@
     <li id="top_options" ng-controller="MainCtrl">
       <a ng-show="user.artist" href="#" ng-click="loadTemplateAndJSON('main', 'manageSongs.html', 'null')">
         Manage songs &middot;</a>
+      <a ng-show="user.admin" href="#" ng-click="loadTemplateAndJSON('main', 'manageReports.html', 'api/reports/all')">
+        Manage reports &middot;</a>
       <img class="user_img" alt="user-image" ng-src="{{user.imageLink}}">
       <a href="#" id="username" ng-click="loadTemplateAndJSON('main', 'user_info.html', 'api/users/info/get/userInfo')">
         {{user.name}}</a>

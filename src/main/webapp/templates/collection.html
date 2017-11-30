@@ -26,10 +26,10 @@
         <a href="#" ng-show="user.id == collection.ownerId" ng-click="openEditPlaylistDialog()">Edit</a>
         <a href="#" ng-show="user.id == collection.ownerId" ng-click="deletePlaylist(collection.id)">Delete</a>
 				<a href="#" ng-show="collection.album"
-					 ng-click="openReport('Album', collection.title, collection.id)">
+					 ng-click="openCreateReport('Album', collection.title, collection.id)">
 					Report</a>
 				<a href="#" ng-show="collection.playlist"
-					 ng-click="openReport('Playlist', collection.title, collection.id)">
+					 ng-click="openCreateReport('Playlist', collection.title, collection.id)">
 					Report</a>
 			</div>
 		</div>
@@ -79,7 +79,7 @@
                    ng-click="addSongToPlaylist(song.id, playlist.id)">
                   Add to {{playlist.title}}
                 </a>
-								<a href="#" ng-click="openReport('Song', song.trackName, song.id)">Report</a>
+								<a href="#" ng-click="openCreateReport('Song', song.trackName, song.id)">Report</a>
               </div>
             </div>
           </div>
