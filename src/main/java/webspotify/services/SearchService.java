@@ -50,7 +50,9 @@ public class SearchService {
       if (songsToReturn.size() < ConfigConstants.MAX_SEARCH_ELEMENT_COUNT) {
         if (!titles.contains(song.getTitle()) && song.isPublic() && !song.isBanned()) {
           titles.add(song.getTitle());
-          songsToReturn.add(new BasicSongResponse(song));
+          BasicSongResponse songResponse = new BasicSongResponse(song);
+          songResponse.setSaved(user.getSavedSongs().contains(song));
+          songsToReturn.add(songResponse);
         }
       }
     }
