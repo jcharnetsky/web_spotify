@@ -21,11 +21,11 @@
         {{user.name}}</a>
       <span class="options_col">
         <span class="options_button" onclick="toggleDropdown(-1)" style="display: inline;">&#x25BC;</span>
-        <span id="other_dropdown_-1" class="dropdown_content" style="right: 0;">
-          <a href="#" ng-show="user.public" ng-controller="UserCtrl" ng-click="toggleIsPublic()">Enable Private Session</a>
-          <a href="#" ng-show="!user.public" ng-controller="UserCtrl" ng-click="toggleIsPublic()">Disable Private Session</a>
-          <a href="#" ng-show="!user.premium" ng-controller="UserCtrl" ng-click="openUpgradePremiumDialog()">Upgrade Your Account</a>
-          <a href="#" ng-show="user.premium" ng-controller="UserCtrl" ng-click="openDowngradePremiumDialog()">Downgrade Your Account</a>
+        <span id="other_dropdown_-1" class="dropdown_content" style="right: 0;" ng-controller="UserCtrl">
+          <a href="#" ng-show="user.public" ng-click="toggleIsPublic()">Enable Private Session</a>
+          <a href="#" ng-show="!user.public"  ng-click="toggleIsPublic()">Disable Private Session</a>
+          <a href="#" ng-show="!user.premium"  ng-click="openUpgradePremiumDialog()">Upgrade Your Account</a>
+          <a href="#" ng-show="user.premium" ng-click="openDowngradePremiumDialog()">Downgrade Your Account</a>
           <a href="#" ng-click="logout()">Logout</a>
         </span>
       </span>

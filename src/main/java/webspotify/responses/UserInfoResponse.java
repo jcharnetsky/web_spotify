@@ -88,10 +88,6 @@ public class UserInfoResponse {
     this.birthday = birthday;
   }
 
-  public Boolean getIsPremium() {
-    return isPremium;
-  }
-
   public Boolean getPremium() {
     return isPremium;
   }
@@ -112,23 +108,15 @@ public class UserInfoResponse {
     isAdmin = admin;
   }
 
-  public void setIsPremium(Boolean isPremium) {
-    this.isPremium = isPremium;
-  }
+  public Boolean getPublic() { return isPublic; }
+
+  public void setPublic(Boolean isPublic) { this.isPublic = isPublic; }
   
-  public Boolean getIsPublic() {
-    return isPublic;
-  }
-  
-  public void setIsPublic(Boolean isPublic) {
-    this.isPublic = isPublic;
-  }
-  
-  public Boolean getIsDeleted() {
+  public Boolean getDeleted() {
     return isDeleted;
   }
   
-  public void setIsDeleted(Boolean isDeleted) {
+  public void setDeleted(Boolean isDeleted) {
     this.isDeleted = isDeleted;
   }
 
