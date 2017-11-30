@@ -6,12 +6,12 @@ angular.module('web_spotify').controller('ManageCtrl', function($scope, $http, $
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
-  $scope.requestRemoval = function (id){
+  $scope.requestRemoval = function (type, id){
     return;
   }
   $scope.openReport = function (id) {
     $http.get(location.origin + "/api/reports/reportNo/" + id).then(function (response) {
-      handleJSONResponse(response, "modal_dialog", "manageSong.html", "manage", $compile, $parse, $scope);
+      handleJSONResponse(response, "modal_dialog", "manageReport.html", "manage", $compile, $parse, $scope);
     }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });

@@ -1,0 +1,21 @@
+<link href="css/modal.css" rel="stylesheet"/>
+<div class="modal fade" id="manageReportModal" tabindex="-1" role="dialog" ng-controller="ManageCtrl">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3>
+          Report against {{manage.entityType}} with ID {{manage.entityId}} from user {{manage.creator.name}}
+        </h3>
+        <div class="center_align">
+          <p><strong>{{manage.subject}}</strong></p>
+          <p>{{manage.description}}</p>
+          <div id="spotify_buttons">
+            <a href="#" data-dismiss="modal">Close</a>
+            <a href="#" ng-click="requestRemoval(manage.entityType, manage.entityID)">Ban</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>$('#manageReportModal').modal();</script>
