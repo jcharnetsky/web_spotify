@@ -29,16 +29,20 @@ public class Report implements Serializable {
   private SpotifyObjectEnum entityType;
   @Column(name = "entityID", nullable = false)
   private Integer entityId;
+  @Column(name = "completed", nullable = false)
+  private Boolean completed;
 
   public Report() {
   }
 
-  public Report(int reportId, String subject, String description, SpotifyObjectEnum entityType, Integer entityId) {
+  public Report(int reportId, String subject, String description,
+                SpotifyObjectEnum entityType, Integer entityId, boolean completed) {
     this.reportId = reportId;
     this.subject = subject;
     this.description = description;
     this.entityType = entityType;
     this.entityId = entityId;
+    this.completed = completed;
   }
 
   public int getReportId() {
@@ -88,4 +92,8 @@ public class Report implements Serializable {
   public void setEntityId(Integer entityId) {
     this.entityId = entityId;
   }
+
+  public boolean getCompleted() { return this.completed; }
+
+  public void setCompleted(boolean completed) { this.completed = completed; }
 }

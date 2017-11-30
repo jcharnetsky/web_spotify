@@ -31,7 +31,7 @@ public class ReportController {
     } else if (!(u instanceof Administrator)){
       return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
     }
-    return reportService.getReports();
+    return reportService.getActiveReports();
   }
 
   @GetMapping("/reportNo/{reportId}")
@@ -62,6 +62,6 @@ public class ReportController {
     } else if (!(u instanceof Administrator)){
       return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
     }
-    return reportService.getReport(reportId);
+    return reportService.ignoreReport(reportId);
   }
 }

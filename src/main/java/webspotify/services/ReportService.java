@@ -33,11 +33,13 @@ public class ReportService {
   UserRepository userRepository;
 
   @Transactional
-  public Response getReports() {
+  public Response getActiveReports() {
     List<Report> reports = reportRepository.findAll();
     List<ReportResponse> responses = new ArrayList<ReportResponse>();
     for (Report report: reports){
-      responses.add(new ReportResponse(report));
+      if(!report.getCompleted()) {
+        responses.add(new ReportResponse(report));
+      }
     }
     return ResponseUtilities.filledSuccess(responses);
   }
@@ -62,6 +64,17 @@ public class ReportService {
     } else {
       return ResponseUtilities.emptySuccess();
     }
+  }
+
+  @Transactional
+  public Response ignoreReport(int reportId){
+    if (!reportRepository.exists(reportId)) {
+      return ResponseUtilities.filledFailure(ConfigConstants.REPORT_NO_EXIST);
+    }
+    Report report = reportRepository.findOne(reportId);
+    report.setCompleted(false);
+    reportRepository.save(report);
+    return ResponseUtilities.emptySuccess();
   }
 
   @Transactional
