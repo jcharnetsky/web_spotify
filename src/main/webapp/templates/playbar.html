@@ -20,7 +20,7 @@
   </li>
   <li class="scrub-bar inline-block">
     <span id="playSongTimeUp"></span>
-    <input type="range" id="songProgress" ng-change="scrubSong();" value="0" min="0" max="100"/>
+    <input type="range" id="songProgress" ng-click="scrubSong();" value="0" min="0" max="100"/>
     <span id="playSongTimeDown"></span>
   </li>
   <li class="music_controls inline-block">
@@ -39,7 +39,7 @@
           <img src="../images/queue.png" alt="Queue">
         </a>
         <img src="../images/volume.png" alt="Volume"/>
-        <input type="range" id="songVolume" ng-change="scrubVolume();" value="50" min="0" max="100"/>
+        <input type="range" id="songVolume" ng-click="scrubVolume();" value="50" min="0" max="100"/>
       </li>
     </ul>
   </li>
