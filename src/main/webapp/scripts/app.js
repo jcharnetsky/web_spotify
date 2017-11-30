@@ -39,7 +39,7 @@ angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function($c
   }
 
   $scope.openReport = function(type, name, id) {
-    let response {};
+    let response = {};
     response.data.content.type = type;
     response.data.content.entityName = name;
     response.data.content.entityId = id;
