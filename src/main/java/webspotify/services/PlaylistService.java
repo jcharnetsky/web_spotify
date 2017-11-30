@@ -137,8 +137,9 @@ public class PlaylistService {
     }
     try {
       Playlist toEdit = playlistRepo.findOne(playlistId);
-      user.getOwnedPlaylists().remove(toEdit);
-      if (toEdit.getOwner().getId() != user.getId()){
+      User userToCheck = userRepo.findOne(user.getId());
+      userToCheck.getOwnedPlaylists().remove(toEdit);
+      if (toEdit.getOwner().getId() != userToCheck.getId()){
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
       }
       if(request.getDescription() != null) {
@@ -150,7 +151,7 @@ public class PlaylistService {
       if(request.getGenre() != null) {
         toEdit.setGenre(request.getGenre());
       }
-      user.getOwnedPlaylists().add(toEdit);
+      userToCheck.getOwnedPlaylists().add(toEdit);
       playlistRepo.save(toEdit);
       return ResponseUtilities.emptySuccess();
     } catch (Exception e) {
