@@ -1,0 +1,17 @@
+<link href="css/modal.css" rel="stylesheet"/>
+<div class="modal fade" id="downgradePremiumModal" tabindex="-1" role="dialog" ng-controller="UserCtrl">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3>Are you sure you want to downgrade back to Basic Status?</h3>
+        <div class="center_align">
+          <div id="spotify_buttons">
+            <a href="#" data-dismiss="modal">No way!</a>
+            <a href="#" ng-click="downgradePremiumStatus(false)">Unfortunately, yes.</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>$('#downgradePremiumModal').modal();</script>

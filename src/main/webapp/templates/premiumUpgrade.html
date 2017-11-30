@@ -1,0 +1,55 @@
+<link href="css/modal.css" rel="stylesheet"/>
+<div class="modal fade" id="upgradePremiumModal" tabindex="-1" role="dialog" ng-controller="UserCtrl">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3>Upgrade to Premium Status</h3>
+        <div class="center_align">
+          <form novalidate class="center_align">
+         	<br> <input type="text" ng-model="cardholder_name" placeholder="Cardholder Name"/> </br>
+         	<br> <input type="text" ng-model="card_number" placeholder="Credit Card Number"/> </br>
+            <br> <input type="text" ng-model="card_cvn" placeholder="CVN"/> </br>
+            <br> Card Expiration:
+			<select name='expireMM' id='expireMM'>
+			    <option value=''>Month</option>
+			    <option value='01'>01</option>
+			    <option value='02'>02</option>
+			    <option value='03'>03</option>
+			    <option value='04'>04</option>
+			    <option value='05'>05</option>
+			    <option value='06'>06</option>
+			    <option value='07'>07</option>
+			    <option value='08'>08</option>
+			    <option value='09'>09</option>
+			    <option value='10'>10</option>
+			    <option value='11'>11</option>
+			    <option value='12'>12</option>
+			</select> 
+			<select name='expireYY' id='expireYY'>
+				<option value=''>Year</option>
+			    <option value='19'>19</option>
+			    <option value='20'>20</option>
+			    <option value='21'>21</option>
+			    <option value='22'>22</option>
+			    <option value='23'>23</option>
+			    <option value='24'>24</option>
+			    <option value='25'>25</option>
+			    <option value='26'>26</option>
+			    <option value='27'>27</option>
+			    <option value='28'>28</option>
+			    <option value='29'>29</option>
+			    <option value='30'>30</option>
+			</select>
+			</br>
+			<br> <input type = text" ng-model="card_zip" placeholder="Zip Code"/> </br>
+          </form>
+          <div id="spotify_buttons">
+            <a href="#" data-dismiss="modal">I don't want Premium Status.</a>
+            <a href="#" ng-click="upgradePremiumStatus(true)">Upgrade!</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>$('#upgradePremiumModal').modal();</script>
