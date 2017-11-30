@@ -71,15 +71,6 @@ public class SongController {
     } else if (!(user instanceof Artist)){
       return ResponseUtilities.filledFailure(ConfigConstants.NOT_AN_ARTIST);
     }
-    boolean ownsSongs = false;
-    for (Song song:((Artist) user).getOwnedSongs()){
-      if(song.getId() == songId){
-        ownsSongs = true;
-      }
-    }
-    if(!ownsSongs){
-      return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
-    }
     return songService.getManageSongInfo((Artist) user, songId);
   }
 }
