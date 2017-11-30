@@ -42,14 +42,14 @@ public class UserService {
   @Transactional
   public User loginUser(String email, String password) {
     List<User> userList = userRepository.findByEmail(email);
-    if (userList.size() != 1) {
+    User validUser = findValidUser(userList);
+    if(validUser == null) {
       return null;
     }
-    User user = userList.get(0);
-    if (!user.authenticateLogin(password)) {
+    if (!validUser.authenticateLogin(password)) {
       return null;
     } else {
-      return user;
+      return validUser;
     }
   }
 
@@ -57,10 +57,21 @@ public class UserService {
   public SongQueue getSongQueue() {
     return new SongQueue();
   }
+  
+  public User findValidUser(List<User> userList) {
+    for(User user : userList) {
+      if(user.getIsDeleted() != true) {
+        return user;
+      }
+    }
+    return null;
+  }
 
   @Transactional
   public Response postUser(SignupRequest newUser) {
-    if (!userRepository.findByEmail(newUser.getEmail()).isEmpty()) {
+    List<User> userList = userRepository.findByEmail(newUser.getEmail());
+    User validUser = findValidUser(userList);
+    if (validUser != null) {
       return ResponseUtilities.filledFailure(ConfigConstants.EMAIL_EXIST);
     }
     User user = new User();
@@ -73,13 +84,15 @@ public class UserService {
     user.setIsBanned(false);
     user.setIsPremium(false);
     user.setIsPublic(true);
+    user.setIsDeleted(false);
     userRepository.saveAndFlush(user);
     return ResponseUtilities.emptySuccess();
   }
   
   @Transactional
   public Response deleteUser(User user) {
-    userRepository.delete(user);
+    user.setIsDeleted(true);
+    userRepository.saveAndFlush(user);
     return ResponseUtilities.emptySuccess();
   }
 

@@ -42,6 +42,8 @@ public class User implements Viewable, Serializable {
   private Boolean isPublic;
   @Column(name = "ispremium", nullable = false)
   private Boolean isPremium;
+  @Column(name = "isdeleted", nullable = false)
+  private Boolean isDeleted;
   @Column(name = "password", nullable = false)
   private String password;
   @Column(name = "salt", nullable = false)
@@ -206,6 +208,14 @@ public class User implements Viewable, Serializable {
 
   public void setIsPremium(Boolean isPremium) {
     this.isPremium = isPremium;
+  }
+  
+  public Boolean getIsDeleted() {
+    return isDeleted;
+  }
+  
+  public void setIsDeleted(Boolean isDeleted) {
+    this.isDeleted = isDeleted;
   }
 
   public String getPassword() {
