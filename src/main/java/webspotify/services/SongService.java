@@ -56,9 +56,11 @@ public class SongService {
     if (songRepository.exists(songId)) {
       Song songToAdd = songRepository.findOne(songId);
       if (songToAdd.isPublic() || (!songToAdd.isPublic() && songToAdd.getOwner().equals(user))) {
-        boolean successful = user.getSavedSongs().add(songToAdd);
+        User userToChange = userRepository.findOne(user.getId());
+        boolean successful = userToChange.getSavedSongs().add(songToAdd);
         if (successful) {
-          userRepository.save(user);
+          userToChange.getSavedSongs().add(songToAdd);
+          userRepository.save(userToChange);
           return ResponseUtilities.emptySuccess();
         } else {
           return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_ADD);
@@ -74,10 +76,12 @@ public class SongService {
   @Transactional
   public Response remSavedSong(User user, int songId) {
     if (songRepository.exists(songId)) {
-      Song songToAdd = songRepository.findOne(songId);
-      boolean successful = user.getSavedSongs().remove(songToAdd);
+      Song songToRem = songRepository.findOne(songId);
+      User userToChange = userRepository.findOne(user.getId());
+      boolean successful = userToChange.getSavedSongs().remove(songToRem);
       if (successful) {
-        userRepository.save(user);
+        user.getSavedSongs().remove(songToRem);
+        userRepository.save(userToChange);
         return ResponseUtilities.emptySuccess();
       } else {
         return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_REM);
@@ -88,10 +92,10 @@ public class SongService {
   }
 
   @Transactional
-  public Response getManageSongInfo(Artist artist, int songId){
+  public Response getManageSongInfo(Artist artist, int songId) {
     if (songRepository.exists(songId)) {
       Song song = songRepository.findOne(songId);
-      if(artist.getOwnedSongs().contains(song)){
+      if (artist.getOwnedSongs().contains(song)) {
         return ResponseUtilities.filledSuccess(new ManageSongInfoResponse(song));
       } else {
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);

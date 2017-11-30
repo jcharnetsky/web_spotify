@@ -120,6 +120,7 @@ public class PlaylistService {
 
   @Transactional
   public Response createPlaylist(User user, PlaylistCreateRequest request) {
+    User owner = userRepo.findOne(user.getId());
     Playlist playlistToAdd = new Playlist();
     playlistToAdd.setBanned(false);
     playlistToAdd.setPublic(true);
@@ -127,7 +128,7 @@ public class PlaylistService {
     playlistToAdd.setDescription(request.getDescription());
     playlistToAdd.setTitle(request.getTitle());
     playlistToAdd.setGenre(request.getGenre());
-    playlistToAdd.setOwner(user);
+    playlistToAdd.setOwner(owner);
     try {
       playlistRepo.save(playlistToAdd);
       user.getOwnedPlaylists().add(playlistToAdd);
@@ -187,9 +188,11 @@ public class PlaylistService {
   public Response unfollowPlaylist(User user, int playlistId) {
     if (playlistRepo.exists(playlistId)) {
       Playlist playlist = playlistRepo.findOne(playlistId);
-      boolean successful = user.getFollowedPlaylists().remove(playlist);
+      User userToChange = userRepo.findOne(user.getId());
+      boolean successful = userToChange.getFollowedPlaylists().remove(playlist);
       if (successful) {
-        userRepo.save(user);
+        user.getFollowedPlaylists().remove(playlist);
+        userRepo.save(userToChange);
         playlist.decrementFollowerCount();
         playlistRepo.save(playlist);
         return ResponseUtilities.emptySuccess();
@@ -205,10 +208,12 @@ public class PlaylistService {
   public Response followPlaylist(User user, int playlistId) {
     if (playlistRepo.exists(playlistId)) {
       Playlist playlist = playlistRepo.findOne(playlistId);
+      User userToChange = userRepo.findOne(user.getId());
       if (playlist.isPublic()) {
-        boolean successful = user.getFollowedPlaylists().add(playlist);
+        boolean successful = userToChange.getFollowedPlaylists().add(playlist);
         if (successful) {
-          userRepo.save(user);
+          user.getFollowedPlaylists().add(playlist);
+          userRepo.save(userToChange);
           playlist.incrementFollowerCount();
           playlistRepo.save(playlist);
           return ResponseUtilities.emptySuccess();

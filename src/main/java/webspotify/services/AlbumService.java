@@ -45,8 +45,8 @@ public class AlbumService {
         }
       }
     }
-    for (Album album: user.getSavedAlbums()){
-      if(album.getId() == albumId) {
+    for (Album album : user.getSavedAlbums()) {
+      if (album.getId() == albumId) {
         return ResponseUtilities.filledSuccess(new AlbumInfoResponse(user, album));
       }
     }
@@ -107,12 +107,13 @@ public class AlbumService {
   @Transactional
   public Response createAlbumCollection(User user, AlbumCreateRequest request) {
     if (user instanceof Artist) {
+      User owner = userRepo.findOne(user.getId());
       Album albumToAdd = new Album();
       albumToAdd.setBanned(false);
       albumToAdd.setPublic(true);
       albumToAdd.setTitle(request.getTitle());
       albumToAdd.setGenre(request.getGenre());
-      albumToAdd.setOwner(user);
+      albumToAdd.setOwner(owner);
       try {
         albumRepo.save(albumToAdd);
         ((Artist) user).getOwnedAlbums().add(albumToAdd);
@@ -147,9 +148,11 @@ public class AlbumService {
   public Response unsaveAlbum(User user, int albumId) {
     if (albumRepo.exists(albumId)) {
       Album album = albumRepo.findOne(albumId);
-      boolean successful = user.getSavedAlbums().remove(album);
+      User userToChange = userRepo.findOne(user.getId());
+      boolean successful = userToChange.getSavedAlbums().remove(album);
       if (successful) {
-        userRepo.save(user);
+        user.getSavedAlbums().remove(album);
+        userRepo.save(userToChange);
         return ResponseUtilities.emptySuccess();
       } else {
         return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_REM);
@@ -163,9 +166,11 @@ public class AlbumService {
   public Response saveAlbum(User user, int albumId) {
     if (albumRepo.exists(albumId)) {
       Album album = albumRepo.findOne(albumId);
-      boolean successful = user.getSavedAlbums().add(album);
+      User userToChange = userRepo.findOne(user.getId());
+      boolean successful = userToChange.getSavedAlbums().add(album);
       if (successful) {
-        userRepo.save(user);
+        user.getSavedAlbums().add(album);
+        userRepo.save(userToChange);
         return ResponseUtilities.emptySuccess();
       } else {
         return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_ADD);

@@ -86,10 +86,12 @@ public class UserService {
   public Response followUser(User user, int userId) {
     if (userRepository.exists(userId)) {
       User userToFollow = userRepository.findOne(userId);
+      User userToChange = userRepository.findOne(user.getId());
       if ((userToFollow.isPublic() && !userToFollow.isBanned()) && userId != user.getId()) {
-        boolean successful = user.getFollowing().add(userToFollow);
+        boolean successful = userToChange.getFollowing().add(userToFollow);
         if (successful) {
-          userRepository.save(user);
+          user.getFollowing().add(userToFollow);
+          userRepository.save(userToChange);
           userToFollow.incrementFollowerCount();
           userRepository.save(userToFollow);
           return ResponseUtilities.emptySuccess();
@@ -107,10 +109,12 @@ public class UserService {
   @Transactional
   public Response unfollowUser(User user, int userId) {
     if (userRepository.exists(userId)) {
+      User userToChange = userRepository.findOne(user.getId());
       User userToFollow = userRepository.findOne(userId);
-      boolean successful = user.getFollowing().remove(userToFollow);
+      boolean successful = userToChange.getFollowing().remove(userToFollow);
       if (successful) {
-        userRepository.save(user);
+        user.getFollowing().remove(userToFollow);
+        userRepository.save(userToChange);
         userToFollow.decrementFollowerCount();
         userRepository.save(userToFollow);
         return ResponseUtilities.emptySuccess();
