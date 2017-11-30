@@ -43,8 +43,9 @@ public class UserInfoService {
     if(split.length != 2) {
       return ResponseUtilities.filledFailure(ConfigConstants.INVALID_EMAIL);
     }
-    List<User> eUser = userRepository.findByEmail(email);
-    if (eUser.isEmpty()) {
+    List<User> userList = userRepository.findByEmail(email);
+    User validUser = findValidUser(userList);
+    if (validUser == null) {
       user.setEmail(email);
       userRepository.saveAndFlush(user);
       return ResponseUtilities.emptySuccess();
@@ -52,6 +53,15 @@ public class UserInfoService {
     else {
       return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_CHANGE);
     }
+  }
+  
+  public User findValidUser(List<User> userList) {
+    for(User user : userList) {
+      if(user.getIsDeleted() != true) {
+        return user;
+      }
+    }
+    return null;
   }
 
   @Transactional

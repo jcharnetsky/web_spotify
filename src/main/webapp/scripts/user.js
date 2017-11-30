@@ -195,7 +195,7 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
     then(function(response) {
       if(!response.data.error) {
         displayErrorPopup("Successfully deleted account.", $scope, $parse, $compile);
-        window.location = location.origin;
+        window.location = location.origin + "/logIn.html";
         return;
       }
       displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);

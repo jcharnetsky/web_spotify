@@ -20,6 +20,7 @@ public class UserInfoResponse {
   private String imageLink;
   private Boolean isPremium;
   private Boolean isPublic;
+  private Boolean isDeleted;
   private Boolean isArtist;
   private Boolean isAdmin;
   private Boolean isAdvertiser;
@@ -37,6 +38,7 @@ public class UserInfoResponse {
     this.imageLink = user.getImage();
     this.isPremium = user.getIsPremium();
     this.isPublic = user.getIsPublic();
+    this.isDeleted = user.getIsDeleted();
     if (user instanceof Artist) {
       this.isArtist = true;
       this.artist = new ArtistProfileResponse((Artist) user);
@@ -119,6 +121,14 @@ public class UserInfoResponse {
   
   public void setIsPublic(Boolean isPublic) {
     this.isPublic = isPublic;
+  }
+  
+  public Boolean getIsDeleted() {
+    return isDeleted;
+  }
+  
+  public void setIsDeleted(Boolean isDeleted) {
+    this.isDeleted = isDeleted;
   }
 
   public Boolean getIsArtist() {
