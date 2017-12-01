@@ -45,6 +45,20 @@ public class ReportController {
     return reportService.getReport(reportId);
   }
 
+  @PostMapping("/banContent/{reportId}/{contentType}/{contentId}")
+  public Response handleReport(@PathVariable final int reportId,
+                              @PathVariable final SpotifyObjectEnum contentType,
+                              @PathVariable final int contentId,
+                              HttpSession session) {
+    User u = SessionUtilities.getUserFromSession(session);
+    if (u == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    } else if (!(u instanceof Administrator)){
+      return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
+    }
+    return reportService.banContent(contentType, contentId, reportId);
+  }
+
   @PostMapping("/create")
   public Response postReport(@RequestBody Report report, HttpSession session) {
     User u = SessionUtilities.getUserFromSession(session);
