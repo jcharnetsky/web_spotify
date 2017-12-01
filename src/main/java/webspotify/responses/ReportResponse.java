@@ -20,7 +20,7 @@ public class ReportResponse {
     this.entityId = report.getEntityId();
     this.subject = report.getSubject();
     this.description = report.getDescription();
-    this.reportType = reportType;
+    this.reportType = report.getReportType();
     this.entityType = report.getEntityType();
   }
 

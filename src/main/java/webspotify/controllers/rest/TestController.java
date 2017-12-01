@@ -53,7 +53,7 @@ public class TestController {
 
   @GetMapping("/makeAdmin")
   public String makeAdmin() {
-    Administrator admin = new Administrator();
+    User admin = new User();
     admin.setAddress("123 Admin Street");
     admin.setBanned(false);
     admin.setPublic(true);
@@ -64,7 +64,7 @@ public class TestController {
     admin.createSecurePassword("password");
     admin.setHasImage(false);
     admin.setDeleted(false);
-    userRepo.save(admin);
+    userRepo.save(new Administrator(admin));
     return "Made admin";
   }
 

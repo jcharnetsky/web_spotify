@@ -74,8 +74,8 @@ angular.module('web_spotify').controller('ManageCtrl', function($scope, $http, $
          "email":$scope.email,
          "address":$scope.address,
          "birthdate":$scope.birthdate,
-         "password":$scope.password},
-         "type": $scope.type);
+         "password":$scope.password,
+         "type": $scope.type});
       $http.post('/api/users/register', data, {headers: {'Content-Type':'application/json'}}).
       then(function(response) {
         if(!response.data.error) {

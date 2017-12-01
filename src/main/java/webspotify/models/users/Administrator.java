@@ -9,6 +9,7 @@ import javax.persistence.*;
 @DiscriminatorColumn(name = "userType", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue(value = "ADMIN")
 public class Administrator extends User{
+  public Administrator() { super(); }
   public Administrator(User toCopy){
     super(toCopy);
   }

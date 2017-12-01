@@ -21,8 +21,8 @@
           <div class="collection_tile highlight_on_hover">
             <a>{{report.reportId}}</a>
             <a href="#" ng-click="openReport(report.reportId)">{{report.subject}}</a>
-            <a>{{report.entityType}}</a>
-            <a>{{report.reportType}}</a>
+            <a>{{report.entityType | toLowercase}}</a>
+            <a>{{report.reportType | toLowercase}}</a>
           </div>
         </li>
       </ul>

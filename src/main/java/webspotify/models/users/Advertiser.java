@@ -10,6 +10,7 @@ import javax.persistence.*;
 @DiscriminatorColumn(name = "userType", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue(value = "ADVERT")
 public class Advertiser extends User{
+  public Advertiser() { super(); }
   public Advertiser(User toCopy){
     super(toCopy);
   }

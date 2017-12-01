@@ -25,6 +25,7 @@ public class Report implements Serializable {
   private String subject;
   @Column(name = "description", nullable = false)
   private String description;
+  @Enumerated(EnumType.STRING)
   @Column(name = "reportType", nullable = false)
   private ReportTypes reportType;
   @Column(name = "entity", nullable = false)
