@@ -115,6 +115,46 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
     });
   }
 
+  $scope.createAlbum = function (id) {
+  }
+  $scope.editAlbum = function (id) {
+    data = JSON.stringify({
+      "title": $scope.edit_title,
+      "genre": $scope.edit_genre
+    })
+    $http.post("/api/albums/" + id + "/edit", data, {headers: {"Content-Type": "application/json"}}).
+      then(function (response) {
+        if (!response.data.error) {
+          if ($scope.edit_title) {
+            if ($scope.edit_title.length > 0) {
+              $scope.collection.title = $scope.edit_title;
+            }
+          }
+          if ($scope.edit_genre) {
+            $scope.collection.genre = $scope.edit_genre;
+          }
+          $("#editAlbumModal").modal("hide");
+          return;
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  }
+  $scope.deleteAlbum = function (id) {
+    $http.post("/api/albums/" + id + "/delete").
+      then(function (response) {
+        if (!response.data.error) {
+          displayErrorPopup("Album was successfully deleted", $scope, $parse, $compile);
+          $scope.loadBrowse();
+          return;
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  }
+
   $scope.createPlaylist = function () {
     if (!$scope.new_title) {
       displayErrorPopup("You must enter a playlist title", $scope, $parse, $compile);
@@ -175,8 +215,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
     });
   }
   $scope.deletePlaylist = function (id) {
-    data = JSON.stringify({"playlistId": id});
-    $http.post("/api/playlists/" + id + "/delete", data, {headers: {"Content-Type": "application/json"}}).
+    $http.post("/api/playlists/" + id + "/delete").
       then(function (response) {
         if (!response.data.error) {
           collections.removePlaylist(id);

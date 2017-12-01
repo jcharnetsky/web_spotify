@@ -1,16 +1,14 @@
 <link href="css/modal.css" rel="stylesheet"/>
-<div class="modal fade" id="editPlaylistModal" tabindex="-1" role="dialog" ng-controller="CollectionCtrl">
+<div class="modal fade" id="editAlbumModal" tabindex="-1" role="dialog" ng-controller="CollectionCtrl">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
-        <h3>Edit Playlist</h3>
+        <h3>Edit Album</h3>
         <div class="center_align">
           <form novalidate class="center_align">
             <br>
             <input type="text" ng-model="edit_title" placeholder="{{collection.title}}"/>
             <br/><br/>
-            <input type="text" ng-model="edit_description" placeholder="{{collection.description}}"/>
-            <br/><br>
             <label ng-repeat="genre in genres.genres">
               {{genre | toLowercase}}
               <input type="radio" name="genre" ng-model="$parent.edit_genre" ng-value="genre"/>
@@ -18,11 +16,11 @@
           </form>
           <div id="spotify_buttons">
             <a href="#" data-dismiss="modal">Close</a>
-            <a href="#" ng-click="editPlaylist(collection.id)">Edit</a>
+            <a href="#" ng-click="editAlbum(collection.id)">Edit</a>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<script>$('#editPlaylistModal').modal();</script>
+<script>$('#editAlbumModal').modal();</script>
