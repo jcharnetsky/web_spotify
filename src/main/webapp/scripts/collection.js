@@ -55,12 +55,19 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
     });
   }
   $scope.openCreateAlbumDialog = function () {
-      $http.get(location.origin + "/api/songs/genres").then(function (response) {
-        handleJSONResponse(response, "modal_dialog", "createAlbum.html", "genres", $compile, $parse, $scope);
-      }).catch(function (err) {
-        displayErrorPopup(err, $scope, $parse, $compile);
-      });
-    }
+    $http.get(location.origin + "/api/songs/genres").then(function (response) {
+      handleJSONResponse(response, "modal_dialog", "createAlbum.html", "genres", $compile, $parse, $scope);
+    }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  }
+  $scope.openEditAlbumDialog = function () {
+    $http.get(location.origin + "/api/songs/genres").then(function (response) {
+      handleJSONResponse(response, "modal_dialog", "editAlbum.html", "genres", $compile, $parse, $scope);
+    }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  }
 
   $scope.followCollection = function (id) {
     let controllerPath;

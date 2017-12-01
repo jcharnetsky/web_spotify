@@ -23,7 +23,10 @@
 					 ng-click="followCollection(collection.id)">Save</a>
 				<a href="#" ng-show="user.id != collection.ownerId && collection.followed && collection.album"
 					 ng-click="unfollowCollection(collection.id)">Unsave</a>
-        <a href="#" ng-show="user.id == collection.ownerId || user.admin" ng-click="openEditPlaylistDialog()">Edit</a>
+        <a href="#" ng-click="openEditPlaylistDialog()"
+					 ng-show="(user.id == collection.ownerId && collection.playlist) || user.admin">Edit</a>
+				<a href="#" ng-click="openEditAlbumDialog()"
+					 ng-show="(user.id == collection.ownerId && collection.album) || user.admin">Edit</a>
         <a href="#" ng-show="user.id == collection.ownerId || user.admin" ng-click="deletePlaylist(collection.id)">Delete</a>
 				<a href="#" ng-show="collection.album"
 					 ng-click="openCreateReport('Album', collection.title, collection.id)">
