@@ -72,23 +72,23 @@
   <div ng-show="results.albums.length">
     <div class="content_title">Albums</div>
     <hr>
-    <div class="info_block" ng-repeat="album in results.albums">
-      <img ng-src="{{album.imageLink}}" alt="Image"
+    <div class="info_block" ng-repeat="resultAlbum in results.albums">
+      <img ng-src="{{resultAlbum.imageLink}}" alt="Image"
            ng-controller="CollectionCtrl"
-           ng-click="loadAlbum(album.id)"
+           ng-click="loadAlbum(resultAlbum.id)"
            style="border-radius: 0px;">
-      <p>{{album.title}}</p>
+      <p>{{resultAlbum.title}}</p>
     </div>
   </div>
   <div ng-show="results.playlists.length">
     <div class="content_title">Playlists</div>
     <hr>
-    <div class="info_block" ng-repeat="playlist in results.playlists">
-      <img ng-src="{{playlist.imageLink}}" alt="Image"
+    <div class="info_block" ng-repeat="resultPlaylist in results.playlists">
+      <img ng-src="{{resultPlaylist.imageLink}}" alt="Image"
            ng-controller="CollectionCtrl"
-           ng-click="loadAlbum(playlist.id)"
+           ng-click="loadAlbum(resultPlaylist.id)"
            style="border-radius: 0px;">
-      <p>{{playlist.title}}</p>
+      <p>{{resultPlaylist.title}}</p>
     </div>
   </div>
 </div>
