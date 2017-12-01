@@ -158,7 +158,7 @@ public class AlbumService {
     try {
       Album toEdit = albumRepo.findOne(albumId);
       Artist userToCheck = (Artist) toEdit.getOwner();
-      if(!(user instanceof Administrator) && userToCheck.equals(user)){
+      if(!(user instanceof Administrator) && userToCheck.getId() == user.getId()){
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
       }
       userToCheck.getOwnedAlbums().remove(toEdit);

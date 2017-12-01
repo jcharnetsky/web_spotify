@@ -128,6 +128,9 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
           if ($scope.edit_title) {
             if ($scope.edit_title.length > 0) {
               $scope.collection.title = $scope.edit_title;
+              for(var i = 0;i < $scope.collection.songs.length;i++){
+                $scope.collection.songs[i].albumName = $scope.edit_title;
+              }
             }
           }
           if ($scope.edit_genre) {

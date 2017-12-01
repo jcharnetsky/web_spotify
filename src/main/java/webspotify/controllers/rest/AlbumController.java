@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import webspotify.config.ConfigConstants;
+import webspotify.models.users.Administrator;
+import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 import webspotify.posts.AlbumCreateRequest;
 import webspotify.services.AlbumService;
@@ -67,7 +69,7 @@ public class AlbumController {
   public Response deleteCollection(@PathVariable final int albumId, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
-      return ResponseUtilities.filledFailure("User not logged in");
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
     return albumService.deleteAlbum(user, albumId);
   }
@@ -77,7 +79,9 @@ public class AlbumController {
                                  @RequestBody AlbumCreateRequest request, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
-      return ResponseUtilities.filledFailure("User not logged in");
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    } else if (!(user instanceof Artist || user instanceof Administrator)){
+      return ResponseUtilities.filledFailure(ConfigConstants.NOT_AN_ARTIST);
     }
     return albumService.editAlbum(user, albumId, request);
   }
@@ -86,7 +90,7 @@ public class AlbumController {
   public Response saveAlbumToUser(@PathVariable final int albumId, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
-      return ResponseUtilities.filledFailure("User not logged in");
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
     return albumService.saveAlbum(user, albumId);
   }
@@ -95,7 +99,7 @@ public class AlbumController {
   public Response unsaveCollectionToUser(@PathVariable final int albumId, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
-      return ResponseUtilities.filledFailure("User not logged in");
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
     return albumService.unsaveAlbum(user, albumId);
   }
@@ -104,7 +108,7 @@ public class AlbumController {
   public Response createAlbum(@RequestBody AlbumCreateRequest request, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
-      return ResponseUtilities.filledFailure("User not logged in");
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
     return albumService.createAlbumCollection(user, request);
   }
