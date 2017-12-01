@@ -14,6 +14,7 @@ import webspotify.models.users.User;
 import webspotify.posts.SignupRequest;
 import webspotify.repo.UserRepository;
 import webspotify.responses.ArtistResponse;
+import webspotify.responses.BasicUserInfoResponse;
 import webspotify.responses.UserInfoResponse;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
@@ -97,11 +98,18 @@ public class UserService {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_FOUND);
     }
     User user = userRepository.findOne(userId);
-    if (currentUser instanceof Administrator && currentUser.equals(user)) {
-      return ResponseUtilities.filledFailure(ConfigConstants.ADMIN_NO_DELETE);
-    } else if (currentUser instanceof Administrator || currentUser.equals(user)){
+    if (currentUser instanceof Administrator) {
+      if(currentUser.equals(user)) {
+        return ResponseUtilities.filledFailure(ConfigConstants.ADMIN_NO_DELETE);
+      } else {
+        user.setIsDeleted(true);
+        userRepository.save(user);
+        return ResponseUtilities.filledSuccess(new BasicUserInfoResponse(user));
+      }
+    } else if (currentUser.equals(user)){
       user.setIsDeleted(true);
       userRepository.save(user);
+      session.invalidate();
       return ResponseUtilities.emptySuccess();
     } else {
       return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);

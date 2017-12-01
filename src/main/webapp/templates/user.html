@@ -17,12 +17,11 @@
         <a ng-show="visitingUser.followed && visitingUser.id != user.id"
            ng-click="unfollowUser(visitingUser.id)"
            class="Follow" href="#">Unfollow</a>
-        <a href="#"
-           ng-click="openCreateReport('User', visitingUser.name, visitingUser.id)">
+        <a ng-show="user.admin" ng-click="deleteAccount(visitingUser.id)">Delete User</a>
+        <a ng-click="openCreateReport('User', visitingUser.name, visitingUser.id)">
           Report</a>
       </div>
     </div>
-
   </div>
   <div ng-show="visitingUser.artist && visitingUser.artist.albums.length">
     <ul class="content_header">

@@ -235,14 +235,22 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
-  
-  $scope.deleteAccount = function() {
-    $http.post("/api/users/delete", null, {headers: {"Content-Type": "application/json"}}).
+  $scope.loadBrowse = function () {
+    $compile(loadToDiv("main", "navigateContent.html"))($scope);
+  }
+  $scope.deleteAccount = function(userId) {
+    $http.post("/api/users/delete/"+userId, null, {headers: {"Content-Type": "application/json"}}).
     then(function(response) {
       if(!response.data.error) {
         displayErrorPopup("Successfully deleted account.", $scope, $parse, $compile);
-        window.location = location.origin + "/logIn.html";
-        return;
+        if(!response.data.content.id){
+          window.location = location.origin + "/logIn.html";
+          return''
+        } else {
+          $scope.visitingUser = {};
+          $scope.loadBrowse();
+          return;
+        }
       }
       displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
     }).catch(function (err) {
