@@ -2,11 +2,13 @@ package webspotify.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import webspotify.config.ConfigConstants;
 import webspotify.models.media.SongQueue;
+import webspotify.models.users.Administrator;
 import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 import webspotify.posts.SignupRequest;
@@ -90,10 +92,20 @@ public class UserService {
   }
   
   @Transactional
-  public Response deleteUser(User user) {
-    user.setIsDeleted(true);
-    userRepository.saveAndFlush(user);
-    return ResponseUtilities.emptySuccess();
+  public Response deleteUser(int userId, User currentUser, HttpSession session) {
+    if(userRepository.exists(userId)){
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_FOUND);
+    }
+    User user = userRepository.findOne(userId);
+    if (currentUser instanceof Administrator && currentUser.equals(user)) {
+      return ResponseUtilities.filledFailure(ConfigConstants.ADMIN_NO_DELETE);
+    } else if (currentUser instanceof Administrator || currentUser.equals(user)){
+      user.setIsDeleted(true);
+      userRepository.save(user);
+      return ResponseUtilities.emptySuccess();
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
+    }
   }
 
   @Transactional

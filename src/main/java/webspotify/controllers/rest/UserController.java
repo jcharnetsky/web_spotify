@@ -55,14 +55,14 @@ public class UserController {
     return userService.postUser(newUser);
   }
   
-  @PostMapping("/delete")
-  public Response deleteUser(HttpSession session) {
+  @PostMapping("/delete/{userId}")
+  public Response deleteUser(@PathVariable final int userId, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
     if(user == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_FOUND);
     }
     session.invalidate();
-    return userService.deleteUser(user);
+    return userService.deleteUser(userId, user, session);
   }
 
   @GetMapping("/get/{userId}")
