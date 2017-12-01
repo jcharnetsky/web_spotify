@@ -40,10 +40,12 @@
           <div class="dropdown options_col">
             <div class="options_button" ng-click="toggleDropdown(song.id)">...</div>
             <div ng-attr-id="other_dropdown_{{song.id}}" class="dropdown_content" ng-controller="CollectionCtrl">
-              <a href="#">Add to Queue</a>
-              <a href="#" ng-repeat="playlist in playlists" ng-click="addSongToPlaylist(song.id, playlist.id">
-                Add to {{playlist.title}}
-              </a>
+              <a href="#" ng-click="addSongToQueue(song.id)">Add to Queue</a>
+              <a href="#" ng-repeat="playlist in playlists"
+                   ng-show="playlist.id != collection.id"
+                   ng-click="addSongToPlaylist(song.id, playlist.id)">
+                  Add to {{playlist.title}}
+                </a>
               <a href="#" ng-click="openCreateReport('Song', song.trackName, song.id)">Report</a>
             </div>
           </div>
