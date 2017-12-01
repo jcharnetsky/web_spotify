@@ -45,26 +45,9 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
     });
   }
   
-  $scope.openEditUsernameDialog = function () {
-    $compile(loadToDiv("modal_dialog", "editUsername.html"))($scope);
+  $scope.openDialog = function (url) {
+    $compile(loadToDiv("modal_dialog", url))($scope);
   }
-  
-  $scope.openEditEmailDialog = function () {
-    $compile(loadToDiv("modal_dialog", "editEmail.html"))($scope);
-  }
-  
-  $scope.openEditPasswordDialog = function () {
-    $compile(loadToDiv("modal_dialog", "editPassword.html"))($scope);
-  }
-  
-  $scope.openUpgradePremiumDialog = function () {
-    $compile(loadToDiv("modal_dialog", "premiumUpgrade.html"))($scope);
-  }
-  
-  $scope.openDowngradePremiumDialog = function() {
-    $compile(loadToDiv("modal_dialog", "premiumDowngrade.html"))($scope);
-  }
-  
   $scope.upgradePremiumStatus = function(status) {
     if($scope.cardholder_name == undefined || $scope.cardholder_name == "") {
       displayErrorPopup("Cardholder name field cannot be left blank.", $scope, $parse, $compile);

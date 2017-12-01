@@ -9,10 +9,6 @@
       </form>
     </li>
     <li id="top_options" ng-controller="MainCtrl">
-      <a ng-show="user.artist || user.admin" href="#" ng-click="loadTemplateAndJSON('main', 'manageSongs.html', 'null')">
-        Manage songs &middot;</a>
-      <a ng-show="user.admin" href="#" ng-click="loadTemplateAndJSON('main', 'manageReports.html', 'api/reports/all')">
-        Manage reports &middot;</a>
       <img class="user_img" alt="user-image" ng-src="{{user.imageLink}}">
       <a href="#" id="username" ng-click="loadTemplateAndJSON('main', 'user_info.html', 'api/users/info/get/userInfo')">
         {{user.name}}</a>
@@ -21,8 +17,14 @@
         <span id="other_dropdown_-1" class="dropdown_content" style="right: 0;" ng-controller="UserCtrl">
           <a href="#" ng-show="user.public" ng-click="toggleIsPublic()">Enable Private Session</a>
           <a href="#" ng-show="!user.public"  ng-click="toggleIsPublic()">Disable Private Session</a>
-          <a href="#" ng-show="!user.premium"  ng-click="openUpgradePremiumDialog()">Upgrade Your Account</a>
-          <a href="#" ng-show="user.premium" ng-click="openDowngradePremiumDialog()">Downgrade Your Account</a>
+          <a href="#" ng-show="!user.premium"  ng-click="openDialog('premiumUpgrade.html')">Upgrade Your Account</a>
+          <a href="#" ng-show="user.premium" ng-click="openDialog('premiumDowngrade.html')">Downgrade Your Account</a>
+          <a ng-show="user.artist || user.admin" href="#"
+             ng-click="loadTemplateAndJSON('main', 'manageSongs.html', 'null')">Manage songs</a>
+          <a ng-show="user.admin" href="#"
+             ng-click="loadTemplateAndJSON('main', 'manageReports.html', 'api/reports/all')">Manage reports</a>
+          <a ng-show="user.admin" href="#"
+             ng-click="openDialog('createAccount.html')">Create an account</a>
           <a href="#" ng-click="logout()">Logout</a>
         </span>
       </span>

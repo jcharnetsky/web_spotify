@@ -40,35 +40,13 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
-  $scope.openCreatePlaylistDialog = function () {
+  $scope.openDialog = function (url) {
     $http.get(location.origin + "/api/songs/genres").then(function (response) {
-      handleJSONResponse(response, "modal_dialog", "createPlaylist.html", "genres", $compile, $parse, $scope);
+      handleJSONResponse(response, "modal_dialog", url, "genres", $compile, $parse, $scope);
     }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
-  $scope.openEditPlaylistDialog = function () {
-    $http.get(location.origin + "/api/songs/genres").then(function (response) {
-      handleJSONResponse(response, "modal_dialog", "editPlaylist.html", "genres", $compile, $parse, $scope);
-    }).catch(function (err) {
-      displayErrorPopup(err, $scope, $parse, $compile);
-    });
-  }
-  $scope.openCreateAlbumDialog = function () {
-    $http.get(location.origin + "/api/songs/genres").then(function (response) {
-      handleJSONResponse(response, "modal_dialog", "createAlbum.html", "genres", $compile, $parse, $scope);
-    }).catch(function (err) {
-      displayErrorPopup(err, $scope, $parse, $compile);
-    });
-  }
-  $scope.openEditAlbumDialog = function () {
-    $http.get(location.origin + "/api/songs/genres").then(function (response) {
-      handleJSONResponse(response, "modal_dialog", "editAlbum.html", "genres", $compile, $parse, $scope);
-    }).catch(function (err) {
-      displayErrorPopup(err, $scope, $parse, $compile);
-    });
-  }
-
   $scope.followCollection = function (id) {
     let controllerPath;
     let data;

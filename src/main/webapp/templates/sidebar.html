@@ -18,8 +18,8 @@
     </li>
   </ul>
   <ul class="sidebar_list" ng-controller="CollectionCtrl">
-    <li><a href="#" ng-click="openCreatePlaylistDialog()"><u>New Playlist</u></a></li>
-    <li ng-show="user.artist"><a href="#" ng-click="openCreateAlbumDialog()"><u>New Album</u></a></li>
+    <li><a href="#" ng-click="openDialog('createPlaylist.html')"><u>New Playlist</u></a></li>
+    <li ng-show="user.artist"><a href="#" ng-click="openDialog('createAlbum.html')"><u>New Album</u></a></li>
   </ul>
 </div>
 <div id="sidebar-resizer"

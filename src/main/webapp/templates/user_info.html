@@ -10,14 +10,14 @@
     <div id="info_user">
       <div>
         <span id="info_username">{{user.name}}</span>
-        <a href="#" ng-click="openEditUsernameDialog()">edit</a>
+        <a href="#" ng-click="openDialog('editUsername.html')">edit</a>
       </div>
       <div>
         <span id="info_email">{{user.email}}</span>
-        <a href="#" ng-click = "openEditEmailDialog()">edit</a>
+        <a href="#" ng-click = "openDialog('editEmail.html')">edit</a>
       </div>
       <div>
-        <a href="#" ng-click = "openEditPasswordDialog()">Change Password</a>
+        <a href="#" ng-click = "openDialog('editPassword.html')">Change Password</a>
       </div>
     </div>
     <div id="info_about" ng-show="user.artist">
