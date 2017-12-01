@@ -87,6 +87,27 @@ public class User implements Viewable, Serializable {
     this.followerCount = 0;
   }
 
+  public User(User toCopy){
+    this.id = toCopy.getId();
+    this.name = toCopy.getName();
+    this.email = toCopy.getEmail();
+    this.address = toCopy.getAddress();
+    this.birthdate = toCopy.getBirthdate();
+    this.isBanned = toCopy.getIsBanned();
+    this.isDeleted = toCopy.getIsDeleted();
+    this.isPremium = toCopy.getIsPremium();
+    this.password = toCopy.getPassword();
+    this.passwordSalt = toCopy.getPasswordSalt();
+
+    this.ownedPlaylists = toCopy.ownedPlaylists;
+    this.followedPlaylists = toCopy.getFollowedPlaylists();
+    this.savedAlbums = toCopy.getSavedAlbums();
+    this.savedSongs = toCopy.getSavedSongs();
+    this.following = toCopy.getFollowing();
+    this.hasImage = toCopy.getHasImage();
+    this.followerCount = toCopy.getFollowerCount();
+  }
+
   public boolean createSecurePassword(final String plainPassword) {
     try {
       SecureRandom rand = new SecureRandom();

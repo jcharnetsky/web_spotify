@@ -45,6 +45,10 @@ public class Artist extends User {
     this.concerts = new HashSet<Concert>();
   }
 
+  public Artist(User toCopy){
+    super(toCopy);
+  }
+
   public String getStageName() {
     return stageName;
   }

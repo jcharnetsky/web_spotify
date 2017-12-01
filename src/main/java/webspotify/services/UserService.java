@@ -11,6 +11,7 @@ import sun.rmi.runtime.Log;
 import webspotify.config.ConfigConstants;
 import webspotify.models.media.SongQueue;
 import webspotify.models.users.Administrator;
+import webspotify.models.users.Advertiser;
 import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 import webspotify.posts.SignupRequest;
@@ -88,29 +89,33 @@ public class UserService {
     if (validUser != null) {
       return ResponseUtilities.filledFailure(ConfigConstants.EMAIL_EXIST);
     }
+    User user = new User();
+    user.setAddress(newUser.getAddress());
+    user.setBirthdate(newUser.getBirthdate());
+    user.setEmail(newUser.getEmail());
+    user.setName(newUser.getName());
+    user.createSecurePassword(newUser.getPassword());
+    user.setHasImage(false);
+    user.setIsBanned(false);
+    user.setIsPublic(true);
+    user.setIsDeleted(false);
     if(newUser.getType() == UserTypes.BASIC) {
-      User user = new User();
-      user.setAddress(newUser.getAddress());
-      user.setBirthdate(newUser.getBirthdate());
-      user.setEmail(newUser.getEmail());
-      user.setName(newUser.getName());
-      user.createSecurePassword(newUser.getPassword());
-      user.setHasImage(false);
-      user.setIsBanned(false);
       user.setIsPremium(false);
-      user.setIsPublic(true);
-      user.setIsDeleted(false);
       userRepository.save(user);
     } else {
       if (creator instanceof Administrator){
+        user.setIsPremium(true);
         if(newUser.getType() == UserTypes.PREMIUM){
-
+          userRepository.save(user);
         } else if(newUser.getType() == UserTypes.ARTIST){
-
+          Artist artist = new Artist(user);
+          userRepository.save(artist);
         } else if(newUser.getType() == UserTypes.ADVERTISER){
-
+          Advertiser advertiser = new Advertiser(user);
+          userRepository.save(advertiser);
         } else if(newUser.getType() == UserTypes.ADMINISTRATOR){
-
+          Administrator administrator = new Administrator(user);
+          userRepository.save(administrator);
         }
       } else {
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
