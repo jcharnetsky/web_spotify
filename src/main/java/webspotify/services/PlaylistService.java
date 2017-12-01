@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import webspotify.config.ConfigConstants;
 import webspotify.models.media.Playlist;
 import webspotify.models.media.Song;
+import webspotify.models.users.Administrator;
 import webspotify.models.users.User;
 import webspotify.posts.PlaylistCreateRequest;
 import webspotify.repo.PlaylistRepository;
@@ -137,11 +138,11 @@ public class PlaylistService {
     }
     try {
       Playlist toEdit = playlistRepo.findOne(playlistId);
-      User userToCheck = userRepo.findOne(user.getId());
-      userToCheck.getOwnedPlaylists().remove(toEdit);
-      if (toEdit.getOwner().getId() != userToCheck.getId()){
+      User userToCheck = toEdit.getOwner();
+      if(!(user instanceof Administrator) && userToCheck.equals(user)){
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
       }
+      userToCheck.getOwnedPlaylists().remove(toEdit);
       if(request.getDescription() != null) {
         toEdit.setDescription(request.getDescription());
       }
@@ -155,7 +156,6 @@ public class PlaylistService {
       playlistRepo.save(toEdit);
       return ResponseUtilities.emptySuccess();
     } catch (Exception e) {
-      System.out.println(e);
       return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_EDIT);
     }
   }

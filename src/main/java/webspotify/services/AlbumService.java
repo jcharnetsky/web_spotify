@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import webspotify.config.ConfigConstants;
 import webspotify.models.media.Album;
 import webspotify.models.media.Song;
+import webspotify.models.users.Administrator;
 import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 import webspotify.posts.AlbumCreateRequest;
@@ -146,6 +147,32 @@ public class AlbumService {
       }
     } else {
       return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
+    }
+  }
+
+  @Transactional
+  public Response editAlbum(User user, int albumId, AlbumCreateRequest request) {
+    if(!albumRepo.exists(albumId)){
+      return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
+    }
+    try {
+      Album toEdit = albumRepo.findOne(albumId);
+      Artist userToCheck = (Artist) toEdit.getOwner();
+      if(!(user instanceof Administrator) && userToCheck.equals(user)){
+        return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
+      }
+      userToCheck.getOwnedAlbums().remove(toEdit);
+      if(request.getTitle() != null) {
+        toEdit.setTitle(request.getTitle());
+      }
+      if(request.getGenre() != null) {
+        toEdit.setGenre(request.getGenre());
+      }
+      userToCheck.getOwnedAlbums().add(toEdit);
+      albumRepo.save(toEdit);
+      return ResponseUtilities.emptySuccess();
+    } catch (Exception e) {
+      return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_EDIT);
     }
   }
 

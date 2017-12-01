@@ -72,6 +72,16 @@ public class AlbumController {
     return albumService.deleteAlbum(user, albumId);
   }
 
+  @PostMapping("/{albumId}/edit")
+  public Response editAlbum(@PathVariable final int albumId,
+                                 @RequestBody AlbumCreateRequest request, HttpSession session) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
+      return ResponseUtilities.filledFailure("User not logged in");
+    }
+    return albumService.editAlbum(user, albumId, request);
+  }
+
   @PostMapping("/{albumId}/save")
   public Response saveAlbumToUser(@PathVariable final int albumId, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
