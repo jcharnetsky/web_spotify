@@ -18,7 +18,11 @@ public class UserInfoService {
   UserRepository userRepository;
 
   @Transactional
-  public Response setName(User user, String userName) {
+  public Response setName(int userId, String userName) {
+    if(userRepository.exists(userId)){
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_FOUND);
+    }
+    User user = userRepository.findOne(userId);
     user.setName(userName);
     userRepository.saveAndFlush(user);
     return ResponseUtilities.emptySuccess();
@@ -38,7 +42,11 @@ public class UserInfoService {
   }
 
   @Transactional
-  public Response setEmail(User user, String email) {
+  public Response setEmail(int userId, String email) {
+    if(userRepository.exists(userId)){
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_FOUND);
+    }
+    User user = userRepository.findOne(userId);
     String[] split = email.split("@");
     if(split.length != 2) {
       return ResponseUtilities.filledFailure(ConfigConstants.INVALID_EMAIL);

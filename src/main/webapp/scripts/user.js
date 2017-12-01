@@ -145,14 +145,15 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
     });
   }
   
-  $scope.editUsername = function () {
+  $scope.editUsername = function (userId) {
     if($scope.edit_username == undefined || $scope.edit_username == "") {
       displayErrorPopup("Username field cannot be left blank.", $scope, $parse, $compile);
       return;
     }
     $http.post("/api/users/info/set/name", null, {
       params:{
-        "name": $scope.edit_username}}).
+        "name": $scope.edit_username,
+        "userId": userId}}).
       then(function(response) {
         if (!response.data.error) {
           displayErrorPopup("Username changed successfully.", $scope, $parse, $compile);
@@ -166,14 +167,15 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
       });
   }
   
-  $scope.editEmail = function () {
+  $scope.editEmail = function (userId) {
     if($scope.edit_email == undefined || $scope.edit_email == "") {
       displayErrorPopup("Email field cannot be left blank.", $scope, $parse, $compile);
       return;
     }
     $http.post("/api/users/info/set/email", null, {
       params:{
-        "email": $scope.edit_email}}).
+        "email": $scope.edit_email,
+        "userId": $scope.userId}}).
       then(function(response) {
         if (!response.data.error) {
           displayErrorPopup("Email changed successfully.", $scope, $parse, $compile);
