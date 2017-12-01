@@ -94,12 +94,12 @@ public class UserService {
   
   @Transactional
   public Response deleteUser(int userId, User currentUser, HttpSession session) {
-    if(userRepository.exists(userId)){
+    if(!userRepository.exists(userId)){
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_FOUND);
     }
     User user = userRepository.findOne(userId);
     if (currentUser instanceof Administrator) {
-      if(currentUser.equals(user)) {
+      if(currentUser.getId() == user.getId()) {
         return ResponseUtilities.filledFailure(ConfigConstants.ADMIN_NO_DELETE);
       } else {
         user.setIsDeleted(true);

@@ -1,13 +1,13 @@
 <link rel="stylesheet" href="../css/user_info.css" type="text/css">
 <link href="css/style.css" rel="stylesheet"/>
 <link href="css/button.css" rel="stylesheet"/>
-<div>
+<div ng-controller= "UserCtrl">
   <div id="info_user_header">
     <div class="hiddenFileInputContainter">
       <img id="info_user_img" alt="user_img" ng-src="{{user.imageLink}}">
       <input type="file" name="fileUp" class="hidden" accept="image/*">
     </div>
-    <div id="info_user" ng-controller= "UserCtrl">
+    <div id="info_user">
       <div>
         <span id="info_username">{{user.name}}</span>
         <a href="#" ng-click="openEditUsernameDialog()">edit</a>
@@ -26,7 +26,7 @@
       <span id="info_about_text">{{user.artist.about}}</span>
     </div>
     <div id="spotify_buttons">
-      <a href="#" ng-controller="UserCtrl"
+      <a href="#"
          ng-click="deleteAccount(user.id)"
          id="info_delete_button">Delete Account</a>
     </div>

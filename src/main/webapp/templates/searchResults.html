@@ -61,12 +61,12 @@
   <div ng-show="results.users.length">
     <div class="content_title">Users</div>
     <hr>
-    <div class="info_block" ng-repeat="user in results.users">
-      <img ng-src="{{user.imageLink}}" alt="Image"
+    <div class="info_block" ng-repeat="resultUser in results.users">
+      <img ng-src="{{resultUser.imageLink}}" alt="Image"
            ng-controller="UserCtrl"
-           ng-click="loadUser(user.id)"
+           ng-click="loadUser(resultUser.id)"
            style="border: 1px solid white;">
-      <p>{{user.name}}</p>
+      <p>{{resultUser.name}}</p>
     </div>
   </div>
   <div ng-show="results.albums.length">

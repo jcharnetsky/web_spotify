@@ -16,16 +16,14 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
   }
 
   $scope.followUser = function(id) {
-    data = JSON.stringify({"userId": id});
-    $http.post("/api/users/follow/" + id, data, {headers: {"Content-Type": "application/json"}}).
-      then(function (response) {
-        if (!response.data.error) {
-          $scope.visitingUser.followed = true;
-          $scope.visitingUser.followerCount = $scope.visitingUser.followerCount + 1;
-          displayErrorPopup("Successfully followed user", $scope, $parse, $compile);
-          return; 
-        }
-        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+    $http.post("/api/users/follow/" + id).then(function (response) {
+      if (!response.data.error) {
+        $scope.visitingUser.followed = true;
+        $scope.visitingUser.followerCount = $scope.visitingUser.followerCount + 1;
+        displayErrorPopup("Successfully followed user", $scope, $parse, $compile);
+        return;
+      }
+      displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
       }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });
@@ -237,15 +235,14 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
   }
   $scope.loadBrowse = function () {
     $compile(loadToDiv("main", "navigateContent.html"))($scope);
-  }
+  };
   $scope.deleteAccount = function(userId) {
-    $http.post("/api/users/delete/"+userId, null, {headers: {"Content-Type": "application/json"}}).
-    then(function(response) {
+    $http.post("/api/users/delete/"+userId).then(function(response) {
       if(!response.data.error) {
         displayErrorPopup("Successfully deleted account.", $scope, $parse, $compile);
-        if(!response.data.content.id){
+        if(!response.data.content){
           window.location = location.origin + "/logIn.html";
-          return''
+          return;
         } else {
           $scope.visitingUser = {};
           $scope.loadBrowse();

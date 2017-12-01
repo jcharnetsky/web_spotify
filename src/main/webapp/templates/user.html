@@ -12,13 +12,13 @@
       <div ng-show="visitingUser.artist">{{visitingUser.artist.about}}</div>
       <div id="spotify_buttons">
         <a ng-show="!visitingUser.followed && visitingUser.id != user.id"
-           ng-click="followUser(visitingUser.id)"
+           ng-click="followUser(visitingUser.id)" href="#"
            class="Follow" href="#">Follow</a>
         <a ng-show="visitingUser.followed && visitingUser.id != user.id"
-           ng-click="unfollowUser(visitingUser.id)"
+           ng-click="unfollowUser(visitingUser.id)" href="#"
            class="Follow" href="#">Unfollow</a>
-        <a ng-show="user.admin" ng-click="deleteAccount(visitingUser.id)">Delete User</a>
-        <a ng-click="openCreateReport('User', visitingUser.name, visitingUser.id)">
+        <a ng-show="user.admin" ng-click="deleteAccount(visitingUser.id)" href="#">Delete User</a>
+        <a ng-click="openCreateReport('User', visitingUser.name, visitingUser.id)" href="#">
           Report</a>
       </div>
     </div>

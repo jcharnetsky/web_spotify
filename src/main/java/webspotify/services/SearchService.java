@@ -60,7 +60,7 @@ public class SearchService {
     List<User> users = userRepository.findByNameContaining(searchKey);
     for (User userToCheck : users) {
       if (usersToReturn.size() < ConfigConstants.MAX_SEARCH_ELEMENT_COUNT) {
-        if (userToCheck.isPublic() && !userToCheck.isBanned()) {
+        if (userToCheck.isPublic() && !userToCheck.isBanned() && !userToCheck.getIsDeleted()) {
           usersToReturn.add(new BasicUserInfoResponse(userToCheck));
         }
       }

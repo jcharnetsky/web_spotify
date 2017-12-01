@@ -61,7 +61,6 @@ public class UserController {
     if(user == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_FOUND);
     }
-    session.invalidate();
     return userService.deleteUser(userId, user, session);
   }
 
