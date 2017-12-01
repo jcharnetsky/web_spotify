@@ -16,12 +16,11 @@
           <a href="#" ng-click="setOrder(1)">Artist</a>
           <a href="#" ng-click="setOrder(2)">Length</a>
           <a href="#" ng-click="setOrder(3)">Album</a>
-          <a href="#" class="options_col"></a>
         </div>
       </li>
     </ul>
   </li>
-  <li ng-repeat="song in collection.songs | orderBy:order">
+  <li class="collection" ng-repeat="song in collection.songs | orderBy:order">
     <ul class="collection_tiles">
       <li>
         <hr class="collection_hr">
