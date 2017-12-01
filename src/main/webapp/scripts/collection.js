@@ -222,12 +222,13 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
     });
   }
   $scope.getSavedSongs = function () {
+    $scope.playlists = collections.getPlaylists();
     $http.get(location.origin + "/api/songs/saved").then(function (response) {
       handleJSONResponse(response, "main", "songs.html", "collection.songs", $compile, $parse, $scope);
     }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });
-  }
+  };
   $scope.saveSong = function (songId) {
     $http.get(location.origin + "/api/songs/saved/add/" + songId).
       then(function (response) {
