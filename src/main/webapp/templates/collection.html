@@ -39,13 +39,13 @@
 			<ul class="collection_tiles">
 				<li>
 					<div class="collection_tile">
+						<span class="options_col"></span>
 						<span class="play_button_spacer"></span>
 						<span class="add_button"></span>
 						<a href="#">Title</a>
 						<a href="#">Artist</a>
 						<a href="#">Length</a>
-            <a href="#">Album</a>
-						<span class="options_col"></span>
+						<a href="#">Album</a>
 					</div>
 				</li>
 			</ul>
@@ -55,33 +55,32 @@
 			<ul class="collection_tiles">
 				<li>
 					<div class="collection_tile highlight_on_hover" ng-controller="PlaybarCtrl">
+						<div class="dropdown options_col">
+							<div class="options_button" ng-click="toggleDropdown(song.id)">...</div>
+							<div ng-attr-id="other_dropdown_{{song.id}}" class="dropdown_content">
+								<a href="#" ng-click="addSongToQueue(song.id)">Add to Queue</a>
+								<a href="#" ng-repeat="playlist in playlists"
+									 ng-show="playlist.id != collection.id"
+									 ng-click="addSongToPlaylist(song.id, playlist.id)">
+									Add to {{playlist.title}}
+								</a>
+								<a href="#" ng-click="openCreateReport('Song', song.trackName, song.id)">Report</a>
+							</div>
+						</div>
 						<span class="play_button_spacer">
               <img class="play_button"
                    src="../images/play.png"
                    ng-class="{'invisible': !song.hasAudio}"
                    ng-click="loadSong(song.hasAudio, song.id)" alt="Play">
             </span>
-            <a href="#" ng-show="!song.saved" ng-click="saveSong(song.id)" class="add_button">+</a>
-            <a href="#" ng-show="song.saved" ng-click="unsaveSong(song.id)" class="add_button">-</a>
+						<a href="#" ng-show="!song.saved" ng-click="saveSong(song.id)" class="add_button">+</a>
+						<a href="#" ng-show="song.saved" ng-click="unsaveSong(song.id)" class="add_button">-</a>
 						<a>{{song.trackName}}</a>
 						<a href="#" ng-controller="UserCtrl"
 							ng-attr-id="{{song.artist.id}}"
-							ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
-            <span>{{song.trackLength | secondsToMss}}</span>
-            <a href="#" ng-click="loadAlbum(song.albumId)" ng-controller="CollectionCtrl">{{song.albumName}}</a>
-						<div class="dropdown options_col">
-							<div class="options_button" ng-click="toggleDropdown(song.id)">...</div>
-							<div ng-attr-id="other_dropdown_{{song.id}}" class="dropdown_content">
-								<a href="#" ng-click="addSongToQueue(song.id)">Add to Queue</a>
-                <a href="#" ng-click="removeSongFromPlaylist(song.id, collection.id)">Remove from Playlist</a>
-                <a href="#" ng-repeat="playlist in playlists"
-                   ng-show="playlist.id != collection.id"
-                   ng-click="addSongToPlaylist(song.id, playlist.id)">
-                  Add to {{playlist.title}}
-                </a>
-								<a href="#" ng-click="openCreateReport('Song', song.trackName, song.id)">Report</a>
-              </div>
-            </div>
+						ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
+						<span>{{song.trackLength | secondsToMss}}</span>
+						<a href="#" ng-click="loadAlbum(song.albumId)" ng-controller="CollectionCtrl">{{song.albumName}}</a>
           </div>
         </li>
       </ul>
