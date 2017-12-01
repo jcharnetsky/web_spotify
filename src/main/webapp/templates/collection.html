@@ -8,7 +8,7 @@
 			<div>
 				Created by: {{collection.ownerName}} /
 				{{collection.songCount}} songs /
-				Duration: {{collection.songTrackLength | secondsToMss}} /
+				Duration: {{collection.songTrackLength| secondsToMss}} /
 				Genre: {{collection.genre}}
 			</div>
 			<div ng-show="collection.followerCount"> Followers: {{collection.followerCount}} </div>
@@ -16,25 +16,23 @@
 			<div id="spotify_buttons" ng-controller="CollectionCtrl">
 				<a href="#" ng-controller="PlaybarCtrl">Play</a>
 				<a href="#" ng-show="user.id != collection.ownerId && !collection.followed && collection.playlist"
-                    ng-click="followCollection(collection.id)">Follow</a>
-        <a href="#" ng-show="user.id != collection.ownerId && collection.followed && collection.playlist"
-                    ng-click="unfollowCollection(collection.id)">Unfollow</a>
+					ng-click="followCollection(collection.id)">Follow</a>
+				<a href="#" ng-show="user.id != collection.ownerId && collection.followed && collection.playlist"
+					ng-click="unfollowCollection(collection.id)">Unfollow</a>
 				<a href="#" ng-show="user.id != collection.ownerId && !collection.followed && collection.album"
-					 ng-click="followCollection(collection.id)">Save</a>
+					ng-click="followCollection(collection.id)">Save</a>
 				<a href="#" ng-show="user.id != collection.ownerId && collection.followed && collection.album"
-					 ng-click="unfollowCollection(collection.id)">Unsave</a>
-        <a href="#" ng-click="openEditPlaylistDialog()"
-					 ng-show="(user.id == collection.ownerId && collection.playlist) || user.admin">Edit</a>
+					ng-click="unfollowCollection(collection.id)">Unsave</a>
+				<a href="#" ng-click="openEditPlaylistDialog()"
+					ng-show="(user.id == collection.ownerId && collection.playlist) || user.admin">Edit</a>
 				<a href="#" ng-click="openEditAlbumDialog()"
-					 ng-show="(user.id == collection.ownerId && collection.album) || user.admin">Edit</a>
-        <a href="#" ng-show="user.id == collection.ownerId || user.admin" ng-click="deletePlaylist(collection.id)">Delete</a>
+					ng-show="(user.id == collection.ownerId && collection.album) || user.admin">Edit</a>
+				<a href="#" ng-show="user.id == collection.ownerId || user.admin" ng-click="deletePlaylist(collection.id)">Delete</a>
 				<a href="#" ng-show="collection.album"
-					 ng-click="openCreateReport('Album', collection.title, collection.id)">
-					Report</a>
+					ng-click="openCreateReport('Album', collection.title, collection.id)">Report</a>
 				<a href="#" ng-show="collection.playlist"
-					 ng-click="openCreateReport('Playlist', collection.title, collection.id)">
-					Report</a>
-			</div>
+					 ng-click="openCreateReport('Playlist', collection.title, collection.id)">Report</a>
+		  </div>
 		</div>
 	</div>
 	<ul class="collection" ng-controller="PlaybarCtrl">
@@ -45,15 +43,15 @@
 						<span class="options_col"></span>
 						<span class="play_button_spacer"></span>
 						<span class="add_button"></span>
-						<a href="#">Title</a>
-						<a href="#">Artist</a>
-						<a href="#">Length</a>
-						<a href="#">Album</a>
+						<a href="#" ng-click="setOrder(0)" ng-dblclick="setOrder(4)">Title</a>
+						<a href="#" ng-click="setOrder(1)" ng-dblclick="setOrder(5)">Artist</a>
+						<a href="#" ng-click="setOrder(2)" ng-dblclick="setOrder(6)">Length</a>
+						<a href="#" ng-click="setOrder(3)" ng-dblclick="setOrder(7)">Album</a>
 					</div>
 				</li>
 			</ul>
 		</li>
-		<li ng-repeat="song in collection.songs">
+		<li ng-repeat="song in collection.songs | orderBy:order">
 			<hr class="collection_hr">
 			<ul class="collection_tiles">
 				<li>
@@ -62,6 +60,7 @@
 							<div class="options_button" ng-click="toggleDropdown(song.id)">...</div>
 							<div ng-attr-id="other_dropdown_{{song.id}}" class="dropdown_content">
 								<a href="#" ng-click="addSongToQueue(song.id)">Add to Queue</a>
+								<a href="#" ng-click="removeSongFromPlaylist(song.id, collection.id)">Remove from Playlist</a>
 								<a href="#" ng-repeat="playlist in playlists"
 									 ng-show="playlist.id != collection.id"
 									 ng-click="addSongToPlaylist(song.id, playlist.id)">
@@ -71,11 +70,11 @@
 							</div>
 						</div>
 						<span class="play_button_spacer">
-              <img class="play_button"
-                   src="../images/play.png"
-                   ng-class="{'invisible': !song.hasAudio}"
-                   ng-click="loadSong(song.hasAudio, song.id)" alt="Play">
-            </span>
+						<img class="play_button"
+							src="../images/play.png"
+							ng-class="{'invisible': !song.hasAudio}"
+							ng-click="loadSong(song.hasAudio, song.id)" alt="Play">
+						</span>
 						<a href="#" ng-show="!song.saved" ng-click="saveSong(song.id)" class="add_button">+</a>
 						<a href="#" ng-show="song.saved" ng-click="unsaveSong(song.id)" class="add_button">-</a>
 						<a>{{song.trackName}}</a>
@@ -84,9 +83,9 @@
 						ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
 						<span>{{song.trackLength | secondsToMss}}</span>
 						<a href="#" ng-click="loadAlbum(song.albumId)" ng-controller="CollectionCtrl">{{song.albumName}}</a>
-          </div>
-        </li>
-      </ul>
+					</div>
+				</li>
+			</ul>
     </li>
   </ul>
 </div>
