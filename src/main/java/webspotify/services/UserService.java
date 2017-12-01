@@ -2,10 +2,12 @@ package webspotify.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sun.rmi.runtime.Log;
 import webspotify.config.ConfigConstants;
 import webspotify.models.media.SongQueue;
 import webspotify.models.users.Administrator;
@@ -43,17 +45,25 @@ public class UserService {
   }
 
   @Transactional
-  public User loginUser(String email, String password) {
+  public User loginUser(String email, String password) throws LoginException {
     List<User> userList = userRepository.findByEmail(email);
-    User validUser = findValidUser(userList);
-    if(validUser == null) {
-      return null;
+    User validUser = null;
+    for (User user: userList){
+      if(user.getIsDeleted()){
+        throw new LoginException(ConfigConstants.USER_DELETED);
+      } else if (user.getIsBanned()) {
+        throw new LoginException(ConfigConstants.USER_BANNED);
+      } else {
+         validUser = user;
+      }
+    }
+    if(validUser == null){
+      throw new LoginException(ConfigConstants.EMAIL_NO_EXIST);
     }
     if (!validUser.authenticateLogin(password)) {
-      return null;
-    } else {
-      return validUser;
+      throw new LoginException(ConfigConstants.INVALID_CREDENTIALS);
     }
+    return validUser;
   }
 
   @Transactional
@@ -63,7 +73,7 @@ public class UserService {
   
   public User findValidUser(List<User> userList) {
     for(User user : userList) {
-      if(user.getIsDeleted() != true) {
+      if(!user.getIsDeleted()) {
         return user;
       }
     }

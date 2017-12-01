@@ -1,5 +1,6 @@
 package webspotify.controllers.rest;
 
+import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,14 +28,15 @@ public class UserController {
     if (SessionUtilities.getUserFromSession(session) != null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_ALREADY_LOGGED);
     }
-    User user = userService.loginUser(email, password);
-    if (user == null) {
+    User user;
+    try {
+      user = userService.loginUser(email, password);
+    } catch (LoginException e){
       return ResponseUtilities.filledFailure(ConfigConstants.INVALID_CREDENTIALS);
-    } else {
-      session.setAttribute(ConfigConstants.USER_SESSION, user);
-      session.setAttribute(ConfigConstants.QUEUE_SESSION, userService.getSongQueue());
-      return ResponseUtilities.emptySuccess();
     }
+    session.setAttribute(ConfigConstants.USER_SESSION, user);
+    session.setAttribute(ConfigConstants.QUEUE_SESSION, userService.getSongQueue());
+    return ResponseUtilities.emptySuccess();
   }
 
   @GetMapping("/logout")

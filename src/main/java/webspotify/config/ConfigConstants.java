@@ -23,18 +23,19 @@ public class ConfigConstants {
 
   public static String USER_ALREADY_LOGGED = "User is already logged in.";
   public static String USER_NOT_LOGGED = "User is not logged in.";
-  public static String USER_DELTED = "This user account was deleted.";
+  public static String USER_DELETED = "This user account was deleted.";
+  public static String USER_BANNED = "This user account was banned.";
 
   public static String COULD_NOT_ADD = "Content could not be added.";
   public static String COULD_NOT_EDIT = "Content could not be edited";
   public static String COULD_NOT_REM = "Content could not be removed.";
-  public static String COULD_NOT_DEL = "Content could not be deleted.";
   public static String COULD_NOT_CREATE = "Content could not be created.";
   public static String COULD_NOT_CHANGE = "Content could not be changed.";
 
   public static String EMAIL_EXIST = "Desired Email already exists.";
   public static String PASSWORDS_NO_MATCH = "The passwords did not match.";
-  public static String INVALID_CREDENTIALS = "An account with that Email/Password combination does not exist.";
+  public static String EMAIL_NO_EXIST = "An account with that Email does not exist.";
+  public static String INVALID_CREDENTIALS = "The given Email/password combination is invalid.";
   public static String INVALID_PASSWORD = "Old password was incorrect.";
   public static String INVALID_EMAIL = "Email is invalid.";
   public static String UNKNOWN_TYPE = "The object type is either invalid or unknown.";
