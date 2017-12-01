@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import webspotify.config.ConfigConstants;
+import webspotify.models.users.Administrator;
 import webspotify.models.users.User;
 import webspotify.posts.SignupRequest;
 import webspotify.services.UserService;
@@ -51,10 +52,11 @@ public class UserController {
 
   @PostMapping("/register")
   public Response postUser(@RequestBody SignupRequest newUser, HttpSession session) {
-    if (SessionUtilities.getUserFromSession(session) != null) {
+    User creator = SessionUtilities.getUserFromSession(session);
+    if (creator == null || creator instanceof Administrator) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_ALREADY_LOGGED);
     }
-    return userService.postUser(newUser);
+    return userService.postUser(creator, newUser);
   }
   
   @PostMapping("/delete/{userId}")

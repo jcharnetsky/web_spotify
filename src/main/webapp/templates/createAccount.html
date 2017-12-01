@@ -18,6 +18,21 @@
                    placeholder="Password"/><br/><br/>
             <input class="text_input_field" type="password" ng-model="confirm_password"
                    placeholder="Confirm password"/><br/><br/>
+            <label> Basic
+              <input type="radio" name="type" ng-model="type" ng-value="BASIC"/>
+            </label>
+            <label> Premium
+              <input type="radio" name="type" ng-model="type" ng-value="PREMIUM"/>
+            </label>
+            <label> Artist
+              <input type="radio" name="type" ng-model="type" ng-value="ARTIST"/>
+            </label>
+            <label> Advertiser
+              <input type="radio" name="type" ng-model="type" ng-value="ADVERTISER"/>
+            </label>
+            <label> Administrator
+              <input type="radio" name="type" ng-model="type" ng-value="ADMINISTRATOR"/>
+            </label>
           </form>
           <div id="spotify_buttons">
             <a href="#" data-dismiss="modal">Close</a>

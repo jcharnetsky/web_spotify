@@ -9,7 +9,8 @@ angular.module('signup_module', []).controller('SignupCtrl', function ($http, $s
        "email":$scope.email,
        "address":$scope.address,
        "birthdate":$scope.birthdate,
-       "password":$scope.password});
+       "password":$scope.password},
+       "type": "BASIC");
     $http.post('/api/users/register', data, {headers: {'Content-Type':'application/json'}}).
     then(function(response) {
       if(!response.data.error) {

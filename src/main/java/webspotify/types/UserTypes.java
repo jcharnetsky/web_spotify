@@ -5,6 +5,7 @@ package webspotify.types;
  */
 public enum UserTypes {
   BASIC,
+  PREMIUM,
   ARTIST,
   ADMINISTRATOR,
   ADVERTISER

@@ -18,6 +18,7 @@ import webspotify.repo.UserRepository;
 import webspotify.responses.ArtistResponse;
 import webspotify.responses.BasicUserInfoResponse;
 import webspotify.responses.UserInfoResponse;
+import webspotify.types.UserTypes;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
 
@@ -81,24 +82,40 @@ public class UserService {
   }
 
   @Transactional
-  public Response postUser(SignupRequest newUser) {
+  public Response postUser(User creator, SignupRequest newUser) {
     List<User> userList = userRepository.findByEmail(newUser.getEmail());
     User validUser = findValidUser(userList);
     if (validUser != null) {
       return ResponseUtilities.filledFailure(ConfigConstants.EMAIL_EXIST);
     }
-    User user = new User();
-    user.setAddress(newUser.getAddress());
-    user.setBirthdate(newUser.getBirthdate());
-    user.setEmail(newUser.getEmail());
-    user.setName(newUser.getName());
-    user.createSecurePassword(newUser.getPassword());
-    user.setHasImage(false);
-    user.setIsBanned(false);
-    user.setIsPremium(false);
-    user.setIsPublic(true);
-    user.setIsDeleted(false);
-    userRepository.saveAndFlush(user);
+    if(newUser.getType() == UserTypes.BASIC) {
+      User user = new User();
+      user.setAddress(newUser.getAddress());
+      user.setBirthdate(newUser.getBirthdate());
+      user.setEmail(newUser.getEmail());
+      user.setName(newUser.getName());
+      user.createSecurePassword(newUser.getPassword());
+      user.setHasImage(false);
+      user.setIsBanned(false);
+      user.setIsPremium(false);
+      user.setIsPublic(true);
+      user.setIsDeleted(false);
+      userRepository.save(user);
+    } else {
+      if (creator instanceof Administrator){
+        if(newUser.getType() == UserTypes.PREMIUM){
+
+        } else if(newUser.getType() == UserTypes.ARTIST){
+
+        } else if(newUser.getType() == UserTypes.ADVERTISER){
+
+        } else if(newUser.getType() == UserTypes.ADMINISTRATOR){
+
+        }
+      } else {
+        return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
+      }
+    }
     return ResponseUtilities.emptySuccess();
   }
   

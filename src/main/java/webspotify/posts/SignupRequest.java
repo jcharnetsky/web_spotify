@@ -1,5 +1,7 @@
 package webspotify.posts;
 
+import webspotify.types.UserTypes;
+
 import java.util.Date;
 
 /**
@@ -13,6 +15,7 @@ public class SignupRequest {
   private String password;
   private String address;
   private Date birthdate;
+  private UserTypes type;
 
   public SignupRequest() {
   }
@@ -55,5 +58,13 @@ public class SignupRequest {
 
   public void setBirthdate(Date birthdate) {
     this.birthdate = birthdate;
+  }
+
+  public UserTypes getType() {
+    return type;
+  }
+
+  public void setType(UserTypes type) {
+    this.type = type;
   }
 }
