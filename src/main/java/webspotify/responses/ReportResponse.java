@@ -1,6 +1,7 @@
 package webspotify.responses;
 
 import webspotify.models.administration.Report;
+import webspotify.types.ReportTypes;
 import webspotify.types.SpotifyObjectEnum;
 
 public class ReportResponse {
@@ -10,6 +11,7 @@ public class ReportResponse {
   private Integer entityId;
   private String subject;
   private String description;
+  private ReportTypes reportType;
   private SpotifyObjectEnum entityType;
 
   public ReportResponse(Report report){
@@ -18,6 +20,7 @@ public class ReportResponse {
     this.entityId = report.getEntityId();
     this.subject = report.getSubject();
     this.description = report.getDescription();
+    this.reportType = reportType;
     this.entityType = report.getEntityType();
   }
 
@@ -59,6 +62,14 @@ public class ReportResponse {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public ReportTypes getReportType() {
+    return reportType;
+  }
+
+  public void setReportType(ReportTypes reportType) {
+    this.reportType = reportType;
   }
 
   public SpotifyObjectEnum getEntityType() {

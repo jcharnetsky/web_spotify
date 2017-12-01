@@ -3,6 +3,7 @@ package webspotify.models.administration;
 import java.io.Serializable;
 import javax.persistence.*;
 import webspotify.models.users.User;
+import webspotify.types.ReportTypes;
 import webspotify.types.SpotifyObjectEnum;
 
 /**
@@ -24,6 +25,8 @@ public class Report implements Serializable {
   private String subject;
   @Column(name = "description", nullable = false)
   private String description;
+  @Column(name = "reportType", nullable = false)
+  private ReportTypes reportType;
   @Column(name = "entity", nullable = false)
   @Enumerated(EnumType.STRING)
   private SpotifyObjectEnum entityType;
@@ -36,10 +39,12 @@ public class Report implements Serializable {
   }
 
   public Report(int reportId, String subject, String description,
-                SpotifyObjectEnum entityType, Integer entityId, boolean completed) {
+                SpotifyObjectEnum entityType, ReportTypes reportType,
+                Integer entityId, boolean completed) {
     this.reportId = reportId;
     this.subject = subject;
     this.description = description;
+    this.reportType = reportType;
     this.entityType = entityType;
     this.entityId = entityId;
     this.completed = completed;
@@ -75,6 +80,18 @@ public class Report implements Serializable {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public ReportTypes getReportType() {
+    return reportType;
+  }
+
+  public void setReportType(ReportTypes reportType) {
+    this.reportType = reportType;
+  }
+
+  public void setCompleted(Boolean completed) {
+    this.completed = completed;
   }
 
   public SpotifyObjectEnum getEntityType() {

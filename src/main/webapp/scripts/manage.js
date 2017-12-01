@@ -6,7 +6,7 @@ angular.module('web_spotify').controller('ManageCtrl', function($scope, $http, $
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
-  $scope.banContent = function (reportId, type, id){
+  $scope.handleReport = function (reportType, reportId, type, id){
     $http.post("/api/ban/banContent/"+reportId+"/"+type+"/"+id, {headers: {"Content-Type": "application/json"}}).
       then(function (response) {
         if (!response.data.error) {

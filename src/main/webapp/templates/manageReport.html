@@ -1,5 +1,5 @@
 <link href="css/modal.css" rel="stylesheet"/>
-<div class="modal fade" id="manageReportModal" tabindex="-1" role="dialog" ng-controller="BanCtrl">
+<div class="modal fade" id="manageReportModal" tabindex="-1" role="dialog" ng-controller="ManageCtrl">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
@@ -8,10 +8,10 @@
         <div class="center_align">
           <div id="spotify_buttons">
             <a href="#" data-dismiss="modal">Close</a>
-            <a href="#" ng-click="banContent(manage.reportId, manage.entityType, manage.entityID)">
-              Ban {{manage.entityType | toLowercase}} ({{manage.entityId}})
+            <a href="#" ng-click="handleReport(manage.reportType, manage.reportId, manage.entityType, manage.entityID)">
+              {{manage.reportType | toLowercase}} {{manage.entityType | toLowercase}} ({{manage.entityId}})
             </a>
-            <a href="#" ng-click="ignoreReport(manage.reportId)"></a>
+            <a href="#" ng-click="ignoreReport(manage.reportId)">Ignore</a>
           </div>
         </div>
       </div>
