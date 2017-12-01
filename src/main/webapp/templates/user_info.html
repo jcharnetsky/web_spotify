@@ -23,7 +23,7 @@
     <div id="info_about" ng-show="user.artist">
       <span id="info_about_header">About</span>
       <a href="#">edit</a>
-      <span id="info_about_text">This is a users "about" information, change this to user.about when we have implemented it.</span>
+      <span id="info_about_text">{{user.artist.about}}</span>
     </div>
     <div id="spotify_buttons">
       <a href="#" ng-controller="UserCtrl" ng-click="deleteAccount()" id="info_delete_button">Delete Account</a>
