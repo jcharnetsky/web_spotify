@@ -11,6 +11,7 @@ import webspotify.models.administration.Report;
 import webspotify.models.media.Album;
 import webspotify.models.media.Playlist;
 import webspotify.models.media.Song;
+import webspotify.models.users.Administrator;
 import webspotify.models.users.User;
 import webspotify.posts.HandleReportRequest;
 import webspotify.repo.*;
@@ -80,7 +81,7 @@ public class ReportService {
   }
 
   @Transactional
-  public Response handleBan(Viewable target) {
+  public Response handleBan(Administrator admin, Integer reportId, Viewable target) {
     if(target instanceof Song){
       target.setBanned(true);
       songRepository.save((Song) target);
@@ -101,6 +102,16 @@ public class ReportService {
     } else {
       return ResponseUtilities.filledFailure(ConfigConstants.ENTITY_TYPE_NO_EXIST);
     }
+    // Generate Unban report to unban anything that was banned
+    Report banReport = reportRepository.findOne(reportId);
+    Report report = new Report();
+    report.setSubject(banReport.getSubject());
+    report.setDescription(ConfigConstants.ORIGINALLY_BANNED + banReport.getDescription());
+    report.setEntityType(banReport.getEntityType());
+    report.setEntityId(banReport.getEntityId());
+    report.setCompleted(false);
+    report.setReportType(ReportTypes.UNBAN);
+    reportRepository.save(report);
     return ResponseUtilities.emptySuccess();
   }
 

@@ -51,10 +51,10 @@ public class ReportController {
   @PostMapping("/handle")
   public Response handleReport(@RequestBody HandleReportRequest request,
                               HttpSession session) {
-    User u = SessionUtilities.getUserFromSession(session);
-    if (u == null) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
-    } else if (!(u instanceof Administrator)){
+    } else if (!(user instanceof Administrator)){
       return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
     }
     Viewable reportTarget = reportService.getReportEntity(request);
@@ -63,7 +63,7 @@ public class ReportController {
     }
     ReportTypes reportType = request.getReportType();
     if (reportType == ReportTypes.BAN){
-      return reportService.handleBan(reportTarget);
+      return reportService.handleBan((Administrator) user, request.getReportId(), reportTarget);
     } else if (reportType == ReportTypes.UNBAN){
       return reportService.handleUnban(reportTarget);
     } else if (reportType == ReportTypes.REMOVE){

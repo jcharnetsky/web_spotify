@@ -37,6 +37,8 @@ public class ConfigConstants {
 
   public static String CANNOT_UNBAN_SONG = "Cannot unban a song who's album is banned.";
   public static String CANNOT_ADD_SONG = "Cannot add a song who's album is banned.";
+  public static String ORIGINALLY_BANNED = "This entity was previously banned." +
+                                           " The originaly reason for banning is as follows: \n";
 
   public static String EMAIL_EXIST = "Desired Email already exists.";
   public static String PASSWORDS_NO_MATCH = "The passwords did not match.";
