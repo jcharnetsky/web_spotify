@@ -66,7 +66,14 @@ public class QueueController {
     SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
     return queueService.addAlbumToQueue(queue, albumId);
   }
-
+  @PostMapping("/clear")
+  public Response clearQueue(HttpSession session) {
+    if (SessionUtilities.getUserFromSession(session) == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    }
+    SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
+    return queueService.clearQueue(queue);
+  }
   @GetMapping("/next")
   public Response getNextSong(HttpSession session) {
     if (SessionUtilities.getUserFromSession(session) == null) {
