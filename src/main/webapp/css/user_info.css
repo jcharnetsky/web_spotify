@@ -27,15 +27,24 @@ input[type='file'].hidden {
 }
 .info_table {
   display: inline-block;
+  table-layout: fixed;
   margin-top: 2vw;
 }
 .info_table td {
-  padding-top: 10px;
+  padding-left: 20px;
   padding-right: 20px;
+  padding-top: 10px;
   font-size: 110%;
   font-weight: 600;
   color: #ffffff;
   border-bottom: 1px solid white;
+}
+.info_table td.table_middle{
+  padding-left: 0px;
+  padding-right: 0px;
+  width: 30vw;
+  max-width: 30vw;
+  overflow-wrap: break-word;
 }
 #info_delete_button, #info_delete_button:hover {
   color: #c42121 !important;

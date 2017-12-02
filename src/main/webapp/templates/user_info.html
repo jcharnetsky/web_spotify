@@ -11,17 +11,17 @@
     <table class="info_table">
       <tr>
         <td>Name:</td>
-        <td>{{editingUser.name}}</td>
+        <td class="table_middle">{{editingUser.name}}</td>
         <td><a href="#" ng-click="openDialog('editUsername.html')">Edit</a></td>
       </tr>
       <tr>
         <td>Email:</td>
-        <td>{{editingUser.email}}</td>
+        <td class="table_middle">{{editingUser.email}}</td>
         <td><a href="#" ng-click = "openDialog('editEmail.html')">Edit</a></td>
       </tr>
       <tr ng-show="editingUser.artist">
         <td>About:</td>
-        <td>{{editingUser.artist.about}}</td>
+        <td class="table_middle">{{editingUser.artist.about}}</td>
         <td><a href="#">Edit</a></td>
       </tr>
     </table>

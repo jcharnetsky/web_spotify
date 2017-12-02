@@ -45,4 +45,6 @@ public class HandleReportRequest {
   public void setEntityId(int entityId) {
     this.entityId = entityId;
   }
+
+
 }

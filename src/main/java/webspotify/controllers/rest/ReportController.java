@@ -62,17 +62,22 @@ public class ReportController {
       return ResponseUtilities.filledFailure(ConfigConstants.ENTITY_NO_EXIST);
     }
     ReportTypes reportType = request.getReportType();
-    if (reportType == ReportTypes.BAN){
-      return reportService.handleBan((Administrator) user, request.getReportId(), reportTarget);
-    } else if (reportType == ReportTypes.UNBAN){
-      return reportService.handleUnban(reportTarget);
-    } else if (reportType == ReportTypes.REMOVE){
-      return reportService.handleRemove(reportTarget);
-    } else if (reportType == ReportTypes.ADD){
-      return reportService.handleAdd(reportTarget);
-    } else {
-      return ResponseUtilities.filledFailure(ConfigConstants.REPORT_TYPE_NO_EXIST);
+    try {
+      if (reportType == ReportTypes.BAN) {
+        reportService.handleBan((Administrator) user, request.getReportId(), reportTarget);
+      } else if (reportType == ReportTypes.UNBAN) {
+        reportService.handleUnban(reportTarget);
+      } else if (reportType == ReportTypes.REMOVE) {
+        reportService.handleRemove(reportTarget);
+      } else if (reportType == ReportTypes.ADD) {
+        reportService.handleAdd(reportTarget);
+      } else {
+        return ResponseUtilities.filledFailure(ConfigConstants.REPORT_TYPE_NO_EXIST);
+      }
+    } catch (Exception e){
+      return ResponseUtilities.filledFailure(e.getMessage());
     }
+    return reportService.completeReport(request.getReportId());
   }
 
   @PostMapping("/create")
