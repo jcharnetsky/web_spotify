@@ -23,6 +23,7 @@
           <a ng-click="openCreateReport('User', visitingUser.name, visitingUser.id)" href="#"
              ng-controller="ManageCtrl">
             Report</a>
+          <a ng-show="user.admin" ng-click="loadUserInfoPage(visitingUser.id)" href="#">Edit User</a>
         </span>
       </div>
     </div>

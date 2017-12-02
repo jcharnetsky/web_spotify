@@ -19,7 +19,7 @@
         <td>{{editingUser.email}}</td>
         <td><a href="#" ng-click = "openDialog('editEmail.html')">Edit</a></td>
       </tr>
-      <tr ng-show="user.artist">
+      <tr ng-show="editingUser.artist">
         <td>About:</td>
         <td>{{editingUser.artist.about}}</td>
         <td><a href="#">Edit</a></td>
@@ -29,7 +29,7 @@
   <div class="center_align" id="spotify_buttons">
     <a href="#" ng-click = "openDialog('editPassword.html')">Change Password</a>
     <a href="#"
-       ng-click="deleteAccount(user.id)"
+       ng-click="deleteAccount(editingUser.id)"
        id="info_delete_button"><strong>Delete Account</strong></a>
   </div>
 </div>
