@@ -15,6 +15,7 @@ import webspotify.models.users.User;
 import webspotify.posts.HandleReportRequest;
 import webspotify.repo.*;
 import webspotify.responses.ReportResponse;
+import webspotify.types.ReportTypes;
 import webspotify.types.SpotifyObjectEnum;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
@@ -80,6 +81,43 @@ public class ReportService {
 
   @Transactional
   public Response handleReport(HandleReportRequest request) {
+    if(!reportRepository.exists(request.getReportId())){
+      return ResponseUtilities.filledFailure(ConfigConstants.REPORT_NO_EXIST);
+    }
+    Viewable toHandle;
+    if(request.getEntityType() == SpotifyObjectEnum.SONG){
+      toHandle = songRepository.findOne(request.getEntityId());
+    } else if(request.getEntityType() == SpotifyObjectEnum.USER) {
+      toHandle = userRepository.findOne(request.getEntityId());
+    } else if(request.getEntityType() == SpotifyObjectEnum.ALBUM) {
+      toHandle = albumRepository.findOne(request.getEntityId());
+    } else if(request.getEntityType() == SpotifyObjectEnum.PLAYLIST) {
+      toHandle = playlistRepository.findOne(request.getEntityId());
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.ENTITY_TYPE_NO_EXIST);
+    }
+    if(toHandle == null){
+      return ResponseUtilities.filledFailure(ConfigConstants.ENTITY_NO_EXIST);
+    }
+    ReportTypes reportType = request.getReportType();
+    if(reportType == ReportTypes.BAN){
+      toHandle.setBanned(true);
+    } else if(reportType == ReportTypes.REMOVE){
+      toHandle.setBanned(true);
+    } else if (reportType == ReportTypes.ADD){
+      toHandle.setBanned(false);
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.REPORT_TYPE_NO_EXIST);
+    }
+    if(toHandle instanceof Song){
+      songRepository.save((Song) toHandle);
+    } else if (toHandle instanceof User){
+      userRepository.save((User) toHandle);
+    } else if (toHandle instanceof Album){
+      albumRepository.save((Album) toHandle);
+    } else if (toHandle instanceof Playlist){
+      playlistRepository.save((Playlist) toHandle);
+    }
     return ResponseUtilities.emptySuccess();
   }
 }

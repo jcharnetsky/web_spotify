@@ -16,6 +16,9 @@ public class ConfigConstants {
   public static String SONG_NO_EXIST = "Desired song does not exist.";
   public static String ARTIST_NO_EXIST = "Artist does not exist.";
   public static String REPORT_NO_EXIST = "Report does not exist.";
+  public static String REPORT_TYPE_NO_EXIST = "The given Report type does not exist.";
+  public static String ENTITY_TYPE_NO_EXIST = "There is no entities of the given type.";
+  public static String ENTITY_NO_EXIST = "The given entity does not exist.";
 
   public static String ACCESS_DENIED = "User does not have access to this content.";
   public static String NOT_AN_ARTIST = "Only artists can access this.";
