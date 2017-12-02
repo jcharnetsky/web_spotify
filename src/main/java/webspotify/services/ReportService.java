@@ -82,7 +82,7 @@ public class ReportService {
   }
 
   @Transactional
-  public void handleBan(Administrator admin, Integer reportId, Viewable target) throws Exception{
+  public Report handleBan(Administrator admin, Integer reportId, Viewable target) throws Exception{
     if(target instanceof Song){
       target.setBanned(true);
       songRepository.save((Song) target);
@@ -106,6 +106,7 @@ public class ReportService {
     // Generate Unban report to unban anything that was banned
     Report banReport = reportRepository.findOne(reportId);
     Report report = new Report();
+    report.setCreator(admin);
     report.setSubject(banReport.getSubject());
     report.setDescription(ConfigConstants.ORIGINALLY_BANNED + banReport.getDescription());
     report.setEntityType(banReport.getEntityType());
@@ -113,6 +114,7 @@ public class ReportService {
     report.setCompleted(false);
     report.setReportType(ReportTypes.UNBAN);
     reportRepository.save(report);
+    return report;
   }
 
   @Transactional
@@ -188,12 +190,10 @@ public class ReportService {
 
   @Transactional
   public Viewable getReportEntity(HandleReportRequest request){
-    System.out.println("ReportId: " + request.getReportId());
     if(!reportRepository.exists(request.getReportId())){
       return null;
     }
     Viewable toHandle;
-    System.out.println("Type: " + request.getEntityType() + "ID: " + request.getEntityId());
     if(request.getEntityType() == SpotifyObjectEnum.SONG){
       toHandle = songRepository.findOne(request.getEntityId());
     } else if(request.getEntityType() == SpotifyObjectEnum.USER) {
@@ -209,13 +209,12 @@ public class ReportService {
   }
 
   @Transactional
-  public Response completeReport(int reportId){
+  public void completeReport(int reportId){
     if(!reportRepository.exists(reportId)){
-      return ResponseUtilities.filledFailure(ConfigConstants.REPORT_NO_EXIST);
+      return;
     }
     Report report = reportRepository.findOne(reportId);
     report.setCompleted(true);
     reportRepository.save(report);
-    return ResponseUtilities.emptySuccess();
   }
 }

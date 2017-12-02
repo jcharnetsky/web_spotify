@@ -21,6 +21,9 @@ angular.module('web_spotify').controller('ManageCtrl', function($scope, $http, $
               $scope.api_reports_all.splice(i,1);
             }
           }
+          if(response.data.content){
+            $scope.api_reports_all.push(response.data.content);
+          }
           displayErrorPopup("Report handled.", $scope, $parse, $compile);
           $("#manageReportModal").modal("hide");
           return;
