@@ -2,35 +2,32 @@
 <link href="css/style.css" rel="stylesheet"/>
 <link href="css/button.css" rel="stylesheet"/>
 <div ng-controller= "UserCtrl">
-  <div id="info_user_header">
-    <div class="hiddenFileInputContainter">
-      <img id="info_user_img" alt="user_img" ng-src="{{user.imageLink}}">
-      <input ng-controller="UploadCtrl"
-             type="file" name="fileUp"
-             class="hidden"  id="editImage" accept="image/*">
+  <div class="hiddenFileInputContainer">
+    <img id="info_user_img" alt="user_img" ng-src="{{user.imageLink}}">
+    <input ng-controller="UploadCtrl" class="hidden"
+           type="file" id="editImage" accept="image/*">
+  </div>
+  <div id="info_user">
+    <div>
+      <span id="info_username">{{user.name}}</span>
+      <a href="#" ng-click="openDialog('editUsername.html')">edit</a>
     </div>
-    <div id="info_user">
-      <div>
-        <span id="info_username">{{user.name}}</span>
-        <a href="#" ng-click="openDialog('editUsername.html')">edit</a>
-      </div>
-      <div>
-        <span id="info_email">{{user.email}}</span>
-        <a href="#" ng-click = "openDialog('editEmail.html')">edit</a>
-      </div>
-      <div>
-        <a href="#" ng-click = "openDialog('editPassword.html')">Change Password</a>
-      </div>
+    <div>
+      <span id="info_email">{{user.email}}</span>
+      <a href="#" ng-click = "openDialog('editEmail.html')">edit</a>
     </div>
-    <div id="info_about" ng-show="user.artist">
-      <span id="info_about_header">About</span>
-      <a href="#">edit</a>
-      <span id="info_about_text">{{user.artist.about}}</span>
+    <div>
+      <a href="#" ng-click = "openDialog('editPassword.html')">Change Password</a>
     </div>
-    <div id="spotify_buttons">
-      <a href="#"
-         ng-click="deleteAccount(user.id)"
-         id="info_delete_button">Delete Account</a>
-    </div>
+  </div>
+  <div id="info_about" ng-show="user.artist">
+    <span id="info_about_header">About</span>
+    <a href="#">edit</a>
+    <span id="info_about_text">{{user.artist.about}}</span>
+  </div>
+  <div id="spotify_buttons">
+    <a href="#"
+       ng-click="deleteAccount(user.id)"
+       id="info_delete_button">Delete Account</a>
   </div>
 </div>

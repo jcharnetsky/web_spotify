@@ -1,34 +1,21 @@
-#info_user_header {
-  display: inline-block;
-  height: 20vh;
-  margin-top: 2vw;
-  margin-left: 2vw;
-  margin-bottom: 3vw;
-}
 #info_user {
   margin-left: 1vw;
   margin-top: 0;
   display: inline-block;
   vertical-align: top;
 }
-#info_user_img {
-  height: 20vh;
-  width: auto;
-  display: inline-block;
+.hiddenFileInputContainer {
   position: relative;
+  text-align: center;
+  height: 20vh;
+}
+.hiddenFileInputContainer > img {
+  height: inherit;
   border: 1px solid white;
   border-radius: 50%;
 }
-div.hiddenFileInputContainter {
-  position: relative;
-  display: inline-block;
-  height: 20vh;
-  width: auto;
-  overflow: hidden;
-  vertical-align: middle;
-  cursor: pointer;
-}
 input[type='file'].hidden {
+  cursor: pointer;
   margin: 0;
   padding: 0;
   position: absolute;
@@ -36,7 +23,6 @@ input[type='file'].hidden {
   right: 0;
   height: 100%;
   font-size: 50px;
-  cursor: pointer;
   opacity: 0;
   -moz-opacity: 0;
   filter: Alpha(Opacity=0);
