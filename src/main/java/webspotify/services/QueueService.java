@@ -86,6 +86,11 @@ public class QueueService {
       return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
     }
   }
+  @Transactional
+  public Response clearQueue(SongQueue queue) {
+    queue.clearQueue();
+    return ResponseUtilities.emptySuccess();
+  }
 
   @Transactional
   public Response getNextSong(SongQueue queue) {
