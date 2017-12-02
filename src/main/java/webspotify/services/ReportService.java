@@ -107,9 +107,26 @@ public class ReportService {
   @Transactional
   public Response handleUnban(Viewable target) {
     if(target instanceof Song){
+      Song song = (Song) target;
+      if(song.getAlbum().isBanned()){
+        return ResponseUtilities.filledFailure(ConfigConstants.CANNOT_UNBAN_SONG);
+      }
+      song.setBanned(false);
+      songRepository.save(song);
     } else if (target instanceof User){
+      target.setBanned(false);
+      userRepository.save((User) target);
     } else if (target instanceof Album){
+      Album album = (Album) target;
+      List<Song> songs = album.getSongsInAlbum();
+      album.setBanned(false);
+      for (Song song: songs){
+        song.setBanned(false);
+      }
+      albumRepository.save(album);
     } else if (target instanceof Playlist){
+      target.setBanned(false);
+      playlistRepository.save((Playlist) target);
     } else {
       return ResponseUtilities.filledFailure(ConfigConstants.ENTITY_TYPE_NO_EXIST);
     }
@@ -119,9 +136,17 @@ public class ReportService {
   @Transactional
   public Response handleRemove(Viewable target) {
     if(target instanceof Song){
+      songRepository.delete((Song) target);
     } else if (target instanceof User){
+      User user = (User) target;
+      user.setIsDeleted(true);
+      userRepository.save(user);
     } else if (target instanceof Album){
+      Album album = (Album) target;
+      songRepository.delete(album.getSongsInAlbum());
+      albumRepository.delete(album);
     } else if (target instanceof Playlist){
+      playlistRepository.delete((Playlist) target);
     } else {
       return ResponseUtilities.filledFailure(ConfigConstants.ENTITY_TYPE_NO_EXIST);
     }
@@ -171,5 +196,6 @@ public class ReportService {
     } else {
       return null;
     }
+    return toHandle;
   }
 }
