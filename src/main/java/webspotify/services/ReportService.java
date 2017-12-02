@@ -142,9 +142,7 @@ public class ReportService {
       user.setIsDeleted(true);
       userRepository.save(user);
     } else if (target instanceof Album){
-      Album album = (Album) target;
-      songRepository.delete(album.getSongsInAlbum());
-      albumRepository.delete(album);
+      albumRepository.delete((Album) target);
     } else if (target instanceof Playlist){
       playlistRepository.delete((Playlist) target);
     } else {
