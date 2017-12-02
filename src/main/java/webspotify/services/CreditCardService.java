@@ -28,7 +28,6 @@ public class CreditCardService {
 
   @Transactional
   public Response postCreditCard(User user, CreditCardCreateRequest creditCard) {
-    System.out.println("luhns check: " + luhnsCheck(creditCard.getCCN()));
     if(!verifyValidCC(creditCard.getType(), creditCard.getCCN(), creditCard.getCVN()) || !luhnsCheck(creditCard.getCCN())) {
       return ResponseUtilities.filledFailure(ConfigConstants.INVALID_CC);
     }
@@ -50,15 +49,9 @@ public class CreditCardService {
     int position = 0;
     int sum = 0;
     CCN /= 10;
-    System.out.println("checkDigit: " + checkDigit);
-    System.out.println("position: " + position);
-    System.out.println("sum: " + sum);
-    System.out.println("CCN: " + CCN);
     while(CCN > 0) {
       int digit = (int)(CCN % 10);
-      System.out.println("digit: " + digit);
       if(position % 2 == 0) {
-        System.out.println("Doubling");
         digit *= 2;
         if(digit >= 10) {
           sum += 1 + digit % 10;
@@ -72,9 +65,6 @@ public class CreditCardService {
       }
       position++;
       CCN /= 10;
-      System.out.println("sum: " + sum);
-      System.out.println("position: " + position);
-      System.out.println("CCN: " + CCN);
     }
     if((sum * 9) % 10 == checkDigit) {
       return true;
