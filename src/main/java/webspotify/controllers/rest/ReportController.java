@@ -7,6 +7,7 @@ import webspotify.config.ConfigConstants;
 import webspotify.models.administration.Report;
 import webspotify.models.users.Administrator;
 import webspotify.models.users.User;
+import webspotify.posts.HandleReportRequest;
 import webspotify.services.ReportService;
 import webspotify.types.SpotifyObjectEnum;
 import webspotify.utilities.Response;
@@ -45,10 +46,8 @@ public class ReportController {
     return reportService.getReport(reportId);
   }
 
-  @PostMapping("/banContent/{reportId}/{contentType}/{contentId}")
-  public Response handleReport(@PathVariable final int reportId,
-                              @PathVariable final SpotifyObjectEnum contentType,
-                              @PathVariable final int contentId,
+  @PostMapping("/handle")
+  public Response handleReport(@RequestBody HandleReportRequest request,
                               HttpSession session) {
     User u = SessionUtilities.getUserFromSession(session);
     if (u == null) {
@@ -56,7 +55,7 @@ public class ReportController {
     } else if (!(u instanceof Administrator)){
       return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
     }
-    return reportService.banContent(contentType, contentId, reportId);
+    return reportService.handleReport(request);
   }
 
   @PostMapping("/create")
