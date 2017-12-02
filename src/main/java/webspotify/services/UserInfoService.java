@@ -5,6 +5,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import webspotify.config.ConfigConstants;
+import webspotify.models.users.Administrator;
 import webspotify.models.users.User;
 import webspotify.repo.UserRepository;
 import webspotify.responses.UserInfoResponse;
@@ -19,7 +20,7 @@ public class UserInfoService {
 
   @Transactional
   public Response setName(int userId, String userName) {
-    if(userRepository.exists(userId)){
+    if(!userRepository.exists(userId)){
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_FOUND);
     }
     User user = userRepository.findOne(userId);
@@ -43,7 +44,7 @@ public class UserInfoService {
 
   @Transactional
   public Response setEmail(int userId, String email) {
-    if(userRepository.exists(userId)){
+    if(!userRepository.exists(userId)){
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_FOUND);
     }
     User user = userRepository.findOne(userId);
@@ -89,8 +90,12 @@ public class UserInfoService {
   }
   
   @Transactional
-  public Response getUserInfo (User user) {
-    User userToCheck = userRepository.findOne(user.getId());
-    return ResponseUtilities.filledSuccess(new UserInfoResponse(userToCheck));
+  public Response getUserInfo (User user, int userId) {
+    User userToCheck = userRepository.findOne(userId);
+    if(user.equals(userToCheck) || user instanceof Administrator) {
+      return ResponseUtilities.filledSuccess(new UserInfoResponse(userToCheck));
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
+    }
   }
 }

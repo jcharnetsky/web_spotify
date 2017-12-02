@@ -6,11 +6,11 @@
         <h3>Edit Email</h3>
         <div class="center_align">
           <form novalidate class="center_align">
-            <input type="text" ng-model="edit_email" placeholder="{{user.email}}"/>
+            <input type="text" ng-model="edit_email" placeholder="{{editingUser.email}}"/>
           </form>
           <div id="spotify_buttons">
             <a href="#" data-dismiss="modal">Close</a>
-            <a href="#" ng-click="editEmail(user.id)">Edit</a>
+            <a href="#" ng-click="editEmail(editingUser.id)">Edit</a>
           </div>
         </div>
       </div>

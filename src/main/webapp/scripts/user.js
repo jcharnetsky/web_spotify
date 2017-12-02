@@ -138,7 +138,7 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
       then(function(response) {
         if (!response.data.error) {
           displayErrorPopup("Username changed successfully.", $scope, $parse, $compile);
-          $scope.user.name = $scope.edit_username;
+          $scope.editingUser.name = $scope.edit_username;
           $("#editUsernameModal").modal("hide");
           return;
         }
@@ -160,7 +160,7 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
       then(function(response) {
         if (!response.data.error) {
           displayErrorPopup("Email changed successfully.", $scope, $parse, $compile);
-          $scope.user.email = $scope.edit_email;
+          $scope.editingUser.email = $scope.edit_email;
           $("#editEmailModal").modal("hide");
           return;
         }
