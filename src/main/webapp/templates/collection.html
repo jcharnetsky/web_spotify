@@ -6,10 +6,10 @@
 		<div class="collection_data">
 			<div class="content_title">{{collection.title}}</div>
 			<div>
-				Created by: {{collection.ownerName}} /
+				Created by: {{collection.ownerName}}<br>
 				{{collection.songCount}} songs /
 				Duration: {{collection.songTrackLength| secondsToMss}} /
-				Genre: {{collection.genre}}
+				Genre: {{collection.genre | toLowercase}}
 			</div>
 			<div ng-show="collection.followerCount"> Followers: {{collection.followerCount}} </div>
 			<div> {{collection.description}}</div>
@@ -23,15 +23,18 @@
 					ng-click="followCollection(collection.id)">Save</a>
 				<a href="#" ng-show="user.id != collection.ownerId && collection.followed && collection.album"
 					ng-click="unfollowCollection(collection.id)">Unsave</a>
-				<a href="#" ng-click="openDialog('editPlaylist.html')"
-					ng-show="((user.id == collection.ownerId) || user.admin) && collection.playlist">Edit</a>
-				<a href="#" ng-click="openDialog('editAlbum.html')"
-					ng-show="((user.id == collection.ownerId) || user.admin) && collection.album">Edit</a>
-				<a href="#" ng-show="(user.id == collection.ownerId) || user.admin" ng-click="deletePlaylist(collection.id)">Delete</a>
-				<a href="#" ng-show="collection.album"
-					ng-click="openCreateReport('Album', collection.title, collection.id)">Report</a>
-				<a href="#" ng-show="collection.playlist"
-					 ng-click="openCreateReport('Playlist', collection.title, collection.id)">Report</a>
+				<a href="#" class="options_button" onclick="toggleDropdown(0)" style="display: inline;">...</a>
+				<span id="other_dropdown_0" class="dropdown_content">
+					<a href="#" ng-click="openDialog('editPlaylist.html')"
+						 ng-show="((user.id == collection.ownerId) || user.admin) && collection.playlist">Edit</a>
+					<a href="#" ng-click="openDialog('editAlbum.html')"
+						 ng-show="((user.id == collection.ownerId) || user.admin) && collection.album">Edit</a>
+					<a href="#" ng-show="(user.id == collection.ownerId) || user.admin" ng-click="deletePlaylist(collection.id)">Delete</a>
+					<a href="#" ng-show="collection.album" ng-controller="ManageCtrl"
+						 ng-click="openCreateReport('Album', collection.title, collection.id)">Report</a>
+					<a href="#" ng-show="collection.playlist" ng-controller="ManageCtrl"
+						 ng-click="openCreateReport('Playlist', collection.title, collection.id)">Report</a>
+        </span>
 		  </div>
 		</div>
 	</div>

@@ -64,7 +64,7 @@ a:hover, a:active, #current {
 #spotify_buttons {
   margin-top: 30px;
 }
-#spotify_buttons a {
+#spotify_buttons > a {
   background-color: #181818;
   color: white;
   border: 2px solid white;
@@ -73,7 +73,7 @@ a:hover, a:active, #current {
   margin-left: 10px;
   margin-right: 10px;
 }
-#spotify_buttons a:hover {
+#spotify_buttons > a:hover {
   color: gray;
   text-decoration: none;
 }

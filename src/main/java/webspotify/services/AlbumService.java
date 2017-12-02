@@ -117,7 +117,8 @@ public class AlbumService {
   }
 
   @Transactional
-  public Response deleteAlbum(User user, int albumId) {
+  public Response deleteAlbum(int userId, int albumId) {
+    User user = userRepo.findOne(userId);
     if (albumRepo.exists(albumId)) {
       Album album = albumRepo.findOne(albumId);
       if (album.getOwner().equals(user) && album.getOwner() instanceof Artist) {
