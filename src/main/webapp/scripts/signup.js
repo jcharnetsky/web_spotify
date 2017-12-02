@@ -14,6 +14,7 @@ angular.module('signup_module', []).controller('SignupCtrl', function ($http, $s
     $http.post('/api/users/register', data, {headers: {'Content-Type':'application/json'}}).
     then(function(response) {
       if(!response.data.error) {
+        displayErrorPopup("Account created!", $scope, $parse, $compile);
         window.location = location.origin;
         return;
       }

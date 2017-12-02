@@ -52,12 +52,14 @@ angular.module('web_spotify').controller('ManageCtrl', function($scope, $http, $
       "description": $scope.report_description,
       "entityType": $scope.report.type.toUpperCase(),
       "reportType": reportType,
-      "entityId": $scope.report.entityId
+      "entityId": $scope.report.entityId,
+      "completed": false
     })
     $http.post("/api/reports/create", data, {headers: {"Content-Type": "application/json"}}).
       then(function (response) {
         if (!response.data.error) {
           displayErrorPopup("Successfully made report", $scope, $parse, $compile);
+          $("#createReportModal").modal("hide");
           return;
         }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
@@ -80,7 +82,8 @@ angular.module('web_spotify').controller('ManageCtrl', function($scope, $http, $
       $http.post('/api/users/register', data, {headers: {'Content-Type':'application/json'}}).
       then(function(response) {
         if(!response.data.error) {
-          window.location = location.origin;
+          displayErrorPopup("Account created!", $scope, $parse, $compile);
+          $("#createAccountModal").hide();
           return;
         }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);

@@ -66,7 +66,8 @@
 									 ng-click="addSongToPlaylist(song.id, playlist.id)">
 									Add to {{playlist.title}}
 								</a>
-								<a href="#" ng-click="openCreateReport('Song', song.trackName, song.id)">Report</a>
+								<a href="#" ng-controller="ManageCtrl"
+                   ng-click="openCreateReport('Song', song.trackName, song.id)">Report</a>
 							</div>
 						</div>
 						<span class="play_button_spacer">
