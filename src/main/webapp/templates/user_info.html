@@ -7,27 +7,29 @@
     <input ng-controller="UploadCtrl" class="hidden"
            type="file" id="editImage" accept="image/*">
   </div>
-  <div id="info_user">
-    <div>
-      <span id="info_username">{{editingUser.name}}</span>
-      <a href="#" ng-click="openDialog('editUsername.html')">edit</a>
-    </div>
-    <div>
-      <span id="info_email">{{editingUser.email}}</span>
-      <a href="#" ng-click = "openDialog('editEmail.html')">edit</a>
-    </div>
-    <div>
-      <a href="#" ng-click = "openDialog('editPassword.html')">Change Password</a>
-    </div>
+  <div class="info_table_container">
+    <table class="info_table">
+      <tr>
+        <td>Name:</td>
+        <td>{{editingUser.name}}</td>
+        <td><a href="#" ng-click="openDialog('editUsername.html')">Edit</a></td>
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td>{{editingUser.email}}</td>
+        <td><a href="#" ng-click = "openDialog('editEmail.html')">Edit</a></td>
+      </tr>
+      <tr ng-show="user.artist">
+        <td>About:</td>
+        <td>{{editingUser.artist.about}}</td>
+        <td><a href="#">Edit</a></td>
+      </tr>
+    </table>
   </div>
-  <div id="info_about" ng-show="user.artist">
-    <span id="info_about_header">About</span>
-    <a href="#">edit</a>
-    <span id="info_about_text">{{editingUser.artist.about}}</span>
-  </div>
-  <div id="spotify_buttons">
+  <div class="center_align" id="spotify_buttons">
+    <a href="#" ng-click = "openDialog('editPassword.html')">Change Password</a>
     <a href="#"
        ng-click="deleteAccount(user.id)"
-       id="info_delete_button">Delete Account</a>
+       id="info_delete_button"><strong>Delete Account</strong></a>
   </div>
 </div>

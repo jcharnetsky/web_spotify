@@ -137,8 +137,11 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
         "userId": userId}}).
       then(function(response) {
         if (!response.data.error) {
-          displayErrorPopup("Username changed successfully.", $scope, $parse, $compile);
           $scope.editingUser.name = $scope.edit_username;
+          if($scope.editingUser.id == $scope.user.id){
+            $scope.user.name = $scope.edit_username;
+          }
+          displayErrorPopup("Username changed successfully.", $scope, $parse, $compile);
           $("#editUsernameModal").modal("hide");
           return;
         }

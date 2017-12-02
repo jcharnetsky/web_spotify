@@ -1,9 +1,3 @@
-#info_user {
-  margin-left: 1vw;
-  margin-top: 0;
-  display: inline-block;
-  vertical-align: top;
-}
 .hiddenFileInputContainer {
   position: relative;
   text-align: center;
@@ -27,33 +21,22 @@ input[type='file'].hidden {
   -moz-opacity: 0;
   filter: Alpha(Opacity=0);
 }
-#info_username {
-  font-size: 300%;
-  color: #FFFFFF;
-  font-weight: 700;
+.info_table_container {
+  position: relative;
+  text-align: center;
 }
-#info_email {
-  font-size: 200%;
-  color: #FFFFFF;
-  font-weight: 700;
-}
-#info_about {
+.info_table {
   display: inline-block;
-  width: 30vw;
-  padding-left: 10vw;
+  margin-top: 2vw;
 }
-#info_about_header {
-  display: inline-block;
-  font-size: 300%;
-  color: #FFFFFF;
-  font-weight: 700;
+.info_table td {
+  padding-top: 10px;
+  padding-right: 20px;
+  font-size: 110%;
+  font-weight: 600;
+  color: #ffffff;
+  border-bottom: 1px solid white;
 }
-#info_about_text {
-  display: inline-block;
-  font-size: 120%;
-  width: 30vw;
-}
-#info_delete_button {
-  font-weight: 800;
-  color: #c42121;
+#info_delete_button, #info_delete_button:hover {
+  color: #c42121 !important;
 }

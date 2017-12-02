@@ -9,7 +9,10 @@ angular.module("web_spotify").controller("UploadCtrl", function ($scope, $http, 
     $http.post("/upload/image/user", imageData,
       {headers: {"Content-Type": "application/json"}}).then(function(response) {
         if(!response.data.error){
-          $scope.user.imageLink = response.data.content;
+          $scope.editingUser.imageLink = response.data.content;
+          if($scope.editingUser.id == $scope.user.id){
+            $scope.user.imageLink = response.data.content;
+          }
           displayErrorPopup("Successfully changed image", $scope, $parse, $compile);
           return;
         }
