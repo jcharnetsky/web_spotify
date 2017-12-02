@@ -100,12 +100,11 @@ public class ReportService {
       return ResponseUtilities.filledFailure(ConfigConstants.ENTITY_NO_EXIST);
     }
     ReportTypes reportType = request.getReportType();
-    if(reportType == ReportTypes.BAN){
+    if(reportType == ReportTypes.BAN) {
       toHandle.setBanned(true);
-    } else if(reportType == ReportTypes.REMOVE){
-      toHandle.setBanned(true);
-    } else if (reportType == ReportTypes.ADD){
-      toHandle.setBanned(false);
+    } else if(reportType == ReportTypes.REMOVE) {
+    } else if (reportType == ReportTypes.ADD) {
+    } else if (reportType == ReportTypes.UNBAN) {
     } else {
       return ResponseUtilities.filledFailure(ConfigConstants.REPORT_TYPE_NO_EXIST);
     }

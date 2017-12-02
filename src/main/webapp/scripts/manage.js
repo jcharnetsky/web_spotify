@@ -17,6 +17,8 @@ angular.module('web_spotify').controller('ManageCtrl', function($scope, $http, $
       then(function (response) {
         if (!response.data.error) {
           displayErrorPopup("Report handled.", $scope, $parse, $compile);
+          report = getArrayElementWithId($scope.api_reports_all, reportId);
+          report = null;
           return;
         }
         $("#manageReportModal").modal("hide");
@@ -26,14 +28,20 @@ angular.module('web_spotify').controller('ManageCtrl', function($scope, $http, $
     });
   }
   $scope.ignoreReport = function (reportId){
-    $http.post("/api/reports/ban/"+type+"/"+id, {headers: {"Content-Type": "application/json"}}).
+    $http.post("/api/reports/ignore/"+reportId, {headers: {"Content-Type": "application/json"}}).
       then(function (response) {
         if (!response.data.error) {
           displayErrorPopup("Report ignored", $scope, $parse, $compile);
+          for(var i = 0;i < $scope.api_reports_all.length;i++){
+            if($scope.api_reports_all[i].id == reportId){
+              $scope.api_reports_all.splice(i,1);
+            }
+          }
+          $("#manageReportModal").modal("hide");
           return;
         }
-        $("#manageReportModal").modal("hide");
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+        $("#manageReportModal").modal("hide");
       }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });

@@ -6,7 +6,7 @@ import webspotify.types.SpotifyObjectEnum;
 
 public class ReportResponse {
 
-  private Integer reportId;
+  private Integer id;
   private String creatorName;
   private Integer entityId;
   private String subject;
@@ -15,7 +15,7 @@ public class ReportResponse {
   private SpotifyObjectEnum entityType;
 
   public ReportResponse(Report report){
-    this.reportId = report.getReportId();
+    this.id = report.getReportId();
     this.creatorName = report.getCreator().getName();
     this.entityId = report.getEntityId();
     this.subject = report.getSubject();
@@ -24,12 +24,12 @@ public class ReportResponse {
     this.entityType = report.getEntityType();
   }
 
-  public Integer getReportId() {
-    return reportId;
+  public Integer getId() {
+    return id;
   }
 
-  public void setReportId(Integer reportId) {
-    this.reportId = reportId;
+  public void setId(Integer id) {
+    this.id = id;
   }
 
   public String getCreatorName() {
