@@ -35,6 +35,9 @@ public class ConfigConstants {
   public static String COULD_NOT_CREATE = "Content could not be created.";
   public static String COULD_NOT_CHANGE = "Content could not be changed.";
 
+  public static String CANNOT_UNBAN_SONG = "Cannot unban a song who's album is banned.";
+  public static String CANNOT_ADD_SONG = "Cannot add a song who's album is banned.";
+
   public static String EMAIL_EXIST = "Desired Email already exists.";
   public static String PASSWORDS_NO_MATCH = "The passwords did not match.";
   public static String EMAIL_NO_EXIST = "An account with that Email does not exist.";

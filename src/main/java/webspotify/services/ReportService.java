@@ -82,9 +82,22 @@ public class ReportService {
   @Transactional
   public Response handleBan(Viewable target) {
     if(target instanceof Song){
+      target.setBanned(true);
+      songRepository.save((Song) target);
     } else if (target instanceof User){
+      target.setBanned(true);
+      userRepository.save((User) target);
     } else if (target instanceof Album){
+      Album album = (Album) target;
+      List<Song> songs = album.getSongsInAlbum();
+      album.setBanned(true);
+      for (Song song: songs){
+        song.setBanned(true);
+      }
+      albumRepository.save(album);
     } else if (target instanceof Playlist){
+      target.setBanned(true);
+      playlistRepository.save((Playlist) target);
     } else {
       return ResponseUtilities.filledFailure(ConfigConstants.ENTITY_TYPE_NO_EXIST);
     }
@@ -118,9 +131,24 @@ public class ReportService {
   @Transactional
   public Response handleAdd(Viewable target) {
     if(target instanceof Song){
+      Song song = (Song) target;
+      if(song.getAlbum().isBanned()){
+       return ResponseUtilities.filledFailure(ConfigConstants.CANNOT_ADD_SONG);
+      }
+      song.setBanned(false);
+      songRepository.save(song);
     } else if (target instanceof User){
+      return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_ADD);
     } else if (target instanceof Album){
+      Album album = (Album) target;
+      List<Song> songs = album.getSongsInAlbum();
+      album.setBanned(false);
+      for (Song song: songs){
+        song.setBanned(false);
+      }
+      albumRepository.save(album);
     } else if (target instanceof Playlist){
+      return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_ADD);
     } else {
       return ResponseUtilities.filledFailure(ConfigConstants.ENTITY_TYPE_NO_EXIST);
     }
