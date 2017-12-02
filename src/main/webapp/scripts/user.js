@@ -202,7 +202,6 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
         displayErrorPopup(err, $scope, $parse, $compile);
       });
   }
-  
   $scope.toggleIsPublic = function() {
     $http.post("/api/users/info/set/public", null, {headers: {"Content-Type": "application/json"}}).
       then(function(response) {

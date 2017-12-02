@@ -5,7 +5,9 @@
   <div id="info_user_header">
     <div class="hiddenFileInputContainter">
       <img id="info_user_img" alt="user_img" ng-src="{{user.imageLink}}">
-      <input type="file" name="fileUp" class="hidden" accept="image/*">
+      <input ng-controller="UploadCtrl"
+             type="file" name="fileUp"
+             class="hidden"  id="editImage" accept="image/*">
     </div>
     <div id="info_user">
       <div>

@@ -139,9 +139,7 @@ public abstract class SongCollection implements Serializable, Viewable {
 
   @Override
   public int hashCode() {
-    int hash = 5;
-    hash = 53 * hash + (this.id != null ? this.id.hashCode() : 0);
-    return hash;
+    return 53 * 5 + (this.id != null ? this.id.hashCode() : 0);
   }
 
   @Override
