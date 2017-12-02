@@ -4,11 +4,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import webspotify.config.ConfigConstants;
+import webspotify.interfaces.Viewable;
 import webspotify.models.administration.Report;
 import webspotify.models.users.Administrator;
 import webspotify.models.users.User;
 import webspotify.posts.HandleReportRequest;
 import webspotify.services.ReportService;
+import webspotify.types.ReportTypes;
 import webspotify.types.SpotifyObjectEnum;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
@@ -55,7 +57,22 @@ public class ReportController {
     } else if (!(u instanceof Administrator)){
       return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
     }
-    return reportService.handleReport(request);
+    Viewable reportTarget = reportService.getReportEntity(request);
+    if(reportTarget == null){
+      return ResponseUtilities.filledFailure(ConfigConstants.ENTITY_NO_EXIST);
+    }
+    ReportTypes reportType = request.getReportType();
+    if (reportType == ReportTypes.BAN){
+      return reportService.handleBan(reportTarget);
+    } else if (reportType == ReportTypes.UNBAN){
+      return reportService.handleUnban(reportTarget);
+    } else if (reportType == ReportTypes.REMOVE){
+      return reportService.handleRemove(reportTarget);
+    } else if (reportType == ReportTypes.ADD){
+      return reportService.handleAdd(reportTarget);
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.REPORT_TYPE_NO_EXIST);
+    }
   }
 
   @PostMapping("/create")

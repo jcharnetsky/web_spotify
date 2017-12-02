@@ -80,9 +80,56 @@ public class ReportService {
   }
 
   @Transactional
-  public Response handleReport(HandleReportRequest request) {
+  public Response handleBan(Viewable target) {
+    if(target instanceof Song){
+    } else if (target instanceof User){
+    } else if (target instanceof Album){
+    } else if (target instanceof Playlist){
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.ENTITY_TYPE_NO_EXIST);
+    }
+    return ResponseUtilities.emptySuccess();
+  }
+
+  @Transactional
+  public Response handleUnban(Viewable target) {
+    if(target instanceof Song){
+    } else if (target instanceof User){
+    } else if (target instanceof Album){
+    } else if (target instanceof Playlist){
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.ENTITY_TYPE_NO_EXIST);
+    }
+    return ResponseUtilities.emptySuccess();
+  }
+
+  @Transactional
+  public Response handleRemove(Viewable target) {
+    if(target instanceof Song){
+    } else if (target instanceof User){
+    } else if (target instanceof Album){
+    } else if (target instanceof Playlist){
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.ENTITY_TYPE_NO_EXIST);
+    }
+    return ResponseUtilities.emptySuccess();
+  }
+
+  @Transactional
+  public Response handleAdd(Viewable target) {
+    if(target instanceof Song){
+    } else if (target instanceof User){
+    } else if (target instanceof Album){
+    } else if (target instanceof Playlist){
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.ENTITY_TYPE_NO_EXIST);
+    }
+    return ResponseUtilities.emptySuccess();
+  }
+
+  public Viewable getReportEntity(HandleReportRequest request){
     if(!reportRepository.exists(request.getReportId())){
-      return ResponseUtilities.filledFailure(ConfigConstants.REPORT_NO_EXIST);
+      return null;
     }
     Viewable toHandle;
     if(request.getEntityType() == SpotifyObjectEnum.SONG){
@@ -94,29 +141,7 @@ public class ReportService {
     } else if(request.getEntityType() == SpotifyObjectEnum.PLAYLIST) {
       toHandle = playlistRepository.findOne(request.getEntityId());
     } else {
-      return ResponseUtilities.filledFailure(ConfigConstants.ENTITY_TYPE_NO_EXIST);
+      return null;
     }
-    if(toHandle == null){
-      return ResponseUtilities.filledFailure(ConfigConstants.ENTITY_NO_EXIST);
-    }
-    ReportTypes reportType = request.getReportType();
-    if(reportType == ReportTypes.BAN) {
-      toHandle.setBanned(true);
-    } else if(reportType == ReportTypes.REMOVE) {
-    } else if (reportType == ReportTypes.ADD) {
-    } else if (reportType == ReportTypes.UNBAN) {
-    } else {
-      return ResponseUtilities.filledFailure(ConfigConstants.REPORT_TYPE_NO_EXIST);
-    }
-    if(toHandle instanceof Song){
-      songRepository.save((Song) toHandle);
-    } else if (toHandle instanceof User){
-      userRepository.save((User) toHandle);
-    } else if (toHandle instanceof Album){
-      albumRepository.save((Album) toHandle);
-    } else if (toHandle instanceof Playlist){
-      playlistRepository.save((Playlist) toHandle);
-    }
-    return ResponseUtilities.emptySuccess();
   }
 }
