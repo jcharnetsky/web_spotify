@@ -3,17 +3,17 @@
 <link href="css/button.css" rel="stylesheet"/>
 <div ng-controller= "UserCtrl">
   <div class="hiddenFileInputContainer">
-    <img id="info_user_img" alt="user_img" ng-src="{{user.imageLink}}">
+    <img id="info_user_img" alt="user_img" ng-src="{{editingUser.imageLink}}">
     <input ng-controller="UploadCtrl" class="hidden"
            type="file" id="editImage" accept="image/*">
   </div>
   <div id="info_user">
     <div>
-      <span id="info_username">{{user.name}}</span>
+      <span id="info_username">{{editingUser.name}}</span>
       <a href="#" ng-click="openDialog('editUsername.html')">edit</a>
     </div>
     <div>
-      <span id="info_email">{{user.email}}</span>
+      <span id="info_email">{{editingUser.email}}</span>
       <a href="#" ng-click = "openDialog('editEmail.html')">edit</a>
     </div>
     <div>
@@ -23,7 +23,7 @@
   <div id="info_about" ng-show="user.artist">
     <span id="info_about_header">About</span>
     <a href="#">edit</a>
-    <span id="info_about_text">{{user.artist.about}}</span>
+    <span id="info_about_text">{{editingUser.artist.about}}</span>
   </div>
   <div id="spotify_buttons">
     <a href="#"

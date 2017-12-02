@@ -34,6 +34,18 @@ angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function ($
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
+  $scope.loadUserInfoPage = function () {
+    $http.get(location.origin + "/api/users/info/get/userInfo").then(function (response) {
+      if (!response.data.error) {
+        $parse("editingUser").assign($scope, response.data.content);
+        $compile(loadToDiv("main", "user_info.html"))($scope);
+      } else {
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }
+    }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  }
   $scope.order='songId';
   $scope.setOrder = function (i) {
     if (i == 0) {

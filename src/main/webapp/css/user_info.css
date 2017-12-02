@@ -54,6 +54,6 @@ input[type='file'].hidden {
   width: 30vw;
 }
 #info_delete_button {
-  font-weight: 800 !important;
-  color: #c42121 !important;
+  font-weight: 800;
+  color: #c42121;
 }
