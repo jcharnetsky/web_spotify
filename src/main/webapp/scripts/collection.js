@@ -253,6 +253,12 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
     $http.get(location.origin + "/api/songs/saved/add/" + songId).
       then(function (response) {
         if (!response.data.error) {
+          if($scope.results && $scope.results.songs){
+            song = getArrayElementWithId($scope.results.songs, songId)
+            if(song != null){
+              song.saved = true;
+            }
+          }
           if($scope.collection.songs){
             song = getArrayElementWithId($scope.collection.songs, songId)
             if(song != null){
@@ -281,6 +287,12 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
     $http.get(location.origin + "/api/songs/saved/rem/" + songId).
       then(function (response) {
         if (!response.data.error) {
+          if($scope.results && $scope.results.songs){
+            song = getArrayElementWithId($scope.results.songs, songId)
+            if(song != null){
+              song.saved = false;
+            }
+          }
           if($scope.collection.songs){
             song = getArrayElementWithId($scope.collection.songs, songId)
             if(song != null){

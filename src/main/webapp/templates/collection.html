@@ -24,7 +24,7 @@
 				<a href="#" ng-show="user.id != collection.ownerId && collection.followed && collection.album"
 					ng-click="unfollowCollection(collection.id)">Unsave</a>
 				<a href="#" ng-click="openDialog('editPlaylist.html')"
-					ng-show="((user.id == collection.ownerId) || (user.id == user.admin)) && collection.playlist">Edit</a>
+					ng-show="((user.id == collection.ownerId) || user.admin) && collection.playlist">Edit</a>
 				<a href="#" ng-click="openDialog('editAlbum.html')"
 					ng-show="((user.id == collection.ownerId) || user.admin) && collection.album">Edit</a>
 				<a href="#" ng-show="(user.id == collection.ownerId) || user.admin" ng-click="deletePlaylist(collection.id)">Delete</a>

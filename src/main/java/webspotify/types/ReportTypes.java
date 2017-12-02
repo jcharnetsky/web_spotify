@@ -5,5 +5,6 @@ package webspotify.types;
  */
 public enum ReportTypes {
   BAN,
-  REMOVE
+  REMOVE,
+  ADD
 }

@@ -14,7 +14,9 @@
           </form>
           <div id="spotify_buttons">
             <a href="#" data-dismiss="modal">Close</a>
-            <a href="#" ng-click="createReport(report.entityId)">Submit</a>
+            <a href="#" ng-click="createReport('BAN')">Request Ban</a>
+            <a href="#" ng-click="createReport('REMOVE')"
+               ng-show="user.artist || user.admin">Request Removal</a>
           </div>
         </div>
       </div>

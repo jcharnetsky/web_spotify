@@ -46,11 +46,12 @@ angular.module('web_spotify').controller('ManageCtrl', function($scope, $http, $
     response.data.content.entityId = id;
     handleJSONResponse(response, "modal_dialog", "createReport.html", "report", $compile, $parse, $scope);
   }
-  $scope.createReport = function() {
+  $scope.createReport = function(reportType) {
     data = JSON.stringify({
       "subject": $scope.report_subject,
       "description": $scope.report_description,
       "entityType": $scope.report.type.toUpperCase(),
+      "reportType": reportType,
       "entityId": $scope.report.entityId
     })
     $http.post("/api/reports/create", data, {headers: {"Content-Type": "application/json"}}).
