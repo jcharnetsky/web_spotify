@@ -105,7 +105,7 @@ public class AlbumService {
       albumToAdd.setOwner(owner);
       try {
         albumRepo.save(albumToAdd);
-        ((Artist) user).getOwnedAlbums().add(albumToAdd);
+        ((Artist) owner).getOwnedAlbums().add(albumToAdd);
         return ResponseUtilities.emptySuccess();
       } catch (Exception e) {
         System.out.println(e);

@@ -16,9 +16,13 @@ angular.module('web_spotify').controller('ManageCtrl', function($scope, $http, $
     $http.post("/api/reports/handle/", data, {headers: {"Content-Type": "application/json"}}).
       then(function (response) {
         if (!response.data.error) {
+          for(var i = 0;i < $scope.api_reports_all.length;i++){
+            if($scope.api_reports_all[i].id == reportId){
+              $scope.api_reports_all.splice(i,1);
+            }
+          }
           displayErrorPopup("Report handled.", $scope, $parse, $compile);
-          report = getArrayElementWithId($scope.api_reports_all, reportId);
-          report = null;
+          $("#manageReportModal").modal("hide");
           return;
         }
         $("#manageReportModal").modal("hide");
@@ -31,12 +35,12 @@ angular.module('web_spotify').controller('ManageCtrl', function($scope, $http, $
     $http.post("/api/reports/ignore/"+reportId, {headers: {"Content-Type": "application/json"}}).
       then(function (response) {
         if (!response.data.error) {
-          displayErrorPopup("Report ignored", $scope, $parse, $compile);
           for(var i = 0;i < $scope.api_reports_all.length;i++){
             if($scope.api_reports_all[i].id == reportId){
               $scope.api_reports_all.splice(i,1);
             }
           }
+          displayErrorPopup("Report ignored", $scope, $parse, $compile);
           $("#manageReportModal").modal("hide");
           return;
         }

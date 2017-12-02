@@ -123,7 +123,7 @@ public class PlaylistService {
     playlistToAdd.setOwner(owner);
     try {
       playlistRepo.save(playlistToAdd);
-      user.getOwnedPlaylists().add(playlistToAdd);
+      owner.getOwnedPlaylists().add(playlistToAdd);
       return ResponseUtilities.filledSuccess(new PlaylistInfoResponse(playlistToAdd));
     } catch (Exception e) {
       System.out.println(e);
