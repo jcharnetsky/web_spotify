@@ -40,6 +40,8 @@ public class ConfigConstants {
   public static String INVALID_EMAIL = "Email is invalid.";
   public static String UNKNOWN_TYPE = "The object type is either invalid or unknown.";
 
+  public static String INVALID_CC = "Invalid credit card.";
+
   public static String USER_SESSION = "User";
   public static int MAX_SEARCH_ELEMENT_COUNT = 4;
   public static String AUDIO_TYPE = "audio/mpeg3";

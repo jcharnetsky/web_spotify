@@ -9,7 +9,9 @@
          	<br> <input type="text" ng-model="cardholder_name" placeholder="Cardholder Name"/> </br>
          	<br> <input type="text" ng-model="card_number" placeholder="Credit Card Number"/> </br>
             <br> <input type="text" ng-model="card_cvn" placeholder="CVN"/> </br>
-            <br> Card Expiration:
+            <br> <input type = text" ng-model="card_zip" placeholder="Zip Code"/> </br>
+            <br> 
+            Card Expiration:
 			<select id="expire_month">
 			    <option value=''>Month</option>
 			    <option value='01'>01</option>
@@ -41,7 +43,16 @@
 			    <option value='30'>30</option>
 			</select>
 			</br>
-			<br> <input type = text" ng-model="card_zip" placeholder="Zip Code"/> </br>
+			<br>
+			Card Type:
+			<select id="card_type">
+				<option value=''>Type</option>
+			    <option value='VISA'>Visa</option>
+			    <option value='MASTERCARD'>MasterCard</option>
+			    <option value='AMEX'>Amex</option>
+			    <option value='DISCOVER'>Discover</option>
+			</select>
+			</br>
           </form>
           <div id="spotify_buttons">
             <a href="#" data-dismiss="modal">I don't want Premium Status.</a>

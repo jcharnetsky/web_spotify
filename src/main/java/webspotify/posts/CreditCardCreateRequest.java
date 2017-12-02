@@ -1,5 +1,7 @@
 package webspotify.posts;
 
+import webspotify.types.CreditCardType;
+
 /**
  *
  * @author Cardinals
@@ -11,6 +13,7 @@ public class CreditCardCreateRequest {
   private String cardholderName;
   private Integer zipCode;
   private String expDate;
+  private CreditCardType type;
 
   public CreditCardCreateRequest() {
   }
@@ -53,5 +56,13 @@ public class CreditCardCreateRequest {
   
   public void setExpDate(String expDate) {
     this.expDate = expDate;
+  }
+  
+  public CreditCardType getType() {
+    return type;
+  }
+  
+  public void setType(CreditCardType type) {
+    this.type = type;
   }
 }

@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.ManyToOne;
 
 import webspotify.models.users.User;
+import webspotify.types.CreditCardType;
 
 /**
  * @author Cardinals
@@ -36,6 +39,9 @@ public class CreditCard implements Serializable {
   private Integer zipCode;
   @Column(name = "expdate", nullable = false)
   private String expDate;
+  @Enumerated(EnumType.ORDINAL)
+  @Column(name = "type", nullable = false)
+  private CreditCardType type;
 
   public CreditCard() {
   }
@@ -94,6 +100,14 @@ public class CreditCard implements Serializable {
   
   public void setExpDate(String expDate) {
     this.expDate = expDate;
+  }
+  
+  public CreditCardType getType() {
+    return type;
+  }
+  
+  public void setType(CreditCardType type) {
+    this.type = type;
   }
   
   @Override
