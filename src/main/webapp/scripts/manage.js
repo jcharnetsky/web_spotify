@@ -7,10 +7,18 @@ angular.module('web_spotify').controller('ManageCtrl', function($scope, $http, $
     });
   }
   $scope.handleReport = function (reportType, reportId, type, id){
-    $http.post("/api/ban/banContent/"+reportId+"/"+type+"/"+id, {headers: {"Content-Type": "application/json"}}).
+    data = JSON.stringify({
+      "reportType" : reportType,
+      "reportId" : reportId,
+      "entityType" : type,
+      "entityId" : id
+    });
+    $http.post("/api/reports/handle/", data, {headers: {"Content-Type": "application/json"}}).
       then(function (response) {
         if (!response.data.error) {
-          displayErrorPopup("Successfully banned content", $scope, $parse, $compile);
+          displayErrorPopup("Report handled.", $scope, $parse, $compile);
+          report = getArrayElementWithId($scope.api_reports_all, reportId);
+          report = null;
           return;
         }
         $("#manageReportModal").modal("hide");
@@ -20,14 +28,20 @@ angular.module('web_spotify').controller('ManageCtrl', function($scope, $http, $
     });
   }
   $scope.ignoreReport = function (reportId){
-    $http.post("/api/reports/ban/"+type+"/"+id, {headers: {"Content-Type": "application/json"}}).
+    $http.post("/api/reports/ignore/"+reportId, {headers: {"Content-Type": "application/json"}}).
       then(function (response) {
         if (!response.data.error) {
           displayErrorPopup("Report ignored", $scope, $parse, $compile);
+          for(var i = 0;i < $scope.api_reports_all.length;i++){
+            if($scope.api_reports_all[i].id == reportId){
+              $scope.api_reports_all.splice(i,1);
+            }
+          }
+          $("#manageReportModal").modal("hide");
           return;
         }
-        $("#manageReportModal").modal("hide");
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+        $("#manageReportModal").modal("hide");
       }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });
@@ -46,17 +60,20 @@ angular.module('web_spotify').controller('ManageCtrl', function($scope, $http, $
     response.data.content.entityId = id;
     handleJSONResponse(response, "modal_dialog", "createReport.html", "report", $compile, $parse, $scope);
   }
-  $scope.createReport = function() {
+  $scope.createReport = function(reportType) {
     data = JSON.stringify({
       "subject": $scope.report_subject,
       "description": $scope.report_description,
       "entityType": $scope.report.type.toUpperCase(),
-      "entityId": $scope.report.entityId
+      "reportType": reportType,
+      "entityId": $scope.report.entityId,
+      "completed": false
     })
     $http.post("/api/reports/create", data, {headers: {"Content-Type": "application/json"}}).
       then(function (response) {
         if (!response.data.error) {
           displayErrorPopup("Successfully made report", $scope, $parse, $compile);
+          $("#createReportModal").modal("hide");
           return;
         }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
@@ -79,7 +96,8 @@ angular.module('web_spotify').controller('ManageCtrl', function($scope, $http, $
       $http.post('/api/users/register', data, {headers: {'Content-Type':'application/json'}}).
       then(function(response) {
         if(!response.data.error) {
-          window.location = location.origin;
+          displayErrorPopup("Account created!", $scope, $parse, $compile);
+          $("#createAccountModal").hide();
           return;
         }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
