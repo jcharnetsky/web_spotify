@@ -80,7 +80,7 @@ public class QueueService {
   public Response addAlbumToQueue(SongQueue queue, int albumId) {
     if (albumRepository.exists(albumId)) {
       Album albumToAdd = albumRepository.findOne(albumId);
-      queue.enqueueCollection(albumToAdd.getSongs());
+      queue.enqueueCollection(albumToAdd.getSongsInAlbum());
       return ResponseUtilities.emptySuccess();
     } else {
       return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
