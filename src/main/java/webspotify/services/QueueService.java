@@ -133,4 +133,11 @@ public class QueueService {
     queue.setRepeatType(RepeatType.NONE);
     return ResponseUtilities.emptySuccess();
   }
+
+  @Transactional
+  public Response addSavedSongsToQueue(User user, SongQueue queue) {
+    User userToChange = userRepository.findOne(user.getId());
+    queue.enqueueCollection(userToChange.getSavedSongs());
+    return ResponseUtilities.emptySuccess();
+  }
 }
