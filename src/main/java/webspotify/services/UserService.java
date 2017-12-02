@@ -108,14 +108,11 @@ public class UserService {
         if(newUser.getType() == UserTypes.PREMIUM){
           userRepository.save(user);
         } else if(newUser.getType() == UserTypes.ARTIST){
-          Artist artist = new Artist(user);
-          userRepository.save(artist);
+          userRepository.save(new Artist(user));
         } else if(newUser.getType() == UserTypes.ADVERTISER){
-          Advertiser advertiser = new Advertiser(user);
-          userRepository.save(advertiser);
+          userRepository.save(new Advertiser(user));
         } else if(newUser.getType() == UserTypes.ADMINISTRATOR){
-          Administrator administrator = new Administrator(user);
-          userRepository.save(administrator);
+          userRepository.save(new Administrator(user));
         }
       } else {
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);

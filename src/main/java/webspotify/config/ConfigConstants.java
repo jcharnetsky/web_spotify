@@ -16,6 +16,9 @@ public class ConfigConstants {
   public static String SONG_NO_EXIST = "Desired song does not exist.";
   public static String ARTIST_NO_EXIST = "Artist does not exist.";
   public static String REPORT_NO_EXIST = "Report does not exist.";
+  public static String REPORT_TYPE_NO_EXIST = "The given Report type does not exist.";
+  public static String ENTITY_TYPE_NO_EXIST = "There is no entities of the given type.";
+  public static String ENTITY_NO_EXIST = "The given entity does not exist.";
 
   public static String ACCESS_DENIED = "User does not have access to this content.";
   public static String NOT_AN_ARTIST = "Only artists can access this.";
@@ -31,6 +34,11 @@ public class ConfigConstants {
   public static String COULD_NOT_REM = "Content could not be removed.";
   public static String COULD_NOT_CREATE = "Content could not be created.";
   public static String COULD_NOT_CHANGE = "Content could not be changed.";
+
+  public static String CANNOT_UNBAN_SONG = "Cannot unban a song who's album is banned.";
+  public static String CANNOT_ADD_SONG = "Cannot add a song who's album is banned.";
+  public static String ORIGINALLY_BANNED = "This entity was previously banned." +
+                                           " The originaly reason for banning is as follows: \n";
 
   public static String EMAIL_EXIST = "Desired Email already exists.";
   public static String PASSWORDS_NO_MATCH = "The passwords did not match.";

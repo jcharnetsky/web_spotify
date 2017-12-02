@@ -134,19 +134,12 @@ public abstract class SongCollection implements Serializable, Viewable {
   }
 
   public String getImage(){
-    File imageFile = new File("src/main/webapp/images/collections/" + this.getId() + ".jpg");
-    if(imageFile.exists()){
-      return "../images/collections/" + this.getId() + ".jpg";
-    } else {
-      return "../images/logo.png";
-    }
+    return "../images/logo.png";
   }
 
   @Override
   public int hashCode() {
-    int hash = 5;
-    hash = 53 * hash + (this.id != null ? this.id.hashCode() : 0);
-    return hash;
+    return 53 * 5 + (this.id != null ? this.id.hashCode() : 0);
   }
 
   @Override

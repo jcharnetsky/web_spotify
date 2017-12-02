@@ -7,10 +7,25 @@ angular.module('web_spotify').controller('ManageCtrl', function($scope, $http, $
     });
   }
   $scope.handleReport = function (reportType, reportId, type, id){
-    $http.post("/api/ban/banContent/"+reportId+"/"+type+"/"+id, {headers: {"Content-Type": "application/json"}}).
+    data = JSON.stringify({
+      "reportType" : reportType,
+      "reportId" : reportId,
+      "entityType" : type,
+      "entityId" : id
+    });
+    $http.post("/api/reports/handle/", data, {headers: {"Content-Type": "application/json"}}).
       then(function (response) {
         if (!response.data.error) {
-          displayErrorPopup("Successfully banned content", $scope, $parse, $compile);
+          for(var i = 0;i < $scope.api_reports_all.length;i++){
+            if($scope.api_reports_all[i].id == reportId){
+              $scope.api_reports_all.splice(i,1);
+            }
+          }
+          if(response.data.content){
+            $scope.api_reports_all.push(response.data.content);
+          }
+          displayErrorPopup("Report handled.", $scope, $parse, $compile);
+          $("#manageReportModal").modal("hide");
           return;
         }
         $("#manageReportModal").modal("hide");
@@ -20,14 +35,20 @@ angular.module('web_spotify').controller('ManageCtrl', function($scope, $http, $
     });
   }
   $scope.ignoreReport = function (reportId){
-    $http.post("/api/reports/ban/"+type+"/"+id, {headers: {"Content-Type": "application/json"}}).
+    $http.post("/api/reports/ignore/"+reportId, {headers: {"Content-Type": "application/json"}}).
       then(function (response) {
         if (!response.data.error) {
+          for(var i = 0;i < $scope.api_reports_all.length;i++){
+            if($scope.api_reports_all[i].id == reportId){
+              $scope.api_reports_all.splice(i,1);
+            }
+          }
           displayErrorPopup("Report ignored", $scope, $parse, $compile);
+          $("#manageReportModal").modal("hide");
           return;
         }
-        $("#manageReportModal").modal("hide");
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+        $("#manageReportModal").modal("hide");
       }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });

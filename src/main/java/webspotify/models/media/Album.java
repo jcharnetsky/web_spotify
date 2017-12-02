@@ -1,5 +1,6 @@
 package webspotify.models.media;
 
+import java.io.File;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,5 +25,15 @@ public class Album extends SongCollection {
 
   public void setSongsInAlbum(List<Song> songsInAlbum) {
     this.songsInAlbum = songsInAlbum;
+  }
+
+  @Override
+  public String getImage(){
+    File imageFile = new File("src/main/webapp/images/albums/" + this.getId() + ".jpg");
+    if(imageFile.exists()){
+      return "../images/albums/" + this.getId() + ".jpg";
+    } else {
+      return "../images/logo.png";
+    }
   }
 }

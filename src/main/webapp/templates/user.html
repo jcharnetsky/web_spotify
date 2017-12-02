@@ -17,9 +17,14 @@
         <a ng-show="visitingUser.followed && visitingUser.id != user.id"
            ng-click="unfollowUser(visitingUser.id)" href="#"
            class="Follow" href="#">Unfollow</a>
-        <a ng-show="user.admin" ng-click="deleteAccount(visitingUser.id)" href="#">Delete User</a>
-        <a ng-click="openCreateReport('User', visitingUser.name, visitingUser.id)" href="#">
-          Report</a>
+        <a href="#" class="options_button" onclick="toggleDropdown(0)" style="display: inline;">...</a>
+        <span id="other_dropdown_0" class="dropdown_content">
+          <a ng-show="user.admin" ng-click="deleteAccount(visitingUser.id)" href="#">Delete User</a>
+          <a ng-click="openCreateReport('User', visitingUser.name, visitingUser.id)" href="#"
+             ng-controller="ManageCtrl">
+            Report</a>
+          <a ng-show="user.admin" ng-click="loadUserInfoPage(visitingUser.id)" href="#">Edit User</a>
+        </span>
       </div>
     </div>
   </div>

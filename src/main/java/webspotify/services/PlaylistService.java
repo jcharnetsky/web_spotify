@@ -123,7 +123,7 @@ public class PlaylistService {
     playlistToAdd.setOwner(owner);
     try {
       playlistRepo.save(playlistToAdd);
-      user.getOwnedPlaylists().add(playlistToAdd);
+      owner.getOwnedPlaylists().add(playlistToAdd);
       return ResponseUtilities.filledSuccess(new PlaylistInfoResponse(playlistToAdd));
     } catch (Exception e) {
       System.out.println(e);
@@ -161,7 +161,8 @@ public class PlaylistService {
   }
 
   @Transactional
-  public Response deletePlaylist(User user, int playlistId) {
+  public Response deletePlaylist(int  userId, int playlistId) {
+    User user = userRepo.findOne(userId);
     if (playlistRepo.exists(playlistId)) {
       Playlist playlist = playlistRepo.findOne(playlistId);
       if (playlist.getOwner().equals(user)) {

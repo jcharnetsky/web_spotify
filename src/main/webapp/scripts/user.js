@@ -146,8 +146,11 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
         "userId": userId}}).
       then(function(response) {
         if (!response.data.error) {
+          $scope.editingUser.name = $scope.edit_username;
+          if($scope.editingUser.id == $scope.user.id){
+            $scope.user.name = $scope.edit_username;
+          }
           displayErrorPopup("Username changed successfully.", $scope, $parse, $compile);
-          $scope.user.name = $scope.edit_username;
           $("#editUsernameModal").modal("hide");
           return;
         }
@@ -169,7 +172,7 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
       then(function(response) {
         if (!response.data.error) {
           displayErrorPopup("Email changed successfully.", $scope, $parse, $compile);
-          $scope.user.email = $scope.edit_email;
+          $scope.editingUser.email = $scope.edit_email;
           $("#editEmailModal").modal("hide");
           return;
         }
@@ -211,7 +214,6 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
         displayErrorPopup(err, $scope, $parse, $compile);
       });
   }
-  
   $scope.toggleIsPublic = function() {
     $http.post("/api/users/info/set/public", null, {headers: {"Content-Type": "application/json"}}).
       then(function(response) {

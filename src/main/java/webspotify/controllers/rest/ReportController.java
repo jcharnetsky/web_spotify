@@ -4,10 +4,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import webspotify.config.ConfigConstants;
+import webspotify.interfaces.Viewable;
 import webspotify.models.administration.Report;
 import webspotify.models.users.Administrator;
 import webspotify.models.users.User;
+import webspotify.posts.HandleReportRequest;
+import webspotify.responses.ReportResponse;
 import webspotify.services.ReportService;
+import webspotify.types.ReportTypes;
 import webspotify.types.SpotifyObjectEnum;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
@@ -45,18 +49,42 @@ public class ReportController {
     return reportService.getReport(reportId);
   }
 
-  @PostMapping("/banContent/{reportId}/{contentType}/{contentId}")
-  public Response handleReport(@PathVariable final int reportId,
-                              @PathVariable final SpotifyObjectEnum contentType,
-                              @PathVariable final int contentId,
+  @PostMapping("/handle")
+  public Response handleReport(@RequestBody HandleReportRequest request,
                               HttpSession session) {
-    User u = SessionUtilities.getUserFromSession(session);
-    if (u == null) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
-    } else if (!(u instanceof Administrator)){
+    } else if (!(user instanceof Administrator)) {
       return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
     }
-    return reportService.banContent(contentType, contentId, reportId);
+    Viewable reportTarget = reportService.getReportEntity(request);
+    if (reportTarget == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.ENTITY_NO_EXIST);
+    }
+    ReportTypes reportType = request.getReportType();
+    Report newReport = null;
+    try {
+      if (reportType == ReportTypes.BAN) {
+        newReport = reportService.handleBan((Administrator) user, request.getReportId(), reportTarget);
+      } else if (reportType == ReportTypes.UNBAN) {
+        reportService.handleUnban(reportTarget);
+      } else if (reportType == ReportTypes.REMOVE) {
+        reportService.handleRemove(reportTarget);
+      } else if (reportType == ReportTypes.ADD) {
+        reportService.handleAdd(reportTarget);
+      } else {
+        return ResponseUtilities.filledFailure(ConfigConstants.REPORT_TYPE_NO_EXIST);
+      }
+    } catch (Exception e) {
+      return ResponseUtilities.filledFailure(e.getMessage());
+    }
+    reportService.completeReport(request.getReportId());
+    if (newReport != null) {
+      return ResponseUtilities.filledSuccess(new ReportResponse(newReport));
+    } else {
+      return ResponseUtilities.emptySuccess();
+    }
   }
 
   @PostMapping("/create")

@@ -112,6 +112,4 @@ public class Report implements Serializable {
   }
 
   public boolean getCompleted() { return this.completed; }
-
-  public void setCompleted(boolean completed) { this.completed = completed; }
 }

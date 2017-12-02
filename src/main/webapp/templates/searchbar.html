@@ -10,7 +10,7 @@
     </li>
     <li id="top_options" ng-controller="MainCtrl">
       <img class="user_img" alt="user-image" ng-src="{{user.imageLink}}">
-      <a href="#" id="username" ng-click="loadTemplateAndJSON('main', 'user_info.html', 'api/users/info/get/userInfo')">
+      <a href="#" id="username" ng-click="loadUserInfoPage(user.id)">
         {{user.name}}</a>
       <span class="options_col">
         <span class="options_button" onclick="toggleDropdown(-1)" style="display: inline;">&#x25BC;</span>
