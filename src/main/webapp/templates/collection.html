@@ -14,7 +14,7 @@
 			<div ng-show="collection.followerCount"> Followers: {{collection.followerCount}} </div>
 			<div> {{collection.description}}</div>
 			<div id="spotify_buttons" ng-controller="CollectionCtrl">
-				<a href="#" ng-controller="PlaybarCtrl">Play</a>
+				<a href="#" ng-controller="PlaybarCtrl" ng-click="addCollectionToQueue(collection.id, collection.playlist)">Play</a>
 				<a href="#" ng-show="user.id != collection.ownerId && !collection.followed && collection.playlist"
 					ng-click="followCollection(collection.id)">Follow</a>
 				<a href="#" ng-show="user.id != collection.ownerId && collection.followed && collection.playlist"
@@ -24,10 +24,10 @@
 				<a href="#" ng-show="user.id != collection.ownerId && collection.followed && collection.album"
 					ng-click="unfollowCollection(collection.id)">Unsave</a>
 				<a href="#" ng-click="openDialog('editPlaylist.html')"
-					ng-show="(user.id == collection.ownerId || user.admin) && collection.playlist">Edit</a>
+					ng-show="((user.id == collection.ownerId) || user.admin) && collection.playlist">Edit</a>
 				<a href="#" ng-click="openDialog('editAlbum.html')"
-					ng-show="(user.id == collection.ownerId || user.admin) && collection.album)">Edit</a>
-				<a href="#" ng-show="user.id == collection.ownerId || user.admin" ng-click="deletePlaylist(collection.id)">Delete</a>
+					ng-show="((user.id == collection.ownerId) || user.admin) && collection.album">Edit</a>
+				<a href="#" ng-show="(user.id == collection.ownerId) || user.admin" ng-click="deletePlaylist(collection.id)">Delete</a>
 				<a href="#" ng-show="collection.album"
 					ng-click="openCreateReport('Album', collection.title, collection.id)">Report</a>
 				<a href="#" ng-show="collection.playlist"
@@ -66,7 +66,8 @@
 									 ng-click="addSongToPlaylist(song.id, playlist.id)">
 									Add to {{playlist.title}}
 								</a>
-								<a href="#" ng-click="openCreateReport('Song', song.trackName, song.id)">Report</a>
+								<a href="#" ng-controller="ManageCtrl"
+                   ng-click="openCreateReport('Song', song.trackName, song.id)">Report</a>
 							</div>
 						</div>
 						<span class="play_button_spacer">

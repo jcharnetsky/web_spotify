@@ -33,7 +33,7 @@ public class UserController {
     try {
       user = userService.loginUser(email, password);
     } catch (LoginException e){
-      return ResponseUtilities.filledFailure(ConfigConstants.INVALID_CREDENTIALS);
+      return ResponseUtilities.filledFailure(e.getMessage());
     }
     session.setAttribute(ConfigConstants.USER_SESSION, user);
     session.setAttribute(ConfigConstants.QUEUE_SESSION, userService.getSongQueue());
