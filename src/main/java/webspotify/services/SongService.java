@@ -1,14 +1,11 @@
 package webspotify.services;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import webspotify.config.ConfigConstants;
-import webspotify.models.media.Album;
 import webspotify.models.media.Song;
 import webspotify.models.users.Artist;
 import webspotify.models.users.User;
@@ -27,6 +24,9 @@ public class SongService {
 
   @Autowired
   UserRepository userRepository;
+  
+  @Autowired
+  RoyaltyService royaltyService;
 
   @Transactional
   public Response getSong(final int songId) {
@@ -96,7 +96,12 @@ public class SongService {
       Artist artistToCheck = (Artist) userRepository.findOne(artist.getId());
       Song song = songRepository.findOne(songId);
       if (artistToCheck.getOwnedSongs().contains(song)) {
-        return ResponseUtilities.filledSuccess(new ManageSongInfoResponse(song));
+        Double monthlyRevenue = royaltyService.getMonthlySongRevenue(song);
+        Double allRevenue = royaltyService.getTotalSongRevenue(song);
+        ManageSongInfoResponse toReturn = new ManageSongInfoResponse(song);
+        toReturn.setAllRoyalties(allRevenue);
+        toReturn.setMonthRoyalties(monthlyRevenue);
+        return ResponseUtilities.filledSuccess(toReturn);
       } else {
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
       }

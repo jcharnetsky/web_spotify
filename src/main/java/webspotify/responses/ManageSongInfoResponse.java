@@ -11,13 +11,19 @@ public class ManageSongInfoResponse {
   private Double monthRoyalties;
   private Double allRoyalties;
 
-  public ManageSongInfoResponse(Song song){
+  public ManageSongInfoResponse(Song song) {
     this.id = song.getId();
     this.title = song.getTitle();
     this.monthListens = song.getMontlyListens();
     this.allListens = song.getTotalListens();
     this.monthRoyalties = 100.00;
     this.allRoyalties = 100.00;
+  }
+
+  public ManageSongInfoResponse(Song song, Double monthRoyalties, Double allRoyalties) {
+    this(song);
+    this.setAllRoyalties(allRoyalties);
+    this.setMonthRoyalties(monthRoyalties);
   }
 
   public Integer getId() {

@@ -31,7 +31,7 @@ public class Song implements Serializable, Viewable {
   @Column(name = "TotalListens", nullable = false)
   private Integer totalListens;
   @Column(name = "MonthlyListens", nullable = false)
-  private Integer montlyListens;
+  private Integer monthlyListens;
   @Column(name = "hasAudio", nullable = false)
   private Boolean hasAudio;
   @ManyToOne
@@ -44,13 +44,13 @@ public class Song implements Serializable, Viewable {
   public Song() {
     super();
     this.totalListens = 0;
-    this.montlyListens = 0;
+    this.monthlyListens = 0;
     this.hasAudio = false;
   }
 
   public void incrementListens() {
     this.totalListens++;
-    this.montlyListens++;
+    this.monthlyListens++;
   }
 
   public Integer getId() {
@@ -126,11 +126,11 @@ public class Song implements Serializable, Viewable {
   }
 
   public Integer getMontlyListens() {
-    return montlyListens;
+    return monthlyListens;
   }
 
   public void setMontlyListens(Integer montlyListens) {
-    this.montlyListens = montlyListens;
+    this.monthlyListens = montlyListens;
   }
 
   public Boolean getHasAudio() {

@@ -43,4 +43,8 @@ public class ConfigConstants {
   public static String USER_SESSION = "User";
   public static int MAX_SEARCH_ELEMENT_COUNT = 4;
   public static String AUDIO_TYPE = "audio/mpeg3";
+  
+  public static double MONTHLY_SUBSCRIPTION_COST = 10.00;
+  public static double PCT_GIVEN_TO_ARTISTS = 0.4;
+  public static double PCT_GIVEN_TO_PROFITS = 1.0 - PCT_GIVEN_TO_ARTISTS;
 }
