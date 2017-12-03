@@ -108,7 +108,6 @@ public class AlbumService {
         ((Artist) owner).getOwnedAlbums().add(albumToAdd);
         return ResponseUtilities.emptySuccess();
       } catch (Exception e) {
-        System.out.println(e);
         return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_CREATE);
       }
     } else {

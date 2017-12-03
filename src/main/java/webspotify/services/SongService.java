@@ -116,6 +116,16 @@ public class SongService {
   }
 
   @Transactional
+  public Response getLyrics(int songId){
+    Song song = songRepository.findOne(songId);
+    if (song != null && !song.isBanned()) {
+      return ResponseUtilities.filledSuccess(song.getLyrics());
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.SONG_NO_EXIST);
+    }
+  }
+
+  @Transactional
   public Response setLyrics(User user, int songId, String lyrics) {
     Song song = songRepository.findOne(songId);
     if (song != null && !song.isBanned()) {

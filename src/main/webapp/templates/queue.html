@@ -43,7 +43,7 @@
             </span>
             <a href="#" ng-show="!song.saved" ng-click="saveSong(song.id)" class="add_button">+</a>
             <a href="#" ng-show="song.saved" ng-click="unsaveSong(song.id)" class="add_button">-</a>
-            <a>{{song.trackName}}</a>
+            <a href="#" ng-click="loadLyrics(song.id)">{{song.trackName}}</a>
             <a href="#"ng-controller="UserCtrl"
             ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
             <span>{{song.trackLength | secondsToMss}}</span>
@@ -80,7 +80,7 @@
             </span>
             <a href="#" ng-show="!song.saved" ng-click="saveSong(song.id)" class="add_button">+</a>
             <a href="#" ng-show="song.saved" ng-click="unsaveSong(song.id)" class="add_button">-</a>
-            <a>{{song.trackName}}</a>
+            <a href="#" ng-click="loadLyrics(song.id)">{{song.trackName}}</a>
             <a href="#"ng-controller="UserCtrl"
             ng-click="loadUser(song.artist.id)">{{song.artist.stageName}}</a>
             <span>{{song.trackLength | secondsToMss}}</span>

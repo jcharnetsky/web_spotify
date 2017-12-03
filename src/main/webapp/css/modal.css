@@ -24,3 +24,11 @@
   top: 25%;
 }
 
+.lyrics_box {
+  margin-left: 10%;
+  margin-right: 10%;
+  height: 40vh;
+  width: 80%;
+  overflow: auto;
+}
+

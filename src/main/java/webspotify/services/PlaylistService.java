@@ -126,7 +126,6 @@ public class PlaylistService {
       owner.getOwnedPlaylists().add(playlistToAdd);
       return ResponseUtilities.filledSuccess(new PlaylistInfoResponse(playlistToAdd));
     } catch (Exception e) {
-      System.out.println(e);
       return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_CREATE);
     }
   }

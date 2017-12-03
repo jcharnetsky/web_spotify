@@ -1,0 +1,19 @@
+<link href="css/modal.css" rel="stylesheet"/>
+<div class="modal fade" id="lyricModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3>Lyrics</h3>
+        <div class="center_align">
+          <div class="lyrics_box center_align">
+            {{lyrics}}
+          </div>
+          <div id="spotify_buttons">
+            <a href="#" data-dismiss="modal">Close</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>$('#lyricModal').modal();</script>

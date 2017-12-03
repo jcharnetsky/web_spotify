@@ -24,6 +24,17 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
   $scope.loadBrowse = function () {
     $compile(loadToDiv("main", "navigateContent.html"))($scope);
   }
+  $scope.loadLyrics = function (songId){
+    $http.get("/api/songs/get/lyrics/"+songId).then(function (response){
+      if(!response.data.error){
+        handleJSONResponse(response, "modal_dialog", "lyrics.html", "lyrics", $compile, $parse, $scope);
+        return;
+      }
+      displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+    }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  }
   $scope.getPlaylists = function () {
     $http.get(location.origin + "/api/playlists/").then(function (response) {
       handleJSONResponse(response, "playlists", "null", "playlists", $compile, $parse, $scope);
