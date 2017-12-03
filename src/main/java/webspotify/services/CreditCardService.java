@@ -90,8 +90,9 @@ public class CreditCardService {
         return true;
       }
       regex = "(222[1-9]|22[3-6][0-9]|2270)";
+      String start = ccn.substring(0, 4);
       pattern = Pattern.compile(regex);
-      matcher = pattern.matcher(ccn);
+      matcher = pattern.matcher(start);
       if(matcher.find() && length == 16) {
         return true;
       }
@@ -105,7 +106,6 @@ public class CreditCardService {
     }
     if(type == CreditCardType.DISCOVER && cvnLength == 3) {
       String start = ccn.substring(0, 4);
-      System.out.println("start: " + start);
       if(start.equals("6011") && length >= 16 && length <= 19) {
         return true;
       }
