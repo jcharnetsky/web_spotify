@@ -27,13 +27,11 @@ public class Artist extends User {
   @Column(name = "about")
   private String about;
   @ElementCollection
-  @LazyCollection(LazyCollectionOption.FALSE)
   @CollectionTable(name = "artistAliases")
   private List<String> aliases;
   @ManyToMany(mappedBy = "artists")
   private Set<Concert> concerts;
   @OneToMany(mappedBy = "owner")
-//  @Fetch(value = FetchMode.SUBSELECT)
   private Set<Album> ownedAlbums;
   @OneToMany(mappedBy = "owner")
   @Fetch(value = FetchMode.SUBSELECT)
