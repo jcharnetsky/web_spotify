@@ -68,9 +68,18 @@ public class SongController {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
-    } else if (!(user instanceof Artist)){
+    } else if (!(user instanceof Artist)) {
       return ResponseUtilities.filledFailure(ConfigConstants.NOT_AN_ARTIST);
     }
     return songService.getManageSongInfo((Artist) user, songId);
+  }
+
+  @PostMapping("/set/{songId}/lyrics")
+  public Response addSongLyrics(@PathVariable final int songId, @RequestBody String lyrics, HttpSession session) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    }
+    return songService.setLyrics(user, songId, lyrics);
   }
 }

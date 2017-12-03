@@ -9,6 +9,7 @@ import webspotify.config.ConfigConstants;
 import webspotify.models.media.Song;
 import webspotify.models.users.Artist;
 import webspotify.models.users.User;
+import webspotify.repo.ArtistRepository;
 import webspotify.repo.SongRepository;
 import webspotify.repo.UserRepository;
 import webspotify.responses.ManageSongInfoResponse;
@@ -24,7 +25,10 @@ public class SongService {
 
   @Autowired
   UserRepository userRepository;
-  
+
+  @Autowired
+  ArtistRepository artistRepository;
+
   @Autowired
   RoyaltyService royaltyService;
 
@@ -107,6 +111,27 @@ public class SongService {
       }
     } else {
       return ResponseUtilities.filledFailure(ConfigConstants.SONG_NO_EXIST);
+    }
+  }
+
+  @Transactional
+  public Response setLyrics(User user, int songId, String lyrics) {
+    if (artistRepository.exists(user.getId())) {
+      Artist artist = artistRepository.findOne(user.getId());
+      if (songRepository.exists(songId)) {
+        Song song = songRepository.findOne(songId);
+        if (!song.isBanned() && song.getOwner().equals(artist)) {
+          song.setLyrics(lyrics);
+          songRepository.save(song);
+          return ResponseUtilities.emptySuccess();
+        } else {
+          return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
+        }
+      } else {
+        return ResponseUtilities.filledFailure(ConfigConstants.SONG_NO_EXIST);
+      }
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
     }
   }
 }
