@@ -1,12 +1,20 @@
 package webspotify.services;
 
+import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import webspotify.config.ConfigConstants;
+import webspotify.models.administration.Report;
 import webspotify.models.media.Song;
+import webspotify.models.users.Artist;
+import webspotify.models.users.User;
+import webspotify.repo.ArtistRepository;
+import webspotify.repo.ReportRepository;
 import webspotify.repo.SongRepository;
 import webspotify.repo.UserRepository;
+import webspotify.types.ReportTypes;
+import webspotify.types.SpotifyObjectEnum;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
 
@@ -17,6 +25,10 @@ import webspotify.utilities.ResponseUtilities;
 @Service("royaltyService")
 public class RoyaltyService {
 
+  @Autowired
+  ReportRepository reportRepository;
+  @Autowired
+  ArtistRepository artistRepository;
   @Autowired
   UserRepository userRepository;
   @Autowired
@@ -29,7 +41,7 @@ public class RoyaltyService {
 
   public double getTotalSongRevenue(Song song) {
     int totalListens = songRepository.getTotalSongListens();
-    double pctSongOwnership = song.getTotalListens()/(totalListens*1.0);
+    double pctSongOwnership = song.getTotalListens() / (totalListens * 1.0);
     pctSongOwnership *= ConfigConstants.PCT_GIVEN_TO_ARTISTS;
     double totalRevenue = this.getMonthlyRevenue();
     return pctSongOwnership * totalRevenue;
@@ -37,10 +49,40 @@ public class RoyaltyService {
 
   public double getMonthlySongRevenue(Song song) {
     int totalMonthlyListens = songRepository.getMonthlySongListens();
-    double pctSongOwnership = song.getMontlyListens()/(totalMonthlyListens*1.0);
+    double pctSongOwnership = song.getMontlyListens() / (totalMonthlyListens * 1.0);
     pctSongOwnership *= ConfigConstants.PCT_GIVEN_TO_ARTISTS;
     double totalMonthlyRevenue = this.getMonthlyRevenue();
     return pctSongOwnership * totalMonthlyRevenue;
+  }
+
+  @Transactional
+  public Response endOfMonthRoyalty(User user) {
+    List<Artist> artists = artistRepository.findAll();
+    for (Artist artist : artists) {
+      String email = artist.getEmail();
+      String format = "Song %-24s Made $%.02f\n";
+      String build = "";
+      for (Song song : artist.getOwnedSongs()) {
+        if (song.getMontlyListens() > 0) {
+          build += String.format(format, song.getTitle(), getMonthlySongRevenue(song));
+          song.setMontlyListens(0);
+          songRepository.save(song);
+        }
+      }
+      if (!build.isEmpty()) {
+        Report createdReport = new Report();
+        createdReport.setSubject("Check Payout for Artist: " + artist.getName());
+        createdReport.setDescription(build);
+        createdReport.setReportType(ReportTypes.CHECK);
+        createdReport.setEntityType(SpotifyObjectEnum.USER);
+        createdReport.setEntityId(artist.getId());
+        createdReport.setCompleted(Boolean.FALSE);
+        createdReport.setCreator(userRepository.findOne(user.getId()));
+        reportRepository.save(createdReport);
+
+      }
+    }
+    return ResponseUtilities.emptySuccess();
   }
 
 }
