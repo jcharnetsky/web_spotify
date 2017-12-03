@@ -65,7 +65,7 @@ public class RoyaltyService {
       for (Song song : artist.getOwnedSongs()) {
         if (song.getMontlyListens() > 0) {
           build += String.format(format, song.getTitle(), getMonthlySongRevenue(song));
-          song.setMontlyListens(0);
+          song.setMonthlyListeners(0);
           songRepository.save(song);
         }
       }
