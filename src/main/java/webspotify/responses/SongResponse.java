@@ -15,6 +15,7 @@ public class SongResponse {
   private GenreType genre;
   private Integer albumId;
   private String albumName;
+  private String albumImage;
   private Boolean hasAudio;
   private boolean isSaved;
   private String lyrics;
@@ -27,6 +28,7 @@ public class SongResponse {
     this.genre = build.getGenre();
     this.albumId = build.getAlbum().getId();
     this.albumName = build.getAlbum().getTitle();
+    this.albumImage = build.getAlbum().getImage();
     this.hasAudio = build.getHasAudio();
     this.lyrics = build.getLyrics();
   }
@@ -117,5 +119,13 @@ public class SongResponse {
 
   public void setLyrics(String lyrics) {
     this.lyrics = lyrics;
+  }
+
+  public String getAlbumImage() {
+    return albumImage;
+  }
+
+  public void setAlbumImage(String albumImage) {
+    this.albumImage = albumImage;
   }
 }
