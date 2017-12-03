@@ -26,11 +26,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
   }
   $scope.loadLyrics = function (songId){
     $http.get("/api/songs/get/lyrics/"+songId).then(function (response){
-      if(!response.data.error){
-        handleJSONResponse(response, "modal_dialog", "lyrics.html", "lyrics", $compile, $parse, $scope);
-        return;
-      }
-      displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      handleJSONResponse(response, "modal_dialog", "lyrics.html", "lyrics", $compile, $parse, $scope);
     }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });

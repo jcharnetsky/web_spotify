@@ -26,6 +26,10 @@ function handleJSONResponse(response, div, URL, controllerPath, compile, parse, 
 }
 
 function displayErrorPopup(error, scope, parse, compile) {
+  if(!isLoggedIn(error)){
+    window.location = location.origin;
+    return;
+  }
   parse('error').assign(scope, error);
   node = loadToDiv('error_dialog', 'error.html');
   compile(node)(scope);
@@ -38,4 +42,8 @@ function getArrayElementWithId(array, id){
     }
   }
   return null;
+}
+
+function isLoggedIn(error){
+  return error !== "User is not logged in.";
 }
