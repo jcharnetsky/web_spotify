@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import webspotify.config.ConfigConstants;
 import webspotify.models.media.Song;
+import webspotify.models.users.Administrator;
 import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 import webspotify.repo.ArtistRepository;
@@ -116,22 +117,17 @@ public class SongService {
 
   @Transactional
   public Response setLyrics(User user, int songId, String lyrics) {
-    if (artistRepository.exists(user.getId())) {
-      Artist artist = artistRepository.findOne(user.getId());
-      if (songRepository.exists(songId)) {
-        Song song = songRepository.findOne(songId);
-        if (!song.isBanned() && song.getOwner().equals(artist)) {
-          song.setLyrics(lyrics);
-          songRepository.save(song);
-          return ResponseUtilities.emptySuccess();
-        } else {
-          return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
-        }
+    Song song = songRepository.findOne(songId);
+    if (song != null && !song.isBanned()) {
+      if (user instanceof Administrator || song.getOwner().equals(user)) {
+        song.setLyrics(lyrics);
+        songRepository.save(song);
+        return ResponseUtilities.emptySuccess();
       } else {
-        return ResponseUtilities.filledFailure(ConfigConstants.SONG_NO_EXIST);
+        return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
       }
     } else {
-      return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
+      return ResponseUtilities.filledFailure(ConfigConstants.SONG_NO_EXIST);
     }
   }
 }

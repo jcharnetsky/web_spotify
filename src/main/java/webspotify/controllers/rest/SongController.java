@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import webspotify.config.ConfigConstants;
 import webspotify.models.media.Song;
+import webspotify.models.users.Administrator;
 import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 import webspotify.responses.GenresResponse;
@@ -68,7 +69,7 @@ public class SongController {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
-    } else if (!(user instanceof Artist)) {
+    } else if (!(user instanceof Artist) || !(user instanceof Administrator)) {
       return ResponseUtilities.filledFailure(ConfigConstants.NOT_AN_ARTIST);
     }
     return songService.getManageSongInfo((Artist) user, songId);
