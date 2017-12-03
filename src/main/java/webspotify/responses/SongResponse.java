@@ -17,6 +17,7 @@ public class SongResponse {
   private String albumName;
   private Boolean hasAudio;
   private boolean isSaved;
+  private String lyrics;
 
   public SongResponse(Song build) {
     this.id = build.getId();
@@ -27,6 +28,7 @@ public class SongResponse {
     this.albumId = build.getAlbum().getId();
     this.albumName = build.getAlbum().getTitle();
     this.hasAudio = build.getHasAudio();
+    this.lyrics = build.getLyrics();
   }
 
   public Integer getId() {
@@ -99,5 +101,21 @@ public class SongResponse {
 
   public void setSaved(boolean saved) {
     isSaved = saved;
+  }
+
+  public boolean isIsSaved() {
+    return isSaved;
+  }
+
+  public void setIsSaved(boolean isSaved) {
+    this.isSaved = isSaved;
+  }
+
+  public String getLyrics() {
+    return lyrics;
+  }
+
+  public void setLyrics(String lyrics) {
+    this.lyrics = lyrics;
   }
 }

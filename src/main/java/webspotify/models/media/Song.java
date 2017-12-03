@@ -34,6 +34,8 @@ public class Song implements Serializable, Viewable {
   private Integer monthlyListens;
   @Column(name = "hasAudio", nullable = false)
   private Boolean hasAudio;
+  @Column(name = "lyrics", nullable = false)
+  private String lyrics;
   @ManyToOne
   @JoinColumn(name = "artistID", nullable = false)
   private Artist owner;
@@ -129,8 +131,8 @@ public class Song implements Serializable, Viewable {
     return monthlyListens;
   }
 
-  public void setMontlyListens(Integer montlyListens) {
-    this.monthlyListens = montlyListens;
+  public void setMonthlyListeners(Integer monthlyListeners) {
+    this.monthlyListens = monthlyListeners;
   }
 
   public Boolean getHasAudio() {
@@ -139,6 +141,22 @@ public class Song implements Serializable, Viewable {
 
   public void setHasAudio(Boolean hasAudio) {
     this.hasAudio = hasAudio;
+  }
+
+  public Integer getMonthlyListens() {
+    return monthlyListens;
+  }
+
+  public void setMonthlyListens(Integer monthlyListens) {
+    this.monthlyListens = monthlyListens;
+  }
+
+  public String getLyrics() {
+    return lyrics;
+  }
+
+  public void setLyrics(String lyrics) {
+    this.lyrics = lyrics;
   }
 
   @Override
