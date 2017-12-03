@@ -20,7 +20,6 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
       if (!response.data.error) {
         $scope.visitingUser.followed = true;
         $scope.visitingUser.followerCount = $scope.visitingUser.followerCount + 1;
-        displayErrorPopup("Successfully followed user", $scope, $parse, $compile);
         return;
       }
       displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
@@ -36,7 +35,6 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
         if (!response.data.error) {
           $scope.visitingUser.followed = false;
           $scope.visitingUser.followerCount = $scope.visitingUser.followerCount - 1;
-          displayErrorPopup("Successfully unfollowed user", $scope, $parse, $compile);
           return;
         }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
@@ -102,8 +100,7 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
               "premium": status}}).
             then(function(response) {
               if(!response.data.error) {
-                $scope.user.premium = !scope.user.premium
-                displayErrorPopup("Successfully upgraded premium status.", $scope, $parse, $compile)
+                $scope.user.premium = !scope.user.premium;
                 $("#upgradePremiumModal").modal("hide");
                 return;
               }
@@ -123,8 +120,7 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
         "premium": status}}).
       then(function(response) {
         if(!response.data.error) {
-          $scope.user.premium = !scope.user.premium
-          displayErrorPopup("Successfully downgraded premium status.", $scope, $parse, $compile)
+          $scope.user.premium = !$scope.user.premium;
           $("#downgradePremiumModal").modal("hide");
           return;
         }
@@ -149,7 +145,6 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
           if($scope.editingUser.id == $scope.user.id){
             $scope.user.name = $scope.edit_username;
           }
-          displayErrorPopup("Username changed successfully.", $scope, $parse, $compile);
           $("#editUsernameModal").modal("hide");
           return;
         }
@@ -170,7 +165,6 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
         "userId": $scope.userId}}).
       then(function(response) {
         if (!response.data.error) {
-          displayErrorPopup("Email changed successfully.", $scope, $parse, $compile);
           $scope.editingUser.email = $scope.edit_email;
           $("#editEmailModal").modal("hide");
           return;
@@ -189,7 +183,6 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
       params:{"about": $scope.edit_about, "userId": $scope.userId}}).
       then(function(response) {
         if (!response.data.error) {
-          displayErrorPopup("About changed successfully.", $scope, $parse, $compile);
           $scope.editingUser.artist.about = $scope.edit_about;
           $("#editAboutModal").modal("hide");
           return;
@@ -236,7 +229,6 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
       then(function(response) {
         if(!response.data.error) {
           $scope.user.public = !$scope.user.public;
-          displayErrorPopup("Successfully toggled public/private status.", $scope, $parse, $compile);
           return;
         }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
