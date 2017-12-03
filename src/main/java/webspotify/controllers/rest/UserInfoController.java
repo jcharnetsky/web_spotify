@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import webspotify.config.ConfigConstants;
+import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 import webspotify.responses.UserInfoResponse;
 import webspotify.services.UserInfoService;
@@ -71,7 +72,18 @@ public class UserInfoController {
     }
     return userInfoService.setEmail(user, userId, email);
   }
-
+  @PostMapping("/set/about")
+  public Response setAbout(@RequestParam String about, HttpSession session) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if(user == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    }
+    if(!(user instanceof Artist)) {
+      return ResponseUtilities.filledFailure(ConfigConstants.NOT_AN_ARTIST);
+    }
+    Artist artist = (Artist) user;
+    return userInfoService.setAbout(artist, about);
+  }
   @PostMapping("/set/premium")
   public Response setUserPremium(@RequestParam Boolean premium, HttpSession session) {
     User u = SessionUtilities.getUserFromSession(session);
