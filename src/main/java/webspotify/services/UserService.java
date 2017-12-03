@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sun.rmi.runtime.Log;
 import webspotify.config.ConfigConstants;
 import webspotify.models.media.SongQueue;
 import webspotify.models.users.Administrator;
@@ -50,16 +49,16 @@ public class UserService {
   public User loginUser(String email, String password) throws LoginException {
     List<User> userList = userRepository.findByEmail(email);
     User validUser = null;
-    for (User user: userList){
-      if(user.getIsDeleted()){
+    for (User user : userList) {
+      if (user.getIsDeleted()) {
         throw new LoginException(ConfigConstants.USER_DELETED);
       } else if (user.getIsBanned()) {
         throw new LoginException(ConfigConstants.USER_BANNED);
       } else {
-         validUser = user;
+        validUser = user;
       }
     }
-    if(validUser == null){
+    if (validUser == null) {
       throw new LoginException(ConfigConstants.EMAIL_NO_EXIST);
     }
     if (!validUser.authenticateLogin(password)) {
@@ -72,10 +71,10 @@ public class UserService {
   public SongQueue getSongQueue() {
     return new SongQueue();
   }
-  
+
   public User findValidUser(List<User> userList) {
-    for(User user : userList) {
-      if(!user.getIsDeleted()) {
+    for (User user : userList) {
+      if (!user.getIsDeleted()) {
         return user;
       }
     }
@@ -99,19 +98,19 @@ public class UserService {
     user.setIsBanned(false);
     user.setIsPublic(true);
     user.setIsDeleted(false);
-    if(newUser.getType() == UserTypes.BASIC) {
+    if (newUser.getType() == UserTypes.BASIC) {
       user.setIsPremium(false);
       userRepository.save(user);
     } else {
-      if (creator instanceof Administrator){
+      if (creator instanceof Administrator) {
         user.setIsPremium(true);
-        if(newUser.getType() == UserTypes.PREMIUM){
+        if (newUser.getType() == UserTypes.PREMIUM) {
           userRepository.save(user);
-        } else if(newUser.getType() == UserTypes.ARTIST){
+        } else if (newUser.getType() == UserTypes.ARTIST) {
           userRepository.save(new Artist(user));
-        } else if(newUser.getType() == UserTypes.ADVERTISER){
+        } else if (newUser.getType() == UserTypes.ADVERTISER) {
           userRepository.save(new Advertiser(user));
-        } else if(newUser.getType() == UserTypes.ADMINISTRATOR){
+        } else if (newUser.getType() == UserTypes.ADMINISTRATOR) {
           userRepository.save(new Administrator(user));
         }
       } else {
@@ -120,22 +119,22 @@ public class UserService {
     }
     return ResponseUtilities.emptySuccess();
   }
-  
+
   @Transactional
   public Response deleteUser(int userId, User currentUser, HttpSession session) {
-    if(!userRepository.exists(userId)){
+    if (!userRepository.exists(userId)) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_FOUND);
     }
     User user = userRepository.findOne(userId);
     if (currentUser instanceof Administrator) {
-      if(currentUser.getId() == user.getId()) {
+      if (currentUser.getId() == user.getId()) {
         return ResponseUtilities.filledFailure(ConfigConstants.ADMIN_NO_DELETE);
       } else {
         user.setIsDeleted(true);
         userRepository.save(user);
         return ResponseUtilities.filledSuccess(new BasicUserInfoResponse(user));
       }
-    } else if (currentUser.equals(user)){
+    } else if (currentUser.equals(user)) {
       user.setIsDeleted(true);
       userRepository.save(user);
       session.invalidate();
@@ -188,11 +187,11 @@ public class UserService {
   }
 
   @Transactional
-  public Response getFollowedArtists(User user){
+  public Response getFollowedArtists(User user) {
     User userToCheck = userRepository.findOne(user.getId());
     List<ArtistResponse> toReturn = new ArrayList<ArtistResponse>();
-    for (User following: userToCheck.getFollowing()){
-      if(following instanceof Artist){
+    for (User following : userToCheck.getFollowing()) {
+      if (following instanceof Artist) {
         toReturn.add(new ArtistResponse((Artist) following));
       }
     }

@@ -7,5 +7,6 @@ public enum ReportTypes {
   BAN,
   UNBAN,
   REMOVE,
-  ADD
+  ADD,
+  CHECK
 }

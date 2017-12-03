@@ -62,7 +62,7 @@ public class ReportService {
   public Response postReport(User user, Report report) {
     report.setCreator(user);
     report.setReportId(0);
-    Report resp = reportRepository.saveAndFlush(report);
+    Report resp = reportRepository.save(report);
     if (resp == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_ADD);
     } else {
