@@ -44,7 +44,6 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
-  
   $scope.openDialog = function (url) {
     $compile(loadToDiv("modal_dialog", url))($scope);
   }
@@ -181,7 +180,25 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
         displayErrorPopup(err, $scope, $parse, $compile);
       });
   }
-  
+  $scope.editAbout = function () {
+    if($scope.edit_about === undefined || $scope.edit_about === "") {
+      displayErrorPopup("About field cannot be left blank.", $scope, $parse, $compile);
+      return;
+    }
+    $http.post("/api/users/info/set/about", null, {
+      params:{"about": $scope.edit_about, "userId": $scope.userId}}).
+      then(function(response) {
+        if (!response.data.error) {
+          displayErrorPopup("About changed successfully.", $scope, $parse, $compile);
+          $scope.editingUser.artist.about = $scope.edit_about;
+          $("#editAboutModal").modal("hide");
+          return;
+        }
+      displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function (err) {
+        displayErrorPopup(err, $scope, $parse, $compile);
+      });
+  }
   $scope.editPassword = function () {
     var oldPass = $scope.old_password;
     var newPass = $scope.new_password;
