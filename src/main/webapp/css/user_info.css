@@ -1,34 +1,15 @@
-#info_user_header {
-  display: inline-block;
-  height: 20vh;
-  margin-top: 2vw;
-  margin-left: 2vw;
-  margin-bottom: 3vw;
-}
-#info_user {
-  margin-left: 1vw;
-  margin-top: 0;
-  display: inline-block;
-  vertical-align: top;
-}
-#info_user_img {
-  height: 20vh;
-  width: auto;
-  display: inline-block;
+.hiddenFileInputContainer {
   position: relative;
+  text-align: center;
+  height: 20vh;
+}
+.hiddenFileInputContainer > img {
+  height: inherit;
   border: 1px solid white;
   border-radius: 50%;
 }
-div.hiddenFileInputContainter {
-  position: relative;
-  display: inline-block;
-  height: 20vh;
-  width: auto;
-  overflow: hidden;
-  vertical-align: middle;
-  cursor: pointer;
-}
 input[type='file'].hidden {
+  cursor: pointer;
   margin: 0;
   padding: 0;
   position: absolute;
@@ -36,38 +17,35 @@ input[type='file'].hidden {
   right: 0;
   height: 100%;
   font-size: 50px;
-  cursor: pointer;
   opacity: 0;
   -moz-opacity: 0;
   filter: Alpha(Opacity=0);
 }
-#info_username {
-  font-size: 300%;
-  color: #FFFFFF;
-  font-weight: 700;
+.info_table_container {
+  position: relative;
+  text-align: center;
 }
-#info_email {
-  font-size: 200%;
-  color: #FFFFFF;
-  font-weight: 700;
-}
-#info_about {
+.info_table {
   display: inline-block;
+  table-layout: fixed;
+  margin-top: 2vw;
+}
+.info_table td {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  font-size: 110%;
+  font-weight: 600;
+  color: #ffffff;
+  border-bottom: 1px solid white;
+}
+.info_table td.table_middle{
+  padding-left: 0px;
+  padding-right: 0px;
   width: 30vw;
-  padding-left: 10vw;
+  max-width: 30vw;
+  overflow-wrap: break-word;
 }
-#info_about_header {
-  display: inline-block;
-  font-size: 300%;
-  color: #FFFFFF;
-  font-weight: 700;
-}
-#info_about_text {
-  display: inline-block;
-  font-size: 120%;
-  width: 30vw;
-}
-#info_delete_button {
-  font-weight: 800 !important;
+#info_delete_button, #info_delete_button:hover {
   color: #c42121 !important;
 }

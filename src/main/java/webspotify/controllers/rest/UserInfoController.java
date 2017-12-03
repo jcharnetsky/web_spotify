@@ -2,11 +2,7 @@ package webspotify.controllers.rest;
 
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import webspotify.config.ConfigConstants;
 import webspotify.models.users.User;
 import webspotify.responses.UserInfoResponse;
@@ -22,22 +18,31 @@ public class UserInfoController {
   @Autowired
   private UserInfoService userInfoService;
 
-  @GetMapping("/get/userInfo")
-  public Response getUserInfo(HttpSession session) {
-    User u = SessionUtilities.getUserFromSession(session);
-    if (u == null) {
+  @GetMapping("/get/userInfo/{userId}")
+  public Response getUserInfo(@PathVariable final int userId, HttpSession session) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
-    return userInfoService.getUserInfo(u);
+    return userInfoService.getUserInfo(user, userId);
+  }
+
+  @GetMapping("/get/userInfo/self")
+  public Response getUserInfo(HttpSession session) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    }
+    return userInfoService.getUserInfo(user, user.getId());
   }
 
   @PostMapping("/set/name")
   public Response setUserName(@RequestParam String name, @RequestParam int userId, HttpSession session) {
-    User u = SessionUtilities.getUserFromSession(session);
-    if (u == null) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
-    return userInfoService.setName(userId, name);
+    return userInfoService.setName(user, userId, name);
   }
 
   @PostMapping("/set/password")
@@ -60,11 +65,11 @@ public class UserInfoController {
 
   @PostMapping("/set/email")
   public Response setEmail(@RequestParam String email, @RequestParam int userId, HttpSession session) {
-    User u = SessionUtilities.getUserFromSession(session);
-    if (u == null) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
-    return userInfoService.setEmail(userId, email);
+    return userInfoService.setEmail(user, userId, email);
   }
 
   @PostMapping("/set/premium")

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import webspotify.config.ConfigConstants;
 import webspotify.interfaces.Viewable;
 import webspotify.models.administration.Report;
@@ -81,7 +82,7 @@ public class ReportService {
   }
 
   @Transactional
-  public Response handleBan(Administrator admin, Integer reportId, Viewable target) {
+  public Report handleBan(Administrator admin, Integer reportId, Viewable target) throws Exception{
     if(target instanceof Song){
       target.setBanned(true);
       songRepository.save((Song) target);
@@ -100,11 +101,12 @@ public class ReportService {
       target.setBanned(true);
       playlistRepository.save((Playlist) target);
     } else {
-      return ResponseUtilities.filledFailure(ConfigConstants.ENTITY_TYPE_NO_EXIST);
+      throw new Exception(ConfigConstants.ENTITY_TYPE_NO_EXIST);
     }
     // Generate Unban report to unban anything that was banned
     Report banReport = reportRepository.findOne(reportId);
     Report report = new Report();
+    report.setCreator(admin);
     report.setSubject(banReport.getSubject());
     report.setDescription(ConfigConstants.ORIGINALLY_BANNED + banReport.getDescription());
     report.setEntityType(banReport.getEntityType());
@@ -112,15 +114,15 @@ public class ReportService {
     report.setCompleted(false);
     report.setReportType(ReportTypes.UNBAN);
     reportRepository.save(report);
-    return ResponseUtilities.emptySuccess();
+    return report;
   }
 
   @Transactional
-  public Response handleUnban(Viewable target) {
+  public void handleUnban(Viewable target) throws Exception{
     if(target instanceof Song){
       Song song = (Song) target;
       if(song.getAlbum().isBanned()){
-        return ResponseUtilities.filledFailure(ConfigConstants.CANNOT_UNBAN_SONG);
+        throw new Exception(ConfigConstants.CANNOT_UNBAN_SONG);
       }
       song.setBanned(false);
       songRepository.save(song);
@@ -139,13 +141,12 @@ public class ReportService {
       target.setBanned(false);
       playlistRepository.save((Playlist) target);
     } else {
-      return ResponseUtilities.filledFailure(ConfigConstants.ENTITY_TYPE_NO_EXIST);
+      throw new Exception(ConfigConstants.ENTITY_TYPE_NO_EXIST);
     }
-    return ResponseUtilities.emptySuccess();
   }
 
   @Transactional
-  public Response handleRemove(Viewable target) {
+  public void handleRemove(Viewable target) throws Exception{
     if(target instanceof Song){
       songRepository.delete((Song) target);
     } else if (target instanceof User){
@@ -157,22 +158,21 @@ public class ReportService {
     } else if (target instanceof Playlist){
       playlistRepository.delete((Playlist) target);
     } else {
-      return ResponseUtilities.filledFailure(ConfigConstants.ENTITY_TYPE_NO_EXIST);
+      throw new Exception(ConfigConstants.ENTITY_TYPE_NO_EXIST);
     }
-    return ResponseUtilities.emptySuccess();
   }
 
   @Transactional
-  public Response handleAdd(Viewable target) {
+  public void handleAdd(Viewable target) throws Exception{
     if(target instanceof Song){
       Song song = (Song) target;
       if(song.getAlbum().isBanned()){
-       return ResponseUtilities.filledFailure(ConfigConstants.CANNOT_ADD_SONG);
+        throw new Exception(ConfigConstants.CANNOT_ADD_SONG);
       }
       song.setBanned(false);
       songRepository.save(song);
     } else if (target instanceof User){
-      return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_ADD);
+      throw new Exception(ConfigConstants.COULD_NOT_ADD);
     } else if (target instanceof Album){
       Album album = (Album) target;
       List<Song> songs = album.getSongsInAlbum();
@@ -182,11 +182,10 @@ public class ReportService {
       }
       albumRepository.save(album);
     } else if (target instanceof Playlist){
-      return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_ADD);
+      throw new Exception(ConfigConstants.COULD_NOT_ADD);
     } else {
-      return ResponseUtilities.filledFailure(ConfigConstants.ENTITY_TYPE_NO_EXIST);
+      throw new Exception(ConfigConstants.ENTITY_TYPE_NO_EXIST);
     }
-    return ResponseUtilities.emptySuccess();
   }
 
   @Transactional
@@ -207,5 +206,15 @@ public class ReportService {
       return null;
     }
     return toHandle;
+  }
+
+  @Transactional
+  public void completeReport(int reportId){
+    if(!reportRepository.exists(reportId)){
+      return;
+    }
+    Report report = reportRepository.findOne(reportId);
+    report.setCompleted(true);
+    reportRepository.save(report);
   }
 }

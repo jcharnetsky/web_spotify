@@ -71,7 +71,7 @@ public class PlaylistController {
     if (user == null) {
       return ResponseUtilities.filledFailure("User not logged in");
     }
-    return playlistService.deletePlaylist(user, playlistId);
+    return playlistService.deletePlaylist(user.getId(), playlistId);
   }
 
   @PostMapping("/{playlistId}/edit")

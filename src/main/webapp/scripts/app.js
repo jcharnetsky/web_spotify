@@ -24,9 +24,21 @@ angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function ($
     $compile(domNode)($scope);
   }
   $scope.loadUserInfo = function () {
-    $http.get(location.origin + "/api/users/info/get/userInfo").then(function (response) {
+    $http.get(location.origin + "/api/users/info/get/userInfo/self").then(function (response) {
       if (!response.data.error) {
         $parse("user").assign($scope, response.data.content);
+      } else {
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }
+    }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  }
+  $scope.loadUserInfoPage = function (id) {
+    $http.get(location.origin + "/api/users/info/get/userInfo/"+id).then(function (response) {
+      if (!response.data.error) {
+        $parse("editingUser").assign($scope, response.data.content);
+        $compile(loadToDiv("main", "user_info.html"))($scope);
       } else {
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
       }

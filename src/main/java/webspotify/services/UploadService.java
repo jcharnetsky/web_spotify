@@ -2,6 +2,10 @@ package webspotify.services;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import webspotify.utilities.Response;
+import webspotify.utilities.ResponseUtilities;
+
+import javax.transaction.Transactional;
 
 /**
  *
@@ -10,7 +14,10 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class UploadService {
 
-  public void uploadUserImage(MultipartFile file) {
+  @Transactional
+  public Response uploadUserImage(MultipartFile file) {
+    String imageURL = "../images/default-user.png";
+    return ResponseUtilities.filledSuccess(imageURL);
   }
   
 }

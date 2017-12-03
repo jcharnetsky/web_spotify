@@ -53,15 +53,15 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
       displayErrorPopup("Cardholder name field cannot be left blank.", $scope, $parse, $compile);
       return;
     }
-    if($scope.card_number == undefined || $scope.card_number == "" || isNaN($scope.card_number) || String($scope.card_number).length >= 20) {
+    if($scope.card_number == undefined || $scope.card_number == "" || isNaN($scope.card_number)) {
       displayErrorPopup("Invalid credit card number.", $scope, $parse, $compile);
       return;
     }
-    if($scope.card_cvn == undefined || $scope.card_cvn == "" || isNaN($scope.card_cvn) || String($scope.card_cvn).length >= 5) {
+    if($scope.card_cvn == undefined || $scope.card_cvn == "" || isNaN($scope.card_cvn)) {
       displayErrorPopup("Invalid CVN", $scope, $parse, $compile);
       return;
     }
-    if($scope.card_zip == undefined || $scope.card_zip == "" || isNaN($scope.card_zip) || String($scope.card_zip.length) >= 6) {
+    if($scope.card_zip == undefined || $scope.card_zip == "" || isNaN($scope.card_zip) || String($scope.card_zip.length) != 5) {
       displayErrorPopup("Invalid zip code.", $scope, $parse, $compile);
       return;
     }
@@ -78,32 +78,41 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
       return;
     }
     var expiration = String(monthValue) + "/" + String(yearValue);
+    var type = document.getElementById("card_type");
+    var typeValue = type.options[type.selectedIndex].value;
+    if(typeValue == '') {
+      displayErrorPopup("Card type field cannot be left as default.", $scope, $parse, $compile);
+      return
+    }
     data = JSON.stringify({
       "ccn": $scope.card_number,
       "cvn": $scope.card_cvn,
       "cardholderName": $scope.cardholder_name,
       "zipCode": $scope.card_zip,
-      "expDate": expiration
+      "expDate": expiration,
+      "type": typeValue
     });
     $http.post("/api/creditcards/post", data, {headers: {"Content-Type": "application/json"}}).
       then(function(response) {
         if(response.data.error) {
           displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
         }
-      }).catch(function (err) {
-      displayErrorPopup(err, $scope, $parse, $compile);
-    });
-    $http.post("/api/users/info/set/premium", null, {
-      params:{
-        "premium": status}}).
-      then(function(response) {
-        if(!response.data.error) {
-          $scope.user.premium = !scope.user.premium
-          displayErrorPopup("Successfully upgraded premium status.", $scope, $parse, $compile)
-          $("#upgradePremiumModal").modal("hide");
-          return;
+        else {
+          $http.post("/api/users/info/set/premium", null, {
+            params:{
+              "premium": status}}).
+            then(function(response) {
+              if(!response.data.error) {
+                $scope.user.premium = !scope.user.premium
+                displayErrorPopup("Successfully upgraded premium status.", $scope, $parse, $compile)
+                $("#upgradePremiumModal").modal("hide");
+                return;
+              }
+              displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+            }).catch(function (err) {
+            displayErrorPopup(err, $scope, $parse, $compile);
+          });
         }
-        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
       }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });
@@ -137,8 +146,11 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
         "userId": userId}}).
       then(function(response) {
         if (!response.data.error) {
+          $scope.editingUser.name = $scope.edit_username;
+          if($scope.editingUser.id == $scope.user.id){
+            $scope.user.name = $scope.edit_username;
+          }
           displayErrorPopup("Username changed successfully.", $scope, $parse, $compile);
-          $scope.user.name = $scope.edit_username;
           $("#editUsernameModal").modal("hide");
           return;
         }
@@ -160,7 +172,7 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
       then(function(response) {
         if (!response.data.error) {
           displayErrorPopup("Email changed successfully.", $scope, $parse, $compile);
-          $scope.user.email = $scope.edit_email;
+          $scope.editingUser.email = $scope.edit_email;
           $("#editEmailModal").modal("hide");
           return;
         }
@@ -202,7 +214,6 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
         displayErrorPopup(err, $scope, $parse, $compile);
       });
   }
-  
   $scope.toggleIsPublic = function() {
     $http.post("/api/users/info/set/public", null, {headers: {"Content-Type": "application/json"}}).
       then(function(response) {

@@ -9,6 +9,7 @@ import webspotify.models.administration.Report;
 import webspotify.models.users.Administrator;
 import webspotify.models.users.User;
 import webspotify.posts.HandleReportRequest;
+import webspotify.responses.ReportResponse;
 import webspotify.services.ReportService;
 import webspotify.types.ReportTypes;
 import webspotify.types.SpotifyObjectEnum;
@@ -54,24 +55,35 @@ public class ReportController {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
-    } else if (!(user instanceof Administrator)){
+    } else if (!(user instanceof Administrator)) {
       return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
     }
     Viewable reportTarget = reportService.getReportEntity(request);
-    if(reportTarget == null){
+    if (reportTarget == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.ENTITY_NO_EXIST);
     }
     ReportTypes reportType = request.getReportType();
-    if (reportType == ReportTypes.BAN){
-      return reportService.handleBan((Administrator) user, request.getReportId(), reportTarget);
-    } else if (reportType == ReportTypes.UNBAN){
-      return reportService.handleUnban(reportTarget);
-    } else if (reportType == ReportTypes.REMOVE){
-      return reportService.handleRemove(reportTarget);
-    } else if (reportType == ReportTypes.ADD){
-      return reportService.handleAdd(reportTarget);
+    Report newReport = null;
+    try {
+      if (reportType == ReportTypes.BAN) {
+        newReport = reportService.handleBan((Administrator) user, request.getReportId(), reportTarget);
+      } else if (reportType == ReportTypes.UNBAN) {
+        reportService.handleUnban(reportTarget);
+      } else if (reportType == ReportTypes.REMOVE) {
+        reportService.handleRemove(reportTarget);
+      } else if (reportType == ReportTypes.ADD) {
+        reportService.handleAdd(reportTarget);
+      } else {
+        return ResponseUtilities.filledFailure(ConfigConstants.REPORT_TYPE_NO_EXIST);
+      }
+    } catch (Exception e) {
+      return ResponseUtilities.filledFailure(e.getMessage());
+    }
+    reportService.completeReport(request.getReportId());
+    if (newReport != null) {
+      return ResponseUtilities.filledSuccess(new ReportResponse(newReport));
     } else {
-      return ResponseUtilities.filledFailure(ConfigConstants.REPORT_TYPE_NO_EXIST);
+      return ResponseUtilities.emptySuccess();
     }
   }
 

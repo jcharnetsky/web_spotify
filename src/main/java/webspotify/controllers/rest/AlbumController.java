@@ -71,7 +71,7 @@ public class AlbumController {
     if (user == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
-    return albumService.deleteAlbum(user, albumId);
+    return albumService.deleteAlbum(user.getId(), albumId);
   }
 
   @PostMapping("/{albumId}/edit")

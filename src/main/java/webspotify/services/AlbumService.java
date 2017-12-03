@@ -105,7 +105,7 @@ public class AlbumService {
       albumToAdd.setOwner(owner);
       try {
         albumRepo.save(albumToAdd);
-        ((Artist) user).getOwnedAlbums().add(albumToAdd);
+        ((Artist) owner).getOwnedAlbums().add(albumToAdd);
         return ResponseUtilities.emptySuccess();
       } catch (Exception e) {
         System.out.println(e);
@@ -117,7 +117,8 @@ public class AlbumService {
   }
 
   @Transactional
-  public Response deleteAlbum(User user, int albumId) {
+  public Response deleteAlbum(int userId, int albumId) {
+    User user = userRepo.findOne(userId);
     if (albumRepo.exists(albumId)) {
       Album album = albumRepo.findOne(albumId);
       if (album.getOwner().equals(user) && album.getOwner() instanceof Artist) {
