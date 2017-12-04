@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import webspotify.models.users.User;
 import webspotify.responses.GenresResponse;
-import webspotify.services.AlbumService;
 import webspotify.services.SearchService;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;

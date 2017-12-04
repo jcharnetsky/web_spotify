@@ -1,10 +1,7 @@
 package webspotify.controllers.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import webspotify.services.UploadService;
 import webspotify.utilities.Response;
@@ -21,7 +18,7 @@ public class UploadController {
   UploadService uploadService;
 
   @PostMapping("/image/user")
-  public Response uploadUserImage(@RequestBody MultipartFile file) {
+  public Response uploadUserImage(@RequestParam("file") MultipartFile file) {
     return uploadService.uploadUserImage(file);
   }
 }

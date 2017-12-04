@@ -7,7 +7,8 @@ angular.module("web_spotify").controller("UploadCtrl", function ($scope, $http, 
     var imageData = new FormData();
     imageData.append('file', imageFiles[0]);
     $http.post("/upload/image/user", imageData,
-      {headers: {"Content-Type": "application/json"}}).then(function(response) {
+      {transformRequest: angular.identity, headers: {'Content-Type': undefined}})
+      .then(function(response) {
         if(!response.data.error){
           $scope.editingUser.imageLink = response.data.content;
           if($scope.editingUser.id == $scope.user.id){

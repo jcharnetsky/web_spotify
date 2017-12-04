@@ -122,10 +122,21 @@ public class SearchService {
   public Response getDiscover(int userId){
     User user = userRepository.findOne(userId);
     Set<Album> savedAlbums = user.getSavedAlbums();
+    Set<Playlist> relatedPlaylists = user.getOwnedPlaylists();
+    relatedPlaylists.addAll(user.getFollowedPlaylists());
     Map<GenreType, Integer> listenedGenres = new HashMap<GenreType, Integer>();
     GenreType genre = GenreType.POP;
     for(Album savedAlbum : savedAlbums){
       GenreType listenedGenre = savedAlbum.getGenre();
+      Integer count = listenedGenres.get(genre);
+      if(count != null){
+        listenedGenres.put(listenedGenre, count+1);
+      } else {
+        listenedGenres.put(listenedGenre, 1);
+      }
+    }
+    for(Playlist relatedPlaylist : relatedPlaylists){
+      GenreType listenedGenre = relatedPlaylist.getGenre();
       Integer count = listenedGenres.get(genre);
       if(count != null){
         listenedGenres.put(listenedGenre, count+1);
@@ -140,6 +151,7 @@ public class SearchService {
         maxGenreListens = listenedGenres.get(listenedGenre);
       }
     }
+
     List<Album> albums = albumRepository.findByGenre(genre);
     Set<BasicCollectionResponse> albumResponses = getRandomCollectionResponses(albums);
     List<Playlist> playlists = playlistRepository.findByGenre(genre);
