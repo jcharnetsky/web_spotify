@@ -100,8 +100,7 @@ public class SearchService {
     Set<BasicCollectionResponse> playlistResponses = getRandomCollectionResponses(playlists);
     List<Artist> artists = artistRepository.findAll();
     Set<BasicUserInfoResponse> artistResponses = getRandomUserResponses(artists);
-    SearchResponse response = new SearchResponse(
-            null, artistResponses, albumResponses, playlistResponses);
+    SearchResponse response = new SearchResponse(null, artistResponses, albumResponses, playlistResponses);
     return ResponseUtilities.filledSuccess(response);
   }
 
@@ -113,12 +112,22 @@ public class SearchService {
   }
 
   @Transactional
+  public Response getNewReleases(){
+    List<Album> albums = albumRepository.findAll();
+    Set<BasicCollectionResponse> responses = getRandomCollectionResponses(albums);
+    return ResponseUtilities.filledSuccess(responses);
+  }
+
+  @Transactional
   public Response getDiscover(int userId){
     User user = userRepository.findOne(userId);
-    Set<BasicCollectionResponse> albums = new LinkedHashSet<BasicCollectionResponse>();
-    Set<BasicCollectionResponse> playlists = new LinkedHashSet<BasicCollectionResponse>();
-    Set<BasicUserInfoResponse> artists = new LinkedHashSet<BasicUserInfoResponse>();
-    SearchResponse response = new SearchResponse(null, artists, albums, playlists);
+    List<Album> albums = albumRepository.findAll();
+    Set<BasicCollectionResponse> albumResponses = getRandomCollectionResponses(albums);
+    List<Playlist> playlists = playlistRepository.findAll();
+    Set<BasicCollectionResponse> playlistResponses = getRandomCollectionResponses(playlists);
+    List<Artist> artists = artistRepository.findAll();
+    Set<BasicUserInfoResponse> artistResponses = getRandomUserResponses(artists);
+    SearchResponse response = new SearchResponse(null, artistResponses, albumResponses, playlistResponses);
     return ResponseUtilities.filledSuccess(response);
   }
 

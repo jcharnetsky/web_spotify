@@ -58,18 +58,6 @@ public class AlbumService {
   }
 
   @Transactional
-  public Response getNewReleases(){
-    List<Album> albums = albumRepo.findAll();
-    List<BasicCollectionResponse> responses = new ArrayList<BasicCollectionResponse>();
-    for(int i = Math.max(albums.size() - ConfigConstants.NUM_ALBUMS_TO_SHOW_BROWSE, 0);
-        i < albums.size();
-        i++){
-      responses.add(new BasicCollectionResponse(albums.get(i)));
-    }
-    return ResponseUtilities.filledSuccess(responses);
-  }
-
-  @Transactional
   public Response removeSongFromAlbum(User user, int albumId, int songId) {
     if (albumRepo.exists(albumId) && songRepo.exists(songId)) {
       Album album = albumRepo.findOne(albumId);

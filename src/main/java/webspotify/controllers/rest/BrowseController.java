@@ -17,9 +17,6 @@ import webspotify.utilities.SessionUtilities;
 public class BrowseController {
 
   @Autowired
-  AlbumService albumService;
-
-  @Autowired
   SearchService searchService;
 
   @GetMapping("/overview")
@@ -42,7 +39,7 @@ public class BrowseController {
     if (user == null) {
       return ResponseUtilities.filledFailure("User not logged in.");
     }
-    return albumService.getNewReleases();
+    return searchService.getNewReleases();
   }
 
   @GetMapping("/discover")
