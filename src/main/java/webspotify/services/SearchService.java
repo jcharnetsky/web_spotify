@@ -8,6 +8,7 @@ import webspotify.config.ConfigConstants;
 import webspotify.models.media.Album;
 import webspotify.models.media.Playlist;
 import webspotify.models.media.Song;
+import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 import webspotify.repo.AlbumRepository;
 import webspotify.repo.ArtistRepository;
@@ -86,6 +87,53 @@ public class SearchService {
 
     SearchResponse toReturn = new SearchResponse(songsToReturn, usersToReturn, albumsToReturn, playlistsToReturn);
     return ResponseUtilities.filledSuccess(toReturn);
+  }
+
+  @Transactional
+  public Response getOverview(){
+    List<Album> albums = albumRepository.findAll();
+    Set<BasicCollectionResponse> albumResponses = new HashSet<BasicCollectionResponse>();
+    int start, end;
+    if(albums.size() < ConfigConstants.NUM_ALBUMS_TO_SHOW_BROWSE){
+      start = 0;
+      end = albums.size();
+    } else {
+      start = (new Random()).nextInt(albums.size() - ConfigConstants.NUM_ALBUMS_TO_SHOW_BROWSE);
+      end = ConfigConstants.NUM_ALBUMS_TO_SHOW_BROWSE;
+    }
+    for(int i = 0; i < end;i++){
+      albumResponses.add(new BasicCollectionResponse(albums.get(start + i)));
+    }
+
+    List<Playlist> playlists = playlistRepository.findAll();
+    Set<BasicCollectionResponse> playlistResponses = new HashSet<BasicCollectionResponse>();
+    if(playlists.size() < ConfigConstants.NUM_PLAYLISTS_TO_SHOW_BROWSE){
+      start = 0;
+      end = playlists.size();
+    } else {
+      start = (new Random()).nextInt(playlists.size() - ConfigConstants.NUM_PLAYLISTS_TO_SHOW_BROWSE);
+      end = ConfigConstants.NUM_PLAYLISTS_TO_SHOW_BROWSE;
+    }
+    for(int i = 0; i < end;i++){
+      playlistResponses.add(new BasicCollectionResponse(playlists.get(start + i)));
+    }
+
+    List<Artist> artists = artistRepository.findAll();
+    Set<BasicUserInfoResponse> artistResponses = new HashSet<BasicUserInfoResponse>();
+    if(artists.size() < ConfigConstants.NUM_ARTISTS_TO_SHOW_BROWSE){
+      start = 0;
+      end = artists.size();
+    } else {
+      start = (new Random()).nextInt(artists.size() - ConfigConstants.NUM_ARTISTS_TO_SHOW_BROWSE);
+      end = ConfigConstants.NUM_ARTISTS_TO_SHOW_BROWSE;
+    }
+    for(int i = 0; i < end;i++){
+      artistResponses.add(new BasicUserInfoResponse(artists.get(start + i)));
+    }
+
+    SearchResponse response = new SearchResponse(
+            null, artistResponses, albumResponses, playlistResponses);
+    return ResponseUtilities.filledSuccess(response);
   }
 
   @Transactional

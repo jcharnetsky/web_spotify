@@ -7,7 +7,7 @@
 <hr>
 <div>
   <div class="info_block" ng-repeat="release in api_home_new_releases">
-    <img class="tile_img"
+    <img class="tile_img" style="border-radius: 0;"
          ng-controller="CollectionCtrl"
          ng-click="loadAlbum(release.id)"
          ng-src="{{release.imageLink}}"/>
