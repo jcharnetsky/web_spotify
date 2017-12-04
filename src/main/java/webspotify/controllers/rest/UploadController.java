@@ -36,4 +36,13 @@ public class UploadController {
     }
     return uploadService.uploadUserImage(file, user.getId());
   }
+  
+  @PostMapping("/image/playlist")
+  public Response uploadPlaylistImage(@RequestParam("file") MultipartFile file, @RequestParam("playlistId") int playlistId, HttpSession session) throws IOException {
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    }
+    return uploadService.uploadPlaylistImage(file, playlistId);
+  }
 }

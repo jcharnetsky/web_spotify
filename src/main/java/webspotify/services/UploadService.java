@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import webspotify.config.ConfigConstants;
-import webspotify.models.users.Administrator;
 import webspotify.models.users.User;
 import webspotify.repo.UserRepository;
 import webspotify.utilities.Response;
@@ -26,6 +24,8 @@ public class UploadService {
 
   @Autowired
   private HttpServletRequest request;
+  @Autowired
+  private UserRepository userRepository;
   
   @Transactional
   public Response uploadUserImage(MultipartFile file, int userId) throws IOException {
@@ -36,9 +36,22 @@ public class UploadService {
     File dest = new File(filePath);
     file.transferTo(dest);
     String desiredSrc = ".."+ uploadPath + fileName;
+    User user = userRepository.findOne(userId);
+    user.setHasImage(true);
+    userRepository.save(user);
     return ResponseUtilities.filledSuccess(desiredSrc);
   }
   
-  
+  @Transactional
+  public Response uploadPlaylistImage(MultipartFile file, int playlistId) throws IOException {
+    String uploadPath = "/images/playlists/";
+    String realUploadPath = request.getServletContext().getRealPath(uploadPath);
+    String fileName = playlistId + ".jpg";
+    String filePath = realUploadPath + fileName;
+    File dest = new File(filePath);
+    file.transferTo(dest);
+    String desiredSrc = ".." + uploadPath + fileName;
+    return ResponseUtilities.filledSuccess(desiredSrc);
+  }
   
 }

@@ -6,11 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import webspotify.config.ConfigConstants;
 import webspotify.models.users.Artist;
 import webspotify.models.users.User;
-import webspotify.responses.UserInfoResponse;
 import webspotify.services.UserInfoService;
-import webspotify.utilities.Response;
-import webspotify.utilities.ResponseUtilities;
-import webspotify.utilities.SessionUtilities;
+import webspotify.utilities.*;
 
 @RestController
 @RequestMapping("/api/users/info")

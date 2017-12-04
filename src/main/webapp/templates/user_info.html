@@ -4,7 +4,7 @@
 <div ng-controller= "UserCtrl">
   <div class="hiddenFileInputContainer">
     <img id="info_user_img" alt="user_img" ng-src="{{editingUser.imageLink}}">
-    <input ng-controller="UploadCtrl" class="hidden" type="file" id="editImage" accept="image/*">
+    <input ng-controller="UploadCtrl" class="hidden" type="file" onchange="angular.element(this).scope().editUserImage(this)" id="editImage" accept="image/*">
   </div>
   <div class="info_table_container">
     <table class="info_table">
