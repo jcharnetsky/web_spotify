@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import webspotify.models.users.User;
 import webspotify.responses.GenresResponse;
 import webspotify.services.AlbumService;
+import webspotify.services.SearchService;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
 import webspotify.utilities.SessionUtilities;
@@ -17,6 +18,9 @@ public class BrowseController {
 
   @Autowired
   AlbumService albumService;
+
+  @Autowired
+  SearchService searchService;
 
   @GetMapping("/overview")
   public Response getOverviewData() {
@@ -39,6 +43,10 @@ public class BrowseController {
 
   @GetMapping("/discover")
   public Response getDiscoverData(HttpSession session) {
-    return ResponseUtilities.emptySuccess();
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
+      return ResponseUtilities.filledFailure("User not logged in.");
+    }
+    return searchService.getDiscover(user.getId());
   }
 }

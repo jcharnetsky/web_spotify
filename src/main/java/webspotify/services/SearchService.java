@@ -1,8 +1,6 @@
 package webspotify.services;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -88,6 +86,16 @@ public class SearchService {
 
     SearchResponse toReturn = new SearchResponse(songsToReturn, usersToReturn, albumsToReturn, playlistsToReturn);
     return ResponseUtilities.filledSuccess(toReturn);
+  }
+
+  @Transactional
+  public Response getDiscover(int userId){
+    User user = userRepository.findOne(userId);
+    Set<BasicCollectionResponse> albums = new LinkedHashSet<BasicCollectionResponse>();
+    Set<BasicCollectionResponse> playlists = new LinkedHashSet<BasicCollectionResponse>();
+    Set<BasicUserInfoResponse> artists = new LinkedHashSet<BasicUserInfoResponse>();
+    SearchResponse response = new SearchResponse(null, artists, albums, playlists);
+    return ResponseUtilities.filledSuccess(response);
   }
 
 }
