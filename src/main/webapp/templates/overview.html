@@ -1,26 +1,45 @@
-<ul class="content_header"><li><p class="content_title">Albums</p></li></ul>
-<hr>
-<ul class="list_tiles">
-  <li ng-repeat="item in api_home_overview.albums">
-    <div class="tile">
-      <a href="#">
-        <img class="tile_img" ng-src={{item.img}} alt="Suggestion"/>
-      </a>
-      <p class="tile_text">{{item.head}}</p>
-      <p class="tile_desc left_align">{{item.desc}}</p>
-    </div>
+<ul class="content_header">
+  <li>
+    <p class="content_title">Artists</p>
   </li>
 </ul>
-<ul class="content_header"><li><p class="content_title">Playlists</p></li></ul>
 <hr>
-<ul class="list_tiles">
-  <li ng-repeat="item in api_home_overview.playlist">
-    <div class="tile">
-      <a href="#">
-        <img class="tile_img" ng-src={{item.img}} alt="Suggestion"/>
-      </a>
-      <p class="tile_text">{{item.head}}</p>
-      <p class="tile_desc left_align">{{item.desc}}</p>
-    </div>
+<div>
+  <div class="info_block" ng-repeat="artist in api_home_overview.users">
+    <img class="tile_img"
+         ng-controller="UserCtrl"
+         ng-click="loadUser(artist.id)"
+         ng-src="{{artist.imageLink}}"/>
+    <p>{{artist.name}}</p>
+  </div>
+</div>
+<ul class="content_header">
+  <li>
+    <p class="content_title">Albums</p>
   </li>
 </ul>
+<hr>
+<div>
+  <div class="info_block" ng-repeat="album in api_home_overview.albums">
+    <img class="tile_img"
+         ng-controller="CollectionCtrl"
+         ng-click="loadAlbum(album.id)"
+         ng-src="{{album.imageLink}}"/>
+    <p>{{album.title}}</p>
+  </div>
+</div>
+<ul class="content_header">
+  <li>
+    <p class="content_title">Playlists</p>
+  </li>
+</ul>
+<hr>
+<div>
+  <div class="info_block" ng-repeat="playlist in api_home_overview.playlists">
+    <img class="tile_img"
+         ng-controller="CollectionCtrl"
+         ng-click="loadAlbum(playlist.id)"
+         ng-src="{{playlist.imageLink}}"/>
+    <p>{{playlist.title}}</p>
+  </div>
+</div>

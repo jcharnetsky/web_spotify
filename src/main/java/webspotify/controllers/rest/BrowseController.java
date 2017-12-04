@@ -23,8 +23,12 @@ public class BrowseController {
   SearchService searchService;
 
   @GetMapping("/overview")
-  public Response getOverviewData() {
-    return ResponseUtilities.emptySuccess();
+  public Response getOverviewData(HttpSession session) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
+      return ResponseUtilities.filledFailure("User not logged in.");
+    }
+    return searchService.getOverview();
   }
 
   @GetMapping("/genres_moods")

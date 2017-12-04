@@ -1,15 +1,45 @@
 <ul class="content_header">
   <li>
-    <p class="content_title">Top Recommendations For You</p>
+    <p class="content_title">Top Artists For You</p>
   </li>
 </ul>
 <hr>
 <div>
-  <div class="info_block" ng-repeat="album in api_home_discover">
+  <div class="info_block" ng-repeat="artist in api_home_discover.users">
+    <img class="tile_img"
+         ng-controller="UserCtrl"
+         ng-click="loadUser(artist.id)"
+         ng-src="{{artist.imageLink}}"/>
+    <p>{{artist.name}}</p>
+  </div>
+</div>
+<ul class="content_header">
+  <li>
+    <p class="content_title">Top Albums For You</p>
+  </li>
+</ul>
+<hr>
+<div>
+  <div class="info_block" ng-repeat="album in api_home_discover.albums">
     <img class="tile_img"
          ng-controller="CollectionCtrl"
          ng-click="loadAlbum(album.id)"
          ng-src="{{album.imageLink}}"/>
     <p>{{album.title}}</p>
+  </div>
+</div>
+<ul class="content_header">
+  <li>
+    <p class="content_title">Top Playlists For You</p>
+  </li>
+</ul>
+<hr>
+<div>
+  <div class="info_block" ng-repeat="playlist in api_home_discover.playlists">
+    <img class="tile_img"
+         ng-controller="CollectionCtrl"
+         ng-click="loadAlbum(playlist.id)"
+         ng-src="{{playlist.imageLink}}"/>
+    <p>{{playlist.title}}</p>
   </div>
 </div>
