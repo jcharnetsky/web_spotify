@@ -58,24 +58,6 @@ public class AlbumService {
   }
 
   @Transactional
-  public Response getGenreAlbums(GenreType genre){
-    List<Album> albums = albumRepo.findByGenre(genre);
-    List<BasicCollectionResponse> responses = new ArrayList<BasicCollectionResponse>();
-    int start, end;
-    if(albums.size() < ConfigConstants.NUM_ALBUMS_TO_SHOW_BROWSE){
-      start = 0;
-      end = albums.size();
-    } else {
-      start = (new Random()).nextInt(albums.size() - ConfigConstants.NUM_ALBUMS_TO_SHOW_BROWSE);
-      end = ConfigConstants.NUM_ALBUMS_TO_SHOW_BROWSE;
-    }
-    for(int i = 0; i < end;i++){
-      responses.add(new BasicCollectionResponse(albums.get(start + i)));
-    }
-    return ResponseUtilities.filledSuccess(responses);
-  }
-
-  @Transactional
   public Response getNewReleases(){
     List<Album> albums = albumRepo.findAll();
     List<BasicCollectionResponse> responses = new ArrayList<BasicCollectionResponse>();

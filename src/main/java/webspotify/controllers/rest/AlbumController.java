@@ -13,7 +13,9 @@ import webspotify.models.users.Administrator;
 import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 import webspotify.posts.AlbumCreateRequest;
+import webspotify.responses.SearchResponse;
 import webspotify.services.AlbumService;
+import webspotify.services.SearchService;
 import webspotify.types.GenreType;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
@@ -29,6 +31,9 @@ public class AlbumController {
 
   @Autowired
   AlbumService albumService;
+
+  @Autowired
+  SearchService searchService;
 
   @GetMapping("/")
   public Response getAlbumsToUser(HttpSession session) {
@@ -54,7 +59,7 @@ public class AlbumController {
     if (user == null) {
       return ResponseUtilities.filledFailure("User not logged in.");
     }
-    return albumService.getGenreAlbums(genre);
+    return searchService.getGenreAlbums(genre);
   }
 
   @GetMapping("/{albumId}/add/song/{songId}")

@@ -54,8 +54,7 @@ public class ConfigConstants {
   public static int MAX_SEARCH_ELEMENT_COUNT = 4;
   public static String AUDIO_TYPE = "audio/mpeg3";
 
-  public static int NUM_ALBUMS_TO_SHOW_BROWSE = 10;
-  public static int NUM_PLAYLISTS_TO_SHOW_BROWSE = 10;
+  public static int NUM_COLLECTIONS_TO_SHOW_BROWSE = 10;
   public static int NUM_ARTISTS_TO_SHOW_BROWSE = 10;
   
   public static double MONTHLY_SUBSCRIPTION_COST = 10.00;

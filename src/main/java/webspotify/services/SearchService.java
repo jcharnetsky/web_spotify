@@ -3,11 +3,13 @@ package webspotify.services;
 import java.util.*;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import webspotify.config.ConfigConstants;
 import webspotify.models.media.Album;
 import webspotify.models.media.Playlist;
 import webspotify.models.media.Song;
+import webspotify.models.media.SongCollection;
 import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 import webspotify.repo.AlbumRepository;
@@ -20,6 +22,7 @@ import webspotify.responses.BasicCollectionResponse;
 import webspotify.responses.BasicSongResponse;
 import webspotify.responses.BasicUserInfoResponse;
 import webspotify.responses.SearchResponse;
+import webspotify.types.GenreType;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
 
@@ -92,48 +95,21 @@ public class SearchService {
   @Transactional
   public Response getOverview(){
     List<Album> albums = albumRepository.findAll();
-    Set<BasicCollectionResponse> albumResponses = new HashSet<BasicCollectionResponse>();
-    int start, end;
-    if(albums.size() < ConfigConstants.NUM_ALBUMS_TO_SHOW_BROWSE){
-      start = 0;
-      end = albums.size();
-    } else {
-      start = (new Random()).nextInt(albums.size() - ConfigConstants.NUM_ALBUMS_TO_SHOW_BROWSE);
-      end = ConfigConstants.NUM_ALBUMS_TO_SHOW_BROWSE;
-    }
-    for(int i = 0; i < end;i++){
-      albumResponses.add(new BasicCollectionResponse(albums.get(start + i)));
-    }
-
+    Set<BasicCollectionResponse> albumResponses = getRandomCollectionResponses(albums);
     List<Playlist> playlists = playlistRepository.findAll();
-    Set<BasicCollectionResponse> playlistResponses = new HashSet<BasicCollectionResponse>();
-    if(playlists.size() < ConfigConstants.NUM_PLAYLISTS_TO_SHOW_BROWSE){
-      start = 0;
-      end = playlists.size();
-    } else {
-      start = (new Random()).nextInt(playlists.size() - ConfigConstants.NUM_PLAYLISTS_TO_SHOW_BROWSE);
-      end = ConfigConstants.NUM_PLAYLISTS_TO_SHOW_BROWSE;
-    }
-    for(int i = 0; i < end;i++){
-      playlistResponses.add(new BasicCollectionResponse(playlists.get(start + i)));
-    }
-
+    Set<BasicCollectionResponse> playlistResponses = getRandomCollectionResponses(playlists);
     List<Artist> artists = artistRepository.findAll();
-    Set<BasicUserInfoResponse> artistResponses = new HashSet<BasicUserInfoResponse>();
-    if(artists.size() < ConfigConstants.NUM_ARTISTS_TO_SHOW_BROWSE){
-      start = 0;
-      end = artists.size();
-    } else {
-      start = (new Random()).nextInt(artists.size() - ConfigConstants.NUM_ARTISTS_TO_SHOW_BROWSE);
-      end = ConfigConstants.NUM_ARTISTS_TO_SHOW_BROWSE;
-    }
-    for(int i = 0; i < end;i++){
-      artistResponses.add(new BasicUserInfoResponse(artists.get(start + i)));
-    }
-
+    Set<BasicUserInfoResponse> artistResponses = getRandomUserResponses(artists);
     SearchResponse response = new SearchResponse(
             null, artistResponses, albumResponses, playlistResponses);
     return ResponseUtilities.filledSuccess(response);
+  }
+
+  @Transactional
+  public Response getGenreAlbums(GenreType genre){
+    List<Album> albums = albumRepository.findByGenre(genre);
+    Set<BasicCollectionResponse> responses = getRandomCollectionResponses(albums);
+    return ResponseUtilities.filledSuccess(responses);
   }
 
   @Transactional
@@ -144,6 +120,38 @@ public class SearchService {
     Set<BasicUserInfoResponse> artists = new LinkedHashSet<BasicUserInfoResponse>();
     SearchResponse response = new SearchResponse(null, artists, albums, playlists);
     return ResponseUtilities.filledSuccess(response);
+  }
+
+  public Set<BasicCollectionResponse> getRandomCollectionResponses(List<? extends SongCollection> collections){
+    Set<BasicCollectionResponse> responses = new HashSet<BasicCollectionResponse>();
+    int start, end;
+    if(collections.size() < ConfigConstants.NUM_COLLECTIONS_TO_SHOW_BROWSE){
+      start = 0;
+      end = collections.size();
+    } else {
+      start = (new Random()).nextInt(collections.size() - ConfigConstants.NUM_COLLECTIONS_TO_SHOW_BROWSE);
+      end = ConfigConstants.NUM_COLLECTIONS_TO_SHOW_BROWSE;
+    }
+    for(int i = 0; i < end;i++) {
+      responses.add(new BasicCollectionResponse(collections.get(start + i)));
+    }
+    return responses;
+  }
+
+  public Set<BasicUserInfoResponse> getRandomUserResponses(List<? extends User> users){
+    Set<BasicUserInfoResponse> responses = new HashSet<BasicUserInfoResponse>();
+    int start, end;
+    if(users.size() < ConfigConstants.NUM_ARTISTS_TO_SHOW_BROWSE){
+      start = 0;
+      end = users.size();
+    } else {
+      start = (new Random()).nextInt(users.size() - ConfigConstants.NUM_ARTISTS_TO_SHOW_BROWSE);
+      end = ConfigConstants.NUM_ARTISTS_TO_SHOW_BROWSE;
+    }
+    for(int i = 0; i < end;i++) {
+      responses.add(new BasicUserInfoResponse(users.get(start + i)));
+    }
+    return responses;
   }
 
 }
