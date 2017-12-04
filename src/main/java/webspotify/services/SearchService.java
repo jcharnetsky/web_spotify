@@ -121,11 +121,42 @@ public class SearchService {
   @Transactional
   public Response getDiscover(int userId){
     User user = userRepository.findOne(userId);
-    List<Album> albums = albumRepository.findAll();
+    Set<Album> savedAlbums = user.getSavedAlbums();
+    Map<GenreType, Integer> listenedGenres = new HashMap<GenreType, Integer>();
+    GenreType genre = GenreType.POP;
+    for(Album savedAlbum : savedAlbums){
+      GenreType listenedGenre = savedAlbum.getGenre();
+      Integer count = listenedGenres.get(genre);
+      if(count != null){
+        listenedGenres.put(listenedGenre, count+1);
+      } else {
+        listenedGenres.put(listenedGenre, 1);
+      }
+    }
+    int maxGenreListens = 0;
+    for (GenreType listenedGenre: listenedGenres.keySet()){
+      if(listenedGenres.get(listenedGenre) > maxGenreListens){
+        genre = listenedGenre;
+        maxGenreListens = listenedGenres.get(listenedGenre);
+      }
+    }
+    List<Album> albums = albumRepository.findByGenre(genre);
     Set<BasicCollectionResponse> albumResponses = getRandomCollectionResponses(albums);
-    List<Playlist> playlists = playlistRepository.findAll();
+    List<Playlist> playlists = playlistRepository.findByGenre(genre);
     Set<BasicCollectionResponse> playlistResponses = getRandomCollectionResponses(playlists);
-    List<Artist> artists = artistRepository.findAll();
+    List<Artist> artists;
+    boolean userFollowsAnArtist = false;
+    for (User following : user.getFollowing()){
+      if(following instanceof Artist){
+        userFollowsAnArtist = true;
+      }
+    }
+    if(userFollowsAnArtist){
+      // TODO: Make some kind of related artist query
+      artists = artistRepository.findAll();
+    } else {
+      artists = artistRepository.findAll();
+    }
     Set<BasicUserInfoResponse> artistResponses = getRandomUserResponses(artists);
     SearchResponse response = new SearchResponse(null, artistResponses, albumResponses, playlistResponses);
     return ResponseUtilities.filledSuccess(response);

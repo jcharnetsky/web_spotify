@@ -14,6 +14,5 @@ import webspotify.types.GenreType;
 @Repository
 public interface AlbumRepository extends JpaRepository<Album, Integer> {
   List<Album> findByTitleContaining(String title);
-
   List<Album> findByGenre(GenreType genre);
 }
