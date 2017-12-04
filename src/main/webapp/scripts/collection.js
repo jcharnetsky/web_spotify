@@ -48,7 +48,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
     });
   }
   $scope.openDialog = function (url) {
-    $http.get(location.origin + "/api/songs/genres").then(function (response) {
+    $http.get(location.origin + "/api/home/genres_moods").then(function (response) {
       handleJSONResponse(response, "modal_dialog", url, "genres", $compile, $parse, $scope);
     }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);

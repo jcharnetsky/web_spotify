@@ -5,10 +5,10 @@
 </ul>
 <hr>
 <ul class="list_tiles">
-  <li ng-repeat="n in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]">
+  <li ng-repeat="genre in api_home_genres_moods.genres">
     <div class="tile">
       <a href="#">
-        <img class="tile_img" ng-src="../images/genre_{{n}}.png">
+        <img class="tile_img" ng-src="../images/{{genre | toLowercase}}.png">
       </a>
     </div>
   </li>

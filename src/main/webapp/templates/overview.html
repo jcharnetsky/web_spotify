@@ -1,7 +1,7 @@
-<ul class="content_header"><li><p class="content_title">Focus</p></li></ul>
+<ul class="content_header"><li><p class="content_title">Albums</p></li></ul>
 <hr>
 <ul class="list_tiles">
-  <li ng-repeat="item in api_home_overview.focus">
+  <li ng-repeat="item in api_home_overview.albums">
     <div class="tile">
       <a href="#">
         <img class="tile_img" ng-src={{item.img}} alt="Suggestion"/>
@@ -11,16 +11,16 @@
     </div>
   </li>
 </ul>
-<ul class="content_header"><li><p class="content_title">Charts</p></li></ul>
-<hr>
-<ul class="content_header"><li> <p class="content_title">Genres</p></li></ul>
+<ul class="content_header"><li><p class="content_title">Playlists</p></li></ul>
 <hr>
 <ul class="list_tiles">
-  <li ng-repeat="n in [1, 2, 3, 4, 5, 6, 7, 8]">
+  <li ng-repeat="item in api_home_overview.playlist">
     <div class="tile">
       <a href="#">
-        <img class="tile_img" ng-src="images/genre_{{n}}.png">
+        <img class="tile_img" ng-src={{item.img}} alt="Suggestion"/>
       </a>
+      <p class="tile_text">{{item.head}}</p>
+      <p class="tile_desc left_align">{{item.desc}}</p>
     </div>
   </li>
 </ul>
