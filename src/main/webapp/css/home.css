@@ -48,9 +48,6 @@
   font-weight: 600;
   color: #ffffff;
 }
-.three_tiles, .two_tiles, .list_tiles, .chart_tiles {
-  padding-left: 0vw;
-}
 .tile {
   display: inline-block;
   vertical-align: top;
@@ -73,25 +70,6 @@
   margin-top: 0.5vh;
   font-size: 65%;
 }
-.three_tiles {
-  padding-left: 0.1vw;
-  margin-bottom: 3vh;
-}
-.three_tiles li {
-  display: inline;
-  position: relative;
-  padding-right: 0.5vw;
-  padding-left: 0.4vw;
-}
-.three_tile {
-  display: inline-block;
-  vertical-align: top;
-  width: 25.5vw;
-}
-.three_tile_img {
-  position: relative;
-  width: 25.5vw;
-}
 .list_tiles {
   position: relative;
   margin: 10px;
@@ -103,56 +81,7 @@
   padding-right: 0.5vw;
   padding-left: 0.5vw;
 }
-#location {
-  position: relative;
-  padding-left: 0.5vw;
-  width: 80vw;
-  height: 6vh;
-  font-size: 200%;
-  font-weight: 600;
-  color: #ffffff;
-  margin-bottom: 2vh;
-}
-.chart_tiles {
-  margin-bottom: 8vh;
-}
-.chart_tiles li {
-  display: inline;
-  position: relative;
-  padding-right: 0.4vw;
-  padding-left: 0.4vw;
-}
-.chart_tile {
-  display: inline-block;
-  vertical-align: top;
-  width: 19vw;
-}
-.chart_tile_img {
-  position: relative;
-  width: 19vw;
-}
-.two_tiles li {
-  display: inline;
-  position: relative;
-  padding-left: 0.4vw;
-  padding-right: 0.4vw;
-}
-.two_tile {
-  display: inline-block;
-  width: 39vw;
-}
-.two_tile_img {
-  width: 39vw;
-}
-.nav_tiles {
-  height: 5vh;
-  float: right;
-  padding-right: 0.5vw;
-}
-.next_tiles {
-  height: 5vh;
-}
-.tile_img:hover, .two_tile_img:hover, .three_tile_img:hover, .concert_img:hover, .release_img:hover {
+.tile_img:hover {
   -webkit-box-shadow: 1px 1px 5px white;
   box-shadow: 1px 1px 5px white;
   mix-blend-mode: soft-light;

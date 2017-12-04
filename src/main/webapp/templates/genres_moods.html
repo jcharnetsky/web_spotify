@@ -1,17 +1,14 @@
+<link rel="stylesheet" href="css/blocks.css">
 <ul class="content_header">
   <li>
     <p class="content_title">Genres & Moods</p>
   </li>
 </ul>
 <hr>
-<ul class="list_tiles">
-  <li ng-repeat="genre in api_home_genres_moods.genres">
-    <div class="tile">
-      <a href="#">
-        <img class="tile_img"
-             ng-click="loadGenreAlbums(genre)"
-             ng-src="../images/{{genre | toLowercase}}.png"/>
-      </a>
-    </div>
-  </li>
-</ul>
+<div>
+  <div class="info_block" ng-repeat="genre in api_home_genres_moods.genres">
+    <img class="tile_img" style="border-radius: 0; margin: 5px;"
+         ng-click="loadGenreAlbums(genre)"
+         ng-src="../images/{{genre | toLowercase}}.png"/>
+  </div>
+</div>

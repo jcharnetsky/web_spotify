@@ -58,9 +58,16 @@ public class AlbumService {
   public Response getGenreAlbums(GenreType genre){
     List<Album> albums = albumRepo.findByGenre(genre);
     List<BasicCollectionResponse> responses = new ArrayList<BasicCollectionResponse>();
-    int randInt = (new Random()).nextInt(albums.size() - ConfigConstants.NUM_ALBUMS_TO_SHOW_BROWSE);
-    for(int i = 0; i < ConfigConstants.NUM_ALBUMS_TO_SHOW_BROWSE; i++){
-      responses.add(new BasicCollectionResponse(albums.get(randInt + i)));
+    int start, end;
+    if(albums.size() < ConfigConstants.NUM_ALBUMS_TO_SHOW_BROWSE){
+      start = 0;
+      end = albums.size();
+    } else {
+      start = (new Random()).nextInt(albums.size() - ConfigConstants.NUM_ALBUMS_TO_SHOW_BROWSE);
+      end = ConfigConstants.NUM_ALBUMS_TO_SHOW_BROWSE;
+    }
+    for(int i = 0; i < end;i++){
+      responses.add(new BasicCollectionResponse(albums.get(start + i)));
     }
     return ResponseUtilities.filledSuccess(responses);
   }
