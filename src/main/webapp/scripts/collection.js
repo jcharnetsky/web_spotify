@@ -107,7 +107,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
       "title": $scope.edit_title,
       "genre": $scope.edit_genre
     })
-    $http.post("/api/albums/" + id + "/edit", data, {headers: {"Content-Type": "application/json"}}).
+    $http.post("/api/albums/"+id+"/edit", data, {headers: {"Content-Type": "application/json"}}).
       then(function (response) {
         if (!response.data.error) {
           if ($scope.edit_title) {

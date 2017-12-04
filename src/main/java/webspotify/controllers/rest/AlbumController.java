@@ -14,6 +14,7 @@ import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 import webspotify.posts.AlbumCreateRequest;
 import webspotify.services.AlbumService;
+import webspotify.types.GenreType;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
 import webspotify.utilities.SessionUtilities;
@@ -47,6 +48,15 @@ public class AlbumController {
     return albumService.getInfoAboutAlbum(user, albumId);
   }
 
+  @GetMapping("/genre/{genre}")
+  public Response getGenreAlbums(@PathVariable GenreType genre, HttpSession session){
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
+      return ResponseUtilities.filledFailure("User not logged in.");
+    }
+    return albumService.getGenreAlbums(user, genre);
+  }
+
   @GetMapping("/{albumId}/add/song/{songId}")
   public Response addSongToAlbum(@PathVariable final int albumId, @PathVariable final int songId, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
@@ -76,7 +86,7 @@ public class AlbumController {
 
   @PostMapping("/{albumId}/edit")
   public Response editAlbum(@PathVariable final int albumId,
-                                 @RequestBody AlbumCreateRequest request, HttpSession session) {
+                            @RequestBody AlbumCreateRequest request, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);

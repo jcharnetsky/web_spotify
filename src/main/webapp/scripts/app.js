@@ -46,6 +46,16 @@ angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function ($
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
+  $scope.loadGenreAlbums = function (genre) {
+    data = JSON.stringify({"genre": genre});
+    $http.get("/api/albums/genre/"+genre, data, {headers: {"Content-Type": "application/json"}})
+    .then(function (response) {
+      handleJSONResponse(response, "main", "albums.html", "albums",
+       $compile, $parse, $scope);
+    }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  }
   $scope.order='songId';
   $scope.setOrder = function (i) {
     if (i == 0) {

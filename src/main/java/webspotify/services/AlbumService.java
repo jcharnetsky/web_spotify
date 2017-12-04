@@ -16,7 +16,9 @@ import webspotify.repo.AlbumRepository;
 import webspotify.repo.SongRepository;
 import webspotify.repo.UserRepository;
 import webspotify.responses.AlbumInfoResponse;
+import webspotify.responses.BasicCollectionResponse;
 import webspotify.responses.SongResponse;
+import webspotify.types.GenreType;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
 
@@ -49,6 +51,16 @@ public class AlbumService {
     } else {
       return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
     }
+  }
+
+  @Transactional
+  public Response getGenreAlbums(User user, GenreType genre){
+    List<Album> albums = albumRepo.findByGenre(genre);
+    List<BasicCollectionResponse> responses = new ArrayList<BasicCollectionResponse>();
+    for(Album album : albums.subList(0, 10)){
+      responses.add(new BasicCollectionResponse(album));
+    }
+    return ResponseUtilities.filledSuccess(responses);
   }
 
   @Transactional

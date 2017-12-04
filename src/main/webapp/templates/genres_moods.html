@@ -8,7 +8,9 @@
   <li ng-repeat="genre in api_home_genres_moods.genres">
     <div class="tile">
       <a href="#">
-        <img class="tile_img" ng-src="../images/{{genre | toLowercase}}.png">
+        <img class="tile_img"
+             ng-click="loadGenreAlbums(genre)"
+             ng-src="../images/{{genre | toLowercase}}.png"/>
       </a>
     </div>
   </li>
