@@ -1,0 +1,17 @@
+<ul class="content_header">
+  <li>
+    <p class="content_title">New releases</p>
+  </li>
+</ul>
+<hr>
+<ul class="list_tiles">
+  <li ng-repeat="release in api_home_new_releases">
+    <div class="tile">
+      <img class="tile_img"
+           ng-controller="CollectionCtrl"
+           ng-click="loadAlbum(release.id)"
+           ng-src="{{release.imageLink}}"/>
+      <p>{{release.title}}</p>
+    </div>
+  </li>
+</ul>

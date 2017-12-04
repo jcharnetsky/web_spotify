@@ -1,14 +1,22 @@
 package webspotify.controllers.rest;
 
 import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import webspotify.models.users.User;
 import webspotify.responses.GenresResponse;
+import webspotify.services.AlbumService;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
+import webspotify.utilities.SessionUtilities;
 
 @RestController
 @RequestMapping("/api/home")
 public class BrowseController {
+
+  @Autowired
+  AlbumService albumService;
 
   @GetMapping("/overview")
   public Response getOverviewData() {
@@ -21,8 +29,12 @@ public class BrowseController {
   }
 
   @GetMapping("/new_releases")
-  public Response getNewReleasesData() {
-    return ResponseUtilities.emptySuccess();
+  public Response getNewReleasesData(HttpSession session) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
+      return ResponseUtilities.filledFailure("User not logged in.");
+    }
+    return albumService.getNewReleases();
   }
 
   @GetMapping("/discover")

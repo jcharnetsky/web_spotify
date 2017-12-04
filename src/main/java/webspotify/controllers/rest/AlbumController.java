@@ -54,7 +54,7 @@ public class AlbumController {
     if (user == null) {
       return ResponseUtilities.filledFailure("User not logged in.");
     }
-    return albumService.getGenreAlbums(user, genre);
+    return albumService.getGenreAlbums(genre);
   }
 
   @GetMapping("/{albumId}/add/song/{songId}")

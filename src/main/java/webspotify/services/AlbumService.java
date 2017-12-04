@@ -3,6 +3,7 @@ package webspotify.services;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import webspotify.config.ConfigConstants;
@@ -54,11 +55,24 @@ public class AlbumService {
   }
 
   @Transactional
-  public Response getGenreAlbums(User user, GenreType genre){
+  public Response getGenreAlbums(GenreType genre){
     List<Album> albums = albumRepo.findByGenre(genre);
     List<BasicCollectionResponse> responses = new ArrayList<BasicCollectionResponse>();
-    for(Album album : albums.subList(0, 10)){
-      responses.add(new BasicCollectionResponse(album));
+    int randInt = (new Random()).nextInt(albums.size() - ConfigConstants.NUM_ALBUMS_TO_SHOW_BROWSE);
+    for(int i = 0; i < ConfigConstants.NUM_ALBUMS_TO_SHOW_BROWSE; i++){
+      responses.add(new BasicCollectionResponse(albums.get(randInt + i)));
+    }
+    return ResponseUtilities.filledSuccess(responses);
+  }
+
+  @Transactional
+  public Response getNewReleases(){
+    List<Album> albums = albumRepo.findAll();
+    List<BasicCollectionResponse> responses = new ArrayList<BasicCollectionResponse>();
+    for(int i = Math.max(albums.size() - ConfigConstants.NUM_ALBUMS_TO_SHOW_BROWSE, 0);
+        i < albums.size();
+        i++){
+      responses.add(new BasicCollectionResponse(albums.get(i)));
     }
     return ResponseUtilities.filledSuccess(responses);
   }
