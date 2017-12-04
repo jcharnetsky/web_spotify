@@ -1,0 +1,12 @@
+<link rel="stylesheet" href="css/collection.css">
+<link rel="stylesheet" href="css/blocks.css">
+<div class="content_title">Genre</div>
+<div class="followed_albums">
+  <div class="info_block" ng-repeat="album in albums">
+    <img ng-src="{{album.imageLink}}" alt="Image"
+         ng-controller="CollectionCtrl"
+         ng-click="loadAlbum(album.id)"
+         style="border-radius: 0px;">
+    <p>{{album.title}}</p>
+  </div>
+</div>

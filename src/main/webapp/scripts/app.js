@@ -47,11 +47,8 @@ angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function ($
     });
   }
   $scope.loadGenreAlbums = function (genre) {
-    data = JSON.stringify({"genre": genre});
-    $http.get("/api/albums/genre/"+genre, data, {headers: {"Content-Type": "application/json"}})
-    .then(function (response) {
-      handleJSONResponse(response, "main", "albums.html", "albums",
-       $compile, $parse, $scope);
+    $http.get("/api/albums/genre/"+genre).then(function (response) {
+      handleJSONResponse(response, "main", "genre.html", "albums", $compile, $parse, $scope);
     }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });
