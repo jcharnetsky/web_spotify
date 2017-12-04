@@ -1,11 +1,11 @@
 angular.module("web_spotify").controller("UploadCtrl", function ($scope, $http, $parse, $compile) {
   $scope.editImage = function () {
-    var imageFiles = document.getElementById("editImage").files;
+    var imageFiles = document.getElementById("editImage").files[0];
     if(imageFiles.length == 0){
       return;
     }
     var imageData = new FormData();
-    imageData.append('file', imageFiles[0]);
+    imageData.append('file', imageFiles);
     $http.post("/upload/image/user", imageData,
       {transformRequest: angular.identity, headers: {'Content-Type': undefined}})
       .then(function(response) {
