@@ -16,6 +16,7 @@ input[type='file'].hidden {
   top: 0;
   right: 0;
   height: 100%;
+  width: 100%;
   font-size: 50px;
   opacity: 0;
   -moz-opacity: 0;
