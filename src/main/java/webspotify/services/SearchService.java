@@ -121,51 +121,34 @@ public class SearchService {
   @Transactional
   public Response getDiscover(int userId){
     User user = userRepository.findOne(userId);
-    Set<Album> savedAlbums = user.getSavedAlbums();
-    Set<Playlist> relatedPlaylists = user.getOwnedPlaylists();
-    relatedPlaylists.addAll(user.getFollowedPlaylists());
-    Map<GenreType, Integer> listenedGenres = new HashMap<GenreType, Integer>();
-    GenreType genre = GenreType.POP;
-    for(Album savedAlbum : savedAlbums){
-      GenreType listenedGenre = savedAlbum.getGenre();
-      Integer count = listenedGenres.get(genre);
-      if(count != null){
-        listenedGenres.put(listenedGenre, count+1);
-      } else {
-        listenedGenres.put(listenedGenre, 1);
-      }
+    List<SongCollection> followedCollections = new LinkedList<SongCollection>();
+    for(Album album: user.getSavedAlbums()){
+      followedCollections.add((SongCollection) album);
     }
-    for(Playlist relatedPlaylist : relatedPlaylists){
-      GenreType listenedGenre = relatedPlaylist.getGenre();
-      Integer count = listenedGenres.get(genre);
-      if(count != null){
-        listenedGenres.put(listenedGenre, count+1);
-      } else {
-        listenedGenres.put(listenedGenre, 1);
-      }
+    for(Playlist playlist: user.getFollowedPlaylists()){
+      followedCollections.add((SongCollection) playlist);
     }
-    int maxGenreListens = 0;
-    for (GenreType listenedGenre: listenedGenres.keySet()){
-      if(listenedGenres.get(listenedGenre) > maxGenreListens){
-        genre = listenedGenre;
-        maxGenreListens = listenedGenres.get(listenedGenre);
-      }
+    for(Playlist playlist: user.getOwnedPlaylists()){
+      followedCollections.add((SongCollection) playlist);
     }
+    GenreType genre = getMostOccuringGenreInCollections(followedCollections);
+    Set<BasicCollectionResponse> albumResponses = getRandomCollectionResponses(albumRepository.findByGenre(genre));
+    Set<BasicCollectionResponse> playlistResponses = getRandomCollectionResponses(playlistRepository.findByGenre(genre));
 
-    List<Album> albums = albumRepository.findByGenre(genre);
-    Set<BasicCollectionResponse> albumResponses = getRandomCollectionResponses(albums);
-    List<Playlist> playlists = playlistRepository.findByGenre(genre);
-    Set<BasicCollectionResponse> playlistResponses = getRandomCollectionResponses(playlists);
-    List<Artist> artists;
-    boolean userFollowsAnArtist = false;
+    List<Artist> artists = new ArrayList<Artist>();
+    Artist lastFollowedArtist = null;
     for (User following : user.getFollowing()){
       if(following instanceof Artist){
-        userFollowsAnArtist = true;
+        lastFollowedArtist = (Artist) following;
       }
     }
-    if(userFollowsAnArtist){
-      // TODO: Make some kind of related artist query
-      artists = artistRepository.findAll();
+    if(lastFollowedArtist != null){
+      if(lastFollowedArtist.getOwnedAlbums().size() > 0) {
+        genre = ((Album) lastFollowedArtist.getOwnedAlbums().toArray()[0]).getGenre();
+      }
+      for(Album genreAlbum: albumRepository.findByGenre(genre)){
+        artists.add((Artist) genreAlbum.getOwner());
+      }
     } else {
       artists = artistRepository.findAll();
     }
@@ -204,6 +187,28 @@ public class SearchService {
       responses.add(new BasicUserInfoResponse(users.get(start + i)));
     }
     return responses;
+  }
+
+  public GenreType getMostOccuringGenreInCollections(List<SongCollection> collections){
+    Map<GenreType, Integer> listenedGenres = new HashMap<GenreType, Integer>();
+    GenreType genre = GenreType.POP;
+    for(SongCollection collection : collections){
+      GenreType listenedGenre = collection.getGenre();
+      Integer count = listenedGenres.get(genre);
+      if(count != null){
+        listenedGenres.put(listenedGenre, count+1);
+      } else {
+        listenedGenres.put(listenedGenre, 1);
+      }
+    }
+    int maxGenreListens = 0;
+    for (GenreType listenedGenre: listenedGenres.keySet()){
+      if(listenedGenres.get(listenedGenre) > maxGenreListens){
+        genre = listenedGenre;
+        maxGenreListens = listenedGenres.get(listenedGenre);
+      }
+    }
+    return genre;
   }
 
 }
