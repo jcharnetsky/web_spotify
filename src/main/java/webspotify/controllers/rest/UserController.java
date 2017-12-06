@@ -104,4 +104,12 @@ public class UserController {
     return userService.getFollowedArtists(user);
   }
   
+  @GetMapping("/get/followedUsers")
+  public Response getFollowedUsers(HttpSession session){
+    User user = SessionUtilities.getUserFromSession(session);
+    if(user == null){
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    }
+    return userService.getFollowedUsers(user);
+  }
 }

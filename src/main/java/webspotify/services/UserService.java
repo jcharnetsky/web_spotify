@@ -197,5 +197,16 @@ public class UserService {
     }
     return ResponseUtilities.filledSuccess(toReturn);
   }
-
+  
+  @Transactional
+  public Response getFollowedUsers(User user){
+    User userToCheck = userRepository.findOne(user.getId());
+    List<UserInfoResponse> followedUsers = new ArrayList<UserInfoResponse>();
+    for(User following : userToCheck.getFollowing()) {
+      if(!(following instanceof Artist)) {
+        followedUsers.add(new UserInfoResponse(following));
+      }
+    }
+    return ResponseUtilities.filledSuccess(followedUsers);
+  }
 }
