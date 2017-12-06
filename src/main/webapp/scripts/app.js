@@ -53,31 +53,54 @@ angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function ($
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
-  $scope.order='songId';
-  $scope.setOrder = function (i) {
-    if (i == 0) {
-        if($scope.order == 'trackName') {
+  $scope.setOrder = function (newOrder) {
+    if (newOrder === "trackName") {
+        if($scope.order === 'trackName') {
             $scope.order = '-trackName';
         } else{
             $scope.order = 'trackName';
         }
-    } else if (i == 1) {
-      if($scope.order == 'artist.stageName') {
+    } else if (newOrder === "artistName") {
+      if($scope.order === 'artist.stageName') {
         $scope.order = '-artist.stageName';
       } else{
         $scope.order = 'artist.stageName';
       }
-    } else if (i == 2) {
-      if($scope.order == 'trackLength') {
+    } else if (newOrder === "trackLength") {
+      if($scope.order === 'trackLength') {
         $scope.order = '-trackLength';
       } else{
         $scope.order = 'trackLength';
       }
-    } else if (i == 3) {
-      if($scope.order == 'albumName') {
+    } else if (newOrder === "albumName") {
+      if($scope.order === 'albumName') {
         $scope.order = '-albumName';
       } else{
         $scope.order = 'albumName';
+      }
+    } else if (newOrder === "reportNum") {
+      if($scope.order === 'id') {
+        $scope.order = '-id';
+      } else{
+        $scope.order = 'id';
+      }
+    } else if (newOrder === "reportSubject") {
+      if($scope.order === 'subject') {
+        $scope.order = '-subject';
+      } else{
+        $scope.order = 'subject';
+      }
+    } else if (newOrder === "reportEntity") {
+      if($scope.order === 'entityType') {
+        $scope.order = '-entityType';
+      } else{
+        $scope.order = 'entityType';
+      }
+    } else if (newOrder === "reportType") {
+      if($scope.order === 'reportType') {
+        $scope.order = '-reportType';
+      } else{
+        $scope.order = 'reportType';
       }
     }
   };
