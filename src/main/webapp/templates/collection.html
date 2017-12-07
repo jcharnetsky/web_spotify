@@ -26,7 +26,7 @@
       </div>
     </div>
   </div>
-  <ul class="collection">
+  <ul class="collection" ng-controller = "PlaybarCtrl">
     <li>
       <ul class="collection_tiles">
         <li>
@@ -51,8 +51,8 @@
               <div class="options_button" ng-click="toggleDropdown(song.id)">...</div>
               <div ng-attr-id="other_dropdown_{{song.id}}"
                 class="dropdown_content">
-                  <a href="#" ng-click="addSongToQueue(song.id)">Addto Queue</a> 
-                  <a href="#" ng-click="removeSongFromPlaylist(song.id, collection.id)"> Remove from Playlist</a> 
+                  <a href="#" ng-click="addSongToQueue(song.id)">Add to Queue</a> 
+                  <a href="#" ng-show="collection.playlist" ng-click="removeSongFromPlaylist(song.id, collection.id)"> Remove from Playlist</a> 
                   <a href="#" ng-repeat="playlist in playlists" ng-show="playlist.id != collection.id" ng-click="addSongToPlaylist(song.id, playlist.id)"> Add to {{playlist.title}} </a> 
                   <a href="#" ng-controller="ManageCtrl" ng-click="openCreateReport('Song', song.trackName, song.id)">Report</a>
               </div>

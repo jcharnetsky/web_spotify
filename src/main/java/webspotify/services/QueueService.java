@@ -42,8 +42,11 @@ public class QueueService {
   public Response addSongToQueue(SongQueue queue, int songId) {
     if (songRepository.exists(songId)) {
       Song songToAdd = songRepository.findOne(songId);
-      queue.enqueueSong(songToAdd);
-      return ResponseUtilities.emptySuccess();
+      if(songToAdd.getHasAudio()) {
+        queue.enqueueSong(songToAdd);
+        return ResponseUtilities.emptySuccess();
+      }
+      return ResponseUtilities.filledFailure(ConfigConstants.NO_AUDIO_EXIST);
     } else {
       return ResponseUtilities.filledFailure(ConfigConstants.SONG_NO_EXIST);
     }
@@ -67,14 +70,8 @@ public class QueueService {
   public Response addPlaylistToQueue(SongQueue queue, int playlistId) {
     if (playlistRepository.exists(playlistId)) {
       Playlist playlistToAdd = playlistRepository.findOne(playlistId);
-      ArrayList<Song> validSongs = new ArrayList<Song>();
       ArrayList<Song> allSongs = new ArrayList<Song>(playlistToAdd.getSongs());
-      for(int i = 0; i < allSongs.size(); i++) {
-        if(allSongs.get(i).getHasAudio()) {
-          validSongs.add(allSongs.get(i));
-        }
-      }
-      queue.enqueueCollection(validSongs);
+      queue.enqueueCollection(determineValidSongs(allSongs));
       return ResponseUtilities.emptySuccess();
     } else {
       return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
@@ -85,12 +82,22 @@ public class QueueService {
   public Response addAlbumToQueue(SongQueue queue, int albumId) {
     if (albumRepository.exists(albumId)) {
       Album albumToAdd = albumRepository.findOne(albumId);
-      queue.enqueueCollection(albumToAdd.getSongsInAlbum());
+      ArrayList<Song> allSongs = new ArrayList<Song>(albumToAdd.getSongs());
+      queue.enqueueCollection(determineValidSongs(allSongs));
       return ResponseUtilities.emptySuccess();
     } else {
       return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
     }
   }
+  
+  @Transactional
+  public Response addSavedSongsToQueue(User user, SongQueue queue) {
+    User userToChange = userRepository.findOne(user.getId());
+    ArrayList<Song> allSongs = new ArrayList<Song>(userToChange.getSavedSongs());
+    queue.enqueueCollection(determineValidSongs(allSongs));
+    return ResponseUtilities.emptySuccess();
+  }
+  
   @Transactional
   public Response clearQueue(SongQueue queue) {
     queue.clearQueue();
@@ -138,11 +145,14 @@ public class QueueService {
     queue.setRepeatType(RepeatType.NONE);
     return ResponseUtilities.emptySuccess();
   }
-
-  @Transactional
-  public Response addSavedSongsToQueue(User user, SongQueue queue) {
-    User userToChange = userRepository.findOne(user.getId());
-    queue.enqueueCollection(userToChange.getSavedSongs());
-    return ResponseUtilities.emptySuccess();
+  
+  public ArrayList<Song> determineValidSongs(ArrayList<Song> allSongs) {
+    ArrayList<Song> validSongs = new ArrayList<Song>();
+    for(int i = 0; i < allSongs.size(); i++) {
+      if(allSongs.get(i).getHasAudio()) {
+        validSongs.add(allSongs.get(i));
+      }
+    }
+    return validSongs;
   }
 }

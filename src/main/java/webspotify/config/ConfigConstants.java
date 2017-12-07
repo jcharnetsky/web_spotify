@@ -14,6 +14,7 @@ public class ConfigConstants {
   public static String USER_NOT_FOUND = "The user does not exist.";
   public static String COLLECTION_NO_EXIST = "Desired Collection does not exist.";
   public static String SONG_NO_EXIST = "Desired song does not exist.";
+  public static String NO_AUDIO_EXIST = "Desired song audio does not exist.";
   public static String ARTIST_NO_EXIST = "Artist does not exist.";
   public static String REPORT_NO_EXIST = "Report does not exist.";
   public static String REPORT_TYPE_NO_EXIST = "The given Report type does not exist.";
