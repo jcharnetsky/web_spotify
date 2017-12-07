@@ -165,7 +165,7 @@ public class SearchService {
       end = collections.size();
     } else {
       start = (new Random()).nextInt(collections.size() - ConfigConstants.NUM_COLLECTIONS_TO_SHOW_BROWSE);
-      end = ConfigConstants.NUM_COLLECTIONS_TO_SHOW_BROWSE;
+      end = start + ConfigConstants.NUM_COLLECTIONS_TO_SHOW_BROWSE;
     }
     for(int i = 0; i < end;i++) {
       responses.add(new BasicCollectionResponse(collections.get(start + i)));
@@ -181,7 +181,7 @@ public class SearchService {
       end = users.size();
     } else {
       start = (new Random()).nextInt(users.size() - ConfigConstants.NUM_ARTISTS_TO_SHOW_BROWSE);
-      end = ConfigConstants.NUM_ARTISTS_TO_SHOW_BROWSE;
+      end = start + ConfigConstants.NUM_ARTISTS_TO_SHOW_BROWSE;
     }
     for(int i = 0; i < end;i++) {
       responses.add(new BasicUserInfoResponse(users.get(start + i)));

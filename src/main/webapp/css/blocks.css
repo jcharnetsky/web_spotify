@@ -8,7 +8,7 @@
   height: 20vw;
   text-align: center;
   vertical-align: top;
-  display: inline-block;
+  display: inline-block !important;
 }
 .info_block img {
   width: 15vw;
