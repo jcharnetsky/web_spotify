@@ -1,20 +1,20 @@
 <link rel="stylesheet" href="css/collection.css">
 <div id="manage_songs" ng-controller="ManageCtrl">
-  <div class="content_title">Manage Songs</div>
+  <div class="content_title">Manage Reports</div>
   <ul class="collection">
     <li>
       <ul class="collection_tiles">
         <li>
           <div class="collection_tile">
-            <a href="#">Report #</a>
-            <a href="#">Subject</a>
-            <a href="#">Entity</a>
-            <a href="#">Type</a>
+            <a href="#" ng-click="setOrder('reportNum')">Report #</a>
+            <a href="#" ng-click="setOrder('reportSubject')">Subject</a>
+            <a href="#" ng-click="setOrder('reportEntity')">Entity</a>
+            <a href="#" ng-click="setOrder('reportType')">Type</a>
           </div>
         </li>
       </ul>
     </li>
-    <li ng-repeat="report in api_reports_all">
+    <li ng-repeat="report in api_reports_all | orderBy:order">
       <hr class="collection_hr">
       <ul class="collection_tiles">
         <li>

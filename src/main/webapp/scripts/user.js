@@ -14,6 +14,14 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
+  
+  $scope.getFollowedUsers = function () {
+    $http.get(location.origin + "/api/users/get/followedUsers").then(function(response) {
+      handleJSONResponse(response, "main", "friends.html", "followedUsers", $compile, $parse, $scope);
+    }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  };
 
   $scope.followUser = function(id) {
     $http.post("/api/users/follow/" + id).then(function (response) {

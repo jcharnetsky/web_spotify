@@ -1,0 +1,12 @@
+<link rel="stylesheet" href="css/collection.css">
+<link rel="stylesheet" href="css/blocks.css">
+<div class="content_title">Followed Users</div>
+<div class="followed_users">
+  <div class="info_block" ng-repeat="following in followedUsers">
+    <img ng-src="{{following.imageLink}}" alt="Image"
+         ng-controller="UserCtrl"
+         ng-click="loadUser(following.id)"
+         style="border: 1px solid white;">
+    <p>{{following.name}}</p>
+  </div>
+</div>
