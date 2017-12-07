@@ -2,7 +2,6 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
   $scope.searchQuery = function(query) {
     $http.get(location.origin+"/api/search/"+query).then(function (response) {
         handleJSONResponse(response, "main", "searchResults.html", "results", $compile, $parse, $scope);
-        $scope.getPlaylists();
       }).catch(function (err) {
         displayErrorPopup(err, $scope, $parse, $compile);
     });

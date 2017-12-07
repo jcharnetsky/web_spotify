@@ -1,5 +1,6 @@
 package webspotify.services;
 
+import java.util.ArrayList;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +19,6 @@ import webspotify.responses.SongResponse;
 import webspotify.types.RepeatType;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Service("queueService")
 public class QueueService {
@@ -69,7 +67,14 @@ public class QueueService {
   public Response addPlaylistToQueue(SongQueue queue, int playlistId) {
     if (playlistRepository.exists(playlistId)) {
       Playlist playlistToAdd = playlistRepository.findOne(playlistId);
-      queue.enqueueCollection(playlistToAdd.getSongs());
+      ArrayList<Song> validSongs = new ArrayList<Song>();
+      ArrayList<Song> allSongs = new ArrayList<Song>(playlistToAdd.getSongs());
+      for(int i = 0; i < allSongs.size(); i++) {
+        if(allSongs.get(i).getHasAudio()) {
+          validSongs.add(allSongs.get(i));
+        }
+      }
+      queue.enqueueCollection(validSongs);
       return ResponseUtilities.emptySuccess();
     } else {
       return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
