@@ -38,7 +38,7 @@ public class ConfigConstants {
   public static String CANNOT_UNBAN_SONG = "Cannot unban a song who's album is banned.";
   public static String CANNOT_ADD_SONG = "Cannot add a song who's album is banned.";
   public static String ORIGINALLY_BANNED = "This entity was previously banned." +
-                                           " The originaly reason for banning is as follows: \n";
+                                           " The original reason for banning is as follows: \n";
 
   public static String EMAIL_EXIST = "Desired Email already exists.";
   public static String PASSWORDS_NO_MATCH = "The passwords did not match.";
@@ -60,4 +60,11 @@ public class ConfigConstants {
   public static double MONTHLY_SUBSCRIPTION_COST = 10.00;
   public static double PCT_GIVEN_TO_ARTISTS = 0.4;
   public static double PCT_GIVEN_TO_PROFITS = 1.0 - PCT_GIVEN_TO_ARTISTS;
+  
+  public static String USER_UPLOAD_PATH = "/images/users/";
+  public static String PLAYLIST_UPLOAD_PATH = "/images/playlists/";
+  public static String ALBUM_UPLOAD_PATH = "/images/albums/";
+  public static String AUDIO_UPLOAD_PATH = "/audio/";
+  public static String JPEG = ".jpg";
+  public static String MP3 = ".mp3";
 }

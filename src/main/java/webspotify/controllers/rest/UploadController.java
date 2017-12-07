@@ -45,4 +45,22 @@ public class UploadController {
     }
     return uploadService.uploadPlaylistImage(file, playlistId);
   }
+  
+  @PostMapping("/image/album")
+  public Response uploadAlbumImage(@RequestParam("file") MultipartFile file, @RequestParam("albumId") int albumId, HttpSession session) throws IOException {
+    User user = SessionUtilities.getUserFromSession(session);
+    if(user == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    }
+    return uploadService.uploadAlbumImage(file, albumId);
+  }
+  
+  @PostMapping("/audio")
+  public Response uploadAudio(@RequestParam("file") MultipartFile file, @RequestParam("id") int id, HttpSession session) throws IOException {
+    User user = SessionUtilities.getUserFromSession(session);
+    if(user == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    }
+    return uploadService.uploadAudio(file, id);
+  }
 }
