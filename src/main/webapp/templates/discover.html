@@ -1,4 +1,5 @@
-<ul class="content_header">
+<link rel="stylesheet" href="css/blocks.css">
+<ul class="content_header" ng-show="api_home_discover.users.length">
   <li>
     <p class="content_title">Top Artists based on who you follow</p>
   </li>
@@ -13,7 +14,7 @@
     <p>{{artist.name}}</p>
   </div>
 </div>
-<ul class="content_header">
+<ul class="content_header" ng-show="api_home_discover.albums.length">
   <li>
     <p class="content_title">Top Albums based on what you save</p>
   </li>
@@ -28,7 +29,7 @@
     <p>{{album.title}}</p>
   </div>
 </div>
-<ul class="content_header">
+<ul class="content_header" ng-show="api_home_discover.playlists.length">
   <li>
     <p class="content_title">Top Playlists based on what you follow</p>
   </li>

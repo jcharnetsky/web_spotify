@@ -147,7 +147,10 @@ public class SearchService {
         genre = ((Album) lastFollowedArtist.getOwnedAlbums().toArray()[0]).getGenre();
       }
       for(Album genreAlbum: albumRepository.findByGenre(genre)){
-        artists.add((Artist) genreAlbum.getOwner());
+        Artist artist = (Artist) genreAlbum.getOwner();
+        if (!artists.contains(artist)) {
+          artists.add(artist);
+        }
       }
     } else {
       artists = artistRepository.findAll();

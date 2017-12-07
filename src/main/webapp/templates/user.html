@@ -1,83 +1,25 @@
-<link rel="stylesheet" href="css/collection.css">
-<div class="user">
-  <div class="collection_header">
-    <img class="collection_img" alt="album_art" ng-src="{{visitingUser.imageLink}}"
-     style="width: 15vw; height: 15vw;">
-    <div class="collection_data">
-      <div class="content_title">{{visitingUser.name}}</div>
-      <div>Email: {{visitingUser.email}}</div>
-      <div>Birthday: {{visitingUser.birthday}}</div>
-      <div>Follower count: {{visitingUser.followerCount}}</div>
-      <div ng-show="visitingUser.artist">Listeners: / Monthly Listeners: </div>
-      <div ng-show="visitingUser.artist">{{visitingUser.artist.about}}</div>
-      <div id="spotify_buttons">
-        <a ng-show="!visitingUser.followed && visitingUser.id != user.id"
-           ng-click="followUser(visitingUser.id)" href="#"
-           class="Follow" href="#">Follow</a>
-        <a ng-show="visitingUser.followed && visitingUser.id != user.id"
-           ng-click="unfollowUser(visitingUser.id)" href="#"
-           class="Follow" href="#">Unfollow</a>
-        <a href="#" class="options_button" onclick="toggleDropdown(0)" style="display: inline;">...</a>
-        <span id="other_dropdown_0" class="dropdown_content">
-          <a ng-show="user.admin" ng-click="deleteAccount(visitingUser.id)" href="#">Delete User</a>
-          <a ng-click="openCreateReport('User', visitingUser.name, visitingUser.id)" href="#"
-             ng-controller="ManageCtrl">
-            Report</a>
-          <a ng-show="user.admin" ng-click="loadUserInfoPage(visitingUser.id)" href="#">Edit User</a>
-        </span>
-      </div>
-    </div>
-  </div>
-  <div ng-show="visitingUser.artist && visitingUser.artist.albums.length">
-    <ul class="content_header">
-      <li><p class="content_title">Albums</p></li>
-    </ul>
-    <hr>
-    <ul class="list_tiles">
-      <li ng-repeat="album in visitingUser.artist.albums">
-        <div class="tile">
-          <a href="#">
-            <img class="tile_img" ng-click="loadAlbum(album.id)"
-                 ng-src={{album.imageLink}}/>
-          </a>
-          <p class="tile_text center_align">{{album.title}}</p>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div ng-show="visitingUser.ownedPlaylists.length">
-    <ul class="content_header">
-      <li><p class="content_title">Playlists</p></li>
-    </ul>
-    <hr>
-    <ul class="list_tiles">
-      <li ng-repeat="ownedPlaylist in visitingUser.ownedPlaylists">
-        <div class="tile">
-          <a href="#">
-            <img class="tile_img" ng-click="loadPlaylist(ownedPlaylist.id)"
-                 ng-src={{album.imageLink}}/>
-          </a>
-          <p class="tile_text center_align">{{ownedPlaylist.title}}</p>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div ng-show="visitingUser.followers.length">
-    <ul class="content_header">
-      <li><p class="content_title">Follows</p></li>
-    </ul>
-    <hr>
-    <ul class="list_tiles">
-      <li ng-repeat="followee in visitingUser.followers">
-        <div class="tile">
-          <a href="#">
-            <img class="tile_img" ng-src={{followee.imageLink}}
-                 ng-click="loadUser(followee.id)"
-                 style="border-radius: 50%" alt="Suggestion"/>
-          </a>
-          <p class="tile_text center_align" style="text-align: center">{{followee.name}}</p>
-        </div>
-      </li>
-    </ul>
-  </div>
+<ul ng-show="visitingUser.artist" class="navbar">
+  <li id="active">
+    <a href="#" ng-click="loadTemplateAndJSON('content',,)">
+      Overview
+    </a>
+  </li>
+  <li>
+    <a href="#" ng-click="loadTemplateAndJSON('content',,)">
+      About
+    </a>
+  </li>
+  <li>
+    <a href="#" ng-click="loadTemplateAndJSON('content',,)">
+      Related Artists
+    </a>
+  </li>
+  <li>
+    <a href="#" ng-click="loadTemplateAndJSON('content',,)">
+      Concerts
+    </a>
+  </li>
+</ul>
+<div id="content">
+  <ng-include src="'templates/user_overview.html'"></ng-include>
 </div>
