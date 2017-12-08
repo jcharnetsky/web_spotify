@@ -19,6 +19,16 @@
           <a href="#" ng-show="!user.public"  ng-click="toggleIsPublic()">Disable Private Session</a>
           <a href="#" ng-show="user.premium && !user.highAudio" ng-click="toggleAudioQuality()">Enable High Quality Audio</a>
           <a href="#" ng-show="user.premium && user.highAudio" ng-click="toggleAudioQuality()">Disable High Quality Audio</a>
+          <span class="language_dropdown">
+            <a class="dropbtn">Language</a>
+            <span class="language_dropdown_content">
+              <a href="#" ng-click="setLanguage('english')">English</a>
+              <a href="#" ng-click="setLanguage('spanish')">Español</a>
+              <a href="#" ng-click="setLanguage('german')">Deutsch</a>
+              <a href="#" ng-click="setLanguage('french')">Français</a>
+              <a href="#" ng-click="setLanguage('Mandarin')">官話</a>
+            </span>
+          </span>
           <a href="#" ng-show="!user.premium"  ng-click="openDialog('premiumUpgrade.html')">Upgrade Your Account</a>
           <a href="#" ng-show="user.premium" ng-click="openDialog('premiumDowngrade.html')">Downgrade Your Account</a>
           <a ng-show="user.artist || user.admin" href="#"

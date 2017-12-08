@@ -98,4 +98,14 @@ public class UserInfoController {
     }
     return userInfoService.togglePublic(user);
   }
+  
+  @PostMapping("/set/language/{language}")
+  public Response setLanguage(HttpSession session) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    }
+    //TODO change this to correct service method
+    return ResponseUtilities.emptySuccess();
+  }
 }

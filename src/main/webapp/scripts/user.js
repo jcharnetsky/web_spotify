@@ -276,5 +276,17 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   };
+  $scope.setLanguage = function (language) {
+    data = JSON.stringify({"language": language});-
+    $http.post("/api/users/info/set/language/" + language, data, {headers: {"Content-Type": "application/json"}}).
+      then(function (response) {
+        if (!response.data.error) {
+          return;
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  }
   $scope.toggleDropdown = toggleDropdown;
 });
