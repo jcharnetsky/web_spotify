@@ -55,51 +55,114 @@ angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function ($
   }
   $scope.setOrder = function (newOrder) {
     if (newOrder === "trackName") {
-        if($scope.order === 'trackName') {
-            $scope.order = '-trackName';
-        } else{
-            $scope.order = 'trackName';
+        if(typeof $scope.order === "undefined") {
+          $scope.order = 'trackName';
         }
-    } else if (newOrder === "artistName") {
-      if($scope.order === 'artist.stageName') {
-        $scope.order = '-artist.stageName';
-      } else{
+        else if($scope.order === 'trackName') {
+          $scope.order = '-trackName';
+        }
+        else if($scope.order === '-trackName') {
+          $scope.order = undefined;
+        }
+        else {
+          $scope.order = 'trackName';
+        }
+    } 
+    else if(newOrder === "artistName") {
+      if(typeof $scope.order === "undefined") {
         $scope.order = 'artist.stageName';
       }
-    } else if (newOrder === "trackLength") {
-      if($scope.order === 'trackLength') {
-        $scope.order = '-trackLength';
-      } else{
+      else if($scope.order === 'artist.stageName') {
+        $scope.order = '-artist.stageName';
+      } 
+      else if($scope.order === '-artist.stageName') {
+        $scope.order = undefined;
+      }
+      else{
+        $scope.order = 'artist.stageName';
+      }
+    } 
+    else if (newOrder === "trackLength") {
+      if(typeof $scope.order === 'undefined') {
         $scope.order = 'trackLength';
       }
-    } else if (newOrder === "albumName") {
-      if($scope.order === 'albumName') {
-        $scope.order = '-albumName';
-      } else{
+      else if($scope.order === 'trackLength') {
+        $scope.order = '-trackLength';
+      } 
+      else if($scope.order === '-trackLength') {
+        $scope.order = undefined;
+      }
+      else{
+        $scope.order = 'trackLength';
+      }
+    } 
+    else if (newOrder === "albumName") {
+      if(typeof $scope.order === 'undefined') {
         $scope.order = 'albumName';
       }
-    } else if (newOrder === "reportNum") {
-      if($scope.order === 'id') {
-        $scope.order = '-id';
-      } else{
+      else if($scope.order === 'albumName') {
+        $scope.order = '-albumName';
+      }
+      else if($scope.order === '-albumName') {
+        $scope.order = undefined;
+      } 
+      else{
+        $scope.order = 'albumName';
+      }
+    } 
+    else if (newOrder === "reportNum") {
+      if(typeof $scope.order === 'undefined') {
         $scope.order = 'id';
       }
-    } else if (newOrder === "reportSubject") {
-      if($scope.order === 'subject') {
-        $scope.order = '-subject';
-      } else{
+      else if($scope.order === 'id') {
+        $scope.order = '-id';
+      } 
+      else if($scope.order === '-id') {
+        $scope.order = undefined;
+      }
+      else {
+        $scope.order = 'id';
+      }
+    } 
+    else if (newOrder === "reportSubject") {
+      if(typeof $scope.order === 'undefined') {
         $scope.order = 'subject';
       }
-    } else if (newOrder === "reportEntity") {
-      if($scope.order === 'entityType') {
-        $scope.order = '-entityType';
-      } else{
+      else if($scope.order === 'subject') {
+        $scope.order = '-subject';
+      } 
+      else if($scope.order === '-subject') {
+        $scope.order = undefined;
+      }
+      else{
+        $scope.order = 'subject';
+      }
+    } 
+    else if (newOrder === "reportEntity") {
+      if(typeof $scope.order === 'undefined') {
         $scope.order = 'entityType';
       }
-    } else if (newOrder === "reportType") {
-      if($scope.order === 'reportType') {
+      else if($scope.order === 'entityType') {
+        $scope.order = '-entityType';
+      } 
+      else if($scope.order === '-entityType') {
+        $scope.order = undefined;
+      }
+      else{
+        $scope.order = 'entityType';
+      }
+    } 
+    else if (newOrder === "reportType") {
+      if(typeof $scope.order === 'reportType') {
+        $scope.order = 'reportType';
+      }
+      else if($scope.order === 'reportType') {
         $scope.order = '-reportType';
-      } else{
+      } 
+      else if($scope.order === '-reportType') {
+        $scopre.order = undefined;
+      }
+      else{
         $scope.order = 'reportType';
       }
     }
