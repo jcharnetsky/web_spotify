@@ -54,7 +54,6 @@ angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function ($
     });
   }
   $scope.setOrder = function (newOrder) {
-    console.log($scope.order);
     if (newOrder === "trackName") {
         if(typeof $scope.order === "undefined") {
           $scope.order = 'trackName';
