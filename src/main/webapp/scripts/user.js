@@ -281,6 +281,7 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
     $http.post("/api/users/info/set/language/" + language, data, {headers: {"Content-Type": "application/json"}}).
       then(function (response) {
         if (!response.data.error) {
+          $scope.user.language = language;
           return;
         }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
