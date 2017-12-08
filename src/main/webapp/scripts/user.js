@@ -266,7 +266,7 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
   });
   }
   $scope.toggleAudioQuality = function () {
-    $http.get("/api/users/toggleAudioQuality").then(function(response) {
+    $http.get("/api/users/info/toggleAudioQuality").then(function(response) {
       if(!response.data.error) {
         $scope.user.highAudio = !$scope.user.highAudio;
         return;
