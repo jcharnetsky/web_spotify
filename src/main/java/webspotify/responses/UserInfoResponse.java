@@ -30,6 +30,7 @@ public class UserInfoResponse {
   private ArtistProfileResponse artist;
   private List<PlaylistInfoResponse> ownedPlaylists;
   private boolean isFollowed;
+  private boolean highAudio;
 
   public UserInfoResponse(User user) {
     this.id = user.getId();
@@ -40,6 +41,7 @@ public class UserInfoResponse {
     this.isPremium = user.getIsPremium();
     this.isPublic = user.getIsPublic();
     this.isDeleted = user.getIsDeleted();
+    this.highAudio = user.getHighQuality();
     if (user instanceof Artist) {
       this.isArtist = true;
       this.artist = new ArtistProfileResponse((Artist) user);
@@ -194,5 +196,13 @@ public class UserInfoResponse {
 
   public void setAdvertiser(Boolean advertiser) {
     isAdvertiser = advertiser;
+  }
+
+  public boolean isHighAudio() {
+    return highAudio;
+  }
+
+  public void setHighAudio(boolean highAudio) {
+    this.highAudio = highAudio;
   }
 }
