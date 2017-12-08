@@ -1,14 +1,16 @@
 <link href="css/collection.css" rel="stylesheet"/>
 <link href="css/button.css" rel="stylesheet">
 <div class="queue">
-  <p class="content_title">Coming up</p>
+<span class="content_title">Coming up</span>
   <ul class="collection">
     <li ng-show="queue.queue.length">
       <ul class="collection_tiles">
         <li>
           <div class="collection_tile">
             <span class="options_col"></span>
-            <span class="play_button_spacer"></span>
+            <a href="#" ng-click="clearQueue()" class="play_button_spacer">
+              <span ng-show="queue.queue.length != 0" style="font-size:100%;">Clear</span>
+            </a>
             <span class="add_button"></span>
             <a href="#">Title</a>
             <a href="#">Artist</a>

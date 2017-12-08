@@ -48,9 +48,8 @@ angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $http, 
     }
   };
   $scope.clearQueue = function() {
-    $http.post("/api/queue/clear", {headers: {"Content-Type":"application/json"}}).
-            then(function(response) {
-              displayErrorPopup("Queue cleared", $scope, $parse, $compile);
+    $http.post("/api/queue/clear", {headers: {"Content-Type":"application/json"}}).then(function(response) {
+      $scope.loadQueue();
     });
   };
   $scope.removeSongFromQueue = function(id) {
