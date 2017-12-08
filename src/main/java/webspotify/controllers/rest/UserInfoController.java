@@ -7,6 +7,7 @@ import webspotify.config.ConfigConstants;
 import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 import webspotify.services.UserInfoService;
+import webspotify.types.LanguageType;
 import webspotify.utilities.*;
 
 @RestController
@@ -109,12 +110,11 @@ public class UserInfoController {
   }
   
   @PostMapping("/set/language/{language}")
-  public Response setLanguage(HttpSession session) {
+  public Response setLanguage(@PathVariable LanguageType language, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
-    //TODO change this to correct service method
-    return ResponseUtilities.emptySuccess();
+    return userInfoService.changeLanguage(user, language);
   }
 }

@@ -10,6 +10,7 @@ import webspotify.interfaces.Viewable;
 import webspotify.models.media.Album;
 import webspotify.models.media.Playlist;
 import webspotify.models.media.Song;
+import webspotify.types.LanguageType;
 
 /**
  * @author Cardinals
@@ -50,6 +51,9 @@ public class User implements Viewable, Serializable {
   private String passwordSalt;
   @Column(name = "highquality", nullable = false)
   private Boolean highQuality;
+  @Enumerated(EnumType.ORDINAL)
+  @Column(name = "language", nullable = false)
+  private LanguageType language;
   @OneToMany(mappedBy = "owner")
   private Set<Playlist> ownedPlaylists;
   @ManyToMany
@@ -88,6 +92,7 @@ public class User implements Viewable, Serializable {
     this.hasImage = false;
     this.followerCount = 0;
     this.highQuality = false;
+    this.language = LanguageType.english;
   }
 
   public User(User toCopy){
@@ -302,6 +307,14 @@ public class User implements Viewable, Serializable {
 
   public void setFollowing(Set<User> following) {
     this.following = following;
+  }
+
+  public LanguageType getLanguage() {
+    return language;
+  }
+
+  public void setLanguage(LanguageType language) {
+    this.language = language;
   }
 
   @Override

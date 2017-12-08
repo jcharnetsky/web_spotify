@@ -8,6 +8,7 @@ import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 
 import java.util.Date;
+import webspotify.types.LanguageType;
 
 /**
  * @author Cardinals
@@ -31,6 +32,7 @@ public class UserInfoResponse {
   private List<PlaylistInfoResponse> ownedPlaylists;
   private boolean isFollowed;
   private boolean highAudio;
+  private LanguageType language;
 
   public UserInfoResponse(User user) {
     this.id = user.getId();
@@ -42,6 +44,7 @@ public class UserInfoResponse {
     this.isPublic = user.getIsPublic();
     this.isDeleted = user.getIsDeleted();
     this.highAudio = user.getHighQuality();
+    this.language = user.getLanguage();
     if (user instanceof Artist) {
       this.isArtist = true;
       this.artist = new ArtistProfileResponse((Artist) user);
@@ -204,5 +207,13 @@ public class UserInfoResponse {
 
   public void setHighAudio(boolean highAudio) {
     this.highAudio = highAudio;
+  }
+
+  public LanguageType getLanguage() {
+    return language;
+  }
+
+  public void setLanguage(LanguageType language) {
+    this.language = language;
   }
 }

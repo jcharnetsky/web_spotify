@@ -11,6 +11,7 @@ import webspotify.models.users.User;
 import webspotify.repo.UserRepository;
 import webspotify.repo.ArtistRepository;
 import webspotify.responses.UserInfoResponse;
+import webspotify.types.LanguageType;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
 
@@ -124,6 +125,17 @@ public class UserInfoService {
     if (toChange.getIsPremium()) {
       toChange.setHighQuality(!toChange.getHighQuality());
       userRepository.save(toChange);
+      return ResponseUtilities.emptySuccess();
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
+    }
+  }
+
+  public Response changeLanguage(User user, LanguageType language) {
+    User userToChange = userRepository.findOne(user.getId());
+    if (userToChange.getLanguage() != language) {
+      userToChange.setLanguage(language);
+      userRepository.save(userToChange);
       return ResponseUtilities.emptySuccess();
     } else {
       return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
