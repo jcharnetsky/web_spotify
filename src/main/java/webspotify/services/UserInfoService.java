@@ -118,4 +118,15 @@ public class UserInfoService {
       return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
     }
   }
+
+  public Response toggleQuality(User user) {
+    User toChange = userRepository.findOne(user.getId());
+    if (toChange.getIsPremium()) {
+      toChange.setHighQuality(!toChange.getHighQuality());
+      userRepository.save(toChange);
+      return ResponseUtilities.emptySuccess();
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
+    }
+  }
 }

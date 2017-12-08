@@ -48,6 +48,8 @@ public class User implements Viewable, Serializable {
   private String password;
   @Column(name = "salt", nullable = false)
   private String passwordSalt;
+  @Column(name = "highquality", nullable = false)
+  private Boolean highQuality;
   @OneToMany(mappedBy = "owner")
   private Set<Playlist> ownedPlaylists;
   @ManyToMany
@@ -85,6 +87,7 @@ public class User implements Viewable, Serializable {
     this.following = new HashSet<User>();
     this.hasImage = false;
     this.followerCount = 0;
+    this.highQuality = false;
   }
 
   public User(User toCopy){
@@ -332,6 +335,14 @@ public class User implements Viewable, Serializable {
 
   public void setDeleted(Boolean deleted) {
     isDeleted = deleted;
+  }
+
+  public Boolean getHighQuality() {
+    return highQuality;
+  }
+
+  public void setHighQuality(Boolean highQuality) {
+    this.highQuality = highQuality;
   }
 
   @Override

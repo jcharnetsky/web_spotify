@@ -105,8 +105,7 @@ public class UserInfoController {
     if (user == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
-    // TODO change to service toggle
-    return ResponseUtilities.emptySuccess();
+    return userInfoService.toggleQuality(user);
   }
   
   @PostMapping("/set/language/{language}")
