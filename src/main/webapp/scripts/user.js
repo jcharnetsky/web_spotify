@@ -265,6 +265,16 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
     displayErrorPopup(err, $scope, $parse, $compile);
   });
   }
-
+  $scope.toggleAudioQuality = function () {
+    $http.get("/api/users/toggleAudioQuality").then(function(response) {
+      if(!response.data.error) {
+        $scope.user.highAudio = !$scope.user.highAudio;
+        return;
+      }
+      displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+    }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  };
   $scope.toggleDropdown = toggleDropdown;
 });
