@@ -112,6 +112,17 @@ angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $http, 
 	$scope.scrubVolume = function() {
     audio.volume = volumeBar.value/100;
 	}
+ $scope.mute = function() {
+   if ($scope.lastVolume !== 0) {
+    volumeBar.value = $scope.lastVolume;
+    $scope.lastVolume = 0;
+    audio.volume = volumeBar.value/100;
+   } else {
+    $scope.lastVolume = volumeBar.value;
+    volumeBar.value = 0;
+    audio.volume = 0;
+  }
+ };
 	$scope.doPlay = function () {
 		audio.play();
 		document.getElementById("playButton").src = "../images/pause.png";
