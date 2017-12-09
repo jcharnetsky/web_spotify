@@ -28,6 +28,7 @@ public class PlaylistInfoResponse {
   private Integer songTrackLength;
   private Integer followerCount;
   private List<SongResponse> songs;
+  private boolean isPublic;
   private boolean isFollowed;
   private boolean isPlaylist;
 
@@ -52,6 +53,7 @@ public class PlaylistInfoResponse {
       this.songs.add(new SongResponse(song));
       this.songTrackLength += song.getTrackLength();
     }
+    this.isPublic = playlist.getIsPublic();
     this.isPlaylist = true;
   }
 
@@ -76,6 +78,7 @@ public class PlaylistInfoResponse {
       this.songs.add(new SongResponse(song));
       this.songTrackLength += song.getTrackLength();
     }
+    this.isPublic = playlist.getIsPublic();
     this.isPlaylist = true;
 
     setFollowed(currentUser.getFollowedPlaylists().contains(playlist));
