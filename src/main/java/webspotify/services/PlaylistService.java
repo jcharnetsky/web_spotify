@@ -219,6 +219,24 @@ public class PlaylistService {
   }
 
   @Transactional
+  public Response togglePrivacy(int userId, int playlistId){
+    if(!playlistRepo.exists(playlistId)){
+      return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
+    }
+    try {
+      Playlist toEdit = playlistRepo.findOne(playlistId);
+      if(toEdit.getOwner().getId() != userId){
+        return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
+      }
+      toEdit.setIsPublic(!toEdit.getIsPublic());
+      playlistRepo.save(toEdit);
+      return ResponseUtilities.emptySuccess();
+    } catch (Exception e) {
+      return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_EDIT);
+    }
+  }
+
+  @Transactional
   public Response getAllRelevantPlaylists(User user) {
     User userToCheck = userRepo.findOne(user.getId());
     Set<Playlist> setOfRelevantPlaylists = new HashSet<Playlist>();

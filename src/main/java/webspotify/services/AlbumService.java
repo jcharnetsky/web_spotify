@@ -200,6 +200,24 @@ public class AlbumService {
   }
 
   @Transactional
+  public Response togglePrivacy(int userId, int albumId){
+    if(!albumRepo.exists(albumId)){
+      return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
+    }
+    try {
+      Album toEdit = albumRepo.findOne(albumId);
+      if(toEdit.getOwner().getId() != userId){
+        return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
+      }
+      toEdit.setIsPublic(!toEdit.getIsPublic());
+      albumRepo.save(toEdit);
+      return ResponseUtilities.emptySuccess();
+    } catch (Exception e) {
+      return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_EDIT);
+    }
+  }
+
+  @Transactional
   public Response getAllRelevantAlbums(User user) {
     User userToCheck = userRepo.findOne(user.getId());
     Set<Album> setOfRelevantAlbums = new HashSet<Album>();

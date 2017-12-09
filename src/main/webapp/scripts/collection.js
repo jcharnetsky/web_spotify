@@ -31,7 +31,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
     });
   }
   $scope.toggleAlbumPrivacy = function (albumId) {
-    $http.get("/api/albums/togglePrivacy/"+albumId).then(function (response){
+    $http.get("/api/albums/"+albumId+"/togglePrivacy").then(function (response){
       if(!response.data.error){
         $scope.collection.public = !$scope.collection.public;
         return;
@@ -42,7 +42,7 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
     });
   }
   $scope.togglePlaylistPrivacy = function (playlistId) {
-    $http.get("/api/playlists/togglePrivacy/"+playlistId).then(function (response){
+    $http.get("/api/playlists/"+playlistId+"/togglePrivacy").then(function (response){
       if(!response.data.error){
         $scope.collection.public = !$scope.collection.public;
         return;

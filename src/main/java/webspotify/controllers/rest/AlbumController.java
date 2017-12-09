@@ -119,6 +119,17 @@ public class AlbumController {
     return albumService.unsaveAlbum(user, albumId);
   }
 
+  @GetMapping("/{albumId}/togglePrivacy")
+  public Response togglePrivacy(@PathVariable final int albumId, HttpSession session){
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    } else if (!(user instanceof Artist)){
+      return ResponseUtilities.filledFailure(ConfigConstants.NOT_AN_ARTIST);
+    }
+    return albumService.togglePrivacy(user.getId(), albumId);
+  }
+
   @PostMapping("/create")
   public Response createAlbum(@RequestBody AlbumCreateRequest request, HttpSession session) {
     User user = SessionUtilities.getUserFromSession(session);
