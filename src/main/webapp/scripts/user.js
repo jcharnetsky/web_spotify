@@ -21,8 +21,8 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
     });
   };
   $scope.loadRelatedArtists = function (id) {
-    $http.get(location.origin + "/api/users/get/" + id).then(function (response) {
-      handleJSONResponse(response, "content", "artist_related_artists.html", "visitingUser", $compile, $parse, $scope);
+    $http.get(location.origin + "/api/users/get/relatedArtists/" + id).then(function (response) {
+      handleJSONResponse(response, "content", "artist_related_artists.html", "relatedArtists", $compile, $parse, $scope);
     }).catch(function (err) {
       displayErrorPopup(err, $scope, $parse, $compile);
     });

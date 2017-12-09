@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<link rel="stylesheet" href="css/collection.css">
+<link rel="stylesheet" href="css/blocks.css">
+<br>
+<div>
+  <div class="info_block" ng-repeat="artist in relatedArtists">
+    <img class="tile_img"
+         ng-controller="UserCtrl"
+         ng-click="loadUser(artist.id)"
+         ng-src="{{artist.imageLink}}"/>
+    <p>{{artist.name}}</p>
+  </div>
+</div>

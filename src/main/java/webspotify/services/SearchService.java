@@ -214,4 +214,25 @@ public class SearchService {
     return genre;
   }
 
+  public Response getRelatedArtists(int userId){
+    Artist currentArtist = artistRepository.findOne(userId);
+    List<Artist> artists = new ArrayList<Artist>();
+    GenreType genre = GenreType.POP;
+    if(currentArtist != null){
+      if(currentArtist.getOwnedAlbums().size() > 0) {
+        genre = ((Album) currentArtist.getOwnedAlbums().toArray()[0]).getGenre();
+      }
+      for(Album genreAlbum: albumRepository.findByGenre(genre)){
+        Artist artist = (Artist) genreAlbum.getOwner();
+        if (!artists.contains(artist)) {
+          artists.add(artist);
+        }
+      }
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.ARTIST_NO_EXIST);
+    }
+    Set<BasicUserInfoResponse> artistResponses = getRandomUserResponses(artists);
+    return ResponseUtilities.filledSuccess(artistResponses);
+  }
+
 }
