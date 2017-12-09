@@ -171,7 +171,10 @@ public class SearchService {
       end = ConfigConstants.NUM_COLLECTIONS_TO_SHOW_BROWSE;
     }
     for(int i = 0; i < end;i++) {
-      responses.add(new BasicCollectionResponse(collections.get(start + i)));
+      SongCollection collection = collections.get(start + i);
+      if (!collection.isBanned() && collection.isPublic()) {
+        responses.add(new BasicCollectionResponse(collection));
+      }
     }
     return responses;
   }

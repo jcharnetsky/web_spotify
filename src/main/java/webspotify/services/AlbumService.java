@@ -47,7 +47,9 @@ public class AlbumService {
     if (albumRepo.exists(albumId)) {
       User userToCheck = userRepo.findOne(user.getId());
       Album album = albumRepo.findOne(albumId);
-      if (album.isPublic()) {
+      if (album.isPublic()
+          || (!album.isPublic() && album.getOwner().getId() == user.getId())
+          && !album.isBanned()) {
         return ResponseUtilities.filledSuccess(new AlbumInfoResponse(userToCheck, album));
       } else {
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);

@@ -187,6 +187,14 @@ public class PlaylistInfoResponse {
     isFollowed = followed;
   }
 
+  public boolean isPublic() {
+    return isPublic;
+  }
+
+  public void setPublic(boolean aPublic) {
+    isPublic = aPublic;
+  }
+
   public boolean isPlaylist() {
     return isPlaylist;
   }

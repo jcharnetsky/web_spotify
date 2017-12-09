@@ -163,6 +163,14 @@ public class AlbumInfoResponse {
     isFollowed = followed;
   }
 
+  public boolean isPublic() {
+    return isPublic;
+  }
+
+  public void setPublic(boolean aPublic) {
+    isPublic = aPublic;
+  }
+
   public boolean isAlbum() {
     return isAlbum;
   }

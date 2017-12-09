@@ -58,7 +58,9 @@ public class PlaylistService {
     if (playlistRepo.exists(playlistId)) {
       User userToCheck = userRepo.findOne(user.getId());
       Playlist playlist = playlistRepo.findOne(playlistId);
-      if (playlist.isPublic()) {
+      if (playlist.isPublic()
+          || (!playlist.isPublic() && playlist.getOwner().getId() == user.getId())
+          && !playlist.isBanned()) {
         return ResponseUtilities.filledSuccess(new PlaylistInfoResponse(userToCheck, playlist));
       } else {
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
