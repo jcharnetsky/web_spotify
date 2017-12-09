@@ -30,6 +30,28 @@ angular.module("web_spotify").controller("CollectionCtrl", function ($compile, $
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   }
+  $scope.toggleAlbumPrivacy = function (albumId) {
+    $http.get("/api/albums/togglePrivacy/"+albumId).then(function (response){
+      if(!response.data.error){
+        $scope.collection.public = !$scope.collection.public;
+        return;
+      }
+      displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+    }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  }
+  $scope.togglePlaylistPrivacy = function (playlistId) {
+    $http.get("/api/playlists/togglePrivacy/"+playlistId).then(function (response){
+      if(!response.data.error){
+        $scope.collection.public = !$scope.collection.public;
+        return;
+      }
+      displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+    }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  }
   $scope.getPlaylists = function () {
     $http.get(location.origin + "/api/playlists/").then(function (response) {
       handleJSONResponse(response, "playlists", "null", "playlists", $compile, $parse, $scope);

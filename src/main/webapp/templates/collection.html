@@ -14,21 +14,34 @@
       <div>{{collection.description}}</div>
       <div id="spotify_buttons" ng-controller="CollectionCtrl">
         <a href="#" ng-controller="PlaybarCtrl" ng-click="addCollectionToQueue(collection.id, collection.playlist)">Play</a>
-        <a href="#" ng-show="user.id != collection.ownerId && !collection.followed && collection.playlist" ng-click="followCollection(collection.id)">Follow</a> 
-        <a href="#" ng-show="user.id != collection.ownerId && collection.followed && collection.playlist" ng-click="unfollowCollection(collection.id)">Unfollow</a> 
-        <a href="#" ng-show="user.id != collection.ownerId && !collection.followed && collection.album" ng-click="followCollection(collection.id)">Save</a> 
-        <a href="#" ng-show="user.id != collection.ownerId && collection.followed && collection.album" ng-click="unfollowCollection(collection.id)">Unsave</a>
+        <a href="#" ng-show="user.id != collection.ownerId && !collection.followed && collection.playlist"
+           ng-click="followCollection(collection.id)">Follow</a>
+        <a href="#" ng-show="user.id != collection.ownerId && collection.followed && collection.playlist"
+           ng-click="unfollowCollection(collection.id)">Unfollow</a>
+        <a href="#" ng-show="user.id != collection.ownerId && !collection.followed && collection.album"
+           ng-click="followCollection(collection.id)">Save</a>
+        <a href="#" ng-show="user.id != collection.ownerId && collection.followed && collection.album"
+           ng-click="unfollowCollection(collection.id)">Unsave</a>
         <a href="#" class="options_button" onclick="toggleDropdown(0)" style="display: inline;">...</a>
         <span id="other_dropdown_0" class="dropdown_content">
-          <a href="#" ng-click="openDialog('editPlaylist.html')" ng-show="((user.id == collection.ownerId) || user.admin) && collection.playlist">Edit</a>
-          <a href="#" ng-click="openDialog('editAlbum.html')" ng-show="((user.id == collection.ownerId) || user.admin) && collection.album">Edit</a>
-          <a href="#" ng-show="(user.id == collection.ownerId) || user.admin" ng-click="deletePlaylist(collection.id)">Delete</a>
-          <a href="#" ng-show="collection.album" ng-click="openCreateReport('Album', collection.title, collection.id)">Report</a>
-          <a href="#" ng-show="collection.playlist" ng-click="openCreateReport('Playlist', collection.title, collection.id)">Report</a>
-          <a href="#" ng-show="collection.album" ng-click="openCreateReport('Album', collection.title, collection.id)">Set as Private</a>
-          <a href="#" ng-show="collection.playlist" ng-click="openCreateReport('Playlist', collection.title, collection.id)">Set as Public</a>
-          <a href="#" ng-show="collection.album" ng-click="openCreateReport('Album', collection.title, collection.id)">Set as Private</a>
-          <a href="#" ng-show="collection.playlist" ng-click="openCreateReport('Playlist', collection.title, collection.id)">Set as Public</a>
+          <a href="#" ng-click="openDialog('editPlaylist.html')"
+             ng-show="((user.id == collection.ownerId) || user.admin) && collection.playlist">Edit</a>
+          <a href="#" ng-click="openDialog('editAlbum.html')"
+             ng-show="((user.id == collection.ownerId) || user.admin) && collection.album">Edit</a>
+          <a href="#" ng-show="(user.id == collection.ownerId) || user.admin"
+             ng-click="deletePlaylist(collection.id)">Delete</a>
+          <a href="#" ng-show="collection.album"
+             ng-click="openCreateReport('Album', collection.title, collection.id)">Report</a>
+          <a href="#" ng-show="collection.playlist"
+             ng-click="openCreateReport('Playlist', collection.title, collection.id)">Report</a>
+          <a href="#" ng-show="user.id == collection.ownerId && collection.album && collection.public"
+             ng-click="toggleAlbumPrivacy(collection.id)">Set as Private</a>
+          <a href="#" ng-show="user.id == collection.ownerId && collection.album && !collection.public"
+             ng-click="toggleAlbumPrivacy(collection.id)">Set as Public</a>
+          <a href="#" ng-show="user.id == collection.ownerId && collection.playlist && collection.public"
+             ng-click="togglePlaylistPrivacy(collection.id)">Set as Private</a>
+          <a href="#" ng-show="user.id == collection.ownerId && collection.playlist && !collection.public"
+             ng-click="togglePlaylistPrivacy(collection.id)">Set as Public</a>
         </span>
       </div>
     </div>
