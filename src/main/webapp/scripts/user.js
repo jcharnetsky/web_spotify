@@ -6,6 +6,13 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
       displayErrorPopup(err, $scope, $parse, $compile);
     });
   };
+  $scope.loadArtistOverview = function (id) {
+    $http.get(location.origin + "/api/users/get/" + id).then(function (response) {
+      handleJSONResponse(response, "content", "user_overview.html", "visitingUser", $compile, $parse, $scope);
+    }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+  };
   $scope.loadArtistAbout = function (id) {
     $http.get(location.origin + "/api/users/get/" + id).then(function (response) {
       handleJSONResponse(response, "content", "artist_about.html", "visitingUser", $compile, $parse, $scope);

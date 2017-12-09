@@ -1,6 +1,6 @@
 <ul ng-show="visitingUser.artist" class="navbar" ng-controller="UserCtrl">
   <li id="active">
-    <a href="#" ng-click="loadTemplateAndJSON('content','user_overview.html','null')">
+    <a href="#" ng-click="loadArtistOverview(visitingUser.id)">
       Overview
     </a>
   </li>
