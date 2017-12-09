@@ -1,0 +1,52 @@
+.hiddenFileInputContainer {
+  position: relative;
+  text-align: center;
+  height: 20vh;
+}
+.hiddenFileInputContainer > img {
+  height: inherit;
+  border: 1px solid white;
+  border-radius: 50%;
+}
+input[type='file'].hidden {
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  font-size: 50px;
+  opacity: 0;
+  -moz-opacity: 0;
+  filter: Alpha(Opacity=0);
+}
+.info_table_container {
+  position: relative;
+  text-align: center;
+}
+.info_table {
+  display: inline-block;
+  table-layout: fixed;
+  margin-top: 2vw;
+}
+.info_table td {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  font-size: 110%;
+  font-weight: 600;
+  color: #ffffff;
+  border-bottom: 1px solid white;
+}
+.info_table td.table_middle{
+  padding-left: 0px;
+  padding-right: 0px;
+  width: 30vw;
+  max-width: 30vw;
+  overflow-wrap: break-word;
+}
+#info_delete_button, #info_delete_button:hover {
+  color: #c42121 !important;
+}

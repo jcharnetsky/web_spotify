@@ -1,22 +1,17 @@
-<ul ng-show="visitingUser.artist" class="navbar">
+<ul ng-show="visitingUser.artist" class="navbar" ng-controller="UserCtrl">
   <li id="active">
-    <a href="#" ng-click="loadTemplateAndJSON('content',,)">
+    <a href="#" ng-click="loadTemplateAndJSON('content','user_overview.html','null')">
       Overview
     </a>
   </li>
   <li>
-    <a href="#" ng-click="loadTemplateAndJSON('content',,)">
+    <a href="#" ng-click="loadArtistAbout(visitingUser.artist.id)">
       About
     </a>
   </li>
   <li>
-    <a href="#" ng-click="loadTemplateAndJSON('content',,)">
+    <a href="#" ng-click="loadRelatedArtists(visitingUser.artist.id)">
       Related Artists
-    </a>
-  </li>
-  <li>
-    <a href="#" ng-click="loadTemplateAndJSON('content',,)">
-      Concerts
     </a>
   </li>
 </ul>
