@@ -12,13 +12,36 @@
   padding-top: 2vh;
   padding-bottom: 1vh;
 }
-.collection_img {
+#collection_img {
   height: 30vh;
   width: auto;
   display: inline-block;
   position: relative;
   border: 1px solid white;
   border-radius: 50%;
+}
+.hiddenFileInputContainer {
+  position: relative;
+  height: 30vh;
+}
+.hiddenFileInputContainer > img {
+  height: inherit;
+  border: 1px solid white;
+  border-radius: 50%;
+}
+input[type='file'].hidden {
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  font-size: 50px;
+  opacity: 0;
+  -moz-opacity: 0;
+  filter: Alpha(Opacity=0);
 }
 .collection_data {
   margin-left: 5vw;

@@ -2,7 +2,10 @@
 <link href="css/button.css" rel="stylesheet" />
 <div class="collection">
   <div class="collection_header">
-    <img class="collection_img" alt="Art" ng-src="{{collection.imageLink}}">
+    <div class="hiddenFileInputContainer">
+      <img id="collection_img" alt="collection_img" ng-src="{{collection.imageLink}}">
+      <input class="hidden" type="file" id="editCollectionImage" accept="image/*">
+    </div>
     <div class="collection_data">
       <div class="content_title">{{collection.title}}</div>
       <div>Created by: {{collection.ownerName}} /
