@@ -1,0 +1,36 @@
+#sidebar {
+  position: absolute;
+  left: 0vw; bottom: 8vh; top: 5vh; right: 92vw;
+  background-color: #121212;
+  width: 8vw;
+  height: 92vh;
+  padding-top: 2vw;
+  padding-left: 1vw;
+  color: #979797;
+  overflow: auto;
+}
+.sidebar_list {
+  padding-bottom: 1vh;
+  padding-left: 0vw;
+}
+.sidebar_list li{
+  font-size: 80%;
+  margin-bottom: 2vh;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.sidebar_list li:hover{
+  border-right: 2px solid #979797;
+  padding-right: 2px;
+}
+#sidebar-resizer {
+  background-color: transparent;
+  position: absolute;
+  top: 0vh;
+  left: 8vw;
+  bottom: 8vh;
+  width: 0.4vw;
+  cursor: e-resize;
+  z-index: 1;
+}

@@ -47,7 +47,9 @@ public class AlbumService {
     if (albumRepo.exists(albumId)) {
       User userToCheck = userRepo.findOne(user.getId());
       Album album = albumRepo.findOne(albumId);
-      if (album.isPublic()) {
+      if (album.isPublic()
+          || (!album.isPublic() && album.getOwner().getId() == user.getId())
+          && !album.isBanned()) {
         return ResponseUtilities.filledSuccess(new AlbumInfoResponse(userToCheck, album));
       } else {
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
@@ -196,6 +198,24 @@ public class AlbumService {
       }
     } else {
       return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
+    }
+  }
+
+  @Transactional
+  public Response togglePrivacy(int userId, int albumId){
+    if(!albumRepo.exists(albumId)){
+      return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
+    }
+    try {
+      Album toEdit = albumRepo.findOne(albumId);
+      if(toEdit.getOwner().getId() != userId){
+        return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
+      }
+      toEdit.setIsPublic(!toEdit.getIsPublic());
+      albumRepo.save(toEdit);
+      return ResponseUtilities.emptySuccess();
+    } catch (Exception e) {
+      return ResponseUtilities.filledFailure(ConfigConstants.COULD_NOT_EDIT);
     }
   }
 

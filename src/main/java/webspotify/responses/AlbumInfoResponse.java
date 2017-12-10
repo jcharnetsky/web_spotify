@@ -26,6 +26,7 @@ public class AlbumInfoResponse {
   private Integer songCount;
   private Integer songTrackLength;
   private List<SongResponse> songs;
+  private boolean isPublic;
   private boolean isFollowed;
   private boolean isAlbum;
 
@@ -47,6 +48,7 @@ public class AlbumInfoResponse {
       this.songs.add(new SongResponse(song));
       this.songTrackLength += song.getTrackLength();
     }
+    this.isPublic = album.getIsPublic();
     this.isAlbum = true;
   }
 
@@ -68,6 +70,7 @@ public class AlbumInfoResponse {
       this.songs.add(new SongResponse(song));
       this.songTrackLength += song.getTrackLength();
     }
+    this.isPublic = album.getIsPublic();
     this.isAlbum = true;
 
     setFollowed(currentUser.getSavedAlbums().contains(album));
@@ -158,6 +161,14 @@ public class AlbumInfoResponse {
 
   public void setFollowed(boolean followed) {
     isFollowed = followed;
+  }
+
+  public boolean isPublic() {
+    return isPublic;
+  }
+
+  public void setPublic(boolean aPublic) {
+    isPublic = aPublic;
   }
 
   public boolean isAlbum() {

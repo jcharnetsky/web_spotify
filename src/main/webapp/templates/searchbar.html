@@ -20,7 +20,11 @@
           <a href="#" ng-show="user.premium && !user.highAudio" ng-click="toggleAudioQuality()">Enable High Quality Audio</a>
           <a href="#" ng-show="user.premium && user.highAudio" ng-click="toggleAudioQuality()">Disable High Quality Audio</a>
           <span class="language_dropdown">
-            <a class="dropbtn">Language</a>
+            <a ng-show="user.language=='english'" class="dropbtn">Language: English</a>
+            <a ng-show="user.language=='spanish'" class="dropbtn">Language: Español</a>
+            <a ng-show="user.language=='german'" class="dropbtn">Language: Deutsch</a>
+            <a ng-show="user.language=='french'" class="dropbtn">Language: Français</a>
+            <a ng-show="user.language=='mandarin'" class="dropbtn">Language: 官話</a>
             <span class="language_dropdown_content">
               <a href="#" ng-show="user.language!='english'" ng-click="setLanguage('english')">English</a>
               <a href="#" ng-show="user.language!='spanish'" ng-click="setLanguage('spanish')">Español</a>

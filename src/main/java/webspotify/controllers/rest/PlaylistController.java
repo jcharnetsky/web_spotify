@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import webspotify.config.ConfigConstants;
 import webspotify.models.media.Playlist;
+import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 import webspotify.posts.PlaylistCreateRequest;
 import webspotify.responses.PlaylistInfoResponse;
@@ -100,6 +101,15 @@ public class PlaylistController {
       return ResponseUtilities.filledFailure("User not logged in");
     }
     return playlistService.unfollowPlaylist(user, playlistId);
+  }
+
+  @GetMapping("/{playlistId}/togglePrivacy")
+  public Response togglePrivacy(@PathVariable final int playlistId, HttpSession session){
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    }
+    return playlistService.togglePrivacy(user.getId(), playlistId);
   }
 
   @PostMapping("/create")

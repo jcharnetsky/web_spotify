@@ -60,9 +60,6 @@ a:hover, a:active, #current {
 .invisible {
   opacity: 0;
 }
-.navbar {
-  border-bottom: 1px solid #282828;
-}
 
 #spotify_buttons {
   margin-top: 30px;

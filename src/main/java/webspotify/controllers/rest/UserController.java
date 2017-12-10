@@ -9,6 +9,7 @@ import webspotify.config.ConfigConstants;
 import webspotify.models.users.Administrator;
 import webspotify.models.users.User;
 import webspotify.posts.SignupRequest;
+import webspotify.services.SearchService;
 import webspotify.services.UserService;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
@@ -23,6 +24,9 @@ public class UserController {
 
   @Autowired
   UserService userService;
+
+  @Autowired
+  SearchService searchService;
 
   @GetMapping("/login")
   public Response loginUser(@RequestParam String email, @RequestParam String password, HttpSession session) {
@@ -102,6 +106,15 @@ public class UserController {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
     return userService.getFollowedArtists(user);
+  }
+
+  @GetMapping("/get/relatedArtists/{artistId}")
+  public Response getRelatedArtists(@PathVariable final int artistId, HttpSession session){
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    }
+    return searchService.getRelatedArtists(artistId);
   }
   
   @GetMapping("/get/followedUsers")
