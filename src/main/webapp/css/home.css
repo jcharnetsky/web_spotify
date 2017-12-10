@@ -14,7 +14,13 @@
   width: 10vw;
  	padding-left: 1vw;
   height: 88vh;
- 	overflow: auto;
+}
+#close_ad_button {
+  position: fixed;
+  left: auto; bottom: 8vh; top: 4vh; right: 0vw;
+ 	padding-left: 1vw;
+  font-size: 25px;
+  color: #979797;
 }
 .navbar {
   width: auto;

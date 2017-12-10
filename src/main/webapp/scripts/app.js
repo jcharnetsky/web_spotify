@@ -1,4 +1,4 @@
-angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function ($compile, $scope, $location, $http, $parse) {
+angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function ($compile, $scope, $location, $http, $parse, $timeout) {
   $scope.loadTemplateAndJSON = function (div, URL, controllerPath) {
     if (!(controllerPath === 'null')) {
       $http.get(location.origin + "/" + controllerPath).then(function (response) {
@@ -160,12 +160,19 @@ angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function ($
         $scope.order = '-reportType';
       } 
       else if($scope.order === '-reportType') {
-        $scopre.order = undefined;
+        $scope.order = undefined;
       }
       else{
         $scope.order = 'reportType';
       }
     }
+  };
+  $scope.showAd = true;
+  $scope.hideAd = function () {
+    $scope.showAd = false;
+    $timeout(function () {
+      $scope.showAd = true;
+    }, 200000);
   };
 }).filter('secondsToMss', function ($filter) {
   return function (seconds) {

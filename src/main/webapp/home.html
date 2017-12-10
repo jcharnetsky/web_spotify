@@ -18,7 +18,10 @@
   <div id="main" ng-view>
     <ng-include src="'templates/navigateContent.html'"></ng-include>
   </div>
-  <div id="advertisement"><img id="advertisement" src="../images/advertisement.jpg" alt="Sponsored Advertiesment"></div>
+ <div ng-show="showAd && !user.premium">
+    <div id="advertisement"><img id="advertisement" src="../images/advertisement.jpg" alt="Sponsored Advertiesment"></div>
+    <a href="#" id="close_ad_button" ng-click="hideAd()">x</a>
+ </div>
 	<ng-include src="'templates/playbar.html'"></ng-include>
 	<div id="error_dialog"></div>
   <div id="modal_dialog"></div>
