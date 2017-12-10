@@ -23,29 +23,30 @@ angular.module("web_spotify").controller("UploadCtrl", function ($scope, $http, 
       });
   }
   
-  /*
-  $scope.uploadAudio = function() {
-    var audioFile = document.getElementById("uploadAudio").files[0];
-    if(audioFile.length == 0) {
-      return;
-    }
-    var audioData = new FormData();
-    audioData.append('file', audioFile);
-    audioData.append('id', !!!!!insert ID here!!!!!);
-    $http.post("/upload/audio", audioData,
-      {transformRequest: angular.identity, headers: {'Content-Type': undefined}})
-      .then(function(response) {
-        if(!response.data.error) {
-          displayErrorPopup("Successfully uploaded audio", $scope, $parse, $compile);
-          return;
-        }
-        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
-      }).catch(function (err) {
-        displayErrorPopup(err, $scope, $parse, $compile);
-      });
-  }
-  */
-  document.getElementById("editUserImage").addEventListener('change', $scope.editUserImage);
-  //document.getElementById("editCollectionImage").addEventListener('change', $scope.editCollectionImage);
-  //document.getElementById("uploadAudio").addEventListener('change', $scope.uploadAudio);
+  document.getElementById("editUserImage").addEventListener('change', $scope.editUserImage); 
 });
+
+/*
+$scope.uploadAudio = function() {
+  var audioFile = document.getElementById("uploadAudio").files[0];
+  if(audioFile.length == 0) {
+    return;
+  }
+  var audioData = new FormData();
+  audioData.append('file', audioFile);
+  audioData.append('id', !!!!!insert ID here!!!!!);
+  $http.post("/upload/audio", audioData,
+    {transformRequest: angular.identity, headers: {'Content-Type': undefined}})
+    .then(function(response) {
+      if(!response.data.error) {
+        displayErrorPopup("Successfully uploaded audio", $scope, $parse, $compile);
+        return;
+      }
+      displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+    }).catch(function (err) {
+      displayErrorPopup(err, $scope, $parse, $compile);
+    });
+}
+
+document.getElementById("uploadAudio").addEventListener('change', $scope.uploadAudio);
+*/
