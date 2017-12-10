@@ -82,7 +82,8 @@ public class QueueService {
   public Response addAlbumToQueue(SongQueue queue, int albumId) {
     if (albumRepository.exists(albumId)) {
       Album albumToAdd = albumRepository.findOne(albumId);
-      ArrayList<Song> allSongs = new ArrayList<Song>(albumToAdd.getSongs());
+      ArrayList<Song> allSongs = new ArrayList<Song>();
+      allSongs.addAll(albumToAdd.getSongsInAlbum());
       queue.enqueueCollection(determineValidSongs(allSongs));
       return ResponseUtilities.emptySuccess();
     } else {
