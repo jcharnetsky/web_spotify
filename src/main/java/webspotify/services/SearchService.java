@@ -171,7 +171,10 @@ public class SearchService {
       end = ConfigConstants.NUM_COLLECTIONS_TO_SHOW_BROWSE;
     }
     for(int i = 0; i < end;i++) {
-      responses.add(new BasicCollectionResponse(collections.get(start + i)));
+      SongCollection collection = collections.get(start + i);
+      if (!collection.isBanned() && collection.isPublic()) {
+        responses.add(new BasicCollectionResponse(collection));
+      }
     }
     return responses;
   }
@@ -212,6 +215,27 @@ public class SearchService {
       }
     }
     return genre;
+  }
+
+  public Response getRelatedArtists(int userId){
+    Artist currentArtist = artistRepository.findOne(userId);
+    List<Artist> artists = new ArrayList<Artist>();
+    GenreType genre = GenreType.POP;
+    if(currentArtist != null){
+      if(currentArtist.getOwnedAlbums().size() > 0) {
+        genre = ((Album) currentArtist.getOwnedAlbums().toArray()[0]).getGenre();
+      }
+      for(Album genreAlbum: albumRepository.findByGenre(genre)){
+        Artist artist = (Artist) genreAlbum.getOwner();
+        if (!artists.contains(artist)) {
+          artists.add(artist);
+        }
+      }
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.ARTIST_NO_EXIST);
+    }
+    Set<BasicUserInfoResponse> artistResponses = getRandomUserResponses(artists);
+    return ResponseUtilities.filledSuccess(artistResponses);
   }
 
 }

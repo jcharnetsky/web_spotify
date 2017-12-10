@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="../css/user_info.css" type="text/css">
+<link href="css/style.css" rel="stylesheet"/>
+<br>
+<br>
+<div>
+  <div class="hiddenFileInputContainer">
+    <img id="info_user_img" alt="user_img" ng-src="{{visitingUser.imageLink}}">
+  </div>
+  <div class="info_table_container">
+    <table class="info_table">
+      <tr>
+        <td>Name:</td>
+        <td class="table_middle">{{visitingUser.artist.stageName}}</td>
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td class="table_middle">{{visitingUser.email}}</td>
+      </tr>
+      <tr ng-show="visitingUser.artist">
+        <td>About:</td>
+        <td class="table_middle">{{visitingUser.artist.about}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
