@@ -108,9 +108,24 @@ angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $http, 
 		progressBar.max = audio.duration;
 		audio.currentTime = progressBar.value;
 	}
+ $scope.fastForward = function () {
+   if ((audio.currentTime + 15) > audio.duration) {
+     audio.currentTime = audio.duration;
+   } else {
+    audio.currentTime += 15;
+  }
+ };
+ $scope.rewind = function () {
+   if ((audio.currentTime - 15) < 0) {
+     audio.currentTime = 0;
+   } else {
+    audio.currentTime -= 15;
+  }
+ };
 	$scope.scrubVolume = function() {
     audio.volume = volumeBar.value/100;
 	}
+ $scope.lastVolume = 0;
  $scope.mute = function() {
    if ($scope.lastVolume !== 0) {
     volumeBar.value = $scope.lastVolume;
