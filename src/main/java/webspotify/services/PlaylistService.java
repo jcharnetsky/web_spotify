@@ -140,7 +140,7 @@ public class PlaylistService {
     try {
       Playlist toEdit = playlistRepo.findOne(playlistId);
       User userToCheck = toEdit.getOwner();
-      if(!(user instanceof Administrator) && userToCheck.equals(user)){
+      if(!(user instanceof Administrator) && !(userToCheck.equals(user))){
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
       }
       userToCheck.getOwnedPlaylists().remove(toEdit);
