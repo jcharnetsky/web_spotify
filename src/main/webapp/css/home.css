@@ -8,12 +8,13 @@
   color: #979797;
   background-color: #181818;
 }
-.advertisement {
-  display: block;
-  margin: auto;
-  padding-top: 5vh;
-  width: 45vw;
-  height: 30vh;
+#advertisement {
+  position: fixed;
+  left: auto; bottom: 8vh; top: 5vh; right: 0vw;
+  width: 10vw;
+ 	padding-left: 1vw;
+  height: 88vh;
+ 	overflow: auto;
 }
 .navbar {
   width: auto;
