@@ -21,6 +21,11 @@ public class SongQueue implements Serializable {
   public void enqueueSong(Song s) {
     currentQueue.add(s);
   }
+  
+  public void pushSongHistory(Song s) {
+    history.push(s);
+    recentlyPlayed.push(s);
+  }
 
   public boolean removeSong(Song s) {
     return currentQueue.remove(s);

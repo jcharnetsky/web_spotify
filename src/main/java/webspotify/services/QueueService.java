@@ -51,6 +51,20 @@ public class QueueService {
       return ResponseUtilities.filledFailure(ConfigConstants.SONG_NO_EXIST);
     }
   }
+  
+  @Transactional
+  public Response addSongToHistory(SongQueue queue, int songId) {
+    if (songRepository.exists(songId)) {
+      Song songToAdd = songRepository.findOne(songId);
+      if(songToAdd.getHasAudio()) {
+        queue.pushSongHistory(songToAdd);
+        return ResponseUtilities.filledSuccess(songToAdd);
+      }
+      return ResponseUtilities.filledFailure(ConfigConstants.NO_AUDIO_EXIST);
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.SONG_NO_EXIST);
+    }
+  }
 
   @Transactional
   public Response removeSongFromQueue(SongQueue queue, int songId){
@@ -138,10 +152,12 @@ public class QueueService {
 
   @Transactional
   public Response getNextSong(SongQueue queue) {
-    Song songToReturn = songRepository.findOne(1);
-    if (songToReturn == null) {
+    Song nextSong = queue.next();
+    if (nextSong == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.QUEUE_OUT_OF_BOUNDS);
     } else {
+      System.out.println("Next song id: " + nextSong.getId());
+      Song songToReturn = songRepository.findOne(nextSong.getId());
       songToReturn.incrementListens();
       songRepository.save(songToReturn);
       return ResponseUtilities.filledSuccess(new SongResponse(songToReturn));

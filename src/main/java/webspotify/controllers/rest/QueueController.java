@@ -48,6 +48,15 @@ public class QueueController {
     SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
     return queueService.removeSongFromQueue(queue, songId);
   }
+  
+  @PostMapping("/add/song/history/{songId}")
+  public Response addSongToHistory(@PathVariable final int songId, HttpSession session) {
+    if (SessionUtilities.getUserFromSession(session) == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    }
+    SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
+    return queueService.addSongToHistory(queue, songId);
+  }
 
   @GetMapping("/add/playlist/{playlistId}")
   public Response addPlaylistToQueue(@PathVariable final int playlistId, HttpSession session) {
