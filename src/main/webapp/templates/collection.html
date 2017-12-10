@@ -63,7 +63,7 @@
               </div>
             </div>
             <span class="play_button_spacer"> 
-              <img class="play_button" src="../images/play.png" ng-controller="PlaybarCtrl" ng-class="{'invisible': !song.hasAudio}" ng-click="loadSong(song.hasAudio, song.id)" alt="Play">
+              <img class="play_button" src="../images/play.png" ng-controller="PlaybarCtrl" ng-class="{'invisible': !song.hasAudio}" ng-click="addPartialCollectionToQueue(collection.id, song.id, collection.playlist)" alt="Play">
             </span> 
             <a href="#" ng-show="!song.saved" ng-click="saveSong(song.id)" class="add_button">+</a> 
             <a href="#" ng-show="song.saved" ng-click="unsaveSong(song.id)" class="add_button">-</a>

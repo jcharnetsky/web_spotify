@@ -77,6 +77,21 @@ public class QueueService {
       return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
     }
   }
+  
+  @Transactional
+  public Response addPartialPlaylistToQueue(SongQueue queue, int playlistId, int songId) {
+    if (playlistRepository.exists(playlistId) && songRepository.exists(songId)) {
+      Playlist playlistToAdd = playlistRepository.findOne(playlistId);
+      ArrayList<Song> allSongs = new ArrayList<Song>(playlistToAdd.getSongs());
+      while(songId != allSongs.get(0).getId()) {
+        allSongs.remove(0);
+      }
+      queue.enqueueCollection(determineValidSongs(allSongs));
+      return ResponseUtilities.emptySuccess();
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
+    }
+  }
 
   @Transactional
   public Response addAlbumToQueue(SongQueue queue, int albumId) {
@@ -90,6 +105,22 @@ public class QueueService {
       return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
     }
   }
+  
+  @Transactional
+  public Response addPartialAlbumToQueue(SongQueue queue, int albumId, int songId) {
+    if (albumRepository.exists(albumId) && songRepository.exists(songId)) {
+      Album albumToAdd = albumRepository.findOne(albumId);
+      ArrayList<Song> allSongs = new ArrayList<Song>();
+      allSongs.addAll(albumToAdd.getSongsInAlbum());
+      while(songId != allSongs.get(0).getId()) {
+        allSongs.remove(0);
+      }
+      queue.enqueueCollection(determineValidSongs(allSongs));
+      return ResponseUtilities.emptySuccess();
+    } else {
+      return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
+    }
+  }  
   
   @Transactional
   public Response addSavedSongsToQueue(User user, SongQueue queue) {

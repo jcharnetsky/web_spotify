@@ -57,6 +57,15 @@ public class QueueController {
     SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
     return queueService.addPlaylistToQueue(queue, playlistId);
   }
+  
+  @GetMapping("/add/partialplaylist/{playlistId}/{songId}")
+  public Response addPartialPlaylistToQueue(@PathVariable final int playlistId, @PathVariable final int songId, HttpSession session) {
+    if (SessionUtilities.getUserFromSession(session) == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    }
+    SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
+    return queueService.addPartialPlaylistToQueue(queue, playlistId, songId);
+  }
 
   @GetMapping("/add/album/{albumId}")
   public Response addAlbumToQueue(@PathVariable final int albumId, HttpSession session) {
@@ -65,6 +74,15 @@ public class QueueController {
     }
     SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
     return queueService.addAlbumToQueue(queue, albumId);
+  }
+  
+  @GetMapping("/add/partialalbum/{albumId}/{songId}")
+  public Response addPartialAlbumToQueue(@PathVariable final int albumId, @PathVariable final int songId, HttpSession session) {
+    if (SessionUtilities.getUserFromSession(session) == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    }
+    SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
+    return queueService.addPartialAlbumToQueue(queue, albumId, songId);
   }
 
   @GetMapping("/add/savedSongs")
