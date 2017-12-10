@@ -15,8 +15,8 @@
       <span class="options_col">
         <span class="options_button" onclick="toggleDropdown(-1)" style="display: inline;">&#x25BC;</span>
         <span id="other_dropdown_-1" class="dropdown_content" style="right: 0;" ng-controller="UserCtrl">
-          <a href="#" ng-show="user.public" ng-click="toggleIsPublic()">Enable Private Session</a>
-          <a href="#" ng-show="!user.public"  ng-click="toggleIsPublic()">Disable Private Session</a>
+          <a href="#" ng-show="user.public" ng-click="toggleIsPublic()">Enable Private</a>
+          <a href="#" ng-show="!user.public"  ng-click="toggleIsPublic()">Disable Private</a>
           <a href="#" ng-show="user.premium && !user.highAudio" ng-click="toggleAudioQuality()">Enable High Quality Audio</a>
           <a href="#" ng-show="user.premium && user.highAudio" ng-click="toggleAudioQuality()">Disable High Quality Audio</a>
           <span class="language_dropdown">
