@@ -57,7 +57,7 @@ public class UserController {
   @PostMapping("/register")
   public Response postUser(@RequestBody SignupRequest newUser, HttpSession session) {
     User creator = SessionUtilities.getUserFromSession(session);
-    if (creator != null || creator instanceof Administrator) {
+    if (creator != null  && !(creator instanceof Administrator)) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_ALREADY_LOGGED);
     }
     return userService.postUser(creator, newUser);
