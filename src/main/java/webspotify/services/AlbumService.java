@@ -48,8 +48,8 @@ public class AlbumService {
       User userToCheck = userRepo.findOne(user.getId());
       Album album = albumRepo.findOne(albumId);
       if (album.isPublic()
-          || (!album.isPublic() && album.getOwner().getId() == user.getId())
-          && !album.isBanned()) {
+              || (!album.isPublic() && album.getOwner().getId() == user.getId())
+              && !album.isBanned()) {
         return ResponseUtilities.filledSuccess(new AlbumInfoResponse(userToCheck, album));
       } else {
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
@@ -160,20 +160,20 @@ public class AlbumService {
 
   @Transactional
   public Response editAlbum(User user, int albumId, AlbumCreateRequest request) {
-    if(!albumRepo.exists(albumId)){
+    if (!albumRepo.exists(albumId)) {
       return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
     }
     try {
       Album toEdit = albumRepo.findOne(albumId);
       Artist userToCheck = (Artist) toEdit.getOwner();
-      if(!(user instanceof Administrator) && userToCheck.getId() == user.getId()){
+      if (!(user instanceof Administrator) && userToCheck.getId() == user.getId()) {
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
       }
       userToCheck.getOwnedAlbums().remove(toEdit);
-      if(request.getTitle() != null) {
+      if (request.getTitle() != null) {
         toEdit.setTitle(request.getTitle());
       }
-      if(request.getGenre() != null) {
+      if (request.getGenre() != null) {
         toEdit.setGenre(request.getGenre());
       }
       userToCheck.getOwnedAlbums().add(toEdit);
@@ -202,13 +202,13 @@ public class AlbumService {
   }
 
   @Transactional
-  public Response togglePrivacy(int userId, int albumId){
-    if(!albumRepo.exists(albumId)){
+  public Response togglePrivacy(int userId, int albumId) {
+    if (!albumRepo.exists(albumId)) {
       return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
     }
     try {
       Album toEdit = albumRepo.findOne(albumId);
-      if(toEdit.getOwner().getId() != userId){
+      if (toEdit.getOwner().getId() != userId) {
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
       }
       toEdit.setIsPublic(!toEdit.getIsPublic());
@@ -229,7 +229,9 @@ public class AlbumService {
       setOfRelevantAlbums.addAll(((Artist) userToCheck).getOwnedAlbums());
     }
     for (Album album : setOfRelevantAlbums) {
-      dataToReturn.add(new AlbumInfoResponse(userToCheck, album));
+      if (!album.isBanned() && album.isPublic()) {
+        dataToReturn.add(new AlbumInfoResponse(userToCheck, album));
+      }
     }
     return ResponseUtilities.filledSuccess(dataToReturn);
   }
