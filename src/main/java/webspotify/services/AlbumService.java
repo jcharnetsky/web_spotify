@@ -235,5 +235,4 @@ public class AlbumService {
     }
     return ResponseUtilities.filledSuccess(dataToReturn);
   }
-
 }
