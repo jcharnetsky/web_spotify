@@ -7,8 +7,6 @@ import java.util.Set;
 import javax.persistence.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import webspotify.models.media.Album;
 import webspotify.models.media.Concert;
 import webspotify.models.media.Song;

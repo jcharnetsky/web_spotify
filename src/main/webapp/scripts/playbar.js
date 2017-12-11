@@ -180,6 +180,10 @@ angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $http, 
   var progressBar = document.getElementById("songProgress");
 	$scope.play = false;
 	$scope.playSong = function() {
+	  var audioSrc = document.getElementById("playAudio");
+	  if(audioSrc.getAttribute("src") == "") {
+	    $scope.loadSongToPlay();s
+	  }
 		audio = document.getElementById("playAudio");
 		volumeBar = document.getElementById("songVolume");
     audio.volume = volumeBar.value/100;
