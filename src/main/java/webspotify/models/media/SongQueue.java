@@ -112,6 +112,9 @@ public class SongQueue implements Serializable {
     if(nowPlaying == null && shuffleEnabled) {
       shuffle();
     }
+    if(nowPlaying != null && repeatType == RepeatType.LIBRARY) {
+      currentQueue.add(nowPlaying);
+    }
     if (!currentQueue.isEmpty()) {
       switch (repeatType) {
         case NONE:
@@ -127,7 +130,6 @@ public class SongQueue implements Serializable {
           break;
         case LIBRARY:
           toReturn = currentQueue.poll();
-          currentQueue.add(toReturn);
           break;
       }
       nowPlaying = toReturn;
