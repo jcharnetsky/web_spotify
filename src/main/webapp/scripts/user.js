@@ -190,7 +190,7 @@ angular.module("web_spotify").controller("UserCtrl", function ($compile, $scope,
     $http.post("/api/users/info/set/email", null, {
       params:{
         "email": $scope.edit_email,
-        "userId": $scope.userId}}).
+        "userId": userId}}).
       then(function(response) {
         if (!response.data.error) {
           $scope.editingUser.email = $scope.edit_email;
