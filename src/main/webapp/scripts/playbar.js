@@ -29,6 +29,13 @@ angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $http, 
         displayErrorPopup(err, $scope, $parse, $compile);
       });
   }
+  $scope.spliceFromQueue = function(id) {
+    for(var i = 0; i < $scope.queue.queue.length; i++) {
+      if($scope.queue.queue[i].id === id) {
+        $scope.queue.queue.splice(i, 1);
+      }
+    }
+  }
   $scope.addSongToQueue = function(id) {
     data = JSON.stringify({"songId": id});
     $http.post("/api/queue/add/song/"+id, data, {headers: {"Content-Type":"application/json"}}).
