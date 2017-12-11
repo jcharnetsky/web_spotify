@@ -8,13 +8,13 @@
       <div>Email: {{visitingUser.email}}</div>
       <div>Birthday: {{visitingUser.birthday}}</div>
       <div>Follower count: {{visitingUser.followerCount}}</div>
-      <div ng-show="visitingUser.artist">Listeners: / Monthly Listeners: </div>
+      <div ng-show="visitingUser.artist">Listens: {{visitingUser.artist.totalListens}} / Monthly Listens: {{visitingUser.artist.monthlyListens}}</div>
       <div id="spotify_buttons">
         <a ng-show="!visitingUser.followed && visitingUser.id != user.id"
-           ng-click="followUser(visitingUser.id)" href="#"
+           ng-click="followUser(visitingUser.id)"
            class="Follow" href="#">Follow</a>
         <a ng-show="visitingUser.followed && visitingUser.id != user.id"
-           ng-click="unfollowUser(visitingUser.id)" href="#"
+           ng-click="unfollowUser(visitingUser.id)"
            class="Follow" href="#">Unfollow</a>
         <a href="#" class="options_button" onclick="toggleDropdown(0)" style="display: inline;">...</a>
         <span id="other_dropdown_0" class="dropdown_content">
