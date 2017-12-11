@@ -6,14 +6,16 @@ import webspotify.types.RepeatType;
 
 public class SongQueue implements Serializable {
 
-  private Queue<Song> currentQueue;
-  private Stack<Song> history;
+  private Song nowPlaying;
+  private Deque<Song> currentQueue;
+  private Deque<Song> history;
   private Stack<Song> recentlyPlayed;
   private RepeatType repeatType;
 
   public SongQueue() {
+    nowPlaying = null;
     currentQueue = new LinkedList<Song>();
-    history = new Stack<Song>();
+    history = new LinkedList<Song>();
     recentlyPlayed = new Stack<Song>();
     repeatType = RepeatType.NONE;
   }
@@ -29,14 +31,14 @@ public class SongQueue implements Serializable {
   public void enqueueSong(Song s) {
     currentQueue.add(s);
   }
+  
+  public boolean removeSong(Song s) {
+    return currentQueue.remove(s);
+  }
 
   public void enqueueCollection(Collection<Song> collection) {
     clearQueue();
     currentQueue.addAll(collection);
-  }
-  
-  public boolean removeSong(Song s) {
-    return currentQueue.remove(s);
   }
   
   public void clearQueue() {
@@ -60,38 +62,62 @@ public class SongQueue implements Serializable {
 
   public Song next() {
     Song toReturn = null;
+    if(nowPlaying != null) {
+      if(repeatType != RepeatType.CURRENT) {
+        history.push(nowPlaying);  
+      }
+      recentlyPlayed.push(nowPlaying);
+    }
     if (!currentQueue.isEmpty()) {
       switch (repeatType) {
         case NONE:
           toReturn = currentQueue.poll();
           break;
         case CURRENT:
-          toReturn = currentQueue.peek();
+          if(nowPlaying == null) {
+            toReturn = currentQueue.poll();
+          }
+          else {
+            toReturn = nowPlaying;  
+          }
           break;
         case LIBRARY:
           toReturn = currentQueue.poll();
           currentQueue.add(toReturn);
           break;
       }
-      if (toReturn != null) {
-        history.push(toReturn);
-        recentlyPlayed.push(toReturn);
-      }
+      nowPlaying = toReturn;
     }
     return toReturn;
   }
 
   public Song prev() {
     Song toReturn = null;
-    if(history.size() >= 2) {
-      Song repushSong = history.pop();
-      toReturn = history.peek();
-      history.push(repushSong);
-      history.push(toReturn);
-      recentlyPlayed.push(toReturn);
+    if(history.isEmpty() && nowPlaying == null) {
+      return toReturn;
     }
-    if(history.size() == 1) {
-      toReturn = history.peek();
+    else if (history.isEmpty()) {
+      recentlyPlayed.push(nowPlaying);
+      return nowPlaying;
+    }
+    else {
+      switch (repeatType) {
+      case NONE:
+        currentQueue.push(nowPlaying);
+        toReturn = history.pop();
+        recentlyPlayed.push(toReturn);
+        break;
+      case CURRENT:
+        toReturn = nowPlaying;
+        recentlyPlayed.push(toReturn);
+        break;
+      case LIBRARY:
+        currentQueue.push(nowPlaying);
+        toReturn = history.pop();
+        history.addFirst(currentQueue.pollLast());
+        break;
+      }
+      nowPlaying = toReturn;
     }
     return toReturn;
   }

@@ -163,6 +163,12 @@ angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $http, 
         if(!response.data.error) {
           var audioSrc = document.getElementById("playAudio");
           audioSrc.setAttribute("src", "../audio/" + response.data.content.id + ".mp3");
+          var songTitle = document.getElementsByClassName("current_song_title");
+          songTitle[0].innerHTML = response.data.content.trackName;
+          var artistName = document.getElementsByClassName("current_song_artist");
+          artistName[0].innerHTML = response.data.content.artist.stageName;
+          var albumCover = document.getElementsByClassName("current_album_cover");
+          albumCover[0].setAttribute("src", "../images/albums/" + response.data.content.albumId + ".jpg");
           $scope.playSong();
         }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
@@ -212,18 +218,47 @@ angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $http, 
 	  $scope.loadPrevSongToPlay();
 	}
 	$scope.toggleRepeat = function() {
-    $http.get("/api/queue/set/repeat/current", {headers: {"Content-Type":"application/json"}}).
+	  var repeater = document.getElementsByClassName("repeat");
+	  var repeaterSrc = repeater[0].getAttribute("src");
+	  if(repeaterSrc == "../images/repeatNone.png") {
+	    $http.get("/api/queue/set/repeat/library", {headers: {"Content-Type": "application/json"}}).
+	      then(function(response) {
+    	      if (!response.data.error) {
+    	        repeater[0].setAttribute("src", "../images/repeatCollection.png");
+              displayErrorPopup("Repeat collection set.", $scope, $parse, $compile);
+              return;
+            }
+            displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+          }).catch(function(err){
+            displayErrorPopup(err, $scope, $parse, $compile);
+          });
+	  }
+	  else if(repeaterSrc == "../images/repeatCollection.png") {
+	    $http.get("/api/queue/set/repeat/current", {headers: {"Content-Type": "application/json"}}).
       then(function(response) {
-        if (!response.data.error) {
-          var repeatImg = document.getElementById("repeatImg");
-          repeatImg.setAttribute("src", "../images/repeatCurrent.png");
-          displayErrorPopup("Repeat current set.", $scope, $parse, $compile);
-          return;
-        }
-        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
-      }).catch(function(err){
-        displayErrorPopup(err, $scope, $parse, $compile);
-      });
+          if (!response.data.error) {
+            repeater[0].setAttribute("src", "../images/repeatCurrentSong.png");
+            displayErrorPopup("Repeat current song set.", $scope, $parse, $compile);
+            return;
+          }
+          displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+        }).catch(function(err){
+          displayErrorPopup(err, $scope, $parse, $compile);
+        });
+    }
+	  else {
+	    $http.get("/api/queue/set/repeat/none", {headers: {"Content-Type": "application/json"}}).
+      then(function(response) {
+          if (!response.data.error) {
+            repeater[0].setAttribute("src", "../images/repeatNone.png");
+            displayErrorPopup("Repeat none set.", $scope, $parse, $compile);
+            return;
+          }
+          displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+        }).catch(function(err){
+          displayErrorPopup(err, $scope, $parse, $compile);
+        });
+	  }
 	}
  $scope.fastForward = function () {
    if ((audio.currentTime + 15) > audio.duration) {
