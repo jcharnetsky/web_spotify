@@ -20,12 +20,16 @@ class ArtistProfileResponse implements Serializable {
   private List<String> aliases;
   private List<AlbumInfoResponse> albums;
   private List<SongResponse> songs;
+  private Integer totalListens;
+  private Integer monthlyListens;
 
   public ArtistProfileResponse(Artist build) {
     this.id = build.getId();
     this.stageName = build.getStageName();
     this.about = build.getAbout();
     this.aliases = new ArrayList<String>();
+    this.totalListens = 0;
+    this.monthlyListens = 0;
     for (String alias : build.getAliases()) {
       this.aliases.add(alias);
     }
@@ -35,7 +39,11 @@ class ArtistProfileResponse implements Serializable {
     }
     this.songs = new ArrayList<SongResponse>();
     for (Song song : build.getOwnedSongs()) {
-      this.songs.add(new SongResponse(song));
+      if (song.isPublic()) {
+        this.monthlyListens += song.getMontlyListens();
+        this.totalListens += song.getTotalListens();
+        this.songs.add(new SongResponse(song));
+      }
     }
   }
 
@@ -85,6 +93,22 @@ class ArtistProfileResponse implements Serializable {
 
   public void setSongs(List<SongResponse> songs) {
     this.songs = songs;
+  }
+
+  public Integer getTotalListens() {
+    return totalListens;
+  }
+
+  public void setTotalListens(Integer totalListens) {
+    this.totalListens = totalListens;
+  }
+
+  public Integer getMonthlyListens() {
+    return monthlyListens;
+  }
+
+  public void setMonthlyListens(Integer monthlyListens) {
+    this.monthlyListens = monthlyListens;
   }
 
 }
