@@ -87,7 +87,7 @@
     <div class="info_block" ng-repeat="resultPlaylist in results.playlists">
       <img ng-src="{{resultPlaylist.imageLink}}" alt="Image"
            ng-controller="CollectionCtrl"
-           ng-click="loadAlbum(resultPlaylist.id)"
+           ng-click="loadPlaylist(resultPlaylist.id)"
            style="border-radius: 0px;">
       <p>{{resultPlaylist.title}}</p>
     </div>
