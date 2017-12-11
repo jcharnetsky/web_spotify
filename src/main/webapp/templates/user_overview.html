@@ -1,20 +1,20 @@
 <link rel="stylesheet" href="css/collection.css">
 <div class="user">
   <div class="collection_header">
-    <img class="collection_img" alt="album_art" ng-src="{{visitingUser.imageLink}}"
+    <img class="collection_img" alt="album_art" ng-src="{{visitingUser.imageLink | appendRandom}}"
      style="width: 15vw; height: 15vw;">
     <div class="collection_data">
       <div class="content_title">{{visitingUser.name}}</div>
       <div>Email: {{visitingUser.email}}</div>
       <div>Birthday: {{visitingUser.birthday}}</div>
       <div>Follower count: {{visitingUser.followerCount}}</div>
-      <div ng-show="visitingUser.artist">Listeners: / Monthly Listeners: </div>
+      <div ng-show="visitingUser.artist">Listens: {{visitingUser.artist.totalListens}} / Monthly Listens: {{visitingUser.artist.monthlyListens}}</div>
       <div id="spotify_buttons">
         <a ng-show="!visitingUser.followed && visitingUser.id != user.id"
-           ng-click="followUser(visitingUser.id)" href="#"
+           ng-click="followUser(visitingUser.id)"
            class="Follow" href="#">Follow</a>
         <a ng-show="visitingUser.followed && visitingUser.id != user.id"
-           ng-click="unfollowUser(visitingUser.id)" href="#"
+           ng-click="unfollowUser(visitingUser.id)"
            class="Follow" href="#">Unfollow</a>
         <a href="#" class="options_button" onclick="toggleDropdown(0)" style="display: inline;">...</a>
         <span id="other_dropdown_0" class="dropdown_content">
@@ -38,7 +38,7 @@
           <a href="#">
             <img class="tile_img"
                  ng-click="loadAlbum(album.id)"
-                 ng-src={{album.imageLink}}/>
+                 ng-src="{{album.imageLink | appendRandom}}"/>
           </a>
           <p class="tile_text center_align">{{album.title}}</p>
         </div>
@@ -55,7 +55,7 @@
         <div class="tile">
           <a href="#">
             <img class="tile_img" ng-click="loadPlaylist(ownedPlaylist.id)"
-                 ng-src={{ownedPlaylist.imageLink}}/>
+                 ng-src="{{ownedPlaylist.imageLink | appendRandom}}"/>
           </a>
           <p class="tile_text center_align">{{ownedPlaylist.title}}</p>
         </div>
@@ -71,7 +71,7 @@
       <li ng-repeat="followee in visitingUser.followers">
         <div class="tile">
           <a href="#">
-            <img class="tile_img" ng-src={{followee.imageLink}}
+            <img class="tile_img" ng-src="{{followee.imageLink | appendRandom}}"
                  ng-click="loadUser(followee.id)"
                  style="border-radius: 50%" alt="Suggestion"/>
           </a>

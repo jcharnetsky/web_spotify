@@ -3,7 +3,7 @@
 <div class="collection">
   <div class="collection_header">
     <div class="hiddenFileInputContainer">
-      <img id="collection_img" alt="collection_img" ng-src="{{collection.imageLink}}">
+      <img id="collection_img" alt="collection_img" ng-src="{{collection.imageLink | appendRandom}}">
       <input ng-show = "user.id == collection.ownerId" ng-controller="UploadCollectionImageCtrl" class="hidden" type="file" id="editCollectionImage" accept="image/*">
     </div>
     <div class="collection_data">

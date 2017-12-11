@@ -6,6 +6,7 @@ angular.module("web_spotify").controller("UploadCtrl", function ($scope, $http, 
     }
     var imageData = new FormData();
     imageData.append('file', imageFiles);
+    imageData.append('userId', $scope.editingUser.id);
     $http.post("/upload/image/user", imageData,
       {transformRequest: angular.identity, headers: {'Content-Type': undefined}})
       .then(function(response) {

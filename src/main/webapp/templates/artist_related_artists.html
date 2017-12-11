@@ -6,7 +6,7 @@
     <img class="tile_img"
          ng-controller="UserCtrl"
          ng-click="loadUser(artist.id)"
-         ng-src="{{artist.imageLink}}"/>
+         ng-src="{{artist.imageLink | appendRandom}}"/>
     <p>{{artist.name}}</p>
   </div>
 </div>

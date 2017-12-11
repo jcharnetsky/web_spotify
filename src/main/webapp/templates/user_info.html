@@ -3,7 +3,7 @@
 <link href="css/button.css" rel="stylesheet"/>
 <div ng-controller= "UserCtrl">
   <div class="hiddenFileInputContainer">
-    <img id="info_user_img" alt="user_img" ng-src="{{editingUser.imageLink}}">
+    <img id="info_user_img" alt="user_img" ng-src="{{editingUser.imageLink | appendRandom}}">
     <input ng-controller="UploadCtrl" class="hidden" type="file" id="editUserImage" accept="image/*">
   </div>
   <div class="info_table_container">

@@ -10,7 +10,7 @@
     <img class="tile_img" style="border-radius: 0;"
          ng-controller="CollectionCtrl"
          ng-click="loadAlbum(release.id)"
-         ng-src="{{release.imageLink}}"/>
+         ng-src="{{release.imageLink | appendRandom}}"/>
     <p>{{release.title}}</p>
   </div>
 </div>
