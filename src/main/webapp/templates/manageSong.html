@@ -16,8 +16,8 @@
             <tr>
               <td>{{manage.monthListens}}</td>
               <td>{{manage.allListens}}</td>
-              <td>${{manage.monthRoyalties}}</td>
-              <td>${{manage.allRoyalties}}</td>
+              <td>${{manage.monthRoyalties | number:2 }}</td>
+              <td>${{manage.allRoyalties | number:2 }}</td>
           </table>
           <div id="spotify_buttons">
             <a href="#" data-dismiss="modal">Close</a>

@@ -104,7 +104,7 @@ angular.module('web_spotify').controller('ManageCtrl', function($scope, $http, $
       then(function(response) {
         if(!response.data.error) {
           displayErrorPopup("Account created!", $scope, $parse, $compile);
-          $("#createAccountModal").hide();
+          $("#createAccountModal").modal("hide");
           return;
         }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
