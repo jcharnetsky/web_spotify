@@ -172,7 +172,7 @@ angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function ($
     $scope.showAd = false;
     $timeout(function () {
       $scope.showAd = true;
-    }, 200000);
+    }, 2000);
   };
 }).filter('secondsToMss', function ($filter) {
   return function (seconds) {
