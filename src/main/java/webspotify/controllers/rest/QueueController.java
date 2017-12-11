@@ -93,6 +93,16 @@ public class QueueController {
     SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
     return queueService.addPartialAlbumToQueue(queue, albumId, songId);
   }
+
+  @GetMapping("/add/partialsaved/{songId}")
+  public Response addPartialSavedSongsToQueue(@PathVariable final int songId, HttpSession session) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if(user == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    }
+    SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
+    return queueService.addPartialSavedSongs(user, songId, queue);
+  }
   
   @GetMapping("/next")
   public Response getNextSong(HttpSession session) {

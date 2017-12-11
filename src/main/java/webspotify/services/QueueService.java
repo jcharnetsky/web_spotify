@@ -1,6 +1,8 @@
 package webspotify.services;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,7 +74,6 @@ public class QueueService {
     }
   }
 
-
   @Transactional
   public Response addPlaylistToQueue(SongQueue queue, int playlistId) {
     if (playlistRepository.exists(playlistId)) {
@@ -127,7 +128,27 @@ public class QueueService {
     } else {
       return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
     }
-  }  
+  } 
+  
+  @Transactional
+  public Response addPartialSavedSongs(User user, int songId, SongQueue queue) {
+    if(songRepository.exists(songId)) {
+      user = userRepository.findOne(user.getId());
+      ArrayList<Song> allSongs = new ArrayList<Song>();
+      for(Song song : user.getSavedSongs()) {
+        Song foundSong = songRepository.findOne(song.getId());
+        allSongs.add(foundSong);
+      }
+      while(songId != allSongs.get(0).getId()) {
+        allSongs.remove(0);
+      }
+      queue.enqueueCollection(determineValidSongs(allSongs));
+      return ResponseUtilities.emptySuccess();
+    }
+    else {
+      return ResponseUtilities.emptyFailure();
+    }
+  }
   
   @Transactional
   public Response getNextSong(SongQueue queue) {

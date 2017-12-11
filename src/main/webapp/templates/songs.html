@@ -40,7 +40,7 @@
             <img class="play_button"
                  src="../images/play.png"
                  ng-class="{'invisible': !song.hasAudio}"
-                 ng-click="loadSong(song.hasAudio, song.id)" alt="Play">
+                 ng-click="addPartialSavedSongsToQueue(song.id)" alt="Play">
           </span>
           <a href="#" ng-show="!song.saved" ng-click="saveSong(song.id)" class="add_button">+</a>
           <a href="#" ng-show="song.saved" ng-click="unsaveSong(song.id)" class="add_button">-</a>

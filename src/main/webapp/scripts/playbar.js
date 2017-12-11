@@ -80,7 +80,6 @@ angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $http, 
         "playlistId": collectionId, 
         "songId": songId
       });
-      console.log("sending get now")
       $http.get("/api/queue/add/partialplaylist/" + collectionId + "/" + songId, data, {headers: {"Content-Type":"application/json"}}).
         then(function(response) {
           if (!response.data.error) {
@@ -109,7 +108,23 @@ angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $http, 
           displayErrorPopup(err, $scope, $parse, $compile);
         });
     }
-  };
+  }
+  $scope.addPartialSavedSongsToQueue = function(songId) {
+    data = JSON.stringify({
+      "songId": songId
+    });
+    $http.get("/api/queue/add/partialsaved/" + songId, data, {headers: {"Content-Type":"application/json"}}).
+      then(function(response) {
+        if (!response.data.error) {
+          displayErrorPopup("Partial album added to queue", $scope, $parse, $compile);
+          $scope.nextSong();
+          return;
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function(err){
+        displayErrorPopup(err, $scope, $parse, $compile);
+      });
+  }
   $scope.loadSongToPlay = function() {
     $http.get("/api/queue/next", {headers: {"Content-Type":"application/json"}}).
       then(function(response) {
