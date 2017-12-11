@@ -186,6 +186,9 @@ angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function ($
   };
 }).filter('toLowercase', function ($filter) {
   return function (word) {
+    if (word ===  "CHECK") {
+      word = "PAY";
+    }
     return word.charAt(0) + word.slice(1).toLowerCase();
   };
 });
