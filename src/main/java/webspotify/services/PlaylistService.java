@@ -59,8 +59,8 @@ public class PlaylistService {
       User userToCheck = userRepo.findOne(user.getId());
       Playlist playlist = playlistRepo.findOne(playlistId);
       if (playlist.isPublic()
-          || (!playlist.isPublic() && playlist.getOwner().getId() == user.getId())
-          && !playlist.isBanned()) {
+              || (!playlist.isPublic() && playlist.getOwner().getId() == user.getId())
+              && !playlist.isBanned()) {
         return ResponseUtilities.filledSuccess(new PlaylistInfoResponse(userToCheck, playlist));
       } else {
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
@@ -134,23 +134,23 @@ public class PlaylistService {
 
   @Transactional
   public Response editPlaylist(User user, int playlistId, PlaylistCreateRequest request) {
-    if(!playlistRepo.exists(playlistId)){
+    if (!playlistRepo.exists(playlistId)) {
       return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
     }
     try {
       Playlist toEdit = playlistRepo.findOne(playlistId);
       User userToCheck = toEdit.getOwner();
-      if(!(user instanceof Administrator) && !(userToCheck.equals(user))){
+      if (!(user instanceof Administrator) && !(userToCheck.equals(user))) {
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
       }
       userToCheck.getOwnedPlaylists().remove(toEdit);
-      if(request.getDescription() != null) {
+      if (request.getDescription() != null) {
         toEdit.setDescription(request.getDescription());
       }
-      if(request.getTitle() != null) {
+      if (request.getTitle() != null) {
         toEdit.setTitle(request.getTitle());
       }
-      if(request.getGenre() != null) {
+      if (request.getGenre() != null) {
         toEdit.setGenre(request.getGenre());
       }
       userToCheck.getOwnedPlaylists().add(toEdit);
@@ -162,7 +162,7 @@ public class PlaylistService {
   }
 
   @Transactional
-  public Response deletePlaylist(int  userId, int playlistId) {
+  public Response deletePlaylist(int userId, int playlistId) {
     User user = userRepo.findOne(userId);
     if (playlistRepo.exists(playlistId)) {
       Playlist playlist = playlistRepo.findOne(playlistId);
@@ -221,13 +221,13 @@ public class PlaylistService {
   }
 
   @Transactional
-  public Response togglePrivacy(int userId, int playlistId){
-    if(!playlistRepo.exists(playlistId)){
+  public Response togglePrivacy(int userId, int playlistId) {
+    if (!playlistRepo.exists(playlistId)) {
       return ResponseUtilities.filledFailure(ConfigConstants.COLLECTION_NO_EXIST);
     }
     try {
       Playlist toEdit = playlistRepo.findOne(playlistId);
-      if(toEdit.getOwner().getId() != userId){
+      if (toEdit.getOwner().getId() != userId) {
         return ResponseUtilities.filledFailure(ConfigConstants.ACCESS_DENIED);
       }
       toEdit.setIsPublic(!toEdit.getIsPublic());
@@ -246,7 +246,9 @@ public class PlaylistService {
     setOfRelevantPlaylists.addAll(userToCheck.getFollowedPlaylists());
     setOfRelevantPlaylists.addAll(userToCheck.getOwnedPlaylists());
     for (Playlist collection : setOfRelevantPlaylists) {
-      dataToReturn.add(new PlaylistInfoResponse(collection));
+      if (!collection.isBanned() && (collection.isPublic() || collection.getOwner().equals(user))) {
+        dataToReturn.add(new PlaylistInfoResponse(collection));
+      }
     }
     return ResponseUtilities.filledSuccess(dataToReturn);
   }
