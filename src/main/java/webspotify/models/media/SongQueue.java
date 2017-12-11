@@ -79,11 +79,13 @@ public class SongQueue implements Serializable {
       shuffle();
     }
     else {
-      while(orderedQueueHolder.peek() != nowPlaying) {
-        history.push(orderedQueueHolder.pop());
+      if(!orderedQueueHolder.isEmpty()) {
+        while(orderedQueueHolder.peek() != nowPlaying) {
+          history.push(orderedQueueHolder.pop());
+        }
+        orderedQueueHolder.pop();
+        currentQueue = orderedQueueHolder;
       }
-      orderedQueueHolder.pop();
-      currentQueue = orderedQueueHolder;
     }
   }
   
