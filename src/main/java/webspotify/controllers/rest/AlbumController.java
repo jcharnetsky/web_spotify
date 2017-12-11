@@ -13,7 +13,6 @@ import webspotify.models.users.Administrator;
 import webspotify.models.users.Artist;
 import webspotify.models.users.User;
 import webspotify.posts.AlbumCreateRequest;
-import webspotify.responses.SearchResponse;
 import webspotify.services.AlbumService;
 import webspotify.services.SearchService;
 import webspotify.types.GenreType;

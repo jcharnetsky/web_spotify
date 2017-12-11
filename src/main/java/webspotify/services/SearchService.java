@@ -3,7 +3,6 @@ package webspotify.services;
 import java.util.*;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import webspotify.config.ConfigConstants;
 import webspotify.models.media.Album;

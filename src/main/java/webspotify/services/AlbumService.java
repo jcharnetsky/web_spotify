@@ -2,14 +2,11 @@ package webspotify.services;
 
 import java.util.*;
 
-import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import webspotify.config.ConfigConstants;
 import webspotify.models.media.Album;
-import webspotify.models.media.Playlist;
 import webspotify.models.media.Song;
 import webspotify.models.users.Administrator;
 import webspotify.models.users.Artist;
@@ -19,10 +16,6 @@ import webspotify.repo.AlbumRepository;
 import webspotify.repo.SongRepository;
 import webspotify.repo.UserRepository;
 import webspotify.responses.AlbumInfoResponse;
-import webspotify.responses.BasicCollectionResponse;
-import webspotify.responses.SearchResponse;
-import webspotify.responses.SongResponse;
-import webspotify.types.GenreType;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
 
