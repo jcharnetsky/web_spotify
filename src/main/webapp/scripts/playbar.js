@@ -217,6 +217,24 @@ angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $http, 
 	  $scope.play =false;
 	  $scope.loadPrevSongToPlay();
 	}
+	$scope.toggleShuffle = function() {
+	  var shuffler = document.getElementsByClassName("shuffle");
+	  var shufflerSrc = shuffler[0].getAttribute("src");
+	  $http.get("/api/queue/set/shuffle/toggle", {headers: {"Content-Type": "application/json"}}).
+	    then(function(response) {
+	      if(!response.data.error) {
+	        if(shufflerSrc == "../images/shuffle.png") {
+	          shuffler[0].setAttribute("src", "../images/shuffleEnabled.png");
+	        }
+	        else {
+	          shuffler[0].setAttribute("src", "../images/shuffle.png");
+	        }}
+	        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+        }).catch(function(err){
+          displayErrorPopup(err, $scope, $parse, $compile);
+        });
+	}
+	
 	$scope.toggleRepeat = function() {
 	  var repeater = document.getElementsByClassName("repeat");
 	  var repeaterSrc = repeater[0].getAttribute("src");

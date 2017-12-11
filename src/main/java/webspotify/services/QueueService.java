@@ -1,7 +1,6 @@
 package webspotify.services;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -191,6 +190,11 @@ public class QueueService {
   @Transactional
   public Response setRepeatNone(SongQueue queue) {
     queue.setRepeatType(RepeatType.NONE);
+    return ResponseUtilities.emptySuccess();
+  }
+  
+  @Transactional public Response toggleShuffle(SongQueue queue) {
+    queue.toggleShuffle();
     return ResponseUtilities.emptySuccess();
   }
 

@@ -11,6 +11,8 @@ public class SongQueue implements Serializable {
   private Deque<Song> history;
   private Stack<Song> recentlyPlayed;
   private RepeatType repeatType;
+  private boolean shuffleEnabled;
+  private Deque<Song> orderedQueueHolder;
 
   public SongQueue() {
     nowPlaying = null;
@@ -18,6 +20,8 @@ public class SongQueue implements Serializable {
     history = new LinkedList<Song>();
     recentlyPlayed = new Stack<Song>();
     repeatType = RepeatType.NONE;
+    shuffleEnabled = false;
+    orderedQueueHolder = new LinkedList<Song>();
   }
   
   public List<Song> getQueue() {
@@ -56,8 +60,35 @@ public class SongQueue implements Serializable {
   public RepeatType getRepeatType() {
     return repeatType;
   }
+  
   public void setRepeatType(RepeatType repeat) {
     repeatType = repeat;
+  }
+  
+  public void toggleShuffle() {
+    shuffleEnabled = !shuffleEnabled;
+    if(shuffleEnabled) {
+      shuffle();
+    }
+    else {
+      while(orderedQueueHolder.peek() != nowPlaying) {
+        history.push(orderedQueueHolder.pop());
+      }
+      orderedQueueHolder.pop();
+      currentQueue = orderedQueueHolder;
+    }
+  }
+  
+  public void shuffle() {
+    orderedQueueHolder.clear();
+    orderedQueueHolder.addAll(currentQueue);
+    ArrayList<Song> shuffleHelper = new ArrayList<Song>();
+    shuffleHelper.addAll(currentQueue);
+    currentQueue.clear();
+    Random random = new Random();
+    while(!shuffleHelper.isEmpty()) {
+      currentQueue.push(shuffleHelper.remove(random.nextInt(shuffleHelper.size())));
+    }
   }
 
   public Song next() {
@@ -67,6 +98,9 @@ public class SongQueue implements Serializable {
         history.push(nowPlaying);  
       }
       recentlyPlayed.push(nowPlaying);
+    }
+    if(nowPlaying == null && shuffleEnabled) {
+      shuffle();
     }
     if (!currentQueue.isEmpty()) {
       switch (repeatType) {

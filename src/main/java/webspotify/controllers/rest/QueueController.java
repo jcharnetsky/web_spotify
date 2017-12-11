@@ -148,6 +148,15 @@ public class QueueController {
     SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
     return queueService.setRepeatNone(queue);
   }
+  
+  @GetMapping("/set/shuffle/toggle")
+  public Response toggleShuffle(HttpSession session) {
+    if(SessionUtilities.getUserFromSession(session) == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    }
+    SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
+    return queueService.toggleShuffle(queue);
+  }
 }
 
 /*
