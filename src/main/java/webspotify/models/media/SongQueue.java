@@ -17,36 +17,30 @@ public class SongQueue implements Serializable {
     recentlyPlayed = new Stack<Song>();
     repeatType = RepeatType.NONE;
   }
+  
+  public List<Song> getQueue() {
+    List<Song> songs = new ArrayList<Song>();
+    for (Song song : currentQueue) {
+      songs.add(song);
+    }
+    return songs;
+  }
 
   public void enqueueSong(Song s) {
     currentQueue.add(s);
-  }
-  
-  public void pushSongHistory(Song s) {
-    history.push(s);
-    recentlyPlayed.push(s);
-  }
-
-  public boolean removeSong(Song s) {
-    return currentQueue.remove(s);
-  }
-
-  public void playNow(Song s) {
-    LinkedList<Song> currentLinkedList = (LinkedList) currentQueue;
-    currentLinkedList.add(0, s);
   }
 
   public void enqueueCollection(Collection<Song> collection) {
     clearQueue();
     currentQueue.addAll(collection);
   }
-
+  
+  public boolean removeSong(Song s) {
+    return currentQueue.remove(s);
+  }
+  
   public void clearQueue() {
     currentQueue.clear();
-  }
-
-  public void setRepeatType(RepeatType repeat) {
-    repeatType = repeat;
   }
 
   public List<Song> getHistory() {
@@ -57,16 +51,11 @@ public class SongQueue implements Serializable {
     return songs;
   }
 
-  public List<Song> getQueue() {
-    List<Song> songs = new ArrayList<Song>();
-    for (Song song : currentQueue) {
-      songs.add(song);
-    }
-    return songs;
-  }
-
   public RepeatType getRepeatType() {
     return repeatType;
+  }
+  public void setRepeatType(RepeatType repeat) {
+    repeatType = repeat;
   }
 
   public Song next() {
@@ -93,9 +82,29 @@ public class SongQueue implements Serializable {
   }
 
   public Song prev() {
-    Song previousSong = recentlyPlayed.pop();
-    playNow(previousSong);
-    return next();
+    Song toReturn = null;
+    if(history.size() >= 2) {
+      Song repushSong = history.pop();
+      toReturn = history.peek();
+      history.push(repushSong);
+      history.push(toReturn);
+      recentlyPlayed.push(toReturn);
+    }
+    if(history.size() == 1) {
+      toReturn = history.peek();
+    }
+    return toReturn;
+  }
+}
+
+/*
+public void playNow(Song s) {
+    LinkedList<Song> currentLinkedList = (LinkedList) currentQueue;
+    currentLinkedList.add(0, s);
   }
 
-}
+  public void pushSongHistory(Song s) {
+    history.push(s);
+    recentlyPlayed.push(s);
+  }
+*/

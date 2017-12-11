@@ -11,6 +11,25 @@ angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $http, 
       $scope.loadQueue();
     });
   };
+  $scope.removeSongFromQueue = function(id) {
+    data = JSON.stringify({"songId": id});
+    $http.post("/api/queue/rem/song/"+id, data, {headers: {"Content-Type":"application/json"}}).
+      then(function(response) {
+        if (!response.data.error) {
+          for(var i = 0; i < $scope.queue.queue.length; i++){
+            if($scope.queue.queue[i].id === id){
+              $scope.queue.queue.splice(i,1);
+            }
+          }
+          displayErrorPopup("Song removed from queue", $scope, $parse, $compile);
+          $scope.addSongToHistory(id);
+          return;
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function(err){
+        displayErrorPopup(err, $scope, $parse, $compile);
+      });
+  }
   $scope.addSongToQueue = function(id) {
     data = JSON.stringify({"songId": id});
     $http.post("/api/queue/add/song/"+id, data, {headers: {"Content-Type":"application/json"}}).
@@ -97,6 +116,38 @@ angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $http, 
         if(!response.data.error) {
           var audioSrc = document.getElementById("playAudio");
           audioSrc.setAttribute("src", "../audio/" + response.data.content.id + ".mp3");
+          var songTitle = document.getElementsByClassName("current_song_title");
+          songTitle[0].innerHTML = response.data.content.trackName;
+          var artistName = document.getElementsByClassName("current_song_artist");
+          artistName[0].innerHTML = response.data.content.artist.stageName;
+          var albumCover = document.getElementsByClassName("current_album_cover");
+          albumCover[0].setAttribute("src", "../images/albums/" + response.data.content.albumId + ".jpg");
+          $scope.playSong();
+        }
+        if(response.data.error) {
+          $scope.doPause();
+          var audioSrc = document.getElementById("playAudio");
+          audioSrc.setAttribute("src", audioSrc.getAttribute("src"));
+        }
+        displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
+      }).catch(function(err){
+        displayErrorPopup(err, $scope, $parse, $compile);
+      });
+  }
+  $scope.loadPrevSongToPlay = function() {
+    if(audio.currentTime >= 5) {
+      audio.pause();
+      $scope.play = false;
+      audio.currentTime = 0;
+      $scope.play = true;
+      audio.play();
+      return;
+    }
+    $http.get("/api/queue/prev", {headers: {"Content-Type":"application/json"}}).
+      then(function(response) {
+        if(!response.data.error) {
+          var audioSrc = document.getElementById("playAudio");
+          audioSrc.setAttribute("src", "../audio/" + response.data.content.id + ".mp3");
           $scope.playSong();
         }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
@@ -141,7 +192,9 @@ angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $http, 
 	  $scope.loadSongToPlay();
 	}
 	$scope.prevSong = function() {
-	  
+	  audio.pause();
+	  $scope.play =false;
+	  $scope.loadPrevSongToPlay();
 	}
 	$scope.toggleRepeat = function() {
     $http.get("/api/queue/set/repeat/current", {headers: {"Content-Type":"application/json"}}).
@@ -205,26 +258,6 @@ $scope.addSongToHistory = function(id) {
     then(function(response) {
       if (!response.data.error) {
         displayErrorPopup("Song added to history", $scope, $parse, $compile);
-        return;
-      }
-      displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);
-    }).catch(function(err){
-      displayErrorPopup(err, $scope, $parse, $compile);
-    });
-}
-
-$scope.removeSongFromQueue = function(id) {
-  data = JSON.stringify({"songId": id});
-  $http.post("/api/queue/rem/song/"+id, data, {headers: {"Content-Type":"application/json"}}).
-    then(function(response) {
-      if (!response.data.error) {
-        for(var i = 0; i < $scope.queue.queue.length; i++){
-          if($scope.queue.queue[i].id === id){
-            $scope.queue.queue.splice(i,1);
-          }
-        }
-        displayErrorPopup("Song removed from queue", $scope, $parse, $compile);
-        $scope.addSongToHistory(id);
         return;
       }
       displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);

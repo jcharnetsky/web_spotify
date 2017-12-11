@@ -30,6 +30,24 @@ public class QueueController {
     SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
     return queueService.retrieveEntireQueue(currentUser, queue);
   }
+  
+  @PostMapping("/clear")
+  public Response clearQueue(HttpSession session) {
+    if (SessionUtilities.getUserFromSession(session) == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    }
+    SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
+    return queueService.clearQueue(queue);
+  }
+  
+  @PostMapping("/rem/song/{songId}")
+  public Response removeSongFromQueue(@PathVariable final int songId, HttpSession session) {
+    if (SessionUtilities.getUserFromSession(session) == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    }
+    SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
+    return queueService.removeSongFromQueue(queue, songId);
+  }
 
   @PostMapping("/add/song/{songId}")
   public Response addSongToQueue(@PathVariable final int songId, HttpSession session) {
@@ -40,24 +58,6 @@ public class QueueController {
     return queueService.addSongToQueue(queue, songId);
   }
 
-  @PostMapping("/rem/song/{songId}")
-  public Response removeSongFromQueue(@PathVariable final int songId, HttpSession session) {
-    if (SessionUtilities.getUserFromSession(session) == null) {
-      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
-    }
-    SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
-    return queueService.removeSongFromQueue(queue, songId);
-  }
-  
-  @PostMapping("/add/song/history/{songId}")
-  public Response addSongToHistory(@PathVariable final int songId, HttpSession session) {
-    if (SessionUtilities.getUserFromSession(session) == null) {
-      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
-    }
-    SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
-    return queueService.addSongToHistory(queue, songId);
-  }
-
   @GetMapping("/add/playlist/{playlistId}")
   public Response addPlaylistToQueue(@PathVariable final int playlistId, HttpSession session) {
     if (SessionUtilities.getUserFromSession(session) == null) {
@@ -65,15 +65,6 @@ public class QueueController {
     }
     SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
     return queueService.addPlaylistToQueue(queue, playlistId);
-  }
-  
-  @GetMapping("/add/partialplaylist/{playlistId}/{songId}")
-  public Response addPartialPlaylistToQueue(@PathVariable final int playlistId, @PathVariable final int songId, HttpSession session) {
-    if (SessionUtilities.getUserFromSession(session) == null) {
-      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
-    }
-    SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
-    return queueService.addPartialPlaylistToQueue(queue, playlistId, songId);
   }
 
   @GetMapping("/add/album/{albumId}")
@@ -85,6 +76,15 @@ public class QueueController {
     return queueService.addAlbumToQueue(queue, albumId);
   }
   
+  @GetMapping("/add/partialplaylist/{playlistId}/{songId}")
+  public Response addPartialPlaylistToQueue(@PathVariable final int playlistId, @PathVariable final int songId, HttpSession session) {
+    if (SessionUtilities.getUserFromSession(session) == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    }
+    SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
+    return queueService.addPartialPlaylistToQueue(queue, playlistId, songId);
+  }
+  
   @GetMapping("/add/partialalbum/{albumId}/{songId}")
   public Response addPartialAlbumToQueue(@PathVariable final int albumId, @PathVariable final int songId, HttpSession session) {
     if (SessionUtilities.getUserFromSession(session) == null) {
@@ -93,26 +93,7 @@ public class QueueController {
     SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
     return queueService.addPartialAlbumToQueue(queue, albumId, songId);
   }
-
-  @GetMapping("/add/savedSongs")
-  public Response addSavedSongs(HttpSession session) {
-    User user = SessionUtilities.getUserFromSession(session);
-    if (user == null) {
-      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
-    }
-    SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
-    return queueService.addSavedSongsToQueue(user, queue);
-  }
-
-  @PostMapping("/clear")
-  public Response clearQueue(HttpSession session) {
-    if (SessionUtilities.getUserFromSession(session) == null) {
-      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
-    }
-    SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
-    return queueService.clearQueue(queue);
-  }
-
+  
   @GetMapping("/next")
   public Response getNextSong(HttpSession session) {
     if (SessionUtilities.getUserFromSession(session) == null) {
@@ -158,3 +139,24 @@ public class QueueController {
     return queueService.setRepeatNone(queue);
   }
 }
+
+/*
+  @GetMapping("/add/savedSongs")
+  public Response addSavedSongs(HttpSession session) {
+    User user = SessionUtilities.getUserFromSession(session);
+    if (user == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    }
+    SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
+    return queueService.addSavedSongsToQueue(user, queue);
+  }
+  
+  @PostMapping("/add/song/history/{songId}")
+  public Response addSongToHistory(@PathVariable final int songId, HttpSession session) {
+    if (SessionUtilities.getUserFromSession(session) == null) {
+      return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
+    }
+    SongQueue queue = SessionUtilities.getSongQueueFromSession(session);
+    return queueService.addSongToHistory(queue, songId);
+  }
+ */
