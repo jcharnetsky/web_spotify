@@ -63,7 +63,7 @@
     <div class="content_title">Users</div>
     <hr>
     <div class="info_block" ng-repeat="resultUser in results.users">
-      <img ng-src="{{resultUser.imageLink}}" alt="Image"
+      <img ng-src="{{resultUser.imageLink | appendRandom}}" alt="Image"
            ng-controller="UserCtrl"
            ng-click="loadUser(resultUser.id)"
            style="border: 1px solid white;">
@@ -74,7 +74,7 @@
     <div class="content_title">Albums</div>
     <hr>
     <div class="info_block" ng-repeat="resultAlbum in results.albums">
-      <img ng-src="{{resultAlbum.imageLink}}" alt="Image"
+      <img ng-src="{{resultAlbum.imageLink | appendRandom}}" alt="Image"
            ng-controller="CollectionCtrl"
            ng-click="loadAlbum(resultAlbum.id)"
            style="border-radius: 0px;">
@@ -85,7 +85,7 @@
     <div class="content_title">Playlists</div>
     <hr>
     <div class="info_block" ng-repeat="resultPlaylist in results.playlists">
-      <img ng-src="{{resultPlaylist.imageLink}}" alt="Image"
+      <img ng-src="{{resultPlaylist.imageLink | appendRandom}}" alt="Image"
            ng-controller="CollectionCtrl"
            ng-click="loadPlaylist(resultPlaylist.id)"
            style="border-radius: 0px;">

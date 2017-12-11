@@ -29,12 +29,12 @@ public class UploadController {
   UploadService uploadService;
 
   @PostMapping("/image/user")
-  public Response uploadUserImage(@RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
+  public Response uploadUserImage(@RequestParam("file") MultipartFile file, @RequestParam("userId") int userId, HttpSession session) throws IOException {
     User user = SessionUtilities.getUserFromSession(session);
     if (user == null) {
       return ResponseUtilities.filledFailure(ConfigConstants.USER_NOT_LOGGED);
     }
-    return uploadService.uploadUserImage(file, user.getId());
+    return uploadService.uploadUserImage(file, userId);
   }
   
   @PostMapping("/image/playlist")

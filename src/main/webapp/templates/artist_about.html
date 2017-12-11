@@ -4,7 +4,7 @@
 <br>
 <div>
   <div class="hiddenFileInputContainer">
-    <img id="info_user_img" alt="user_img" ng-src="{{visitingUser.imageLink}}">
+    <img id="info_user_img" alt="user_img" ng-src="{{visitingUser.imageLink | appendRandom}}">
   </div>
   <div class="info_table_container">
     <table class="info_table">

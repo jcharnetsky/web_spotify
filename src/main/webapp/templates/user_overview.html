@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="css/collection.css">
 <div class="user">
   <div class="collection_header">
-    <img class="collection_img" alt="album_art" ng-src="{{visitingUser.imageLink}}"
+    <img class="collection_img" alt="album_art" ng-src="{{visitingUser.imageLink | appendRandom}}"
      style="width: 15vw; height: 15vw;">
     <div class="collection_data">
       <div class="content_title">{{visitingUser.name}}</div>
@@ -38,7 +38,7 @@
           <a href="#">
             <img class="tile_img"
                  ng-click="loadAlbum(album.id)"
-                 ng-src={{album.imageLink}}/>
+                 ng-src="{{album.imageLink | appendRandom}}"/>
           </a>
           <p class="tile_text center_align">{{album.title}}</p>
         </div>
@@ -55,7 +55,7 @@
         <div class="tile">
           <a href="#">
             <img class="tile_img" ng-click="loadPlaylist(ownedPlaylist.id)"
-                 ng-src={{ownedPlaylist.imageLink}}/>
+                 ng-src="{{ownedPlaylist.imageLink | appendRandom}}"/>
           </a>
           <p class="tile_text center_align">{{ownedPlaylist.title}}</p>
         </div>
@@ -71,7 +71,7 @@
       <li ng-repeat="followee in visitingUser.followers">
         <div class="tile">
           <a href="#">
-            <img class="tile_img" ng-src={{followee.imageLink}}
+            <img class="tile_img" ng-src="{{followee.imageLink | appendRandom}}"
                  ng-click="loadUser(followee.id)"
                  style="border-radius: 50%" alt="Suggestion"/>
           </a>

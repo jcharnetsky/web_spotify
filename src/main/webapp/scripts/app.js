@@ -188,4 +188,8 @@ angular.module('web_spotify', ['mc.resizer']).controller('MainCtrl', function ($
   return function (word) {
     return word.charAt(0) + word.slice(1).toLowerCase();
   };
+}).filter('appendRandom', function ($filter) {
+  return function (link) {
+    return link + "?=" + Math.random() * 1000;
+  }
 });

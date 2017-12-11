@@ -3,7 +3,7 @@
 <div class="content_title">Followed Users</div>
 <div class="followed_users">
   <div class="info_block" ng-repeat="following in followedUsers">
-    <img ng-src="{{following.imageLink}}" alt="Image"
+    <img ng-src="{{following.imageLink | appendRandom}}" alt="Image"
          ng-controller="UserCtrl"
          ng-click="loadUser(following.id)"
          style="border: 1px solid white;">
