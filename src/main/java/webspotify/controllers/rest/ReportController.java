@@ -12,7 +12,6 @@ import webspotify.posts.HandleReportRequest;
 import webspotify.responses.ReportResponse;
 import webspotify.services.ReportService;
 import webspotify.types.ReportTypes;
-import webspotify.types.SpotifyObjectEnum;
 import webspotify.utilities.Response;
 import webspotify.utilities.ResponseUtilities;
 import webspotify.utilities.SessionUtilities;

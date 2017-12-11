@@ -1,7 +1,6 @@
 package webspotify.responses;
 
 import webspotify.models.media.Song;
-import webspotify.models.users.User;
 import webspotify.types.GenreType;
 
 /**

@@ -4,7 +4,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import webspotify.config.ConfigConstants;
-import webspotify.models.media.Song;
 import webspotify.models.users.Administrator;
 import webspotify.models.users.Artist;
 import webspotify.models.users.User;
