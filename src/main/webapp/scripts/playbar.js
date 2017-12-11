@@ -22,7 +22,6 @@ angular.module('web_spotify').controller('PlaybarCtrl', function($scope, $http, 
             }
           }
           displayErrorPopup("Song removed from queue", $scope, $parse, $compile);
-          $scope.addSongToHistory(id);
           return;
         }
         displayErrorPopup(response.data.errorMessage, $scope, $parse, $compile);

@@ -31,7 +31,7 @@
                 <a href="#" ng-click="removeSongFromQueue(song.id)">Remove from queue</a>
                 <a href="#" ng-repeat="playlist in playlists"
                    ng-controller="CollectionCtrl"
-                   ng-click="addSongToPlaylist(song.id, playlist.id)">
+                   ng-click="addSongToPlayli∂st(song.id, playlist.id)">
                   Add to {{playlist.title}}
                 </a>
                 <a href="#" ng-click="openCreateReport('Song', song.trackName, song.id)">Report</a>
@@ -57,7 +57,7 @@
   </ul>
   <p class="content_title">Recently played</p>
   <ul class="collection">
-    <li ng-repeat="song in queue.history">
+    <li ng-repeat="song in queue.recentlyPlayed">
       <hr class="collection_hr">
       <ul class="collection_tiles">
         <li>

@@ -56,6 +56,14 @@ public class SongQueue implements Serializable {
     }
     return songs;
   }
+  
+  public List<Song> getRecentlyPlayed() {
+    List<Song> songs = new ArrayList<Song>();
+    for(Song song : recentlyPlayed) {
+      songs.add(song);
+    }
+    return songs;
+  }
 
   public RepeatType getRepeatType() {
     return repeatType;

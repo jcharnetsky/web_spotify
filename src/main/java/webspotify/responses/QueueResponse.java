@@ -18,10 +18,12 @@ public class QueueResponse {
   private RepeatType repeatType;
   private List<SongResponse> queue;
   private List<SongResponse> history;
+  private List<SongResponse> recentlyPlayed;
 
   public QueueResponse(SongQueue queue) {
     this.queue = new ArrayList<SongResponse>();
     this.history = new ArrayList<SongResponse>();
+    this.recentlyPlayed = new ArrayList<SongResponse>();
     for (Song song : queue.getQueue()) {
       this.queue.add(new SongResponse(song));
     }
@@ -29,11 +31,15 @@ public class QueueResponse {
       this.history.add(new SongResponse(song));
     }
     this.repeatType = queue.getRepeatType();
+    for(Song song : queue.getRecentlyPlayed()) {
+      this.recentlyPlayed.add(new SongResponse(song));
+    }
   }
 
   public QueueResponse(User user, SongQueue queue) {
     this.queue = new ArrayList<SongResponse>();
     this.history = new ArrayList<SongResponse>();
+    this.recentlyPlayed = new ArrayList<SongResponse>();
     for (Song song : queue.getQueue()) {
       this.queue.add(new SongResponse(song));
     }
@@ -51,6 +57,9 @@ public class QueueResponse {
     }
     for(SongResponse songResponse: getHistory()){
       songResponse.setSaved(ids.contains(songResponse.getId()));
+    }
+    for(Song song : queue.getRecentlyPlayed()) {
+      this.recentlyPlayed.add(new SongResponse(song));
     }
   }
 
@@ -76,5 +85,13 @@ public class QueueResponse {
 
   public void setHistory(List<SongResponse> history) {
     this.history = history;
+  }
+  
+  public List<SongResponse> getRecentlyPlayed() {
+    return recentlyPlayed;
+  }
+  
+  public void setRecentlyPlayed(List<SongResponse> recentlyPlayed) {
+    this.recentlyPlayed = recentlyPlayed;
   }
 }
